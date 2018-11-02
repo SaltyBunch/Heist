@@ -5,24 +5,61 @@ namespace Character
 {
     public class Character : MonoBehaviour
     {
+        private bool _damageCooldown;
+        private bool _firstDamage;
         private int _stacks;
+        private bool _stun;
+        private bool _stunCooldown;
 
-        public int Stacks //todo add stack decreasing 20 sec for first, 5 thereafter
+        private float _timeSinceDamage;
+
+        public int Stacks
         {
             get { return _stacks; }
             set
             {
-                if (!(_stun || _stunCooldown || _damageCooldown))
+                if (value > _stacks && !(_stun || _stunCooldown || _damageCooldown))
                 {
+                    _firstDamage = true;
+                    _timeSinceDamage = 0;
                     _stacks = value;
                     StartCoroutine(DamageCooldown());
-                    if (_stacks >= 4)
-                    {
-                        StartCoroutine(Stun());
-                    }
+                    if (_stacks >= 4) StartCoroutine(Stun());
+                }
+                else if (value < _stacks)
+                {
+                    _stacks = value;
+                    if (_stacks < 0)
+                        _stacks = 0;
                 }
             }
         }
+
+        private void Update()
+        {
+            //Stack decreasing
+            _timeSinceDamage += Time.deltaTime;
+            if (_firstDamage && _stacks > 0)
+            {
+                //wait for 20 sec
+                if (_timeSinceDamage >= 20)
+                {
+                    Stacks -= 1;
+                    _timeSinceDamage = 0;
+                    _firstDamage = false;
+                }
+            }
+            else if (_stacks > 0)
+            {
+                //wait for 5 secs
+                if (_timeSinceDamage >= 5)
+                {
+                    Stacks -= 1;
+                    _timeSinceDamage = 0;
+                }
+            }
+        }
+
 
         private IEnumerator DamageCooldown()
         {
@@ -30,11 +67,6 @@ namespace Character
             yield return new WaitForSeconds(2);
             _damageCooldown = false;
         }
-
-        private bool _stun = false;
-        private bool _stunCooldown = false;
-        private bool _damageCooldown = false;
-
 
         private IEnumerator Stun()
         {

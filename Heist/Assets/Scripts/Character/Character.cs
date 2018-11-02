@@ -12,19 +12,21 @@ namespace Character
         private bool _stunCooldown;
 
         private float _timeSinceDamage;
+        [SerializeField] internal int _maxStacks = 4;
+        [SerializeField] internal int _speed = 4;
+        [SerializeField] internal int _dexterity = 4;
 
         public int Stacks
         {
             get { return _stacks; }
             set
             {
-                if (value > _stacks && !(_stun || _stunCooldown || _damageCooldown))
+                if (value > _stacks && !(_stun || _stunCooldown))
                 {
                     _firstDamage = true;
                     _timeSinceDamage = 0;
                     _stacks = value;
-                    StartCoroutine(DamageCooldown());
-                    if (_stacks >= 4) StartCoroutine(Stun());
+                    if (_stacks >= _maxStacks) StartCoroutine(Stun());
                 }
                 else if (value < _stacks)
                 {
@@ -35,7 +37,7 @@ namespace Character
             }
         }
 
-        private void Update()
+        internal virtual void Update()
         {
             //Stack decreasing
             _timeSinceDamage += Time.deltaTime;
@@ -58,14 +60,6 @@ namespace Character
                     _timeSinceDamage = 0;
                 }
             }
-        }
-
-
-        private IEnumerator DamageCooldown()
-        {
-            _damageCooldown = true;
-            yield return new WaitForSeconds(2);
-            _damageCooldown = false;
         }
 
         private IEnumerator Stun()

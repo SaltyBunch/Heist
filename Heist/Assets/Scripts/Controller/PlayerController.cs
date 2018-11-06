@@ -1,4 +1,5 @@
 using System;
+using Camera;
 using Character;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ namespace Controller
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private PlayerMovement _playerMovement;
+
+        [SerializeField] private CameraMoveLogic _camera;
 
         private enum ControlType
         {
@@ -29,12 +32,13 @@ namespace Controller
             {
                 case ControlType.Mouse:
                     RaycastHit hit;
-                    if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
+                    if (Physics.Raycast(_camera.Camera.ScreenPointToRay(Input.mousePosition), out hit, 100))
                     {
                         var dif = hit.point - transform.position;
 
                         _playerMovement.FaceVector = (dif.x * Vector3.right + dif.z * Vector3.forward).normalized;
                     }
+
                     break;
                 case ControlType.Controller:
                     //if ()
@@ -45,8 +49,8 @@ namespace Controller
 
             Debug.DrawRay(transform.position + Vector3.up, transform.forward * 2, Color.red);
 
-            _playerMovement.MoveVector = Input.GetAxis("Vertical") * Vector3.forward +
-                                         Input.GetAxis("Horizontal") * Vector3.right;
+            _playerMovement.MoveVector = Input.GetAxis("Vertical") * _camera.transform.forward +
+                                         Input.GetAxis("Horizontal") * _camera.transform.right;
         }
     }
 }

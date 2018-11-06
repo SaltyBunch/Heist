@@ -12,9 +12,9 @@ namespace Character
         private bool _stunCooldown;
 
         private float _timeSinceDamage;
-        [SerializeField] internal int _maxStacks = 4;
-        [SerializeField] internal int _speed = 4;
-        [SerializeField] internal int _dexterity = 4;
+        [SerializeField] internal int MaxStacks = 4;
+        [SerializeField] internal int Speed = 4;
+        [SerializeField] internal int Dexterity = 4;
 
         public int Stacks
         {
@@ -26,7 +26,7 @@ namespace Character
                     _firstDamage = true;
                     _timeSinceDamage = 0;
                     _stacks = value;
-                    if (_stacks >= _maxStacks) StartCoroutine(Stun());
+                    if (_stacks >= MaxStacks) StartCoroutine(Stun());
                 }
                 else if (value < _stacks)
                 {

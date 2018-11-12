@@ -5,7 +5,7 @@ namespace Camera
 {
     public class CameraMoveLogic : MonoBehaviour
     {
-        [SerializeField] private PlayerMovement _playerMovement;
+        [SerializeField] private PlayerControl _playerControl;
 
         [SerializeField] public UnityEngine.Camera Camera;
 
@@ -21,9 +21,9 @@ namespace Camera
 
         private void FixedUpdate()
         {
-            Vector3 trackedPosition = _playerMovement.transform.position +
-                                      _playerMovement.MoveVector * _bounds +
-                                      _playerMovement.FaceVector * _bounds;
+            Vector3 trackedPosition = _playerControl.transform.position +
+                                      _playerControl.Control.MoveVector * _bounds +
+                                      _playerControl.Control.FaceVector * _bounds;
 
             //make tracked position center of screen
 

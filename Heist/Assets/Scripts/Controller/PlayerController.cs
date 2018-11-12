@@ -5,10 +5,9 @@ using UnityEngine;
 
 namespace Controller
 {
-    [RequireComponent(typeof(PlayerMovement), typeof(PlayerControl))]
+    [RequireComponent(typeof(PlayerControl))]
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private PlayerMovement _playerMovement;
         [SerializeField] private PlayerControl _playerControl;
         [SerializeField] private CameraMoveLogic _camera;
 
@@ -22,14 +21,14 @@ namespace Controller
 
         private void Awake()
         {
-            if (_playerMovement == null)
-                _playerMovement = GetComponent<PlayerMovement>();
             if (_playerControl == null)
                 _playerControl = GetComponent<PlayerControl>();
         }
 
         private void Update()
         {
+            var playerControlControl = _playerControl.Control;
+
             switch (_controlType)
             {
                 case ControlType.Mouse:
@@ -38,20 +37,17 @@ namespace Controller
                     {
                         var dif = hit.point - transform.position;
 
-                        _playerMovement.FaceVector = (dif.x * Vector3.right + dif.z * Vector3.forward).normalized;
+                        playerControlControl.FaceVector = (dif.x * Vector3.right + dif.z * Vector3.forward).normalized;
                     }
-
-                    var playerControlControl = _playerControl.Control;
-
 
                     playerControlControl.Dash = Input.GetButtonDown("Space");
                     playerControlControl.Interact = Input.GetButtonDown("F");
 
+                    playerControlControl.RangeAttack = Input.GetMouseButtonDown(0);
+                    playerControlControl.MeleeAttack = Input.GetMouseButtonDown(1);
 
-                    _playerControl.Control = playerControlControl;
                     break;
                 case ControlType.Controller:
-                    //if ()
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -59,8 +55,10 @@ namespace Controller
 
             Debug.DrawRay(transform.position + Vector3.up, transform.forward * 2, Color.red);
 
-            _playerMovement.MoveVector = Input.GetAxis("Vertical") * _camera.transform.forward +
-                                         Input.GetAxis("Horizontal") * _camera.transform.right;
+            playerControlControl.MoveVector = Input.GetAxis("Vertical") * _camera.transform.forward +
+                                              Input.GetAxis("Horizontal") * _camera.transform.right;
+
+            _playerControl.Control = playerControlControl;
         }
     }
 }

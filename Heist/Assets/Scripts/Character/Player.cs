@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Character
 {
+
+
+
     public class Player : Character
     {
         private int _goldAmount;

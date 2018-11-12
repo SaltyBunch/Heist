@@ -28,7 +28,6 @@ namespace Character
                 0.0f);
             transform.rotation = Quaternion.LookRotation(facing);
             /// Movement based on MoveVector
-            var movement = transform.TransformDirection(MoveVector);
             _rigid.AddForce(MoveVector, ForceMode.VelocityChange);
             if ((_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward).magnitude >
                 _baseCharacter.Speed)

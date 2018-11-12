@@ -1,7 +1,9 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Character
 {
+    [System.Serializable]
     internal struct Control
     {
         internal bool Dash;
@@ -32,7 +34,11 @@ namespace Character
                 _rigid = GetComponent<Rigidbody>();
         }
 
-        private Control _control;
+        [SerializeField] private Control _control;
+
+        [SerializeField, Range(1, 10)] private float _dashForce;
+        private bool _dashCooldown;
+        private float _dashTimer = 5;
 
         internal Control Control
         {
@@ -54,11 +60,9 @@ namespace Character
                     if (value.SwitchTrap && !_control.SwitchTrap)
                         SwitchTrap();
                 }
-
                 _control = value;
             }
         }
-
 
         private void FixedUpdate()
         {
@@ -71,8 +75,9 @@ namespace Character
             if ((_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward).magnitude >
                 _baseCharacter.Speed)
             {
-                var velocity = (_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward).normalized *
-                               _baseCharacter.Speed;
+                var velocity = Vector3.Lerp(_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward,
+                    (_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward).normalized *
+                    _baseCharacter.Speed, .2f);
                 velocity += _rigid.velocity.y * Vector3.up;
                 _rigid.velocity = velocity;
             }
@@ -95,7 +100,10 @@ namespace Character
 
         private void Interact()
         {
-            throw new System.NotImplementedException();
+            if (_baseCharacter.OverWeaponPickup || _baseCharacter.OverTrapPickup)
+            {
+                _baseCharacter.PickupPickup();
+            }
         }
 
         private void MeleeAttack()
@@ -105,7 +113,18 @@ namespace Character
 
         private void Dash()
         {
-            throw new System.NotImplementedException();
+            if (_dashCooldown)
+            {
+                StartCoroutine(DashCooldown());
+                _rigid.AddForce(Control.FaceVector * _dashForce, ForceMode.VelocityChange);
+            }
+        }
+
+        private IEnumerator DashCooldown()
+        {
+            _dashCooldown = false;
+            yield return new WaitForSeconds(_dashTimer);
+            _dashCooldown = true;
         }
     }
 }

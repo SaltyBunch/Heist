@@ -6,7 +6,7 @@ namespace Pickup
     [RequireComponent(typeof(Collider))]
     public class WeaponPickup : Pickup
     {
-        [SerializeField] private Weapon.Weapon _weaponGameObject;
+        [SerializeField] public Weapon.Weapon WeaponGameObject;
         
         private void Reset()
         {

@@ -7,11 +7,11 @@ namespace Character
 {
     public class Player : Character
     {
-        private int _goldAmount;
 
-        private Pickup.Pickup _currentlyOverPickup; //todo handle actually picking up a pickup
+        private Pickup.Pickup _currentlyOverPickup;
 
         [SerializeField] private UIManager _ui;
+        [SerializeField] private Inventory _inventory;
 
         private bool _overWeaponPickup;
 
@@ -58,12 +58,27 @@ namespace Character
                 case Pickup.Pickup.PickupType.Gold:
                     if (overPickup)
                     {
-                        _goldAmount += ((GoldPickup) pickup).AmountOfGold;
+                        _inventory.GoldAmount += ((GoldPickup) pickup).AmountOfGold;
                         Destroy(pickup.gameObject);
                     }
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(pickupType), pickupType, null);
+            }
+        }
+
+        public void PickupPickup()
+        {
+            if (OverWeaponPickup)
+            {
+                var weapon = ((WeaponPickup) _currentlyOverPickup).WeaponGameObject;
+                _inventory.Weapon = weapon;
+
+            }
+            else if (OverTrapPickup)
+            {
+                var hazard = ((HazardPickup) _currentlyOverPickup).HazardGameObject;
+                _inventory.Hazard = hazard;
             }
         }
     }

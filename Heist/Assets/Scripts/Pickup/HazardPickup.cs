@@ -5,7 +5,7 @@ namespace Pickup
 {
     public class HazardPickup : Pickup
     {
-        [SerializeField] private Hazard.Hazard _hazardGameObject;
+        [SerializeField] internal Hazard.Hazard HazardGameObject;
 
         private void Reset()
         {

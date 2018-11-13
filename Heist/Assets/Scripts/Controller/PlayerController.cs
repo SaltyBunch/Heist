@@ -40,8 +40,8 @@ namespace Controller
                         playerControlControl.FaceVector = (dif.x * Vector3.right + dif.z * Vector3.forward).normalized;
                     }
 
-                    playerControlControl.Dash = Input.GetButtonDown("Space");
-                    playerControlControl.Interact = Input.GetButtonDown("F");
+                    playerControlControl.Dash = Input.GetKeyDown("space");
+                    playerControlControl.Interact = Input.GetKeyDown("f");
 
                     playerControlControl.RangeAttack = Input.GetMouseButtonDown(0);
                     playerControlControl.MeleeAttack = Input.GetMouseButtonDown(1);

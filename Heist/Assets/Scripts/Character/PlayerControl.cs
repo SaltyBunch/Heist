@@ -6,17 +6,17 @@ namespace Character
     [System.Serializable]
     internal struct Control
     {
-        internal bool Dash;
-        internal bool MeleeAttack;
+        [SerializeField]internal bool Dash;
+        [SerializeField]internal bool MeleeAttack;
 
-        internal bool Interact;
-        internal bool RangeAttack;
+        [SerializeField]internal bool Interact;
+        [SerializeField]internal bool RangeAttack;
 
-        internal bool SwitchWeapon;
-        internal bool SwitchTrap;
+        [SerializeField]internal bool SwitchWeapon;
+        [SerializeField]internal bool SwitchTrap;
 
-        internal Vector3 MoveVector;
-        internal Vector3 FaceVector;
+        [SerializeField]internal Vector3 MoveVector;
+        [SerializeField]internal Vector3 FaceVector;
     }
 
     [RequireComponent(typeof(Player), typeof(Rigidbody))]
@@ -36,9 +36,9 @@ namespace Character
 
         [SerializeField] private Control _control;
 
-        [SerializeField, Range(1, 10)] private float _dashForce;
-        private bool _dashCooldown;
-        private float _dashTimer = 5;
+        [SerializeField, Range(10, 30)] private float _dashForce;
+        private bool _dashCooldown = true;
+        private float _dashTimer = 0.5f;
 
         internal Control Control
         {

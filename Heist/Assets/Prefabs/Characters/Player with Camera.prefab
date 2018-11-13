@@ -43,7 +43,8 @@ GameObject:
   - component: {fileID: 3050924102516203502}
   - component: {fileID: 3050924102516203410}
   - component: {fileID: 3050924102516203411}
-  - component: {fileID: 3050924102516203408}
+  - component: {fileID: 3041015691421169925}
+  - component: {fileID: 498303954121022594}
   - component: {fileID: 3050924102516203409}
   m_Layer: 0
   m_Name: Player
@@ -99,7 +100,8 @@ MonoBehaviour:
   Speed: 4
   Dexterity: 4
   _ui: {fileID: 0}
---- !u!114 &3050924102516203408
+  _inventory: {fileID: 3041015691421169925}
+--- !u!114 &3041015691421169925
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,11 +110,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 3050924102516203503}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fa1c7a30f444188bc8ec1a552e22161, type: 3}
+  m_Script: {fileID: 11500000, guid: cd3cb624e6eb4bf2ab39cb9a05ad5dcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &498303954121022594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3050924102516203503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5070269619944cad87ff61c10da975fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _baseCharacter: {fileID: 3050924102516203411}
   _rigid: {fileID: 3050924102516203410}
+  _control:
+    Dash: 0
+    MeleeAttack: 0
+    Interact: 0
+    RangeAttack: 0
+    SwitchWeapon: 0
+    SwitchTrap: 0
+    MoveVector: {x: 0, y: 0, z: 0}
+    FaceVector: {x: 0, y: 0, z: 0}
+  _dashForce: 30
 --- !u!114 &3050924102516203409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d626a25532504420be230fe0990a876d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerMovement: {fileID: 3050924102516203408}
+  _playerControl: {fileID: 498303954121022594}
   _camera: {fileID: 3050924102963311528}
   _controlType: 0
 --- !u!1 &3050924102963311526
@@ -172,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 404ce5d11ca349df9826c1acf140e3e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerMovement: {fileID: 3050924102516203408}
+  _playerControl: {fileID: 498303954121022594}
   Camera: {fileID: 3050924103427918977}
   _bounds: 3
   _smoothing: 0.2

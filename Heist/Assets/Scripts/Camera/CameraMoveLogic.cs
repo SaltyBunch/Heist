@@ -25,8 +25,6 @@ namespace Camera
                                       _playerControl.Control.MoveVector * _bounds +
                                       _playerControl.Control.FaceVector * _bounds;
 
-            //make tracked position center of screen
-
             transform.position = Vector3.Lerp(transform.position, trackedPosition, _smoothing);
         }
     }

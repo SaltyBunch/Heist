@@ -72,12 +72,14 @@ namespace Character
             if (OverWeaponPickup)
             {
                 var weapon = ((WeaponPickup) _currentlyOverPickup).WeaponGameObject;
+                Destroy(_currentlyOverPickup.gameObject);
                 _inventory.Weapon = weapon;
 
             }
             else if (OverTrapPickup)
             {
                 var hazard = ((HazardPickup) _currentlyOverPickup).HazardGameObject;
+                Destroy(_currentlyOverPickup.gameObject);
                 _inventory.Hazard = hazard;
             }
         }

@@ -5,7 +5,7 @@ namespace Hazard
     [RequireComponent(typeof(Collider))]
     public class Hazard : MonoBehaviour
     {
-        public virtual void Place()
+        public virtual void Place(Vector3 position)
         {
         }
 

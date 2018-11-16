@@ -4,7 +4,7 @@ namespace Character
 {
     public class Inventory : MonoBehaviour
     {
-        internal int GoldAmount;
+        public int GoldAmount;
 
         private Hazard.Hazard _hazard;
 

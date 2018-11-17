@@ -64,6 +64,8 @@ namespace Character
             }
         }
 
+        public int PlayerNumber;
+
         private void FixedUpdate()
         {
             ///Direction based on FaceVector

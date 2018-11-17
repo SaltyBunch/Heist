@@ -48,7 +48,19 @@ namespace Controller
 
                     break;
                 case ControlType.Controller:
-                    //todo add controller controls
+                    //todo finish controller controls
+                    playerControlControl.MoveVector =
+                        Input.GetAxis("Joystick Left " + _playerControl.PlayerNumber + " Vertical") *
+                        _camera.transform.forward * -1 +
+                        Input.GetAxis("Joystick Left " + _playerControl.PlayerNumber + " Horizontal") *
+                        _camera.transform.right;
+
+                    playerControlControl.FaceVector =
+                        Input.GetAxis("Joystick Right " + _playerControl.PlayerNumber + " Vertical") *
+                        _camera.transform.forward * -1 +
+                        Input.GetAxis("Joystick Right " + _playerControl.PlayerNumber + " Horizontal") *
+                        _camera.transform.right;
+
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -56,8 +68,6 @@ namespace Controller
 
             Debug.DrawRay(transform.position + Vector3.up, transform.forward * 2, Color.red);
 
-            playerControlControl.MoveVector = Input.GetAxis("Vertical") * _camera.transform.forward +
-                                              Input.GetAxis("Horizontal") * _camera.transform.right;
 
             _playerControl.Control = playerControlControl;
         }

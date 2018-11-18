@@ -3,6 +3,15 @@ using UnityEngine;
 
 namespace Character
 {
+
+    [System.Serializable]
+    public struct Stats
+    {
+        public int Health;
+        public int Speed;
+        public int Dexterity;
+    }
+
     public class Character : MonoBehaviour
     {
         private bool _damageCooldown;
@@ -12,9 +21,7 @@ namespace Character
         private bool _stunCooldown;
 
         private float _timeSinceDamage;
-        [SerializeField] internal int MaxStacks = 4;
-        [SerializeField] internal int Speed = 4;
-        [SerializeField] internal int Dexterity = 4;
+        [SerializeField] public Stats Stats;
 
         public int Stacks
         {
@@ -26,7 +33,7 @@ namespace Character
                     _firstDamage = true;
                     _timeSinceDamage = 0;
                     _stacks = value;
-                    if (_stacks >= MaxStacks) StartCoroutine(Stun());
+                    if (_stacks >= Stats.Health) StartCoroutine(Stun());
                 }
                 else if (value < _stacks)
                 {

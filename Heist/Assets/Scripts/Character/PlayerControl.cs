@@ -6,17 +6,17 @@ namespace Character
     [System.Serializable]
     internal struct Control
     {
-        [SerializeField]internal bool Dash;
-        [SerializeField]internal bool MeleeAttack;
+        [SerializeField] internal bool Dash;
+        [SerializeField] internal bool MeleeAttack;
 
-        [SerializeField]internal bool Interact;
-        [SerializeField]internal bool RangeAttack;
+        [SerializeField] internal bool Interact;
+        [SerializeField] internal bool RangeAttack;
 
-        [SerializeField]internal bool SwitchWeapon;
-        [SerializeField]internal bool SwitchTrap;
+        [SerializeField] internal bool SwitchWeapon;
+        [SerializeField] internal bool SwitchTrap;
 
-        [SerializeField]internal Vector3 MoveVector;
-        [SerializeField]internal Vector3 FaceVector;
+        [SerializeField] internal Vector3 MoveVector;
+        [SerializeField] internal Vector3 FaceVector;
     }
 
     [RequireComponent(typeof(Player), typeof(Rigidbody))]
@@ -25,13 +25,20 @@ namespace Character
         [SerializeField] private Player _baseCharacter;
         [SerializeField] private Rigidbody _rigid;
 
-
         private void Start()
         {
             if (_baseCharacter == null)
                 _baseCharacter = GetComponent<Player>();
             if (_rigid == null)
                 _rigid = GetComponent<Rigidbody>();
+
+            if (Game.GameManager.CharacterStats.TryGetValue(Game.GameManager.PlayerChoice[PlayerNumber],
+                out _baseCharacter.Stats))
+            {
+            }
+            else
+                Debug.LogError("Unexpected result when assigning stats for player " + (PlayerNumber + 1) +
+                               " with character choice " + Game.GameManager.PlayerChoice[PlayerNumber]);
         }
 
         [SerializeField] private Control _control;
@@ -60,6 +67,7 @@ namespace Character
                     if (value.SwitchTrap && !_control.SwitchTrap)
                         SwitchTrap();
                 }
+
                 _control = value;
             }
         }
@@ -75,11 +83,11 @@ namespace Character
             /// Movement based on MoveVector
             _rigid.AddForce(Control.MoveVector, ForceMode.VelocityChange);
             if ((_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward).magnitude >
-                _baseCharacter.Speed)
+                _baseCharacter.Stats.Speed)
             {
                 var velocity = Vector3.Lerp(_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward,
                     (_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward).normalized *
-                    _baseCharacter.Speed, .2f);
+                    _baseCharacter.Stats.Speed, .2f);
                 velocity += _rigid.velocity.y * Vector3.up;
                 _rigid.velocity = velocity;
             }

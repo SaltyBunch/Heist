@@ -36,7 +36,6 @@ namespace Controller
                     if (Physics.Raycast(_camera.Camera.ScreenPointToRay(Input.mousePosition), out hit, 100))
                     {
                         var dif = hit.point - transform.position;
-
                         playerControlControl.FaceVector = (dif.x * Vector3.right + dif.z * Vector3.forward).normalized;
                     }
 

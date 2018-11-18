@@ -2,11 +2,11 @@ using System.Linq;
 using Character;
 using UnityEngine;
 
-namespace Manager
+namespace Game
 {
-    public class GameManager : MonoBehaviour
+    public class LevelManager : MonoBehaviour
     {
-        public static GameManager GameMananger;
+        public static LevelManager LevelManagerRef;
 
         [SerializeField] private PlayerGameObject _playerGo;
 
@@ -16,7 +16,7 @@ namespace Manager
 
         private void Awake()
         {
-            if (GameMananger == null || GameMananger != this) GameMananger = this;
+            if (LevelManagerRef == null || LevelManagerRef == this) LevelManagerRef = this;
             else Destroy(this.gameObject);
 
             if (_spawnpoints == null) _spawnpoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
@@ -48,6 +48,16 @@ namespace Manager
 
         public void InitGame(int numPlayers)
         {
+            #region Level Setup
+            //todo place hazards
+
+            #endregion
+
+            #region Drone Setup
+            //todo drone setup
+            #endregion
+
+            #region Player Setup
             _players = new PlayerGameObject[numPlayers];
 
             ShuffleSpawns();
@@ -95,13 +105,14 @@ namespace Manager
                 //assign player number
                 _players[i].PlayerControl.PlayerNumber = i;
             }
+            #endregion
         }
 
         private void ShuffleSpawns()
         {
             for (int i = 0; i < _spawnpoints.Length; i++)
             {
-                int newLoc = Random.Range(0, _spawnpoints.Length - 1);
+                var newLoc = Random.Range(0, _spawnpoints.Length - 1);
 
                 var temp = _spawnpoints[i];
                 _spawnpoints[i] = _spawnpoints[newLoc];

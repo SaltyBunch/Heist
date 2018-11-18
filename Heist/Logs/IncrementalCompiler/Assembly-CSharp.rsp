@@ -302,11 +302,12 @@
 -i:D:/source/Heist/Heist/Assets/Scripts/Character/PlayerControl.cs
 -i:D:/source/Heist/Heist/Assets/Scripts/Character/PlayerGameObject.cs
 -i:D:/source/Heist/Heist/Assets/Scripts/Controller/PlayerController.cs
+-i:D:/source/Heist/Heist/Assets/Scripts/Game/GameManager.cs
+-i:D:/source/Heist/Heist/Assets/Scripts/Game/LevelManager.cs
 -i:D:/source/Heist/Heist/Assets/Scripts/Hazard/ElectricField.cs
 -i:D:/source/Heist/Heist/Assets/Scripts/Hazard/Hazard.cs
 -i:D:/source/Heist/Heist/Assets/Scripts/Hazard/LaserTripwire.cs
 -i:D:/source/Heist/Heist/Assets/Scripts/Hazard/LethalLaser.cs
--i:D:/source/Heist/Heist/Assets/Scripts/Manager/GameManager.cs
 -i:D:/source/Heist/Heist/Assets/Scripts/Pickup/GoldPickup.cs
 -i:D:/source/Heist/Heist/Assets/Scripts/Pickup/HazardPickup.cs
 -i:D:/source/Heist/Heist/Assets/Scripts/Pickup/Pickup.cs

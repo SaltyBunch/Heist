@@ -17,6 +17,14 @@ namespace Controller
             Controller
         }
 
+        private enum ControlBinding
+        {
+            Default,
+            Modified,
+        }
+
+        [SerializeField] private ControlBinding _controlBinding = ControlBinding.Modified;
+
         [SerializeField] private ControlType _controlType;
 
         private void Awake()
@@ -39,26 +47,59 @@ namespace Controller
                         playerControlControl.FaceVector = (dif.x * Vector3.right + dif.z * Vector3.forward).normalized;
                     }
 
-                    playerControlControl.Dash = Input.GetKeyDown("space");
-                    playerControlControl.Interact = Input.GetKeyDown("f");
+                    playerControlControl.Dash = Input.GetKey("space");
+                    playerControlControl.Interact = Input.GetKey("f");
 
-                    playerControlControl.RangeAttack = Input.GetMouseButtonDown(0);
-                    playerControlControl.MeleeAttack = Input.GetMouseButtonDown(1);
+                    playerControlControl.RangeAttack = Input.GetMouseButton(0);
+                    playerControlControl.MeleeAttack = Input.GetMouseButton(1);
 
                     break;
                 case ControlType.Controller:
                     //todo finish controller controls
                     playerControlControl.MoveVector =
-                        Input.GetAxis("Joystick Left " + _playerControl.PlayerNumber + " Vertical") *
+                        Input.GetAxisRaw("Joystick Left " + _playerControl.PlayerNumber + " Vertical") *
                         _camera.transform.forward * -1 +
-                        Input.GetAxis("Joystick Left " + _playerControl.PlayerNumber + " Horizontal") *
+                        Input.GetAxisRaw("Joystick Left " + _playerControl.PlayerNumber + " Horizontal") *
                         _camera.transform.right;
 
                     playerControlControl.FaceVector =
-                        Input.GetAxis("Joystick Right " + _playerControl.PlayerNumber + " Vertical") *
+                        Input.GetAxisRaw("Joystick Right " + _playerControl.PlayerNumber + " Vertical") *
                         _camera.transform.forward * -1 +
-                        Input.GetAxis("Joystick Right " + _playerControl.PlayerNumber + " Horizontal") *
+                        Input.GetAxisRaw("Joystick Right " + _playerControl.PlayerNumber + " Horizontal") *
                         _camera.transform.right;
+
+                    switch (_controlBinding)
+                    {
+                        case ControlBinding.Default: //based off of GDD Bindings
+                            playerControlControl.Dash =
+                                Input.GetKey("joystick " + (_playerControl.PlayerNumber + 1) + " button 0"); //A button
+                            playerControlControl.Interact =
+                                Input.GetKey("joystick " + (_playerControl.PlayerNumber + 1) + " button 2"); //X Button
+
+                            playerControlControl.MeleeAttack =
+                                Input.GetKey("joystick " + (_playerControl.PlayerNumber + 1) + " button 1"); //B button
+                            playerControlControl.RangeAttack =
+                                Input.GetAxisRaw("Joystick Right Trigger " + _playerControl.PlayerNumber) > 0.5f;
+                            break;
+                        case ControlBinding.Modified: //Personal Preference
+                            playerControlControl.Dash =
+                                Input.GetKey("joystick " + (_playerControl.PlayerNumber + 1) + " button 5"); //RB button
+                            playerControlControl.Interact =
+                                Input.GetKey("joystick " + (_playerControl.PlayerNumber + 1) + " button 4"); //LB button
+
+                            playerControlControl.MeleeAttack =
+                                Input.GetAxisRaw("Joystick Left Trigger " + _playerControl.PlayerNumber) > 0.5f;
+                            playerControlControl.RangeAttack =
+                                Input.GetAxisRaw("Joystick Right Trigger " + _playerControl.PlayerNumber) > 0.5f;
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+
+
+                    playerControlControl.Pause =
+                        Input.GetKey("joystick " + (_playerControl.PlayerNumber + 1) + " button 7"); //Start button
+
 
                     break;
                 default:

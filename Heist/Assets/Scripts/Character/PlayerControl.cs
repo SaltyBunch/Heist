@@ -17,6 +17,8 @@ namespace Character
 
         [SerializeField] internal Vector3 MoveVector;
         [SerializeField] internal Vector3 FaceVector;
+
+        [SerializeField] internal bool Pause;
     }
 
     [RequireComponent(typeof(Player), typeof(Rigidbody))]
@@ -66,10 +68,17 @@ namespace Character
                         SwitchWeapon();
                     if (value.SwitchTrap && !_control.SwitchTrap)
                         SwitchTrap();
+                    if (value.Pause && !_control.Pause)
+                        Pause();
                 }
 
                 _control = value;
             }
+        }
+
+        private void Pause()
+        {
+            Debug.Log("Pause Request by Player " + (PlayerNumber+1));
         }
 
         public int PlayerNumber;
@@ -95,17 +104,17 @@ namespace Character
 
         private void SwitchTrap()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("Switch Trap by Player " + (PlayerNumber+1));
         }
 
         private void SwitchWeapon()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("Switch Weapon by Player " + (PlayerNumber+1));
         }
 
         private void RangeAttack()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("Range Attack by Player " + (PlayerNumber+1));
         }
 
         private void Interact()
@@ -118,7 +127,7 @@ namespace Character
 
         private void MeleeAttack()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("Melee Attack by Player " + (PlayerNumber+1));
         }
 
         private void Dash()

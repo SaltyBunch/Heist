@@ -78,7 +78,7 @@ namespace Character
 
         private void Pause()
         {
-            Debug.Log("Pause Request by Player " + (PlayerNumber+1));
+            Debug.Log("Pause Request by Player " + (PlayerNumber + 1));
         }
 
         public int PlayerNumber;
@@ -96,7 +96,7 @@ namespace Character
             {
                 var velocity = Vector3.Lerp(_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward,
                     (_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward).normalized *
-                    _baseCharacter.Stats.Speed, .2f);
+                    _baseCharacter.Stats.Speed, .5f);
                 velocity += _rigid.velocity.y * Vector3.up;
                 _rigid.velocity = velocity;
             }
@@ -104,17 +104,17 @@ namespace Character
 
         private void SwitchTrap()
         {
-            Debug.Log("Switch Trap by Player " + (PlayerNumber+1));
+            Debug.Log("Switch Trap by Player " + (PlayerNumber + 1));
         }
 
         private void SwitchWeapon()
         {
-            Debug.Log("Switch Weapon by Player " + (PlayerNumber+1));
+            Debug.Log("Switch Weapon by Player " + (PlayerNumber + 1));
         }
 
         private void RangeAttack()
         {
-            Debug.Log("Range Attack by Player " + (PlayerNumber+1));
+            Debug.Log("Range Attack by Player " + (PlayerNumber + 1));
         }
 
         private void Interact()
@@ -127,7 +127,7 @@ namespace Character
 
         private void MeleeAttack()
         {
-            Debug.Log("Melee Attack by Player " + (PlayerNumber+1));
+            Debug.Log("Melee Attack by Player " + (PlayerNumber + 1));
         }
 
         private void Dash()
@@ -135,7 +135,7 @@ namespace Character
             if (_dashCooldown)
             {
                 StartCoroutine(DashCooldown());
-                _rigid.AddForce(Control.FaceVector * _dashForce, ForceMode.VelocityChange);
+                _rigid.AddForce(Control.MoveVector * _dashForce * 2.5f, ForceMode.VelocityChange);
             }
         }
 

@@ -9,7 +9,7 @@ namespace Camera
 
         [SerializeField] public UnityEngine.Camera Camera;
 
-        [SerializeField, Range(0, 10)] private float _bounds = 3;
+        [SerializeField, Range(0, 30)] private float _bounds = 3;
         [SerializeField, Range(0, 1)] private float _smoothing = 0.2f;
 
         [SerializeField] private float _offset = 10;
@@ -23,7 +23,7 @@ namespace Camera
         {
             Vector3 trackedPosition = _playerControl.transform.position +
                                       _playerControl.Control.MoveVector * _bounds +
-                                      _playerControl.Control.FaceVector * _bounds;
+                                      _playerControl.Control.FaceVector * _bounds/2;
 
             transform.position = Vector3.Lerp(transform.position, trackedPosition, _smoothing);
         }

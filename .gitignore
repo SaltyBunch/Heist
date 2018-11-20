@@ -36,3 +36,6 @@ sysinfo.txt
 *.unitypackage
 Heist/.idea
 *.log
+Heist/Assets/Rewired
+Heist/RewiredBackup
+Heist/Assets/Rewired.meta

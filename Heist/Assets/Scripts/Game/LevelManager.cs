@@ -31,12 +31,12 @@ namespace Game
             for (var i = 0; i < controllers.Length; i++)
             {
                 var controller = controllers[i];
-                output += controller + " assigned to Player " + (i+1) + "\n";
+                output += controller + " assigned to Player " + (i + 1) + "\n";
             }
 
             Debug.Log(output);
 
-            InitGame(controllers.Length);
+            InitGame(4);
         }
 
         public static int CalculateScore(Player player)
@@ -48,22 +48,50 @@ namespace Game
 
         public void InitGame(int numPlayers)
         {
+            int displays = 1;
+            if (GameManager.UseMultiScreen)
+            {
+                // Number of displays
+#if UNITY_EDITOR || UNITY_EDITOR_64
+                displays = 4;
+#else
+                    displays = Display.displays.Length;
+                #endif
+
+                for (var i = 0; i < Display.displays.Length; i++)
+                {
+                    var display = Display.displays[i];
+                    if (!display.active)
+                        display.Activate();
+                }
+            }
+
             #region Level Setup
+
             //todo place hazards
 
             #endregion
 
             #region Drone Setup
+
             //todo drone setup
+
             #endregion
 
             #region Player Setup
+
             _players = new PlayerGameObject[numPlayers];
 
             ShuffleSpawns();
 
+            var playersPerDisplay = numPlayers / displays;
+
+            var targetDisplay = 0;
+
             for (var i = 0; i < numPlayers; i++)
             {
+                if (i % playersPerDisplay == 0 && i != 0)
+                    targetDisplay++;
                 _players[i] = Instantiate(_playerGo);
                 //todo set appropriate player models
 
@@ -71,7 +99,7 @@ namespace Game
                 _players[i].Player.transform.position = _spawnpoints[i].transform.position;
 
                 //set screen region
-                switch (numPlayers)
+                switch (playersPerDisplay)
                 {
                     case 1:
                         _players[i].Camera.Camera.rect = new Rect
@@ -85,10 +113,10 @@ namespace Game
                     case 2:
                         _players[i].Camera.Camera.rect = new Rect
                         {
-                            x = 0,
-                            y = i % 2 * 0.5f,
-                            width = 1,
-                            height = 0.5f
+                            x = i % 2 * 0.5f,
+                            y = 0,
+                            width = 0.5f,
+                            height = 1
                         };
                         break;
                     case 3:
@@ -102,9 +130,12 @@ namespace Game
                         };
                         break;
                 }
+
+                _players[i].Camera.Camera.targetDisplay = targetDisplay;
                 //assign player number
                 _players[i].PlayerControl.PlayerNumber = i;
             }
+
             #endregion
         }
 

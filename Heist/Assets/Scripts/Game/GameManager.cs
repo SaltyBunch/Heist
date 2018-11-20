@@ -52,8 +52,12 @@ namespace Game
 
         public static GameManager GameManagerRef;
 
+
+        public static bool UseMultiScreen = true;
+
         //store the players character choice here
-        public static Characters[] PlayerChoice = {Characters.Raccoon};
+        public static Characters[] PlayerChoice =
+            {Characters.Raccoon, Characters.Jailbird, Characters.Shadow, Characters.King};
 
         private void Awake()
         {

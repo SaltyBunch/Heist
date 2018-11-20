@@ -112,9 +112,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d648bbf78199436449dbe2d6cf9ba1dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxStacks: 4
-  Speed: 4
-  Dexterity: 4
+  Stats:
+    Health: 0
+    Speed: 0
+    Dexterity: 0
   _ui: {fileID: 0}
   _inventory: {fileID: 3041015691421169925}
 --- !u!114 &3041015691421169925
@@ -153,7 +154,8 @@ MonoBehaviour:
     SwitchTrap: 0
     MoveVector: {x: 0, y: 0, z: 0}
     FaceVector: {x: 0, y: 0, z: 0}
-  _dashForce: 30
+    Pause: 0
+  _dashForce: 20
   PlayerNumber: 0
 --- !u!114 &3050924102516203409
 MonoBehaviour:
@@ -169,7 +171,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerControl: {fileID: 498303954121022594}
   _camera: {fileID: 3050924102963311528}
-  _controlType: 1
+  _controlBinding: 1
+  _controlType: 2
 --- !u!1 &3050924102963311526
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,7 +220,7 @@ MonoBehaviour:
   _playerControl: {fileID: 498303954121022594}
   Camera: {fileID: 3050924103427918977}
   _bounds: 3
-  _smoothing: 0.15
+  _smoothing: 0.08
   _offset: 15
 --- !u!1 &3050924103313246898
 GameObject:
@@ -368,7 +371,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 10
   m_Depth: -1
   m_CullingMask:

@@ -1,9 +1,10 @@
 using Character;
+using Game;
 using UnityEngine;
 
 namespace Camera
 {
-    public class CameraMoveLogic : MonoBehaviour
+    public class CameraLogic : MonoBehaviour
     {
         [SerializeField] private PlayerControl _playerControl;
 
@@ -16,7 +17,9 @@ namespace Camera
 
         private void Start()
         {
-            Camera.transform.position = Vector3.back * _offset + Vector3.up * _offset;
+            Camera.transform.localPosition = Vector3.back * _offset + Vector3.up * _offset;
+
+            Camera.cullingMask += GameManager.GetPlayerMask(_playerControl.PlayerNumber, true);
         }
 
         private void FixedUpdate()

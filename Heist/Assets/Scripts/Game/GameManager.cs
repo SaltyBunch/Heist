@@ -66,5 +66,17 @@ namespace Game
 
             DontDestroyOnLoad(this.gameObject);
         }
+
+        public static int GetPlayerMask(int playerNumber, bool bitShift)
+        {
+            switch (playerNumber)
+            {
+                case 0:
+                    return bitShift ? 1 << 28 : 28;
+                    break;
+            }
+
+            return 0;
+        }
     }
 }

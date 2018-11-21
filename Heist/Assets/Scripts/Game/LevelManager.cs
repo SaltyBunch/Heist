@@ -24,19 +24,10 @@ namespace Game
 
         private void Start()
         {
-            var controllers = Input.GetJoystickNames();
-
-            string output = "";
-
-            for (var i = 0; i < controllers.Length; i++)
-            {
-                var controller = controllers[i];
-                output += controller + " assigned to Player " + (i + 1) + "\n";
-            }
-
-            Debug.Log(output);
-
-            InitGame(4);
+            //var players = Rewired.ReInput.players.playerCount;
+            var players = Rewired.ReInput.controllers.joystickCount;
+            
+            InitGame(players);
         }
 
         public static int CalculateScore(Player player)
@@ -53,7 +44,7 @@ namespace Game
             {
                 // Number of displays
 #if UNITY_EDITOR || UNITY_EDITOR_64
-                displays = 4;
+                //displays = 4;
 #else
                     displays = Display.displays.Length;
                 #endif
@@ -90,13 +81,13 @@ namespace Game
 
             for (var i = 0; i < numPlayers; i++)
             {
-                if (i % playersPerDisplay == 0 && i != 0)
+                if (i != 0 && i % playersPerDisplay == 0)
                     targetDisplay++;
                 _players[i] = Instantiate(_playerGo);
                 //todo set appropriate player models
 
                 //put player on spawnpoint
-                _players[i].Player.transform.position = _spawnpoints[i].transform.position;
+                _players[i].transform.position = _spawnpoints[i].transform.position;
 
                 //set screen region
                 switch (playersPerDisplay)
@@ -134,6 +125,8 @@ namespace Game
                 _players[i].Camera.Camera.targetDisplay = targetDisplay;
                 //assign player number
                 _players[i].PlayerControl.PlayerNumber = i;
+
+                _players[i].PlayerControl.Player = Rewired.ReInput.players.GetPlayer(i);
             }
 
             #endregion

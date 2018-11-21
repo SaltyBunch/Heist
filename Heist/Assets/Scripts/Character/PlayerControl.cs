@@ -1,4 +1,5 @@
 using System.Collections;
+using Game;
 using UnityEngine;
 
 namespace Character
@@ -7,10 +8,10 @@ namespace Character
     internal struct Control
     {
         [SerializeField] internal bool Dash;
-        [SerializeField] internal bool MeleeAttack;
+        [SerializeField] internal bool PushAttack;
 
         [SerializeField] internal bool Interact;
-        [SerializeField] internal bool RangeAttack;
+        [SerializeField] internal bool WeaponAttack;
 
         [SerializeField] internal bool SwitchWeapon;
         [SerializeField] internal bool SwitchTrap;
@@ -41,6 +42,10 @@ namespace Character
             else
                 Debug.LogError("Unexpected result when assigning stats for player " + (PlayerNumber + 1) +
                                " with character choice " + Game.GameManager.PlayerChoice[PlayerNumber]);
+
+            if (_reticule != null) _reticule.layer = GameManager.GetPlayerMask(PlayerNumber, false);
+
+            //if (_reticule != null) _reticule = Instantiate(_reticule, this.transform);
         }
 
         [SerializeField] private Control _control;
@@ -60,10 +65,10 @@ namespace Character
                         Dash();
                     if (value.Interact && !_control.Interact)
                         Interact();
-                    if (value.RangeAttack && !_control.RangeAttack)
-                        RangeAttack();
-                    if (value.MeleeAttack && !_control.MeleeAttack)
-                        MeleeAttack();
+                    if (value.WeaponAttack && !_control.WeaponAttack)
+                        WeaponAttack();
+                    if (value.PushAttack && !_control.PushAttack)
+                        PushAttack();
                     if (value.SwitchWeapon && !_control.SwitchWeapon)
                         SwitchWeapon();
                     if (value.SwitchTrap && !_control.SwitchTrap)
@@ -76,12 +81,18 @@ namespace Character
             }
         }
 
+        public Rewired.Player Player;
+
         private void Pause()
         {
             Debug.Log("Pause Request by Player " + (PlayerNumber + 1));
         }
 
         public int PlayerNumber;
+        [SerializeField] private float _retMaxDist;
+        [SerializeField] private LayerMask _retLayerMask;
+
+        [SerializeField] private GameObject _reticule;
 
         private void FixedUpdate()
         {
@@ -100,6 +111,22 @@ namespace Character
                 velocity += _rigid.velocity.y * Vector3.up;
                 _rigid.velocity = velocity;
             }
+
+            /// Reticule
+            if (_reticule != null)
+            {
+                if (_control.FaceVector.magnitude > 0)
+                {
+                    RaycastHit hitInfo;
+                    _reticule.transform.localPosition = Physics.Raycast(transform.position, transform.forward, out hitInfo, _retMaxDist, _retLayerMask)
+                        ? transform.InverseTransformPoint(hitInfo.point)
+                        : ((_retMaxDist / 2) * Vector3.forward + Vector3.up);
+                }
+                else
+                {
+                    _reticule.transform.position = Vector3.up;
+                }
+            }
         }
 
         private void SwitchTrap()
@@ -112,9 +139,9 @@ namespace Character
             Debug.Log("Switch Weapon by Player " + (PlayerNumber + 1));
         }
 
-        private void RangeAttack()
+        private void WeaponAttack()
         {
-            Debug.Log("Range Attack by Player " + (PlayerNumber + 1));
+            Debug.Log("Weapon Attack by Player " + (PlayerNumber + 1));
         }
 
         private void Interact()
@@ -125,9 +152,9 @@ namespace Character
             }
         }
 
-        private void MeleeAttack()
+        private void PushAttack()
         {
-            Debug.Log("Melee Attack by Player " + (PlayerNumber + 1));
+            Debug.Log("Push Attack by Player " + (PlayerNumber + 1));
         }
 
         private void Dash()

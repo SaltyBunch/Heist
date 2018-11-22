@@ -1,2 +1,6 @@
- (0,0): [11/21/2018 10:14:06.141 PM] Unity incremental compiler server
- (0,0): [11/21/2018 10:14:06.255 PM] watchdog active on pid: 6300
+ (0,0): [11/22/2018 12:46:26.085 AM] Unity incremental compiler server
+ (0,0): [11/22/2018 12:46:26.148 AM] watchdog active on pid: 12564
+ (0,0): [11/22/2018 02:02:57.075 AM] watchdog threw an exception: System.ArgumentException: Process with an Id of 12564 is not running.
+   at System.Diagnostics.Process.GetProcessById(Int32 processId, String machineName)
+   at System.Diagnostics.Process.GetProcessById(Int32 processId)
+   at UnityEditor.Compilation.IncrementalCompiler.Server.<>c__DisplayClass7_0.<Watchdog>b__0()

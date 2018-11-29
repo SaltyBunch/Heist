@@ -9,7 +9,8 @@ namespace Game
         King,
         Jailbird,
         Shadow,
-        Raccoon
+        Raccoon,
+        Drone
     }
 
     public class GameManager : MonoBehaviour
@@ -48,6 +49,14 @@ namespace Game
                     Dexterity = 4,
                 }
             },
+            {
+                Characters.Drone, new Stats
+                {
+                    Health = 3,
+                    Speed = 3,
+                    Dexterity = -1,
+                }
+            },
         };
 
         public static GameManager GameManagerRef;
@@ -67,16 +76,7 @@ namespace Game
             DontDestroyOnLoad(this.gameObject);
         }
 
-        public static int GetPlayerMask(int playerNumber, bool bitShift)
-        {
-            switch (playerNumber)
-            {
-                case 0:
-                    return bitShift ? 1 << 28 : 28;
-                    break;
-            }
-
-            return 0;
-        }
+        public static int GetPlayerMask(int playerNumber, bool bitShift) =>
+            bitShift ? 1 << (28 + playerNumber) : (28 + playerNumber);
     }
 }

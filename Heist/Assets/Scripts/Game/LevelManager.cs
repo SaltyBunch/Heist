@@ -26,7 +26,6 @@ namespace Game
         {
             //var players = Rewired.ReInput.players.playerCount;
             var players = Rewired.ReInput.controllers.joystickCount;
-            
             InitGame(players);
         }
 
@@ -48,14 +47,39 @@ namespace Game
 #else
                     displays = Display.displays.Length;
                 #endif
+            }
 
-                for (var i = 0; i < Display.displays.Length; i++)
+            #region Display Setup
+
+            var playersPerDisplay = numPlayers / displays;
+            var targetDisplay = 0;
+            //find number of players on each screen
+            int[] playersOnDisplay = new int[displays];
+            int tempNumPlayers = numPlayers, index = 0;
+            while (tempNumPlayers > 0)
+            {
+                playersOnDisplay[index] += 1;
+                tempNumPlayers -= 1;
+                index = (index + 1) % displays;
+            }
+
+            for (int j = 0; j < playersOnDisplay.Length; j++)
+            {
+                if (playersOnDisplay[j] == 0)
                 {
-                    var display = Display.displays[i];
-                    if (!display.active)
-                        display.Activate();
+                    displays = j + 1;
+                    break;
                 }
             }
+
+            for (var i = 0; i < Display.displays.Length; i++)
+            {
+                var display = Display.displays[i];
+                if (!display.active && i < displays)
+                    display.Activate();
+            }
+
+            #endregion
 
             #region Level Setup
 
@@ -75,9 +99,6 @@ namespace Game
 
             ShuffleSpawns();
 
-            var playersPerDisplay = numPlayers / displays;
-
-            var targetDisplay = 0;
 
             for (var i = 0; i < numPlayers; i++)
             {
@@ -89,8 +110,9 @@ namespace Game
                 //put player on spawnpoint
                 _players[i].transform.position = _spawnpoints[i].transform.position;
 
+                //TODO don't split screen when players are alone on the screen
                 //set screen region
-                switch (playersPerDisplay)
+                switch (playersOnDisplay[targetDisplay])
                 {
                     case 1:
                         _players[i].Camera.Camera.rect = new Rect

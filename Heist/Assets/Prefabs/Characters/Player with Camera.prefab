@@ -114,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Stats:
     Health: 0
-    Speed: 0
+    Speed: -7
     Dexterity: 0
   _ui: {fileID: 0}
   _inventory: {fileID: 3041015691421169925}
@@ -155,7 +155,7 @@ MonoBehaviour:
     MoveVector: {x: 0, y: 0, z: 0}
     FaceVector: {x: 0, y: 0, z: 0}
     Pause: 0
-  _dashForce: 20
+  _dashForce: 15.2
   _addSpeed: 0
   _mulSpeed: 1
   PlayerNumber: 0

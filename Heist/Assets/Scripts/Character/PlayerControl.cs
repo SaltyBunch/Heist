@@ -49,6 +49,9 @@ namespace Character
         private bool _dashCooldown = true;
         private float _dashTimer = 0.5f;
 
+        [SerializeField, Range(0, 10), Tooltip("Addition to Speed")] private float _addSpeed = 0;
+        [SerializeField, Range(1, 10), Tooltip("Multiplication of Speed")] private float _mulSpeed = 1;
+
         internal Control Control
         {
             get { return _control; }
@@ -96,7 +99,7 @@ namespace Character
             {
                 var velocity = Vector3.Lerp(_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward,
                     (_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward).normalized *
-                    _baseCharacter.Stats.Speed, .5f);
+                    (_baseCharacter.Stats.Speed + _addSpeed) *_mulSpeed, .5f);
                 velocity += _rigid.velocity.y * Vector3.up;
                 _rigid.velocity = velocity;
             }

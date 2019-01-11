@@ -156,6 +156,8 @@ MonoBehaviour:
     FaceVector: {x: 0, y: 0, z: 0}
     Pause: 0
   _dashForce: 20
+  _addSpeed: 0
+  _mulSpeed: 1
   PlayerNumber: 0
 --- !u!114 &3050924102516203409
 MonoBehaviour:

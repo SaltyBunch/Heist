@@ -99,7 +99,7 @@ namespace Character
             {
                 var velocity = Vector3.Lerp(_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward,
                     (_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward).normalized *
-                    (_baseCharacter.Stats.Speed + _addSpeed) *_mulSpeed, .5f);
+                    (_baseCharacter.Stats.Speed + _addSpeed) *_mulSpeed, .9f);
                 velocity += _rigid.velocity.y * Vector3.up;
                 _rigid.velocity = velocity;
             }

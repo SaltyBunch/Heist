@@ -114,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Stats:
     Health: 0
-    Speed: -7
+    Speed: 5
     Dexterity: 0
   _ui: {fileID: 0}
   _inventory: {fileID: 3041015691421169925}
@@ -222,7 +222,7 @@ MonoBehaviour:
   _playerControl: {fileID: 498303954121022594}
   Camera: {fileID: 3050924103427918977}
   _bounds: 3
-  _smoothing: 0.08
+  _smoothing: 0.025
   _offset: 15
 --- !u!1 &3050924103313246898
 GameObject:

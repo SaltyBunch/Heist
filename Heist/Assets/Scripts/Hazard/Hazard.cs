@@ -16,5 +16,10 @@ namespace Hazard
         public virtual void Defuse()
         {
         }
+
+        public void Bind()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

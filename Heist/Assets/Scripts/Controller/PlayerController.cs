@@ -23,6 +23,10 @@ namespace Controller
         private void Start()
         {
             Player = _playerControl.Player;
+            if (Player == null)
+            {
+                Player = Rewired.ReInput.players.GetPlayer(_playerControl.PlayerNumber - 1);
+            }
         }
 
         private void Update()

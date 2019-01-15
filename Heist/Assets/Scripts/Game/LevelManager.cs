@@ -1,12 +1,15 @@
-using System.Linq;
 using Character;
+using Rewired;
 using UnityEngine;
+using Player = Character.Player;
 
 namespace Game
 {
     public class LevelManager : MonoBehaviour
     {
         public static LevelManager LevelManagerRef;
+        [SerializeField] private int _goldMultiplier = 10;
+        [SerializeField] private int _stunMultiplier = 100;
 
         [SerializeField] private PlayerGameObject _playerGo;
 
@@ -17,28 +20,27 @@ namespace Game
         private void Awake()
         {
             if (LevelManagerRef == null || LevelManagerRef == this) LevelManagerRef = this;
-            else Destroy(this.gameObject);
-
+            else Destroy(gameObject);
             if (_spawnpoints == null) _spawnpoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
         }
 
         private void Start()
         {
             //var players = Rewired.ReInput.players.playerCount;
-            var players = Rewired.ReInput.controllers.joystickCount;
+            var players = ReInput.controllers.joystickCount;
             InitGame(players);
         }
 
-        public static int CalculateScore(Player player)
+        public int CalculateScore(Player player)
         {
-            var score = player.Inventory.GoldAmount * 100;
-            //todo add more sources of score
+            var score = player.Inventory.GoldAmount * _goldMultiplier;
+            score -= player.timesStunned * _stunMultiplier;
             return score;
         }
 
         public void InitGame(int numPlayers)
         {
-            int displays = 1;
+            var displays = 1;
             if (GameManager.UseMultiScreen)
             {
                 // Number of displays
@@ -46,7 +48,7 @@ namespace Game
                 //displays = 4;
 #else
                     displays = Display.displays.Length;
-                #endif
+#endif
             }
 
             #region Display Setup
@@ -54,7 +56,7 @@ namespace Game
             var playersPerDisplay = numPlayers / displays;
             var targetDisplay = 0;
             //find number of players on each screen
-            int[] playersOnDisplay = new int[displays];
+            var playersOnDisplay = new int[displays];
             int tempNumPlayers = numPlayers, index = 0;
             while (tempNumPlayers > 0)
             {
@@ -63,14 +65,12 @@ namespace Game
                 index = (index + 1) % displays;
             }
 
-            for (int j = 0; j < playersOnDisplay.Length; j++)
-            {
+            for (var j = 0; j < playersOnDisplay.Length; j++)
                 if (playersOnDisplay[j] == 0)
                 {
                     displays = j + 1;
                     break;
                 }
-            }
 
             for (var i = 0; i < Display.displays.Length; i++)
             {
@@ -148,7 +148,7 @@ namespace Game
                 //assign player number
                 _players[i].PlayerControl.PlayerNumber = i;
 
-                _players[i].PlayerControl.Player = Rewired.ReInput.players.GetPlayer(i);
+                _players[i].PlayerControl.Player = ReInput.players.GetPlayer(i);
             }
 
             #endregion
@@ -156,7 +156,7 @@ namespace Game
 
         private void ShuffleSpawns()
         {
-            for (int i = 0; i < _spawnpoints.Length; i++)
+            for (var i = 0; i < _spawnpoints.Length; i++)
             {
                 var newLoc = Random.Range(0, _spawnpoints.Length - 1);
 

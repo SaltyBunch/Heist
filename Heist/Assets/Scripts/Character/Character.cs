@@ -1,10 +1,10 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 namespace Character
 {
-
-    [System.Serializable]
+    [Serializable]
     public struct Stats
     {
         public int Health;
@@ -20,12 +20,15 @@ namespace Character
         private bool _stun;
         private bool _stunCooldown;
 
+
         private float _timeSinceDamage;
         [SerializeField] public Stats Stats;
 
+        internal int timesStunned;
+
         public int Stacks
         {
-            get { return _stacks; }
+            get => _stacks;
             set
             {
                 if (value > _stacks && !(_stun || _stunCooldown))
@@ -72,6 +75,7 @@ namespace Character
         private IEnumerator Stun()
         {
             _stun = true;
+            timesStunned += 1;
             yield return new WaitForSeconds(5);
             _stun = false;
             _stunCooldown = true;

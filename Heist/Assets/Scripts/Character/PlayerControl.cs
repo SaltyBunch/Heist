@@ -35,9 +35,23 @@ namespace Character
         [SerializeField] [Range(10, 30)] private float _dashForce;
         [SerializeField] private float _dashTimer = 0.5f;
 
-        [SerializeField] private AudioClip _meleeAttack;
+        [Header("Sounds")] [SerializeField] private AudioClip _meleeAttack;
 
-        [SerializeField] private GameObject _reticule;
+        [Header("Voice Lines")] [SerializeField]
+        private AudioClip _enterBank;
+        [SerializeField] private AudioClip _exitBank;
+        [SerializeField] private AudioClip _pickupWeapon;
+        [SerializeField] private AudioClip _pickupTrap;
+        [SerializeField] private AudioClip _spotSecurity;
+        [SerializeField] private AudioClip _takeDamage;
+        [SerializeField] private AudioClip _collectGold;
+        [SerializeField] private AudioClip _loseGold;
+        [SerializeField] private AudioClip _taunt;
+        [SerializeField] private AudioClip _joke;
+        [SerializeField] private AudioClip _victory;
+        [SerializeField] private AudioClip _defeat;
+
+        [Space(24)] [SerializeField] private GameObject _reticule;
         [SerializeField] private LayerMask _retLayerMask;
         [SerializeField] private float _retMaxDist;
         [SerializeField] private Rigidbody _rigid;
@@ -68,7 +82,6 @@ namespace Character
                     if (value.Pause && !_control.Pause)
                         Pause();
                 }
-
                 _control = value;
             }
         }
@@ -92,9 +105,7 @@ namespace Character
                 Debug.LogError("Unexpected result when assigning stats for player " + (PlayerNumber + 1) +
                                " with character choice " + GameManager.PlayerChoice[PlayerNumber]);
             }
-
             if (_reticule != null) _reticule.layer = GameManager.GetPlayerMask(PlayerNumber, false);
-
             //if (_reticule != null) _reticule = Instantiate(_reticule, this.transform);
         }
 
@@ -120,7 +131,6 @@ namespace Character
                 velocity += _rigid.velocity.y * Vector3.up;
                 _rigid.velocity = velocity;
             }
-
             /// Reticule
             if (_reticule != null)
             {
@@ -176,7 +186,12 @@ namespace Character
         private IEnumerator DashCooldown()
         {
             _dashCooldown = false;
-            yield return new WaitForSeconds(_dashTimer);
+            _rigid.AddForce(Control.MoveVector * _dashForce, ForceMode.VelocityChange);
+            yield return new WaitForSeconds(_dashTimer / 8);
+            _rigid.AddForce(Control.MoveVector * _dashForce, ForceMode.VelocityChange);
+            yield return new WaitForSeconds(_dashTimer / 8);
+            _rigid.AddForce(Control.MoveVector * _dashForce, ForceMode.VelocityChange);
+            yield return new WaitForSeconds((_dashTimer / 4) * 3);
             _dashCooldown = true;
         }
     }

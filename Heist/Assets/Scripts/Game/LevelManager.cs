@@ -5,6 +5,7 @@ using Player = Character.Player;
 
 namespace Game
 {
+    [RequireComponent(typeof(AudioSource))]
     public class LevelManager : MonoBehaviour
     {
         public static LevelManager LevelManagerRef;
@@ -17,11 +18,18 @@ namespace Game
 
         [SerializeField] private GameObject[] _spawnpoints;
 
+        private AudioSource _audioSource;
+        [SerializeField] private AudioClip _backgroundMusicInfiltration;
+        [SerializeField] private AudioClip _backgroundMusicGathering;
+        [SerializeField] private AudioClip _backgroundMusicLockdown;
+
         private void Awake()
         {
             if (LevelManagerRef == null || LevelManagerRef == this) LevelManagerRef = this;
             else Destroy(gameObject);
             if (_spawnpoints == null) _spawnpoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+
+            if (_audioSource == null) _audioSource = GetComponent<AudioSource>();
         }
 
         private void Start()
@@ -29,6 +37,8 @@ namespace Game
             //var players = Rewired.ReInput.players.playerCount;
             var players = ReInput.controllers.joystickCount;
             InitGame(players);
+            _audioSource.clip = _backgroundMusicInfiltration;
+            _audioSource.Play();
         }
 
         public int CalculateScore(Player player)

@@ -14,7 +14,7 @@ namespace Pickup
         }
 
         [SerializeField] internal PickupType _pickupType;
-
+      
         private void Start()
         {
             var collider = GetComponent<Collider>();

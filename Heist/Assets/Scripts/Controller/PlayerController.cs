@@ -58,8 +58,8 @@ namespace Controller
                     playerControlControl.Dash = Input.GetKey("space");
                     playerControlControl.Interact = Input.GetKey("f");
 
-                    playerControlControl.RangeAttack = Input.GetMouseButton(0);
-                    playerControlControl.MeleeAttack = Input.GetMouseButton(1);
+                    playerControlControl.WeaponAttack = Input.GetMouseButton(0);
+                    playerControlControl.PushAttack = Input.GetMouseButton(1);
 
                     break;
                 case ControlType.Controller:
@@ -84,9 +84,9 @@ namespace Controller
                             playerControlControl.Interact =
                                 Input.GetKey("joystick " + (_playerControl.PlayerNumber + 1) + " button 2"); //X Button
 
-                            playerControlControl.MeleeAttack =
+                            playerControlControl.PushAttack =
                                 Input.GetKey("joystick " + (_playerControl.PlayerNumber + 1) + " button 1"); //B button
-                            playerControlControl.RangeAttack =
+                            playerControlControl.WeaponAttack =
                                 Input.GetAxis("Joystick Right Trigger " + _playerControl.PlayerNumber) > 0.5f;
                             break;
                         case ControlBinding.Modified: //Personal Preference
@@ -95,9 +95,9 @@ namespace Controller
                             playerControlControl.Interact =
                                 Input.GetKey("joystick " + (_playerControl.PlayerNumber + 1) + " button 4"); //LB button
 
-                            playerControlControl.MeleeAttack =
+                            playerControlControl.PushAttack =
                                 Input.GetAxis("Joystick Left Trigger " + _playerControl.PlayerNumber) > 0.5f;
-                            playerControlControl.RangeAttack =
+                            playerControlControl.WeaponAttack =
                                 Input.GetAxis("Joystick Right Trigger " + _playerControl.PlayerNumber) > 0.5f;
                             break;
                         default:

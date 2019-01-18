@@ -9,11 +9,13 @@ namespace Drone
     {
         public Transform Target;
         private NavMeshAgent agent;
+        private FSM fsm;
 
         // Start is called before the first frame update
         void Start()
         {
             agent = GetComponent<NavMeshAgent>();
+            fsm = new FSM();
         }
 
         // Update is called once per frame
@@ -27,7 +29,11 @@ namespace Drone
             {
                 agent.destination = transform.position;
             }
+            Debug.Log(fsm.CurrentState);
+
         }
+
+
 
         private void OnTriggerEnter(Collider other)
         {

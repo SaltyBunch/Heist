@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using Game;
 using UnityEngine;
 
 namespace Character
 {
-    [System.Serializable]
+    [Serializable]
     internal struct Control
     {
         [SerializeField] internal bool Dash;
@@ -22,41 +23,32 @@ namespace Character
         [SerializeField] internal bool Pause;
     }
 
-    [RequireComponent(typeof(Player), typeof(Rigidbody))]
+    [RequireComponent(typeof(Player), typeof(Rigidbody), typeof(AudioSource))]
     public class PlayerControl : MonoBehaviour
     {
+        [SerializeField] private AudioSource _audioSource;
         [SerializeField] private Player _baseCharacter;
-        [SerializeField] private Rigidbody _rigid;
-
-        private void Start()
-        {
-            if (_baseCharacter == null)
-                _baseCharacter = GetComponent<Player>();
-            if (_rigid == null)
-                _rigid = GetComponent<Rigidbody>();
-
-            if (Game.GameManager.CharacterStats.TryGetValue(Game.GameManager.PlayerChoice[PlayerNumber],
-                out _baseCharacter.Stats))
-            {
-            }
-            else
-                Debug.LogError("Unexpected result when assigning stats for player " + (PlayerNumber + 1) +
-                               " with character choice " + Game.GameManager.PlayerChoice[PlayerNumber]);
-
-            if (_reticule != null) _reticule.layer = GameManager.GetPlayerMask(PlayerNumber, false);
-
-            //if (_reticule != null) _reticule = Instantiate(_reticule, this.transform);
-        }
 
         [SerializeField] private Control _control;
-
-        [SerializeField, Range(10, 30)] private float _dashForce;
         private bool _dashCooldown = true;
-        private float _dashTimer = 0.5f;
+
+        [SerializeField] [Range(10, 30)] private float _dashForce;
+        [SerializeField] private float _dashTimer = 0.5f;
+
+        [SerializeField] private AudioClip _meleeAttack;
+
+        [SerializeField] private GameObject _reticule;
+        [SerializeField] private LayerMask _retLayerMask;
+        [SerializeField] private float _retMaxDist;
+        [SerializeField] private Rigidbody _rigid;
+
+        public Rewired.Player Player;
+
+        public int PlayerNumber;
 
         internal Control Control
         {
-            get { return _control; }
+            get => _control;
             set
             {
                 if (!Equals(value, _control))
@@ -81,18 +73,35 @@ namespace Character
             }
         }
 
-        public Rewired.Player Player;
+
+        private void Start()
+        {
+            if (_baseCharacter == null)
+                _baseCharacter = GetComponent<Player>();
+            if (_rigid == null)
+                _rigid = GetComponent<Rigidbody>();
+            if (_audioSource == null)
+                _audioSource = GetComponent<AudioSource>();
+
+            if (GameManager.CharacterStats.TryGetValue(GameManager.PlayerChoice[PlayerNumber],
+                out _baseCharacter.Stats))
+            {
+            }
+            else
+            {
+                Debug.LogError("Unexpected result when assigning stats for player " + (PlayerNumber + 1) +
+                               " with character choice " + GameManager.PlayerChoice[PlayerNumber]);
+            }
+
+            if (_reticule != null) _reticule.layer = GameManager.GetPlayerMask(PlayerNumber, false);
+
+            //if (_reticule != null) _reticule = Instantiate(_reticule, this.transform);
+        }
 
         private void Pause()
         {
             Debug.Log("Pause Request by Player " + (PlayerNumber + 1));
         }
-
-        public int PlayerNumber;
-        [SerializeField] private float _retMaxDist;
-        [SerializeField] private LayerMask _retLayerMask;
-
-        [SerializeField] private GameObject _reticule;
 
         private void FixedUpdate()
         {
@@ -118,9 +127,10 @@ namespace Character
                 if (_control.FaceVector.magnitude > 0)
                 {
                     RaycastHit hitInfo;
-                    _reticule.transform.localPosition = Physics.Raycast(transform.position, transform.forward, out hitInfo, _retMaxDist, _retLayerMask)
+                    _reticule.transform.localPosition = Physics.Raycast(transform.position, transform.forward,
+                        out hitInfo, _retMaxDist, _retLayerMask)
                         ? transform.InverseTransformPoint(hitInfo.point)
-                        : ((_retMaxDist / 2) * Vector3.forward + Vector3.up);
+                        : _retMaxDist / 2 * Vector3.forward + Vector3.up;
                 }
                 else
                 {
@@ -146,10 +156,7 @@ namespace Character
 
         private void Interact()
         {
-            if (_baseCharacter.OverWeaponPickup || _baseCharacter.OverTrapPickup)
-            {
-                _baseCharacter.PickupPickup();
-            }
+            if (_baseCharacter.OverWeaponPickup || _baseCharacter.OverTrapPickup) _baseCharacter.PickupPickup();
         }
 
         private void PushAttack()

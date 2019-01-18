@@ -1,10 +1,16 @@
+using System;
+using System.Collections;
+using System.Threading;
+using Audio;
 using Character;
 using Rewired;
 using UnityEngine;
 using Player = Character.Player;
+using Random = UnityEngine.Random;
 
 namespace Game
 {
+    [RequireComponent(typeof(AudioSource))]
     public class LevelManager : MonoBehaviour
     {
         public static LevelManager LevelManagerRef;
@@ -17,11 +23,27 @@ namespace Game
 
         [SerializeField] private GameObject[] _spawnpoints;
 
+        private AudioSource[] _audioSource;
+
+        [SerializeField] private AudioClip _backgroundMusicInfiltration;
+        [SerializeField] private AudioClip _backgroundMusicGathering;
+        [SerializeField] private AudioClip _backgroundMusicLockdown;
+
+        [SerializeField] private float _vaultTimer;
+
+        private float _time;
+        private int _currentAudioSource = 0;
+        public static float Time => LevelManagerRef._time;
+
         private void Awake()
         {
-            if (LevelManagerRef == null || LevelManagerRef == this) LevelManagerRef = this;
+            if (LevelManagerRef == null) LevelManagerRef = this;
             else Destroy(gameObject);
             if (_spawnpoints == null) _spawnpoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+
+            if (_audioSource == null) _audioSource = GetComponents<AudioSource>();
+
+            _time = 0;
         }
 
         private void Start()
@@ -29,6 +51,16 @@ namespace Game
             //var players = Rewired.ReInput.players.playerCount;
             var players = ReInput.controllers.joystickCount;
             InitGame(players);
+            _audioSource[_currentAudioSource].clip = _backgroundMusicInfiltration;
+            _audioSource[_currentAudioSource].Play();
+
+            StartCoroutine(LevelTimer());
+        }
+
+        private IEnumerator LevelTimer()
+        {
+            yield return new WaitForSeconds(0.5f);
+            _time += 0.5f;
         }
 
         public int CalculateScore(Player player)
@@ -164,6 +196,16 @@ namespace Game
                 _spawnpoints[i] = _spawnpoints[newLoc];
                 _spawnpoints[newLoc] = temp;
             }
+        }
+
+        public IEnumerator OpenVault(Action callVault)
+        {
+            if (_audioSource.Length > 1)
+                StartCoroutine(AudioHelper.CrossFade(_audioSource[_currentAudioSource],
+                    _audioSource[(_currentAudioSource + 1) % _audioSource.Length], _backgroundMusicLockdown, 5));
+            _currentAudioSource = (_currentAudioSource + 1) % _audioSource.Length;
+            yield return new WaitForSeconds(_vaultTimer);
+            callVault();
         }
     }
 }

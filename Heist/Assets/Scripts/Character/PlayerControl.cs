@@ -26,6 +26,7 @@ namespace Character
     [RequireComponent(typeof(Player), typeof(Rigidbody), typeof(AudioSource))]
     public class PlayerControl : MonoBehaviour
     {
+        public bool Noise = false;
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private Player _baseCharacter;
 
@@ -178,9 +179,17 @@ namespace Character
         {
             if (_dashCooldown)
             {
+                Noise = true;
+                StartCoroutine(StopSound());
                 StartCoroutine(DashCooldown());
                 _rigid.AddForce(Control.MoveVector * _dashForce * 2.5f, ForceMode.VelocityChange);
             }
+        }
+
+        private IEnumerator StopSound()
+        {
+            yield return new WaitForSeconds(0.1f);
+            Noise = false;
         }
 
         private IEnumerator DashCooldown()

@@ -3,20 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
 using UnityEngine.EventSystems;
+using UnityEditor;
 
 namespace UI
 {
     enum Menus
     {
-        Options, Controls, Audio, Credits
+        Main, Selection, Options, Controls, Audio, Credits
     }
 
     public class Menu : MonoBehaviour
     {
         [SerializeField] EventSystem ES;
 
+        [SerializeField] GameObject mainMenu;
+        [SerializeField] GameObject mainMenuButton;
+        [SerializeField] GameObject SelectionMenu; 
+        //[SerializeField] GameObject SelectionMenuButton;
         [SerializeField] GameObject optionsMenu;
-        [SerializeField] GameObject startButton;
+        [SerializeField] GameObject optionsButton;
         [SerializeField] GameObject controlsMenu;
         [SerializeField] GameObject audioMenu;
         [SerializeField] GameObject audioButton;
@@ -29,7 +34,7 @@ namespace UI
         {
 
             LoadUIControls();
-            currentMenu = Menus.Options;
+            currentMenu = Menus.Main;
         }
 
         private void Update()
@@ -48,6 +53,9 @@ namespace UI
                             break;
                         case Menus.Credits:
                             ExitCreditsMenu();
+                            break;
+                        case Menus.Options:
+                            ExitOptionsMenu();
                             break;
                     }
                     break;
@@ -89,9 +97,52 @@ namespace UI
             }
         }
 
+        public void ExitGame()
+        {
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+#else 
+            Application.Quit();
+#endif
+        }
+
+        public void EnterPlayerSelect()
+        {
+            mainMenuButton = ES.currentSelectedGameObject;
+            SelectionMenu.SetActive(true);
+            mainMenu.SetActive(false);
+            ES.SetSelectedGameObject(null);
+            currentMenu = Menus.Selection;
+        }
+        public void ExitPlayerSelect()
+        {
+            SelectionMenu.SetActive(false);
+            mainMenu.SetActive(true);
+            ES.SetSelectedGameObject(mainMenuButton);
+            currentMenu = Menus.Main;
+        }
+
+        public void EnterOptionsMenu()
+        {
+            mainMenuButton = ES.currentSelectedGameObject;
+            optionsMenu.SetActive(true);
+            mainMenu.SetActive(false);
+            ES.SetSelectedGameObject(optionsButton);
+            currentMenu = Menus.Options;
+        }
+
+        public void ExitOptionsMenu()
+        {
+            optionsButton = ES.currentSelectedGameObject;
+            optionsMenu.SetActive(false);
+            mainMenu.SetActive(true);
+            ES.SetSelectedGameObject(mainMenuButton);
+            currentMenu = Menus.Main;
+        }
+
         public void EnterControlsMenu()
         {
-            startButton = ES.currentSelectedGameObject;
+            optionsButton = ES.currentSelectedGameObject;
             controlsMenu.SetActive(true);
             optionsMenu.SetActive(false);
             ES.SetSelectedGameObject(null);
@@ -101,12 +152,12 @@ namespace UI
         {
             controlsMenu.SetActive(false);
             optionsMenu.SetActive(true);
-            ES.SetSelectedGameObject(startButton);
+            ES.SetSelectedGameObject(optionsButton);
             currentMenu = Menus.Options;
         }
         public void EnterAudioMenu()
         {
-            startButton = ES.currentSelectedGameObject;
+            optionsButton = ES.currentSelectedGameObject;
             audioMenu.SetActive(true);
             optionsMenu.SetActive(false);
             ES.SetSelectedGameObject(audioButton);
@@ -114,14 +165,15 @@ namespace UI
         }
         public void ExitAudioMenu()
         {
+            audioButton = ES.currentSelectedGameObject;
             audioMenu.SetActive(false);
             optionsMenu.SetActive(true);
-            ES.SetSelectedGameObject(startButton);
+            ES.SetSelectedGameObject(optionsButton);
             currentMenu = Menus.Options;
         }
         public void EnterCreditsMenu()
         {
-            startButton = ES.currentSelectedGameObject;
+            optionsButton = ES.currentSelectedGameObject;
             creditsMenu.SetActive(true);
             optionsMenu.SetActive(false);
             ES.SetSelectedGameObject(null);
@@ -131,7 +183,7 @@ namespace UI
         {
             creditsMenu.SetActive(false);
             optionsMenu.SetActive(true);
-            ES.SetSelectedGameObject(startButton);
+            ES.SetSelectedGameObject(optionsButton);
             currentMenu = Menus.Options;
         }
     }

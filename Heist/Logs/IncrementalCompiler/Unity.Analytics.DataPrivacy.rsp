@@ -2,7 +2,7 @@
 -target:library
 -nowarn:0169
 -langversion:7
--out:C:/Users/kc16rr/Desktop/Heist/Heist/Temp/Unity.CollabProxy.Editor.dll
+-out:C:/Users/kc16rr/Desktop/Heist/Heist/Temp/Unity.Analytics.DataPrivacy.dll
 -nostdlib
 -unsafe
 -r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.dll"
@@ -31,14 +31,12 @@
 -r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.JSONSerializeModule.dll"
 -r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.LocalizationModule.dll"
 -r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.ParticleSystemModule.dll"
--r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.ParticlesLegacyModule.dll"
 -r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.PerformanceReportingModule.dll"
 -r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.PhysicsModule.dll"
 -r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.Physics2DModule.dll"
 -r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.ProfilerModule.dll"
 -r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.ScreenCaptureModule.dll"
 -r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.SharedInternalsModule.dll"
--r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.SpatialTrackingModule.dll"
 -r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.SpriteMaskModule.dll"
 -r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.SpriteShapeModule.dll"
 -r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.StreamingModule.dll"
@@ -315,21 +313,7 @@
 -d:ENABLE_VSTU
 -d:UNITY_PRO_LICENSE
 -d:UNITY_POST_PROCESSING_STACK_V2
--i:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.collab-proxy@1.2.15/Editor/AssemblyInfo.cs
--i:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.collab-proxy@1.2.15/Editor/Collab/Bootstrap.cs
--i:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.collab-proxy@1.2.15/Editor/Collab/CollabAnalytics.cs
--i:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.collab-proxy@1.2.15/Editor/Collab/CollabHistoryWindow.cs
--i:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.collab-proxy@1.2.15/Editor/Collab/CollabToolbarButton.cs
--i:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.collab-proxy@1.2.15/Editor/Collab/CollabToolbarWindow.cs
--i:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.collab-proxy@1.2.15/Editor/Collab/Presenters/CollabHistoryPresenter.cs
--i:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/BuildStatusButton.cs
--i:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/CollabHistoryDropDown.cs
--i:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/CollabHistoryDropDownItem.cs
--i:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/CollabHistoryItem.cs
--i:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/CollabHistoryItemFactory.cs
--i:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/CollabHistoryRevisionLine.cs
--i:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/HistoryProgressSpinner.cs
--i:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/ICollabHistoryItemFactory.cs
--i:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/PagedListView.cs
--i:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/StatusView.cs
+-i:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.analytics@3.2.2/DataPrivacy/AssemblyInfo.cs
+-i:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.analytics@3.2.2/DataPrivacy/DataPrivacy.cs
+-i:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.analytics@3.2.2/DataPrivacy/DataPrivacyButton.cs
 -v:0

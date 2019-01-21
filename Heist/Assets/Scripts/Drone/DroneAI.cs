@@ -10,7 +10,7 @@ namespace Drone
         public Transform Target;
         private NavMeshAgent agent;
         private NavMeshObstacle obstacle;
-        private FSM fsm;
+        public FSM fsm;
         [SerializeField] List<Transform> patrolPath;
         [SerializeField] List<Transform> bigPatrolPath;
         [SerializeField] List<GameObject> players;
@@ -21,7 +21,7 @@ namespace Drone
         [SerializeField] float reviveTimer;
         private Vector3 lastLoc;
         bool investg = false;
-        private bool reviving = false;
+        [SerializeField] private bool reviving = false;
         int patrol = 0;
 
 
@@ -38,6 +38,16 @@ namespace Drone
         // Update is called once per frame
         void Update()
         {
+            //cheats
+            if (!reviving && Input.GetKeyDown(KeyCode.Q) && Input.GetKeyDown(KeyCode.P))
+            {
+                fsm.MoveNext(Command.Die);
+            }
+            if (!reviving && Input.GetKeyDown(KeyCode.Z) && Input.GetKeyDown(KeyCode.M))
+            {
+                fsm.MoveNext(Command.LockDown);
+            }
+
             //Patrol State
             if (fsm.CurrentState.Equals(State.Patrol))
             {

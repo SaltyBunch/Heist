@@ -4,6 +4,7 @@ using UnityEngine;
 using Rewired;
 using UnityEngine.EventSystems;
 using UnityEditor;
+using UnityEngine.SceneManagement;
 
 namespace UI
 {
@@ -39,7 +40,12 @@ namespace UI
 
         private void Update()
         {
-            foreach(var player in ReInput.players.AllPlayers)
+            if (Input.GetKeyDown(KeyCode.A) && Input.GetKeyDown(KeyCode.L))
+            {
+                SceneManager.LoadScene("AI Tests");
+            }
+
+            foreach (var player in ReInput.players.AllPlayers)
             {
                 if (player.GetButtonDown("UICancel"))
                 {

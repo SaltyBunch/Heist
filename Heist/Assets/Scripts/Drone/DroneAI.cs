@@ -118,9 +118,9 @@ namespace Drone
             if (fsm.CurrentState.Equals(State.BigPatrol))
             {
                 //chaing patrol dest
-                if (Vector3.Distance(transform.position, Target.position) < 0.1f)
+                if (Vector3.Distance(transform.position, Target.position) < 0.2f)
                 {
-                    if (patrol >= patrolPath.Count - 1)
+                    if (patrol >= patrolPath.Count )
                     {
                         patrol = -1;
                     }

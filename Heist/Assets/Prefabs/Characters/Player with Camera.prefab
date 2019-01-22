@@ -115,7 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Stats:
     Health: 0
-    Speed: 0
+    Speed: 5
     Dexterity: 0
   _ui: {fileID: 0}
   _inventory: {fileID: 3041015691421169925}
@@ -156,7 +156,9 @@ MonoBehaviour:
     MoveVector: {x: 0, y: 0, z: 0}
     FaceVector: {x: 0, y: 0, z: 0}
     Pause: 0
-  _dashForce: 20
+  _dashForce: 15.2
+  _addSpeed: 0
+  _mulSpeed: 1
   PlayerNumber: 0
   _retMaxDist: 15
   _retLayerMask:
@@ -224,7 +226,7 @@ MonoBehaviour:
   _playerControl: {fileID: 498303954121022594}
   Camera: {fileID: 3050924103427918977}
   _bounds: 3
-  _smoothing: 0.08
+  _smoothing: 0.025
   _offset: 15
 --- !u!1 &3050924103313246898
 GameObject:

@@ -20,6 +20,8 @@ namespace Game
             else Destroy(this.gameObject);
 
             if (_spawnpoints == null) _spawnpoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+
+            GameManager.UseMultiScreen = false;
         }
 
         private void Start()
@@ -36,7 +38,7 @@ namespace Game
 
             Debug.Log(output);
 
-            InitGame(4);
+            InitGame(controllers.Length);
         }
 
         public static int CalculateScore(Player player)

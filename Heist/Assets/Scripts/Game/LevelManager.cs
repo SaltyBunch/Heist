@@ -10,7 +10,7 @@ using Random = UnityEngine.Random;
 
 namespace Game
 {
-    [RequireComponent(typeof(AudioSource))]
+    [RequireComponent(typeof(AudioSource), typeof(FloorManager))]
     public class LevelManager : MonoBehaviour
     {
         public static LevelManager LevelManagerRef;
@@ -35,6 +35,9 @@ namespace Game
         private int _currentAudioSource = 0;
         public static float Time => LevelManagerRef._time;
 
+        [SerializeField] private FloorManager _floorManager;
+        public FloorManager FloorManager => _floorManager;
+        
         private void Awake()
         {
             if (LevelManagerRef == null) LevelManagerRef = this;

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8199425502067558914}
   - component: {fileID: 8199425502067558925}
+  - component: {fileID: 9203244888876118632}
   - component: {fileID: 8199425501971676588}
   m_Layer: 0
   m_Name: LevelManager
@@ -53,7 +54,25 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _backgroundMusic: {fileID: 0}
+  _backgroundMusicInfiltration: {fileID: 0}
+  _backgroundMusicGathering: {fileID: 0}
+  _backgroundMusicLockdown: {fileID: 0}
+  _vaultTimer: 0
+  _floorManager: {fileID: 0}
+--- !u!114 &9203244888876118632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8199425502067558924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f73a02ed3a34bca8be03b78cf3c1212, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mainFloor: {fileID: 0}
+  _basement: {fileID: 0}
 --- !u!82 &8199425501971676588
 AudioSource:
   m_ObjectHideFlags: 0

@@ -145,7 +145,7 @@ namespace Character
                 }
                 else
                 {
-                    _reticule.transform.position = Vector3.up;
+                    _reticule.transform.localPosition = Vector3.up;
                 }
             }
         }

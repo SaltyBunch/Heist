@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Hazard
 {
     [RequireComponent(typeof(Collider))]
-    public class Hazard : MonoBehaviour
+    public class Hazard : Game.Item 
     {
         public virtual void Place(Vector3 position)
         {

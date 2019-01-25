@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Game;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -33,6 +34,21 @@ namespace Drone
             if (bigPatrolPath.Count <= 0) bigPatrolPath = patrolPath;
             fsm = new FSM();
             Target = patrolPath[0];
+
+            LevelManager.LevelManagerRef.Notifty += LevelManagerRefOnNotifty;
+        }
+
+        private void LevelManagerRefOnNotifty(object sender, NotifyEventArgs e)
+        {
+            //todo use notify type
+            // e.NotifyType
+            if (Vector3.Distance(transform.position, e.Position) <=
+                LevelManager.LevelManagerRef.NotificationRamge[e.NotifyType])
+            {
+                //todo check layers
+                fsm.MoveNext(Command.SoundNotification);
+                investigation.transform.position = e.Position;
+            }
         }
 
         // Update is called once per frame
@@ -43,6 +59,7 @@ namespace Drone
             {
                 fsm.MoveNext(Command.Die);
             }
+
             if (!reviving && Input.GetKeyDown(KeyCode.Z) && Input.GetKeyDown(KeyCode.M))
             {
                 fsm.MoveNext(Command.LockDown);
@@ -52,14 +69,16 @@ namespace Drone
             if (fsm.CurrentState.Equals(State.Patrol))
             {
                 //chaing patrol dest
-                if (Vector3.Distance(transform.position,Target.position) < 0.1f)
+                if (Vector3.Distance(transform.position, Target.position) < 0.1f)
                 {
-                    if(patrol >= patrolPath.Count -1)
+                    if (patrol >= patrolPath.Count - 1)
                     {
                         patrol = -1;
                     }
+
                     Target = patrolPath[++patrol];
                 }
+
                 //Detect player
                 foreach (var v in players)
                 {
@@ -67,9 +86,10 @@ namespace Drone
                     {
                         Target = v.transform;
                         lastLoc = transform.position;
-                        fsm.MoveNext(Command.SeePlayer); 
+                        fsm.MoveNext(Command.SeePlayer);
                     }
                 }
+
                 //Detect Sound
                 foreach (var v in players)
                 {
@@ -87,11 +107,12 @@ namespace Drone
             if (fsm.CurrentState.Equals(State.Investigate))
             {
                 //Arrive at investigate zone
-                if (Vector3.Distance(transform.position,investigation.transform.position) < 0.5f)
+                if (Vector3.Distance(transform.position, investigation.transform.position) < 0.5f)
                 {
                     Target = patrolPath[patrol];
                     fsm.MoveNext(Command.LosePlayer);
                 }
+
                 //Detect player
                 foreach (var v in players)
                 {
@@ -112,20 +133,22 @@ namespace Drone
                     investg = true;
                     StartCoroutine(DoInvestigate());
                 }
-
             }
+
             //BigPatrol State
             if (fsm.CurrentState.Equals(State.BigPatrol))
             {
                 //chaing patrol dest
                 if (Vector3.Distance(transform.position, Target.position) < 0.2f)
                 {
-                    if (patrol >= patrolPath.Count )
+                    if (patrol >= patrolPath.Count)
                     {
                         patrol = -1;
                     }
+
                     Target = bigPatrolPath[++patrol];
                 }
+
                 //Detect player
                 foreach (var v in players)
                 {
@@ -137,11 +160,13 @@ namespace Drone
                     }
                 }
             }
+
             //BigChase State
             if (fsm.CurrentState.Equals(State.BigChase))
             {
                 //Do Big Chase
             }
+
             //Dead State
             if (fsm.CurrentState.Equals(State.Dead))
             {
@@ -161,8 +186,10 @@ namespace Drone
             {
                 agent.destination = transform.position;
             }
+
             Debug.Log(fsm.CurrentState);
         }
+
         IEnumerator Revive()
         {
             yield return new WaitForSeconds(reviveTimer);
@@ -186,6 +213,7 @@ namespace Drone
                 players.Add(other.gameObject);
             }
         }
+
         private void OnTriggerExit(Collider other)
         {
             if (other.tag == "Player")
@@ -195,5 +223,3 @@ namespace Drone
         }
     }
 }
-
-

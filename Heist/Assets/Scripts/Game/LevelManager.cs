@@ -1,8 +1,9 @@
 using System;
 using System.Collections;
-using System.Threading;
+using System.Collections.Generic;
 using Audio;
 using Character;
+using Level;
 using Rewired;
 using UnityEngine;
 using Player = Character.Player;
@@ -10,34 +11,64 @@ using Random = UnityEngine.Random;
 
 namespace Game
 {
+    public enum KeyType
+    {
+        None,
+        BlueKey,
+        RedKey,
+        YellowKey
+    }
+
+    public enum NotifyType
+    {
+        TripTrap,
+        Dash,
+        Footstep,
+    }
+
+    public class NotifyEventArgs : EventArgs
+    {
+        public Vector3 Position { get; set; }
+        public NotifyType NotifyType { get; set; }
+    }
+
     [RequireComponent(typeof(AudioSource), typeof(FloorManager))]
     public class LevelManager : MonoBehaviour
     {
+        public delegate void NotifyEventHandler(object sender, NotifyEventArgs e);
+
         public static LevelManager LevelManagerRef;
+
+        private AudioSource[] _audioSource;
+        [SerializeField] private AudioClip _backgroundMusicGathering;
+
+        [SerializeField] private AudioClip _backgroundMusicInfiltration;
+        [SerializeField] private AudioClip _backgroundMusicLockdown;
+        private int _currentAudioSource;
+
         [SerializeField] private int _goldMultiplier = 10;
-        [SerializeField] private int _stunMultiplier = 100;
 
         [SerializeField] private PlayerGameObject _playerGo;
 
         private PlayerGameObject[] _players;
 
         [SerializeField] private GameObject[] _spawnpoints;
-
-        private AudioSource[] _audioSource;
-
-        [SerializeField] private AudioClip _backgroundMusicInfiltration;
-        [SerializeField] private AudioClip _backgroundMusicGathering;
-        [SerializeField] private AudioClip _backgroundMusicLockdown;
-
-        [SerializeField] private float _vaultTimer;
+        [SerializeField] private int _stunMultiplier = 100;
 
         private float _time;
-        private int _currentAudioSource = 0;
+
+        [SerializeField] private float _vaultTimer;
         public static float Time => LevelManagerRef._time;
 
-        [SerializeField] private FloorManager _floorManager;
-        public FloorManager FloorManager => _floorManager;
-        
+        [SerializeField] public FloorManager FloorManager { get; }
+
+        public event NotifyEventHandler Notifty;
+
+        public Dictionary<NotifyType, float> NotificationRamge = new Dictionary<NotifyType, float>
+        {
+            {NotifyType.Dash, 10}, {NotifyType.Footstep, 5}, {NotifyType.TripTrap, 100},
+        };
+
         private void Awake()
         {
             if (LevelManagerRef == null) LevelManagerRef = this;
@@ -201,7 +232,7 @@ namespace Game
             }
         }
 
-        public IEnumerator OpenVault(Action callVault)
+        public IEnumerator OpenVault(Vault.OpenDoor callVault)
         {
             if (_audioSource.Length > 1)
                 StartCoroutine(AudioHelper.CrossFade(_audioSource[_currentAudioSource],
@@ -209,6 +240,19 @@ namespace Game
             _currentAudioSource = (_currentAudioSource + 1) % _audioSource.Length;
             yield return new WaitForSeconds(_vaultTimer);
             callVault();
+        }
+
+        public void Notify(Vector3 position, NotifyType notifyType)
+        {
+            OnNotifty(new NotifyEventArgs
+            {
+                Position = position, NotifyType = notifyType
+            });
+        }
+
+        protected virtual void OnNotifty(NotifyEventArgs e)
+        {
+            Notifty?.Invoke(this, e);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Weapon
         [SerializeField] private AudioSource _audioSource;
 
 
-        public void Bind()
+        public void Bind(GameObject player)
         {
             throw new System.NotImplementedException();
         }

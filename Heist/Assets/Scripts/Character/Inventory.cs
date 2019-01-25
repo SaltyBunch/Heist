@@ -11,6 +11,18 @@ namespace Character
         private readonly Weapon.Weapon[] _weapon = new Weapon.Weapon[2];
         public int GoldAmount;
 
+        [SerializeField] private PlayerControl _player;
+
+        private void Awake()
+        {
+            _player = GetComponent<PlayerControl>();
+        }
+
+        private void Reset()
+        {
+            _player = GetComponent<PlayerControl>();
+        }
+
         internal Hazard.Hazard Hazard
         {
             get => _hazard[_selectedHazard];
@@ -38,7 +50,7 @@ namespace Character
                 var hazardTrans = _hazard[_selectedHazard].transform;
                 hazardTrans.parent = transform;
                 hazardTrans.localPosition = Vector3.zero;
-                _hazard[_selectedHazard].Bind();
+                _hazard[_selectedHazard].Bind(gameObject);
             }
         }
 
@@ -68,7 +80,7 @@ namespace Character
                 var weaponTrans = _weapon[_selectedWeapon].transform;
                 weaponTrans.parent = transform;
                 weaponTrans.localPosition = Vector3.zero;
-                _weapon[_selectedWeapon].Bind();
+                _weapon[_selectedWeapon].Bind(gameObject);
             }
         }
     }

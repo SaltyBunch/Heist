@@ -44,6 +44,7 @@ namespace Character
                     if (_stacks < 0)
                         _stacks = 0;
                 }
+                //todo update ui
             }
         }
 

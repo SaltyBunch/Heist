@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace Level
 {
     public class Door : MonoBehaviour
     {

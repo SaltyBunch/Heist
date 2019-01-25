@@ -17,7 +17,7 @@ namespace Hazard
         {
         }
 
-        public void Bind()
+        public void Bind(GameObject player)
         {
             throw new System.NotImplementedException();
         }

@@ -40,6 +40,7 @@ namespace Character
 
         [Header("Voice Lines")] [SerializeField]
         private AudioClip _enterBank;
+
         [SerializeField] private AudioClip _exitBank;
         [SerializeField] private AudioClip _pickupWeapon;
         [SerializeField] private AudioClip _pickupTrap;
@@ -60,6 +61,7 @@ namespace Character
         public Rewired.Player Player;
 
         public int PlayerNumber;
+        [SerializeField] private float _interactDistance;
 
         internal Control Control
         {
@@ -167,7 +169,16 @@ namespace Character
 
         private void Interact()
         {
+            RaycastHit hit;
+            
             if (_baseCharacter.OverWeaponPickup || _baseCharacter.OverTrapPickup) _baseCharacter.PickupPickup();
+            else if (Physics.Raycast(transform.position, _control.FaceVector, out hit, _interactDistance))
+            {
+                if (hit.transform.CompareTag("Door"))
+                {
+                
+                }
+            }
         }
 
         private void PushAttack()

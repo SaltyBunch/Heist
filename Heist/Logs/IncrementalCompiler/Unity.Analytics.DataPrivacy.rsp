@@ -2,7 +2,7 @@
 -target:library
 -nowarn:0169
 -langversion:7
--out:C:/Users/kc16rr/Desktop/Heist/Heist/Temp/Unity.Analytics.DataPrivacy.dll
+-out:C:/Users/Administrator/Desktop/Heist/Heist/Temp/Unity.Analytics.DataPrivacy.dll
 -nostdlib
 -unsafe
 -r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.dll"
@@ -76,8 +76,6 @@
 -r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll"
 -r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll"
 -r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll"
--r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/VuforiaSupport/Managed/Editor/Vuforia.UnityExtensions.Editor.dll"
--r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/VuforiaSupport/Managed/Runtime/Vuforia.UnityExtensions.dll"
 -r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityGoogleAudioSpatializer/Editor/UnityEditor.GoogleAudioSpatializer.dll"
 -r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityGoogleAudioSpatializer/RuntimeEditor/UnityEngine.GoogleAudioSpatializer.dll"
 -r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/Editor/UnityEditor.HoloLens.dll"
@@ -87,17 +85,13 @@
 -r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll"
 -r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll"
 -r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll"
--r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.WSA.Extensions.dll"
--r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll"
--r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll"
 -r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll"
--r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll"
--r:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll
--r:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll
--r:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll
--r:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll
--r:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll
--r:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll
+-r:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll
+-r:C:/Users/Administrator/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll
+-r:C:/Users/Administrator/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll
+-r:C:/Users/Administrator/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll
+-r:C:/Users/Administrator/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll
+-r:C:/Users/Administrator/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll
 -r:"C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll"
 -r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll"
 -r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.dll"
@@ -313,7 +307,7 @@
 -d:ENABLE_VSTU
 -d:UNITY_PRO_LICENSE
 -d:UNITY_POST_PROCESSING_STACK_V2
--i:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.analytics@3.2.2/DataPrivacy/AssemblyInfo.cs
--i:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.analytics@3.2.2/DataPrivacy/DataPrivacy.cs
--i:C:/Users/kc16rr/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.analytics@3.2.2/DataPrivacy/DataPrivacyButton.cs
+-i:C:/Users/Administrator/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.analytics@3.2.2/DataPrivacy/AssemblyInfo.cs
+-i:C:/Users/Administrator/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.analytics@3.2.2/DataPrivacy/DataPrivacy.cs
+-i:C:/Users/Administrator/AppData/Local/Unity/cache/packages/staging-packages.unity.com/com.unity.analytics@3.2.2/DataPrivacy/DataPrivacyButton.cs
 -v:0

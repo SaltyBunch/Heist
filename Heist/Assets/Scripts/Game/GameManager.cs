@@ -20,7 +20,7 @@ namespace Game
                 Characters.King, new Stats
                 {
                     Health = 5,
-                    Speed = 5,
+                    Speed = 2,
                     Dexterity = 2,
                 }
             },
@@ -28,7 +28,7 @@ namespace Game
                 Characters.Jailbird, new Stats
                 {
                     Health = 4,
-                    Speed = 7,
+                    Speed = 5,
                     Dexterity = 3,
                 }
             },
@@ -36,7 +36,7 @@ namespace Game
                 Characters.Shadow, new Stats
                 {
                     Health = 3,
-                    Speed = 6,
+                    Speed = 4,
                     Dexterity = 5,
                 }
             },
@@ -44,7 +44,7 @@ namespace Game
                 Characters.Raccoon, new Stats
                 {
                     Health = 4,
-                    Speed = 6,
+                    Speed = 4,
                     Dexterity = 4,
                 }
             },

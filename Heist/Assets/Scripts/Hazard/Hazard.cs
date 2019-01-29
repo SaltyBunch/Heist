@@ -1,3 +1,4 @@
+using Character;
 using UnityEngine;
 
 namespace Hazard
@@ -9,7 +10,7 @@ namespace Hazard
         {
         }
 
-        public virtual void Trigger()
+        public virtual void Trigger(PlayerControl player)
         {
         }
 

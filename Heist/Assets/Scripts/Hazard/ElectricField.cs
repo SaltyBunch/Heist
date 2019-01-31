@@ -2,7 +2,6 @@ using System.Collections;
 using Character;
 using Game;
 using UnityEngine;
-using UnityEngine.Analytics;
 
 namespace Hazard
 {
@@ -10,8 +9,13 @@ namespace Hazard
     {
         private bool[] _players;
 
+        [SerializeField] public BoxCollider Collider;
+        [SerializeField] public GameObject Electric1;
+        [SerializeField] public GameObject Electric2;
+
         private void Awake()
         {
+            Collider = GetComponent<BoxCollider>();
             _players = new bool[GameManager.PlayerChoice.Length];
         }
 
@@ -29,7 +33,7 @@ namespace Hazard
             {
                 _players[other.GetComponent<PlayerControl>().PlayerNumber - 1] = false;
             }
-        }
+        }    
 
         private new IEnumerator Trigger(PlayerControl player)
         {

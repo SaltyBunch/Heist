@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961020050}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.36, z: -1.381}
+  m_LocalPosition: {x: 0, y: 1.36, z: -1.91}
   m_LocalScale: {x: 2.5869, y: 2.5869, z: 2.5869}
   m_Children: []
   m_Father: {fileID: 1105273636}
@@ -69,8 +69,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1105273635}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0, y: 0, z: 2}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -2.146174}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 961020051}
@@ -147,8 +147,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5556288528404577491}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: -2}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 2.146174}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4826128160559464896}
@@ -225,8 +225,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8428732421374892427}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6954365183085770246}
@@ -242,11 +242,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8428732421374892427}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2, y: 2.5, z: 6.292348}
+  m_Center: {x: 0, y: 1.25, z: 0}
 --- !u!114 &8428732421374892428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,6 +259,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdfb27c1e2f141118ecf743b44c0d7ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Collider: {fileID: 8428732421374892429}
+  Electric1: {fileID: 5556288528404577491}
+  Electric2: {fileID: 1105273635}
 --- !u!1001 &1696423333087019203
 PrefabInstance:
   m_ObjectHideFlags: 0

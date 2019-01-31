@@ -36,7 +36,7 @@ namespace Hazard
                 yield return null;
                 elapsed += Time.deltaTime;
             } while (elapsed < _cooldown);
-
+            
         }
     }
 }

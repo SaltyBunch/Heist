@@ -16,6 +16,8 @@ TagManager:
   - 
   - PostProcessing
   - Player
+  - Environment
+  - Hazard
   - 
   - 
   - 
@@ -29,9 +31,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - VFX
   - 
   - 
   - Player 1

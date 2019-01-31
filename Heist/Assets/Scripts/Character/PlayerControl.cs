@@ -26,10 +26,9 @@ namespace Character
     [RequireComponent(typeof(Player), typeof(Rigidbody), typeof(AudioSource))]
     public class PlayerControl : MonoBehaviour
     {
-        public bool Noise = false;
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private Player _baseCharacter;
-
+        public Player BaseCharacer => _baseCharacter;
         [SerializeField] private Control _control;
         private bool _dashCooldown = true;
 
@@ -85,6 +84,7 @@ namespace Character
                     if (value.Pause && !_control.Pause)
                         Pause();
                 }
+
                 _control = value;
             }
         }
@@ -108,6 +108,7 @@ namespace Character
                 Debug.LogError("Unexpected result when assigning stats for player " + (PlayerNumber + 1) +
                                " with character choice " + GameManager.PlayerChoice[PlayerNumber]);
             }
+
             if (_reticule != null) _reticule.layer = GameManager.GetPlayerMask(PlayerNumber, false);
             //if (_reticule != null) _reticule = Instantiate(_reticule, this.transform);
         }
@@ -134,6 +135,7 @@ namespace Character
                 velocity += _rigid.velocity.y * Vector3.up;
                 _rigid.velocity = velocity;
             }
+
             /// Reticule
             if (_reticule != null)
             {
@@ -170,13 +172,12 @@ namespace Character
         private void Interact()
         {
             RaycastHit hit;
-            
+
             if (_baseCharacter.OverWeaponPickup || _baseCharacter.OverTrapPickup) _baseCharacter.PickupPickup();
             else if (Physics.Raycast(transform.position, _control.FaceVector, out hit, _interactDistance))
             {
                 if (hit.transform.CompareTag("Door"))
                 {
-                
                 }
             }
         }
@@ -190,17 +191,10 @@ namespace Character
         {
             if (_dashCooldown)
             {
-                Noise = true;
-                StartCoroutine(StopSound());
+                LevelManager.LevelManagerRef.Notify(transform.position, NotifyType.Dash);
                 StartCoroutine(DashCooldown());
                 _rigid.AddForce(Control.MoveVector * _dashForce * 2.5f, ForceMode.VelocityChange);
             }
-        }
-
-        private IEnumerator StopSound()
-        {
-            yield return new WaitForSeconds(0.1f);
-            Noise = false;
         }
 
         private IEnumerator DashCooldown()

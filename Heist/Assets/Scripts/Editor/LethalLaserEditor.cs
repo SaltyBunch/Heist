@@ -53,15 +53,7 @@ namespace Editor
                 Undo.RecordObject(laser.Laser1.transform, "Change laser1 transform");
                 Undo.RecordObject(laser.Laser2.transform, "Change laser2 transform");
                 Undo.RecordObject(laser.transform, "Change parent transform");
-                foreach (var lr in laser.LineRenderer)
-                {
-                    Undo.RecordObject(lr, "Change line transform");
-                    lr.SetPositions(new Vector3[]
-                    {
-                        laser.Laser1.transform.localPosition, laser.Laser2.transform.localPosition
-                    });
-                }
-
+               
                 Undo.RecordObject(laser.Collider, "Change collider bounds");
 
 

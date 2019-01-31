@@ -91,16 +91,16 @@ namespace Drone
                 }
 
                 //Detect Sound
-                foreach (var v in players)
-                {
-                    if (v.transform.parent.GetComponent<Character.PlayerControl>().Noise)
-                    {
-                        investigation.transform.position = v.transform.position;
-                        Target = investigation.transform;
-                        lastLoc = transform.position;
-                        fsm.MoveNext(Command.SoundNotification);
-                    }
-                }
+//                foreach (var v in players)
+//                {
+//                    if (v.transform.parent.GetComponent<Character.PlayerControl>().Noise)
+//                    {
+//                        investigation.transform.position = v.transform.position;
+//                        Target = investigation.transform;
+//                        lastLoc = transform.position;
+//                        fsm.MoveNext(Command.SoundNotification);
+//                    }
+//                }
             }
 
             //Investigate State

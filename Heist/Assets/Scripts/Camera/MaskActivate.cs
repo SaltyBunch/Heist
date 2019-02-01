@@ -13,7 +13,7 @@ public class MaskActivate : MonoBehaviour
         var temp = mat.color;
         if (temp.a < 0.1f)
         {
-            temp = new Color(temp.r, temp.g, temp.b, 0.2f);
+            temp = new Color(temp.r, temp.g, temp.b, 0.1f);
             mat.color = temp;
         }
         StartCoroutine(Activate());
@@ -41,9 +41,9 @@ public class MaskActivate : MonoBehaviour
         var temp = mat.color;
         while (mat.color.a > 0)
         {
-            temp = new Color(temp.r, temp.g, temp.b, temp.a - 0.01F);
+            temp = new Color(temp.r, temp.g, temp.b, temp.a - 0.02F);
             mat.color = temp;
-            yield return new WaitForSeconds(speed*1.5f);
+            yield return new WaitForSeconds(speed/15f);
         }
     }
 }

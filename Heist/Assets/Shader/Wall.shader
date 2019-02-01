@@ -6,6 +6,9 @@ Shader "Custom/Wall" {
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
 		_Glossiness ("Smoothness", Range(0,1)) = 0.5
 		_Metallic ("Metallic", Range(0,1)) = 0.0
+
+			_DissolvePercentage("DissolvePercentage", Range(0,1)) = 0.0
+			_ShowTexture("ShowTexture", Range(0,1)) = 0.0
 	}
 	SubShader {
 	Blend SrcAlpha OneMinusSrcAlpha
@@ -28,11 +31,14 @@ Shader "Custom/Wall" {
 
 		struct Input {
 			float2 uv_MainTex;
+			float2 worldPos;
 		};
 
 		half _Glossiness;
 		half _Metallic;
 		fixed4 _Color;
+		half _DissolvePercentage;
+		half _ShowTexture;
 
 		// Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
 		// See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
@@ -42,8 +48,14 @@ Shader "Custom/Wall" {
 		UNITY_INSTANCING_BUFFER_END(Props)
 
 		void surf (Input IN, inout SurfaceOutputStandard o) {
+			half gradient = tex2D(_MainTex, IN.worldPos.rg).r;
+			clip(gradient - _DissolvePercentage);
+
+			fixed4 c = lerp(1, gradient, _ShowTexture) * _Color;
+		
+
 			// Albedo comes from a texture tinted by color
-			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
+			//fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
 			o.Albedo = c.rgb;
 			// Metallic and smoothness come from slider variables
 			o.Metallic = _Metallic;

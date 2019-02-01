@@ -7,18 +7,23 @@ public class MaskActivate : MonoBehaviour
     public float speed;
     [SerializeField] private Material mat;
 
-
-    private void OnEnable()
+    public void StartShow()
     {
+        StopAllCoroutines();
+        var temp = mat.color;
+        if (temp.a < 0.1f)
+        {
+            temp = new Color(temp.r, temp.g, temp.b, 0.2f);
+            mat.color = temp;
+        }
         StartCoroutine(Activate());
     }
-    private void OnDisable()
+
+    public void StopShow()
     {
-        var temp = mat.color;
-        temp = new Color(temp.r, temp.g, temp.b, 0.2f);
-        mat.color = temp;
-        StopCoroutine(Activate());
-    }
+        StopAllCoroutines();
+        StartCoroutine(Deactivate());
+    } 
 
     IEnumerator Activate()
     {
@@ -29,7 +34,16 @@ public class MaskActivate : MonoBehaviour
             mat.color = temp;
             yield return new WaitForSeconds(speed);
         }
+    }
 
-
+    IEnumerator Deactivate()
+    {
+        var temp = mat.color;
+        while (mat.color.a > 0)
+        {
+            temp = new Color(temp.r, temp.g, temp.b, temp.a - 0.01F);
+            mat.color = temp;
+            yield return new WaitForSeconds(speed*1.5f);
+        }
     }
 }

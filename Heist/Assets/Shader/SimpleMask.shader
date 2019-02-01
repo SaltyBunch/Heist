@@ -60,7 +60,7 @@
 		fixed4 col = tex2D(_MainTex, i.uv)*_Color.a;
 	float dissolve = step(col, _CutOff);
 	clip(_CutOff - dissolve);
-	return float4(1,1,1,0)*dissolve ;
+	return float4(1,1,1,1)*dissolve ;
 	}
 		ENDCG
 	}

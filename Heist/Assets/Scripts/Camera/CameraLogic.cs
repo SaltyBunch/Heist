@@ -33,9 +33,9 @@ namespace Camera
             {
                 if (hit.collider.CompareTag("Player"))
                 {
-                    _mask.SetActive(false);
+                    _mask.GetComponent<MaskActivate>().StopShow(); 
                 }
-                else _mask.SetActive(true);
+                else _mask.GetComponent<MaskActivate>().StartShow();
             }
             Debug.DrawRay(Camera.transform.position, (_playerControl.transform.position - Camera.transform.position).normalized, Color.red);
         }

@@ -16,7 +16,7 @@ namespace Camera
         [SerializeField] private float _offset = 10;
 
         [SerializeField] private GameObject _mask;
-        [SerializeField] private int _layerMask;
+        [SerializeField] private LayerMask _layerMask;
 
         private void Start()
         {
@@ -28,7 +28,7 @@ namespace Camera
         void Update()
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, (transform.position - _playerControl.transform.position).normalized,
+            if (Physics.Raycast(Camera.transform.position, (_playerControl.transform.position- Camera.transform.position).normalized,
                 out hit, 100, _layerMask))
             {
                 if (hit.collider.CompareTag("Player"))
@@ -37,6 +37,7 @@ namespace Camera
                 }
                 else _mask.SetActive(true);
             }
+            Debug.DrawRay(Camera.transform.position, (_playerControl.transform.position - Camera.transform.position).normalized, Color.red);
         }
 
         private void FixedUpdate()

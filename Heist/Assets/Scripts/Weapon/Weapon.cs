@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Weapon
 {
     [RequireComponent(typeof(AudioSource))]
-    public class Weapon : MonoBehaviour
+    public class Weapon : Game.Item
     {
         [SerializeField, Range(5, 30)]private int _pushForce;
 

@@ -24,7 +24,7 @@ namespace Character
                 if (value != _overWeaponPickup)
                 {
                     _overWeaponPickup = value;
-                    _ui.ShowPickup(Pickup.Pickup.PickupType.Weapon, _overWeaponPickup);
+                    _ui.ShowPickup(Pickup.PickupType.Weapon, _overWeaponPickup);
                 }
             }
         }
@@ -39,24 +39,24 @@ namespace Character
                 if (value != _overTrapPickup)
                 {
                     _overTrapPickup = value;
-                    _ui.ShowPickup(Pickup.Pickup.PickupType.Trap, _overTrapPickup);
+                    _ui.ShowPickup(Pickup.PickupType.Trap, _overTrapPickup);
                 }
             }
         }
 
-        public void OverPickup(Pickup.Pickup.PickupType pickupType, bool overPickup, Pickup.Pickup pickup)
+        public void OverPickup(Pickup.PickupType pickupType, bool overPickup, Pickup.Pickup pickup)
         {
             switch (pickupType)
             {
-                case Pickup.Pickup.PickupType.Weapon:
+                case Pickup.PickupType.Weapon:
                     OverWeaponPickup = overPickup;
                     _currentlyOverPickup = overPickup ? pickup : null;
                     break;
-                case Pickup.Pickup.PickupType.Trap:
+                case Pickup.PickupType.Trap:
                     OverWeaponPickup = overPickup;
                     _currentlyOverPickup = overPickup ? pickup : null;
                     break;
-                case Pickup.Pickup.PickupType.Gold:
+                case Pickup.PickupType.Gold:
                     if (overPickup)
                     {
                         _inventory.GoldAmount += ((GoldPickup) pickup).AmountOfGold;

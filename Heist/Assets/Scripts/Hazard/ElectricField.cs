@@ -37,16 +37,15 @@ namespace Hazard
 
         private new IEnumerator Trigger(PlayerControl player)
         {
-            var prevSpeed = player.BaseCharacer.Stats.Speed;
+            var prevSpeed = player.BaseCharacter.Stats.Speed;
             _players[player.PlayerNumber - 1] = true;
-            player.BaseCharacer.Stats.Speed = 2;
+            player.BaseCharacter.Stats.Speed /= 2;
             do
             {
-                player.BaseCharacer.Stacks += 1;
+                player.BaseCharacter.Stacks += 1;
                 yield return new WaitForSeconds(1f);
             } while (_players[player.PlayerNumber - 1]);
-
-            player.BaseCharacer.Stats.Speed = prevSpeed;
+            player.BaseCharacter.Stats.Speed = prevSpeed;
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Hazard
             float elapsed = 0;
             do
             {
-                player.BaseCharacer.Stacks += 1;
+                player.BaseCharacter.Stacks += 1;
                 yield return null;
                 elapsed += Time.deltaTime;
             } while (elapsed < _cooldown);

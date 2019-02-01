@@ -12,6 +12,13 @@ namespace Character
         public int Dexterity;
     }
 
+    public delegate void HealthUpdatedEventHandler(object sender, HealthChangedEventArgs e);
+
+    public class HealthChangedEventArgs
+    {
+        public int Health;
+    }
+
     public class Character : MonoBehaviour
     {
         private bool _damageCooldown;
@@ -20,6 +27,7 @@ namespace Character
         private bool _stun;
         private bool _stunCooldown;
 
+        public event HealthUpdatedEventHandler HealthChanged;
 
         private float _timeSinceDamage;
         [SerializeField] public Stats Stats;
@@ -44,7 +52,9 @@ namespace Character
                     if (_stacks < 0)
                         _stacks = 0;
                 }
-                //todo update ui
+
+                if (HealthChanged != null)
+                    HealthChanged(this, new HealthChangedEventArgs() {Health = Stats.Health - _stacks});
             }
         }
 

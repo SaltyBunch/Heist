@@ -25,6 +25,13 @@ namespace UI
 
         [SerializeField] private TextMeshProUGUI _playerHint;
 
+        public static UIManager UiManagerRef;
+
+        private void Awake()
+        {
+            if (UiManagerRef == null) UiManagerRef = this;
+        }    
+
         private void Update()
         {
             for (int i = 0; i < showWeapon.Length; i++)

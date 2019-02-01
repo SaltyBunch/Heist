@@ -28,7 +28,7 @@ namespace Character
     {
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private Player _baseCharacter;
-        public Player BaseCharacer => _baseCharacter;
+        public Player BaseCharacter => _baseCharacter;
         [SerializeField] private Control _control;
         private bool _dashCooldown = true;
 
@@ -111,6 +111,20 @@ namespace Character
 
             if (_reticule != null) _reticule.layer = GameManager.GetPlayerMask(PlayerNumber, false);
             //if (_reticule != null) _reticule = Instantiate(_reticule, this.transform);
+
+            BaseCharacter.HealthChanged += BaseCharacterOnHealthChanged;
+            BaseCharacter.Inventory.SelectionChanged += InventoryOnSelectionChanged;
+        }
+
+        private void InventoryOnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UI.UIManager.UiManagerRef.UpdateWeapon(e.Item, PlayerNumber - 1);
+            UI.UIManager.UiManagerRef.UpdateAmmo(e.Count, PlayerNumber - 1);
+        }
+
+        private void BaseCharacterOnHealthChanged(object sender, HealthChangedEventArgs e)
+        {
+            UI.UIManager.UiManagerRef.UpdateHealth(e.Health, PlayerNumber - 1);
         }
 
         private void Pause()
@@ -207,6 +221,11 @@ namespace Character
             _rigid.AddForce(Control.MoveVector * _dashForce, ForceMode.VelocityChange);
             yield return new WaitForSeconds((_dashTimer / 4) * 3);
             _dashCooldown = true;
+        }
+
+        private void OnDestroy()
+        {
+            BaseCharacter.HealthChanged -= BaseCharacterOnHealthChanged;
         }
     }
 }

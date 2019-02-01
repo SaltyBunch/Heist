@@ -1,14 +1,52 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Character
 {
+    public delegate void SelectionChangedEventHandler(object sender, SelectionChangedEventArgs e);
+
+    public class SelectionChangedEventArgs
+    {
+        public Game.Item.Type Type;
+        public Game.Item Item;
+        public int Count;
+    }
+
+
     public class Inventory : MonoBehaviour
     {
-        private readonly Hazard.Hazard[] _hazard = new Hazard.Hazard[3];
+        private List<Hazard.Hazard> _hazard = new List<Hazard.Hazard>();
         private int _selectedHazard;
         private int _selectedWeapon;
 
-        private readonly Weapon.Weapon[] _weapon = new Weapon.Weapon[2];
+        private int _selectedIndex;
+
+
+        public event SelectionChangedEventHandler SelectionChanged;
+
+        public int SelectedIndex
+        {
+            get { return _selectedIndex; }
+            set
+            {
+                _selectedIndex = value % (_hazard.Count + _weapon.Count);
+                var selected = _selectedIndex >= _weapon.Count
+                    ? (Game.Item) _hazard[_selectedIndex % _weapon.Count]
+                    : (Game.Item) _weapon[_selectedIndex];
+
+                var type = (selected is Weapon.Weapon ? Game.Item.Type.Weapon : Game.Item.Type.Hazard);
+                SelectionChanged?.Invoke(this,
+                    new SelectionChangedEventArgs()
+                    {
+                        Item = selected,
+                        Type = type,
+                        Count = type == Game.Item.Type.Weapon ? 1 : _hazard.Count(h => h == selected) //todo better
+                    });
+            }
+        }
+
+        private List<Weapon.Weapon> _weapon = new List<Weapon.Weapon>();
         public int GoldAmount;
 
         [SerializeField] private PlayerControl _player;
@@ -23,65 +61,35 @@ namespace Character
             _player = GetComponent<PlayerControl>();
         }
 
-        internal Hazard.Hazard Hazard
+        public bool Add(Game.Item item)
         {
-            get => _hazard[_selectedHazard];
-            set
+            if (item is Weapon.Weapon weapon)
             {
-                foreach (var haz in _hazard)
-                    if (haz != null && value != null && haz.GetType() == value.GetType())
-                        return;
-
-                //destroy current hazard
-                if (value == null) Destroy(_hazard[_selectedHazard].gameObject);
-                //set _hazard to value
-                _hazard[_selectedHazard] = value;
-                //bind value to visual
-                if (_hazard[_selectedHazard] == null) return;
-
-                for (var i = 0; i < _hazard.Length; i++)
+                if (_weapon.Contains(weapon))
                 {
-                    if (_hazard[i] != null) continue;
-                    _selectedHazard = i;
-                    break;
+                    var temp = _weapon.Find(x => x == weapon);
+                    _weapon.Remove(temp);
+                    Destroy(temp.gameObject);
+                    _weapon.Add(weapon);
                 }
+                else _weapon.Add(weapon);
+                SelectedIndex = _weapon.Count - 1;
 
-
-                var hazardTrans = _hazard[_selectedHazard].transform;
-                hazardTrans.parent = transform;
-                hazardTrans.localPosition = Vector3.zero;
-                _hazard[_selectedHazard].Bind(gameObject);
+                return true;
             }
-        }
-
-        internal Weapon.Weapon Weapon
-        {
-            get => _weapon[_selectedWeapon];
-            set
+            else if (item is Hazard.Hazard hazard)
             {
-                foreach (var haz in _weapon)
-                    if (haz != null && value != null && haz.GetType() == value.GetType())
-                        return;
-
-                //destroy current hazard
-                if (value == null) Destroy(_weapon[_selectedWeapon].gameObject);
-                //set _hazard to value
-                _weapon[_selectedWeapon] = value;
-                //bind value to visual
-                if (_weapon[_selectedWeapon] == null) return;
-
-                for (var i = 0; i < _weapon.Length; i++)
+                var count = _hazard.Count(h => h == hazard);
+                if (count < 2)
                 {
-                    if (_weapon[i] != null) continue;
-                    _selectedWeapon = i;
-                    break;
+                    _hazard.Add(hazard);
                 }
-
-                var weaponTrans = _weapon[_selectedWeapon].transform;
-                weaponTrans.parent = transform;
-                weaponTrans.localPosition = Vector3.zero;
-                _weapon[_selectedWeapon].Bind(gameObject);
+                SelectedIndex = _hazard.FindIndex(h => h == hazard) + _weapon.Count;
+                
+                return count < 2;
             }
+
+            return false;
         }
     }
 }

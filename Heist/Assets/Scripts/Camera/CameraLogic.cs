@@ -15,6 +15,9 @@ namespace Camera
 
         [SerializeField] private float _offset = 10;
 
+        [SerializeField] private GameObject _mask;
+        [SerializeField] private int _layerMask;
+
         private void Start()
         {
             Camera.transform.localPosition = Vector3.back * _offset + Vector3.up * _offset;
@@ -22,11 +25,25 @@ namespace Camera
             Camera.cullingMask += GameManager.GetPlayerMask(_playerControl.PlayerNumber, true);
         }
 
+        void Update()
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, (transform.position - _playerControl.transform.position).normalized,
+                out hit, 100, _layerMask))
+            {
+                if (hit.collider.CompareTag("Player"))
+                {
+                    _mask.SetActive(false);
+                }
+                else _mask.SetActive(true);
+            }
+        }
+
         private void FixedUpdate()
         {
             Vector3 trackedPosition = _playerControl.transform.position +
                                       _playerControl.Control.MoveVector * _bounds +
-                                      _playerControl.Control.FaceVector * _bounds/2;
+                                      _playerControl.Control.FaceVector * _bounds / 2;
 
             transform.position = Vector3.Lerp(transform.position, trackedPosition, _smoothing);
         }

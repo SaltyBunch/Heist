@@ -15,6 +15,7 @@ namespace Weapon
 
         [SerializeField] private AudioSource _audioSource;
 
+        public int Ammo;
 
         public void Bind(GameObject player)
         {

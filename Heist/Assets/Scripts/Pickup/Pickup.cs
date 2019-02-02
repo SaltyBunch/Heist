@@ -3,18 +3,18 @@ using UnityEngine;
 
 namespace Pickup
 {
-    [RequireComponent(typeof(Collider))]
-    public class Pickup : MonoBehaviour
-    {
-        public enum PickupType
+     public enum PickupType
         {
             Weapon,
             Trap,
             Gold
         }
-
+    [RequireComponent(typeof(Collider))]
+    public class Pickup : MonoBehaviour
+    {
+        
         [SerializeField] internal PickupType _pickupType;
-
+      
         private void Start()
         {
             var collider = GetComponent<Collider>();

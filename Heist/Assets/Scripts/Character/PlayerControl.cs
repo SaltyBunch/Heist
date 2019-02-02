@@ -1,16 +1,18 @@
+using System;
 using System.Collections;
+using Game;
 using UnityEngine;
 
 namespace Character
 {
-    [System.Serializable]
+    [Serializable]
     internal struct Control
     {
         [SerializeField] internal bool Dash;
-        [SerializeField] internal bool MeleeAttack;
+        [SerializeField] internal bool PushAttack;
 
         [SerializeField] internal bool Interact;
-        [SerializeField] internal bool RangeAttack;
+        [SerializeField] internal bool WeaponAttack;
 
         [SerializeField] internal bool SwitchWeapon;
         [SerializeField] internal bool SwitchTrap;
@@ -21,37 +23,49 @@ namespace Character
         [SerializeField] internal bool Pause;
     }
 
-    [RequireComponent(typeof(Player), typeof(Rigidbody))]
+    [RequireComponent(typeof(Player), typeof(Rigidbody), typeof(AudioSource))]
     public class PlayerControl : MonoBehaviour
     {
+        public bool Noise = false;
+        [SerializeField] private AudioSource _audioSource;
         [SerializeField] private Player _baseCharacter;
-        [SerializeField] private Rigidbody _rigid;
-
-        private void Start()
-        {
-            if (_baseCharacter == null)
-                _baseCharacter = GetComponent<Player>();
-            if (_rigid == null)
-                _rigid = GetComponent<Rigidbody>();
-
-            if (Game.GameManager.CharacterStats.TryGetValue(Game.GameManager.PlayerChoice[PlayerNumber],
-                out _baseCharacter.Stats))
-            {
-            }
-            else
-                Debug.LogError("Unexpected result when assigning stats for player " + (PlayerNumber + 1) +
-                               " with character choice " + Game.GameManager.PlayerChoice[PlayerNumber]);
-        }
 
         [SerializeField] private Control _control;
-
-        [SerializeField, Range(10, 30)] private float _dashForce;
         private bool _dashCooldown = true;
-        private float _dashTimer = 0.5f;
+
+        [SerializeField] [Range(10, 30)] private float _dashForce;
+        [SerializeField] private float _dashTimer = 0.5f;
+
+        [Header("Sounds")] [SerializeField] private AudioClip _meleeAttack;
+
+        [Header("Voice Lines")] [SerializeField]
+        private AudioClip _enterBank;
+
+        [SerializeField] private AudioClip _exitBank;
+        [SerializeField] private AudioClip _pickupWeapon;
+        [SerializeField] private AudioClip _pickupTrap;
+        [SerializeField] private AudioClip _spotSecurity;
+        [SerializeField] private AudioClip _takeDamage;
+        [SerializeField] private AudioClip _collectGold;
+        [SerializeField] private AudioClip _loseGold;
+        [SerializeField] private AudioClip _taunt;
+        [SerializeField] private AudioClip _joke;
+        [SerializeField] private AudioClip _victory;
+        [SerializeField] private AudioClip _defeat;
+
+        [Space(24)] [SerializeField] private GameObject _reticule;
+        [SerializeField] private LayerMask _retLayerMask;
+        [SerializeField] private float _retMaxDist;
+        [SerializeField] private Rigidbody _rigid;
+
+        public Rewired.Player Player;
+
+        public int PlayerNumber;
+        [SerializeField] private float _interactDistance;
 
         internal Control Control
         {
-            get { return _control; }
+            get => _control;
             set
             {
                 if (!Equals(value, _control))
@@ -60,10 +74,10 @@ namespace Character
                         Dash();
                     if (value.Interact && !_control.Interact)
                         Interact();
-                    if (value.RangeAttack && !_control.RangeAttack)
-                        RangeAttack();
-                    if (value.MeleeAttack && !_control.MeleeAttack)
-                        MeleeAttack();
+                    if (value.WeaponAttack && !_control.WeaponAttack)
+                        WeaponAttack();
+                    if (value.PushAttack && !_control.PushAttack)
+                        PushAttack();
                     if (value.SwitchWeapon && !_control.SwitchWeapon)
                         SwitchWeapon();
                     if (value.SwitchTrap && !_control.SwitchTrap)
@@ -71,17 +85,37 @@ namespace Character
                     if (value.Pause && !_control.Pause)
                         Pause();
                 }
-
                 _control = value;
             }
+        }
+
+
+        private void Start()
+        {
+            if (_baseCharacter == null)
+                _baseCharacter = GetComponent<Player>();
+            if (_rigid == null)
+                _rigid = GetComponent<Rigidbody>();
+            if (_audioSource == null)
+                _audioSource = GetComponent<AudioSource>();
+
+            if (GameManager.CharacterStats.TryGetValue(GameManager.PlayerChoice[PlayerNumber],
+                out _baseCharacter.Stats))
+            {
+            }
+            else
+            {
+                Debug.LogError("Unexpected result when assigning stats for player " + (PlayerNumber + 1) +
+                               " with character choice " + GameManager.PlayerChoice[PlayerNumber]);
+            }
+            if (_reticule != null) _reticule.layer = GameManager.GetPlayerMask(PlayerNumber, false);
+            //if (_reticule != null) _reticule = Instantiate(_reticule, this.transform);
         }
 
         private void Pause()
         {
             Debug.Log("Pause Request by Player " + (PlayerNumber + 1));
         }
-
-        public int PlayerNumber;
 
         private void FixedUpdate()
         {
@@ -100,6 +134,22 @@ namespace Character
                 velocity += _rigid.velocity.y * Vector3.up;
                 _rigid.velocity = velocity;
             }
+            /// Reticule
+            if (_reticule != null)
+            {
+                if (_control.FaceVector.magnitude > 0)
+                {
+                    RaycastHit hitInfo;
+                    _reticule.transform.localPosition = Physics.Raycast(transform.position, transform.forward,
+                        out hitInfo, _retMaxDist, _retLayerMask)
+                        ? transform.InverseTransformPoint(hitInfo.point)
+                        : _retMaxDist / 2 * Vector3.forward + Vector3.up;
+                }
+                else
+                {
+                    _reticule.transform.localPosition = Vector3.up;
+                }
+            }
         }
 
         private void SwitchTrap()
@@ -112,37 +162,56 @@ namespace Character
             Debug.Log("Switch Weapon by Player " + (PlayerNumber + 1));
         }
 
-        private void RangeAttack()
+        private void WeaponAttack()
         {
-            Debug.Log("Range Attack by Player " + (PlayerNumber + 1));
+            Debug.Log("Weapon Attack by Player " + (PlayerNumber + 1));
         }
 
         private void Interact()
         {
-            if (_baseCharacter.OverWeaponPickup || _baseCharacter.OverTrapPickup)
+            RaycastHit hit;
+            
+            if (_baseCharacter.OverWeaponPickup || _baseCharacter.OverTrapPickup) _baseCharacter.PickupPickup();
+            else if (Physics.Raycast(transform.position, _control.FaceVector, out hit, _interactDistance))
             {
-                _baseCharacter.PickupPickup();
+                if (hit.transform.CompareTag("Door"))
+                {
+                
+                }
             }
         }
 
-        private void MeleeAttack()
+        private void PushAttack()
         {
-            Debug.Log("Melee Attack by Player " + (PlayerNumber + 1));
+            Debug.Log("Push Attack by Player " + (PlayerNumber + 1));
         }
 
         private void Dash()
         {
             if (_dashCooldown)
             {
+                Noise = true;
+                StartCoroutine(StopSound());
                 StartCoroutine(DashCooldown());
                 _rigid.AddForce(Control.MoveVector * _dashForce * 2.5f, ForceMode.VelocityChange);
             }
         }
 
+        private IEnumerator StopSound()
+        {
+            yield return new WaitForSeconds(0.1f);
+            Noise = false;
+        }
+
         private IEnumerator DashCooldown()
         {
             _dashCooldown = false;
-            yield return new WaitForSeconds(_dashTimer);
+            _rigid.AddForce(Control.MoveVector * _dashForce, ForceMode.VelocityChange);
+            yield return new WaitForSeconds(_dashTimer / 8);
+            _rigid.AddForce(Control.MoveVector * _dashForce, ForceMode.VelocityChange);
+            yield return new WaitForSeconds(_dashTimer / 8);
+            _rigid.AddForce(Control.MoveVector * _dashForce, ForceMode.VelocityChange);
+            yield return new WaitForSeconds((_dashTimer / 4) * 3);
             _dashCooldown = true;
         }
     }

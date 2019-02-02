@@ -4,41 +4,71 @@ namespace Character
 {
     public class Inventory : MonoBehaviour
     {
-        public int GoldAmount;
+        private readonly Hazard.Hazard[] _hazard = new Hazard.Hazard[3];
+        private int _selectedHazard;
+        private int _selectedWeapon;
 
-        private Hazard.Hazard _hazard;
+        private readonly Weapon.Weapon[] _weapon = new Weapon.Weapon[2];
+        public int GoldAmount;
 
         internal Hazard.Hazard Hazard
         {
-            get { return _hazard; }
-            set //todo
+            get => _hazard[_selectedHazard];
+            set
             {
-                if (value != _hazard)
+                foreach (var haz in _hazard)
+                    if (haz != null && value != null && haz.GetType() == value.GetType())
+                        return;
+
+                //destroy current hazard
+                if (value == null) Destroy(_hazard[_selectedHazard].gameObject);
+                //set _hazard to value
+                _hazard[_selectedHazard] = value;
+                //bind value to visual
+                if (_hazard[_selectedHazard] == null) return;
+
+                for (var i = 0; i < _hazard.Length; i++)
                 {
-                    //destroy current hazard
-
-                    //set _hazard to value
-
-                    //bind value to visual
+                    if (_hazard[i] != null) continue;
+                    _selectedHazard = i;
+                    break;
                 }
+
+
+                var hazardTrans = _hazard[_selectedHazard].transform;
+                hazardTrans.parent = transform;
+                hazardTrans.localPosition = Vector3.zero;
+                _hazard[_selectedHazard].Bind();
             }
         }
 
-        private Weapon.Weapon _weapon;
-
         internal Weapon.Weapon Weapon
         {
-            get { return _weapon; }
-            set //todo
+            get => _weapon[_selectedWeapon];
+            set
             {
-                if (value != _weapon)
+                foreach (var haz in _weapon)
+                    if (haz != null && value != null && haz.GetType() == value.GetType())
+                        return;
+
+                //destroy current hazard
+                if (value == null) Destroy(_weapon[_selectedWeapon].gameObject);
+                //set _hazard to value
+                _weapon[_selectedWeapon] = value;
+                //bind value to visual
+                if (_weapon[_selectedWeapon] == null) return;
+
+                for (var i = 0; i < _weapon.Length; i++)
                 {
-                    //destroy current weapon
-
-                    //set _weapon to value
-
-                    //bind value to visual
+                    if (_weapon[i] != null) continue;
+                    _selectedWeapon = i;
+                    break;
                 }
+
+                var weaponTrans = _weapon[_selectedWeapon].transform;
+                weaponTrans.parent = transform;
+                weaponTrans.localPosition = Vector3.zero;
+                _weapon[_selectedWeapon].Bind();
             }
         }
     }

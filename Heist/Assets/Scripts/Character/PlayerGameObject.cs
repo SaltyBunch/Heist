@@ -7,6 +7,6 @@ namespace Character
     {
         [SerializeField] public Player Player;
         [SerializeField] public PlayerControl PlayerControl;
-        [SerializeField] public CameraMoveLogic Camera;
+        [SerializeField] public CameraLogic Camera;
     }
 }

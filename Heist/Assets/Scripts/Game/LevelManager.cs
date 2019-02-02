@@ -1,12 +1,21 @@
-using System.Linq;
+using System;
+using System.Collections;
+using System.Threading;
+using Audio;
 using Character;
+using Rewired;
 using UnityEngine;
+using Player = Character.Player;
+using Random = UnityEngine.Random;
 
 namespace Game
 {
+    [RequireComponent(typeof(AudioSource), typeof(FloorManager))]
     public class LevelManager : MonoBehaviour
     {
         public static LevelManager LevelManagerRef;
+        [SerializeField] private int _goldMultiplier = 10;
+        [SerializeField] private int _stunMultiplier = 100;
 
         [SerializeField] private PlayerGameObject _playerGo;
 
@@ -14,57 +23,98 @@ namespace Game
 
         [SerializeField] private GameObject[] _spawnpoints;
 
+        private AudioSource[] _audioSource;
+
+        [SerializeField] private AudioClip _backgroundMusicInfiltration;
+        [SerializeField] private AudioClip _backgroundMusicGathering;
+        [SerializeField] private AudioClip _backgroundMusicLockdown;
+
+        [SerializeField] private float _vaultTimer;
+
+        private float _time;
+        private int _currentAudioSource = 0;
+        public static float Time => LevelManagerRef._time;
+
+        [SerializeField] private FloorManager _floorManager;
+        public FloorManager FloorManager => _floorManager;
+        
         private void Awake()
         {
-            if (LevelManagerRef == null || LevelManagerRef == this) LevelManagerRef = this;
-            else Destroy(this.gameObject);
-
+            if (LevelManagerRef == null) LevelManagerRef = this;
+            else Destroy(gameObject);
             if (_spawnpoints == null) _spawnpoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+
+            if (_audioSource == null) _audioSource = GetComponents<AudioSource>();
+
+            _time = 0;
         }
 
         private void Start()
         {
-            var controllers = Input.GetJoystickNames();
+            //var players = Rewired.ReInput.players.playerCount;
+            var players = ReInput.controllers.joystickCount;
+            InitGame(players);
+            _audioSource[_currentAudioSource].clip = _backgroundMusicInfiltration;
+            _audioSource[_currentAudioSource].Play();
 
-            string output = "";
-
-            for (var i = 0; i < controllers.Length; i++)
-            {
-                var controller = controllers[i];
-                output += controller + " assigned to Player " + (i + 1) + "\n";
-            }
-
-            Debug.Log(output);
-
-            InitGame(4);
+            StartCoroutine(LevelTimer());
         }
 
-        public static int CalculateScore(Player player)
+        private IEnumerator LevelTimer()
         {
-            var score = player.Inventory.GoldAmount * 100;
-            //todo add more sources of score
+            yield return new WaitForSeconds(0.5f);
+            _time += 0.5f;
+        }
+
+        public int CalculateScore(Player player)
+        {
+            var score = player.Inventory.GoldAmount * _goldMultiplier;
+            score -= player.timesStunned * _stunMultiplier;
             return score;
         }
 
         public void InitGame(int numPlayers)
         {
-            int displays = 1;
+            var displays = 1;
             if (GameManager.UseMultiScreen)
             {
                 // Number of displays
 #if UNITY_EDITOR || UNITY_EDITOR_64
-                displays = 4;
+                //displays = 4;
 #else
                     displays = Display.displays.Length;
-                #endif
-
-                for (var i = 0; i < Display.displays.Length; i++)
-                {
-                    var display = Display.displays[i];
-                    if (!display.active)
-                        display.Activate();
-                }
+#endif
             }
+
+            #region Display Setup
+
+            var playersPerDisplay = numPlayers / displays;
+            var targetDisplay = 0;
+            //find number of players on each screen
+            var playersOnDisplay = new int[displays];
+            int tempNumPlayers = numPlayers, index = 0;
+            while (tempNumPlayers > 0)
+            {
+                playersOnDisplay[index] += 1;
+                tempNumPlayers -= 1;
+                index = (index + 1) % displays;
+            }
+
+            for (var j = 0; j < playersOnDisplay.Length; j++)
+                if (playersOnDisplay[j] == 0)
+                {
+                    displays = j + 1;
+                    break;
+                }
+
+            for (var i = 0; i < Display.displays.Length; i++)
+            {
+                var display = Display.displays[i];
+                if (!display.active && i < displays)
+                    display.Activate();
+            }
+
+            #endregion
 
             #region Level Setup
 
@@ -84,22 +134,20 @@ namespace Game
 
             ShuffleSpawns();
 
-            var playersPerDisplay = numPlayers / displays;
-
-            var targetDisplay = 0;
 
             for (var i = 0; i < numPlayers; i++)
             {
-                if (i % playersPerDisplay == 0 && i != 0)
+                if (i != 0 && i % playersPerDisplay == 0)
                     targetDisplay++;
                 _players[i] = Instantiate(_playerGo);
                 //todo set appropriate player models
 
                 //put player on spawnpoint
-                _players[i].Player.transform.position = _spawnpoints[i].transform.position;
+                _players[i].transform.position = _spawnpoints[i].transform.position;
 
+                //TODO don't split screen when players are alone on the screen
                 //set screen region
-                switch (playersPerDisplay)
+                switch (playersOnDisplay[targetDisplay])
                 {
                     case 1:
                         _players[i].Camera.Camera.rect = new Rect
@@ -134,6 +182,8 @@ namespace Game
                 _players[i].Camera.Camera.targetDisplay = targetDisplay;
                 //assign player number
                 _players[i].PlayerControl.PlayerNumber = i;
+
+                _players[i].PlayerControl.Player = ReInput.players.GetPlayer(i);
             }
 
             #endregion
@@ -141,7 +191,7 @@ namespace Game
 
         private void ShuffleSpawns()
         {
-            for (int i = 0; i < _spawnpoints.Length; i++)
+            for (var i = 0; i < _spawnpoints.Length; i++)
             {
                 var newLoc = Random.Range(0, _spawnpoints.Length - 1);
 
@@ -149,6 +199,16 @@ namespace Game
                 _spawnpoints[i] = _spawnpoints[newLoc];
                 _spawnpoints[newLoc] = temp;
             }
+        }
+
+        public IEnumerator OpenVault(Action callVault)
+        {
+            if (_audioSource.Length > 1)
+                StartCoroutine(AudioHelper.CrossFade(_audioSource[_currentAudioSource],
+                    _audioSource[(_currentAudioSource + 1) % _audioSource.Length], _backgroundMusicLockdown, 5));
+            _currentAudioSource = (_currentAudioSource + 1) % _audioSource.Length;
+            yield return new WaitForSeconds(_vaultTimer);
+            callVault();
         }
     }
 }

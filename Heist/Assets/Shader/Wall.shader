@@ -51,11 +51,11 @@ Shader "Custom/Wall" {
 			half gradient = tex2D(_MainTex, IN.worldPos.rg).r;
 			clip(gradient - _DissolvePercentage);
 
-			fixed4 c = lerp(1, gradient, _ShowTexture) * _Color;
+			//fixed4 c = lerp(1, gradient, _ShowTexture) * _Color;
 		
 
 			// Albedo comes from a texture tinted by color
-			//fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
+			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
 			o.Albedo = c.rgb;
 			// Metallic and smoothness come from slider variables
 			o.Metallic = _Metallic;

@@ -1,54 +1,144 @@
- (0,0): [02/01/2019 04:13:41.206 PM] Unity incremental compiler server
- (0,0): [02/01/2019 04:13:41.302 PM] watchdog active on pid: 14316
- (0,0): [02/01/2019 04:18:30.853 PM] Unity.TextMeshPro.dll: no prior compilation found in cache. Caller PID: 14316
- (0,0): [02/01/2019 04:18:30.868 PM] Unity.TextMeshPro.dll compiling...
- (0,0): [02/01/2019 04:18:30.879 PM] Unity.PackageManagerUI.Editor.dll: no prior compilation found in cache. Caller PID: 14316
- (0,0): [02/01/2019 04:18:30.891 PM] Unity.PackageManagerUI.Editor.dll compiling...
- (0,0): [02/01/2019 04:18:30.917 PM] Unity.Analytics.DataPrivacy.dll: no prior compilation found in cache. Caller PID: 14316
- (0,0): [02/01/2019 04:18:30.930 PM] Unity.Analytics.DataPrivacy.dll compiling...
- (0,0): [02/01/2019 04:18:30.956 PM] Unity.ProGrids.dll: no prior compilation found in cache. Caller PID: 14316
- (0,0): [02/01/2019 04:18:30.975 PM] Unity.ProGrids.dll compiling...
- (0,0): [02/01/2019 04:18:30.996 PM] Unity.CollabProxy.Editor.dll: no prior compilation found in cache. Caller PID: 14316
- (0,0): [02/01/2019 04:18:31.009 PM] Unity.CollabProxy.Editor.dll compiling...
- (0,0): [02/01/2019 04:18:32.823 PM] Unity.PackageManagerUI.Editor.dll: emitting IL to : C:\Users\Administrator\Desktop\Heist\Heist\Temp\Unity.PackageManagerUI.Editor.dll
- (0,0): [02/01/2019 04:18:32.823 PM] Unity.ProGrids.dll: emitting IL to : C:\Users\Administrator\Desktop\Heist\Heist\Temp\Unity.ProGrids.dll
- (0,0): [02/01/2019 04:18:32.824 PM] Unity.Analytics.DataPrivacy.dll: emitting IL to : C:\Users\Administrator\Desktop\Heist\Heist\Temp\Unity.Analytics.DataPrivacy.dll
- (0,0): [02/01/2019 04:18:32.824 PM] Unity.CollabProxy.Editor.dll: emitting IL to : C:\Users\Administrator\Desktop\Heist\Heist\Temp\Unity.CollabProxy.Editor.dll
- (0,0): [02/01/2019 04:18:32.873 PM] Unity.Analytics.DataPrivacy.dll compilation finished in 1943ms  source files re-parsed: 3 metadata reloaded: 166
- (0,0): [02/01/2019 04:18:32.885 PM] Unity.Analytics.DataPrivacy.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 14316
- (0,0): [02/01/2019 04:18:32.910 PM] Unity.TextMeshPro.dll: emitting IL to : C:\Users\Administrator\Desktop\Heist\Heist\Temp\Unity.TextMeshPro.dll
- (0,0): [02/01/2019 04:18:32.939 PM] Unity.ProGrids.dll compilation finished in 1964ms  source files re-parsed: 2 metadata reloaded: 129
- (0,0): [02/01/2019 04:18:32.939 PM] Unity.CollabProxy.Editor.dll compilation finished in 1930ms  source files re-parsed: 17 metadata reloaded: 150
- (0,0): [02/01/2019 04:18:32.951 PM] Unity.ProGrids.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 14316
- (0,0): [02/01/2019 04:18:32.939 PM] Unity.PackageManagerUI.Editor.dll compilation finished in 2048ms  source files re-parsed: 52 metadata reloaded: 101
- (0,0): [02/01/2019 04:18:32.984 PM] Unity.PackageManagerUI.Editor.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 14316
- (0,0): [02/01/2019 04:18:32.962 PM] Unity.CollabProxy.Editor.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 14316
- (0,0): [02/01/2019 04:18:33.000 PM] Unity.TextMeshPro.dll compilation finished in 2132ms  source files re-parsed: 45 metadata reloaded: 69
- (0,0): [02/01/2019 04:18:33.013 PM] Unity.TextMeshPro.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 14316
- (0,0): [02/01/2019 04:18:33.547 PM] Unity.ProGrids.Editor.dll: no prior compilation found in cache. Caller PID: 14316
- (0,0): [02/01/2019 04:18:33.559 PM] Unity.ProGrids.Editor.dll compiling...
- (0,0): [02/01/2019 04:18:33.670 PM] Unity.TextMeshPro.Editor.dll: no prior compilation found in cache. Caller PID: 14316
- (0,0): [02/01/2019 04:18:33.682 PM] Unity.TextMeshPro.Editor.dll compiling...
- (0,0): [02/01/2019 04:18:33.686 PM] Unity.ProGrids.Editor.dll: emitting IL to : C:\Users\Administrator\Desktop\Heist\Heist\Temp\Unity.ProGrids.Editor.dll
- (0,0): [02/01/2019 04:18:33.752 PM] Unity.ProGrids.Editor.dll compilation finished in 193ms  source files re-parsed: 20 metadata reloaded: 1
- (0,0): [02/01/2019 04:18:33.769 PM] Unity.ProGrids.Editor.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 14316
- (0,0): [02/01/2019 04:18:33.934 PM] Unity.TextMeshPro.Editor.dll: emitting IL to : C:\Users\Administrator\Desktop\Heist\Heist\Temp\Unity.TextMeshPro.Editor.dll
- (0,0): [02/01/2019 04:18:33.994 PM] Unity.TextMeshPro.Editor.dll compilation finished in 312ms  source files re-parsed: 40 metadata reloaded: 1
- (0,0): [02/01/2019 04:18:34.005 PM] Unity.TextMeshPro.Editor.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 14316
- (0,0): [02/01/2019 04:18:34.202 PM] Assembly-CSharp.dll: no prior compilation found in cache. Caller PID: 14316
- (0,0): [02/01/2019 04:18:34.214 PM] Assembly-CSharp.dll compiling...
- (0,0): [02/01/2019 04:18:34.485 PM] Assembly-CSharp.dll: emitting IL to : C:\Users\Administrator\Desktop\Heist\Heist\Temp\Assembly-CSharp.dll
- (0,0): [02/01/2019 04:18:34.571 PM] Assembly-CSharp.dll compilation finished in 357ms  source files re-parsed: 50 metadata reloaded: 5
- (0,0): [02/01/2019 04:18:34.582 PM] Assembly-CSharp.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 14316
- (0,0): [02/01/2019 04:18:34.931 PM] Assembly-CSharp-Editor.dll: no prior compilation found in cache. Caller PID: 14316
- (0,0): [02/01/2019 04:18:34.950 PM] Assembly-CSharp-Editor.dll compiling...
- (0,0): [02/01/2019 04:18:35.018 PM] Assembly-CSharp-Editor.dll: emitting IL to : C:\Users\Administrator\Desktop\Heist\Heist\Temp\Assembly-CSharp-Editor.dll
- (0,0): [02/01/2019 04:18:35.051 PM] Assembly-CSharp-Editor.dll compilation finished in 101ms  source files re-parsed: 11 metadata reloaded: 4
- (0,0): [02/01/2019 04:18:35.063 PM] Assembly-CSharp-Editor.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 14316
- (0,0): [02/01/2019 04:18:43.764 PM] Compiler cache size is now 24.03 MB
- (0,0): [02/01/2019 05:04:41.675 PM] watchdog triggered an exit
- (0,0): [02-04-2019 02:31:07.205 AM] Assembly-CSharp-Editor.dll: no prior compilation found in cache. Caller PID: 11628
- (0,0): [02-04-2019 02:31:07.221 AM] Assembly-CSharp-Editor.dll compiling...
- (0,0): [02-04-2019 02:31:11.055 AM] Assembly-CSharp-Editor.dll: emitting IL to : D:\source\Heist\Heist\Temp\Assembly-CSharp-Editor.dll
- (0,0): [02-04-2019 02:31:11.177 AM] Assembly-CSharp-Editor.dll compilation finished in 3956ms  source files re-parsed: 15 metadata reloaded: 214
- (0,0): [02-04-2019 02:31:11.189 AM] Assembly-CSharp-Editor.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 11628
+ (0,0): [02/04/2019 05:22:06.661 PM] Unity incremental compiler server
+ (0,0): [02/04/2019 05:22:06.733 PM] watchdog active on pid: 12216
+ (0,0): [02/04/2019 05:22:30.809 PM] Unity.TextMeshPro.dll: no prior compilation found in cache. Caller PID: 12216
+ (0,0): [02/04/2019 05:22:30.823 PM] Unity.TextMeshPro.dll compiling...
+ (0,0): [02/04/2019 05:22:30.830 PM] Unity.Analytics.DataPrivacy.dll: no prior compilation found in cache. Caller PID: 12216
+ (0,0): [02/04/2019 05:22:30.842 PM] Unity.Analytics.DataPrivacy.dll compiling...
+ (0,0): [02/04/2019 05:22:30.843 PM] Unity.ProGrids.dll: no prior compilation found in cache. Caller PID: 12216
+ (0,0): [02/04/2019 05:22:30.855 PM] Unity.ProGrids.dll compiling...
+ (0,0): [02/04/2019 05:22:30.858 PM] Unity.PackageManagerUI.Editor.dll: no prior compilation found in cache. Caller PID: 12216
+ (0,0): [02/04/2019 05:22:30.869 PM] Unity.PackageManagerUI.Editor.dll compiling...
+ (0,0): [02/04/2019 05:22:30.980 PM] Unity.CollabProxy.Editor.dll: no prior compilation found in cache. Caller PID: 12216
+ (0,0): [02/04/2019 05:22:30.992 PM] Unity.CollabProxy.Editor.dll compiling...
+ (0,0): [02/04/2019 05:22:32.447 PM] Unity.ProGrids.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Unity.ProGrids.dll
+ (0,0): [02/04/2019 05:22:32.447 PM] Unity.Analytics.DataPrivacy.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Unity.Analytics.DataPrivacy.dll
+ (0,0): [02/04/2019 05:22:32.447 PM] Unity.PackageManagerUI.Editor.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Unity.PackageManagerUI.Editor.dll
+ (0,0): [02/04/2019 05:22:32.447 PM] Unity.CollabProxy.Editor.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Unity.CollabProxy.Editor.dll
+ (0,0): [02/04/2019 05:22:32.475 PM] Unity.Analytics.DataPrivacy.dll compilation finished in 1633ms  source files re-parsed: 3 metadata reloaded: 189
+ (0,0): [02/04/2019 05:22:32.487 PM] Unity.Analytics.DataPrivacy.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 05:22:32.527 PM] Unity.ProGrids.dll compilation finished in 1672ms  source files re-parsed: 2 metadata reloaded: 176
+ (0,0): [02/04/2019 05:22:32.530 PM] Unity.CollabProxy.Editor.dll compilation finished in 1537ms  source files re-parsed: 17 metadata reloaded: 0
+ (0,0): [02/04/2019 05:22:32.531 PM] Unity.PackageManagerUI.Editor.dll compilation finished in 1662ms  source files re-parsed: 52 metadata reloaded: 135
+ (0,0): [02/04/2019 05:22:32.539 PM] Unity.ProGrids.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 05:22:32.542 PM] Unity.PackageManagerUI.Editor.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 05:22:32.548 PM] Unity.TextMeshPro.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Unity.TextMeshPro.dll
+ (0,0): [02/04/2019 05:22:32.542 PM] Unity.CollabProxy.Editor.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 05:22:32.616 PM] Unity.TextMeshPro.dll compilation finished in 1793ms  source files re-parsed: 45 metadata reloaded: 182
+ (0,0): [02/04/2019 05:22:32.628 PM] Unity.TextMeshPro.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 05:22:32.910 PM] Unity.ProGrids.Editor.dll: no prior compilation found in cache. Caller PID: 12216
+ (0,0): [02/04/2019 05:22:32.922 PM] Unity.ProGrids.Editor.dll compiling...
+ (0,0): [02/04/2019 05:22:33.024 PM] Unity.TextMeshPro.Editor.dll: no prior compilation found in cache. Caller PID: 12216
+ (0,0): [02/04/2019 05:22:33.048 PM] Unity.TextMeshPro.Editor.dll compiling...
+ (0,0): [02/04/2019 05:22:33.054 PM] Unity.ProGrids.Editor.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Unity.ProGrids.Editor.dll
+ (0,0): [02/04/2019 05:22:33.125 PM] Unity.ProGrids.Editor.dll compilation finished in 203ms  source files re-parsed: 20 metadata reloaded: 1
+ (0,0): [02/04/2019 05:22:33.137 PM] Unity.ProGrids.Editor.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 05:22:33.214 PM] Unity.TextMeshPro.Editor.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Unity.TextMeshPro.Editor.dll
+ (0,0): [02/04/2019 05:22:33.335 PM] Unity.TextMeshPro.Editor.dll compilation finished in 287ms  source files re-parsed: 40 metadata reloaded: 1
+ (0,0): [02/04/2019 05:22:33.347 PM] Unity.TextMeshPro.Editor.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 05:22:35.501 PM] Assembly-CSharp.dll: no prior compilation found in cache. Caller PID: 12216
+ (0,0): [02/04/2019 05:22:35.512 PM] Assembly-CSharp.dll compiling...
+ (0,0): [02/04/2019 05:22:35.581 PM] Assembly-CSharp.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Assembly-CSharp.dll
+ (0,0): [02/04/2019 05:22:35.598 PM] Assembly-CSharp.dll compilation finished in 86ms  source files re-parsed: 38 metadata reloaded: 5
+ (0,0): [02/04/2019 05:22:35.611 PM] Assembly-CSharp.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 05:27:41.739 PM] Compiler cache size is now 18.65 MB
+ (0,0): [02/04/2019 06:06:57.421 PM] Unity.TextMeshPro.dll: no prior compilation found in cache. Caller PID: 12216
+ (0,0): [02/04/2019 06:06:57.439 PM] Unity.TextMeshPro.dll compiling...
+ (0,0): [02/04/2019 06:06:57.620 PM] Unity.Analytics.DataPrivacy.dll: no prior compilation found in cache. Caller PID: 12216
+ (0,0): [02/04/2019 06:06:57.640 PM] Unity.Analytics.DataPrivacy.dll compiling...
+ (0,0): [02/04/2019 06:06:57.721 PM] Unity.Analytics.DataPrivacy.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Unity.Analytics.DataPrivacy.dll
+ (0,0): [02/04/2019 06:06:57.749 PM] Unity.Analytics.DataPrivacy.dll compilation finished in 115ms  source files re-parsed: 3 metadata reloaded: 0
+ (0,0): [02/04/2019 06:06:57.760 PM] Unity.CollabProxy.Editor.dll: no prior compilation found in cache. Caller PID: 12216
+ (0,0): [02/04/2019 06:06:57.780 PM] Unity.CollabProxy.Editor.dll compiling...
+ (0,0): [02/04/2019 06:06:57.780 PM] Unity.Analytics.DataPrivacy.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 06:06:57.820 PM] Unity.TextMeshPro.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Unity.TextMeshPro.dll
+ (0,0): [02/04/2019 06:06:57.833 PM] Unity.ProGrids.dll: no prior compilation found in cache. Caller PID: 12216
+ (0,0): [02/04/2019 06:06:57.840 PM] Unity.CollabProxy.Editor.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Unity.CollabProxy.Editor.dll
+ (0,0): [02/04/2019 06:06:57.860 PM] Unity.ProGrids.dll compiling...
+ (0,0): [02/04/2019 06:06:57.890 PM] Unity.ProGrids.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Unity.ProGrids.dll
+ (0,0): [02/04/2019 06:06:57.899 PM] Unity.CollabProxy.Editor.dll compilation finished in 122ms  source files re-parsed: 17 metadata reloaded: 0
+ (0,0): [02/04/2019 06:06:57.913 PM] Unity.TextMeshPro.dll compilation finished in 477ms  source files re-parsed: 45 metadata reloaded: 3
+ (0,0): [02/04/2019 06:06:57.919 PM] Unity.CollabProxy.Editor.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 06:06:57.939 PM] Unity.TextMeshPro.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 06:06:57.939 PM] Unity.ProGrids.dll compilation finished in 82ms  source files re-parsed: 2 metadata reloaded: 0
+ (0,0): [02/04/2019 06:06:57.950 PM] Unity.PackageManagerUI.Editor.dll: no prior compilation found in cache. Caller PID: 12216
+ (0,0): [02/04/2019 06:06:57.960 PM] Unity.ProGrids.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 06:06:57.980 PM] Unity.PackageManagerUI.Editor.dll compiling...
+ (0,0): [02/04/2019 06:06:58.060 PM] Unity.PackageManagerUI.Editor.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Unity.PackageManagerUI.Editor.dll
+ (0,0): [02/04/2019 06:06:58.121 PM] Unity.PackageManagerUI.Editor.dll compilation finished in 147ms  source files re-parsed: 52 metadata reloaded: 0
+ (0,0): [02/04/2019 06:06:58.140 PM] Unity.PackageManagerUI.Editor.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 06:06:58.521 PM] Unity.ProGrids.Editor.dll: no prior compilation found in cache. Caller PID: 12216
+ (0,0): [02/04/2019 06:06:58.540 PM] Unity.ProGrids.Editor.dll compiling...
+ (0,0): [02/04/2019 06:06:58.614 PM] Unity.ProGrids.Editor.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Unity.ProGrids.Editor.dll
+ (0,0): [02/04/2019 06:06:58.663 PM] Unity.TextMeshPro.Editor.dll: no prior compilation found in cache. Caller PID: 12216
+ (0,0): [02/04/2019 06:06:58.680 PM] Unity.TextMeshPro.Editor.dll compiling...
+ (0,0): [02/04/2019 06:06:58.690 PM] Unity.ProGrids.Editor.dll compilation finished in 155ms  source files re-parsed: 20 metadata reloaded: 1
+ (0,0): [02/04/2019 06:06:58.720 PM] Unity.ProGrids.Editor.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 06:06:58.822 PM] Unity.TextMeshPro.Editor.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Unity.TextMeshPro.Editor.dll
+ (0,0): [02/04/2019 06:06:58.943 PM] Unity.TextMeshPro.Editor.dll compilation finished in 268ms  source files re-parsed: 40 metadata reloaded: 1
+ (0,0): [02/04/2019 06:06:58.970 PM] Unity.TextMeshPro.Editor.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 06:06:59.189 PM] Assembly-CSharp.dll: no prior compilation found in cache. Caller PID: 12216
+ (0,0): [02/04/2019 06:06:59.210 PM] Assembly-CSharp.dll compiling...
+ (0,0): [02/04/2019 06:06:59.280 PM] Assembly-CSharp.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Assembly-CSharp.dll
+ (0,0): [02/04/2019 06:06:59.342 PM] Assembly-CSharp.dll compilation finished in 136ms  source files re-parsed: 38 metadata reloaded: 5
+ (0,0): [02/04/2019 06:06:59.360 PM] Assembly-CSharp.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 06:06:59.720 PM] Assembly-CSharp-Editor.dll: no prior compilation found in cache. Caller PID: 12216
+ (0,0): [02/04/2019 06:06:59.740 PM] Assembly-CSharp-Editor.dll compiling...
+ (0,0): [02/04/2019 06:06:59.770 PM] Assembly-CSharp-Editor.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Assembly-CSharp-Editor.dll
+ (0,0): [02/04/2019 06:06:59.810 PM] Assembly-CSharp-Editor.dll compilation finished in 73ms  source files re-parsed: 4 metadata reloaded: 1
+ (0,0): [02/04/2019 06:06:59.840 PM] Assembly-CSharp-Editor.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 06:07:43.199 PM] Assembly-CSharp.dll: no prior compilation found in cache. Caller PID: 12216
+ (0,0): [02/04/2019 06:07:43.230 PM] Assembly-CSharp.dll compiling...
+ (0,0): [02/04/2019 06:07:43.430 PM] Assembly-CSharp.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Assembly-CSharp.dll
+ (0,0): [02/04/2019 06:07:43.509 PM] Assembly-CSharp.dll compilation finished in 283ms  source files re-parsed: 67 metadata reloaded: 0
+ (0,0): [02/04/2019 06:07:43.530 PM] Assembly-CSharp.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 06:07:43.844 PM] Assembly-CSharp-Editor.dll: no prior compilation found in cache. Caller PID: 12216
+ (0,0): [02/04/2019 06:07:43.870 PM] Assembly-CSharp-Editor.dll compiling...
+ (0,0): [02/04/2019 06:07:43.913 PM] Assembly-CSharp-Editor.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Assembly-CSharp-Editor.dll
+ (0,0): [02/04/2019 06:07:43.950 PM] Assembly-CSharp-Editor.dll compilation finished in 83ms  source files re-parsed: 15 metadata reloaded: 1
+ (0,0): [02/04/2019 06:07:43.970 PM] Assembly-CSharp-Editor.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 06:08:39.103 PM] Unity.TextMeshPro.dll compiling...
+ (0,0): [02/04/2019 06:08:39.213 PM] Unity.Analytics.DataPrivacy.dll compiling...
+ (0,0): [02/04/2019 06:08:39.252 PM] Unity.Analytics.DataPrivacy.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Unity.Analytics.DataPrivacy.dll
+ (0,0): [02/04/2019 06:08:39.283 PM] Unity.Analytics.DataPrivacy.dll compilation finished in 70ms  source files re-parsed: 0 metadata reloaded: 0
+ (0,0): [02/04/2019 06:08:39.310 PM] Unity.Analytics.DataPrivacy.dll: compilation was cached, 0 file(s) were found to have changed. Caller PID: 12216
+ (0,0): [02/04/2019 06:08:39.330 PM] Unity.Analytics.DataPrivacy.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 06:08:39.330 PM] Unity.ProGrids.dll compiling...
+ (0,0): [02/04/2019 06:08:39.343 PM] Unity.TextMeshPro.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Unity.TextMeshPro.dll
+ (0,0): [02/04/2019 06:08:39.360 PM] Unity.ProGrids.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Unity.ProGrids.dll
+ (0,0): [02/04/2019 06:08:39.400 PM] Unity.ProGrids.dll compilation finished in 65ms  source files re-parsed: 0 metadata reloaded: 0
+ (0,0): [02/04/2019 06:08:39.420 PM] Unity.TextMeshPro.dll compilation finished in 319ms  source files re-parsed: 0 metadata reloaded: 0
+ (0,0): [02/04/2019 06:08:39.430 PM] Unity.ProGrids.dll: compilation was cached, 0 file(s) were found to have changed. Caller PID: 12216
+ (0,0): [02/04/2019 06:08:39.450 PM] Unity.ProGrids.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 06:08:39.453 PM] Unity.PackageManagerUI.Editor.dll compiling...
+ (0,0): [02/04/2019 06:08:39.450 PM] Unity.TextMeshPro.dll: compilation was cached, 0 file(s) were found to have changed. Caller PID: 12216
+ (0,0): [02/04/2019 06:08:39.490 PM] Unity.TextMeshPro.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 06:08:39.530 PM] Unity.PackageManagerUI.Editor.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Unity.PackageManagerUI.Editor.dll
+ (0,0): [02/04/2019 06:08:39.563 PM] Unity.CollabProxy.Editor.dll compiling...
+ (0,0): [02/04/2019 06:08:39.600 PM] Unity.PackageManagerUI.Editor.dll compilation finished in 144ms  source files re-parsed: 0 metadata reloaded: 0
+ (0,0): [02/04/2019 06:08:39.613 PM] Unity.CollabProxy.Editor.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Unity.CollabProxy.Editor.dll
+ (0,0): [02/04/2019 06:08:39.630 PM] Unity.PackageManagerUI.Editor.dll: compilation was cached, 0 file(s) were found to have changed. Caller PID: 12216
+ (0,0): [02/04/2019 06:08:39.650 PM] Unity.PackageManagerUI.Editor.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 06:08:39.670 PM] Unity.CollabProxy.Editor.dll compilation finished in 109ms  source files re-parsed: 0 metadata reloaded: 0
+ (0,0): [02/04/2019 06:08:39.690 PM] Unity.CollabProxy.Editor.dll: compilation was cached, 0 file(s) were found to have changed. Caller PID: 12216
+ (0,0): [02/04/2019 06:08:39.710 PM] Unity.CollabProxy.Editor.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 06:08:39.973 PM] Unity.ProGrids.Editor.dll compiling...
+ (0,0): [02/04/2019 06:08:40.080 PM] Unity.ProGrids.Editor.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Unity.ProGrids.Editor.dll
+ (0,0): [02/04/2019 06:08:40.080 PM] Unity.TextMeshPro.Editor.dll compiling...
+ (0,0): [02/04/2019 06:08:40.210 PM] Unity.ProGrids.Editor.dll compilation finished in 238ms  source files re-parsed: 0 metadata reloaded: 1
+ (0,0): [02/04/2019 06:08:40.223 PM] Unity.TextMeshPro.Editor.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Unity.TextMeshPro.Editor.dll
+ (0,0): [02/04/2019 06:08:40.230 PM] Unity.ProGrids.Editor.dll: compilation was cached, 0 file(s) were found to have changed. Caller PID: 12216
+ (0,0): [02/04/2019 06:08:40.250 PM] Unity.ProGrids.Editor.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 06:08:40.344 PM] Unity.TextMeshPro.Editor.dll compilation finished in 265ms  source files re-parsed: 0 metadata reloaded: 1
+ (0,0): [02/04/2019 06:08:40.370 PM] Unity.TextMeshPro.Editor.dll: compilation was cached, 0 file(s) were found to have changed. Caller PID: 12216
+ (0,0): [02/04/2019 06:08:40.390 PM] Unity.TextMeshPro.Editor.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 06:08:40.684 PM] Assembly-CSharp.dll compiling...
+ (0,0): [02/04/2019 06:08:40.883 PM] Assembly-CSharp.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Assembly-CSharp.dll
+ (0,0): [02/04/2019 06:08:40.949 PM] Assembly-CSharp.dll compilation finished in 268ms  source files re-parsed: 0 metadata reloaded: 5
+ (0,0): [02/04/2019 06:08:40.970 PM] Assembly-CSharp.dll: compilation was cached, 0 file(s) were found to have changed. Caller PID: 12216
+ (0,0): [02/04/2019 06:08:40.990 PM] Assembly-CSharp.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 06:08:41.514 PM] Assembly-CSharp-Editor.dll compiling...
+ (0,0): [02/04/2019 06:08:41.543 PM] Assembly-CSharp-Editor.dll: emitting IL to : C:\Users\za16xo\Desktop\Heist\Heist\Temp\Assembly-CSharp-Editor.dll
+ (0,0): [02/04/2019 06:08:41.590 PM] Assembly-CSharp-Editor.dll compilation finished in 74ms  source files re-parsed: 0 metadata reloaded: 1
+ (0,0): [02/04/2019 06:08:41.610 PM] Assembly-CSharp-Editor.dll: compilation was cached, 0 file(s) were found to have changed. Caller PID: 12216
+ (0,0): [02/04/2019 06:08:41.630 PM] Assembly-CSharp-Editor.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 12216
+ (0,0): [02/04/2019 06:11:35.190 PM] Compiler cache size is now 23.54 MB

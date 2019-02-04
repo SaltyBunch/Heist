@@ -8,7 +8,7 @@ public class VictoryScreen : MonoBehaviour
     [SerializeField] List<Text> playerNames;
     [SerializeField] List<GameObject> playerImages;
 
-    void Initialize(List<string> PN, List<GameObject> PI)
+    public void Initialize(List<string> PN, List<GameObject> PI)
     {
         for (int i = 0; i < PN.Count; i++)
         {

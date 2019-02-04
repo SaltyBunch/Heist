@@ -18,6 +18,7 @@ namespace UI
         [SerializeField] List<string> playernames;
 
         private GameObject current;
+        private string GameScene = "SampleScene";
 
         void Start()
         {
@@ -30,19 +31,23 @@ namespace UI
 
         public void RestartGame()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene(GameScene);
             //set playerimage and player names
         }
 
         public void EndGame()
         {
             if (current) current.SetActive(false);
+            current = victoryScreen.gameObject();
             victoryScreen.Initialize(playernames, playersImages);
-            victoryScreen.gameObject.SetActive(true); 
+            victoryScreen.gameObject.SetActive(true);
+            
         }
 
         public void LoadingScreen()
         {
+            if (current) current.SetActive(false);
+            current = loadingScreen.gameObject();
             loadingScreen.gameObject.SetActive(true);
         }
     }

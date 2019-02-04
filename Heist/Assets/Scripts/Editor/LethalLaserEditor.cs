@@ -2,8 +2,6 @@ using System;
 using Hazard;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Networking;
-using ZeroMQ.lib;
 
 namespace Editor
 {

@@ -47,3 +47,8 @@
  (0,0): [02/01/2019 04:18:35.063 PM] Assembly-CSharp-Editor.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 14316
  (0,0): [02/01/2019 04:18:43.764 PM] Compiler cache size is now 24.03 MB
  (0,0): [02/01/2019 05:04:41.675 PM] watchdog triggered an exit
+ (0,0): [02-04-2019 02:31:07.205 AM] Assembly-CSharp-Editor.dll: no prior compilation found in cache. Caller PID: 11628
+ (0,0): [02-04-2019 02:31:07.221 AM] Assembly-CSharp-Editor.dll compiling...
+ (0,0): [02-04-2019 02:31:11.055 AM] Assembly-CSharp-Editor.dll: emitting IL to : D:\source\Heist\Heist\Temp\Assembly-CSharp-Editor.dll
+ (0,0): [02-04-2019 02:31:11.177 AM] Assembly-CSharp-Editor.dll compilation finished in 3956ms  source files re-parsed: 15 metadata reloaded: 214
+ (0,0): [02-04-2019 02:31:11.189 AM] Assembly-CSharp-Editor.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 11628

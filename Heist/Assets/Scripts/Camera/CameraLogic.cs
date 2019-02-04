@@ -18,6 +18,8 @@ namespace Camera
         [SerializeField] private GameObject _mask;
         [SerializeField] private LayerMask _layerMask;
 
+        [SerializeField] private bool _seesPlayer;
+
         private void Start()
         {
             Camera.transform.localPosition = Vector3.back * _offset + Vector3.up * _offset;
@@ -28,8 +30,10 @@ namespace Camera
         void Update()
         {
             RaycastHit hit;
-            if (Physics.Raycast(Camera.transform.position, (_playerControl.transform.position- Camera.transform.position).normalized,
-                out hit, 100, _layerMask))
+
+            var _seesPlayer = Physics.Raycast(Camera.transform.position, (_playerControl.transform.position - Camera.transform.position).normalized,
+                out hit, 100, _layerMask);
+            if (_seesPlayer)
             {
                 if (hit.collider.CompareTag("Player"))
                 {

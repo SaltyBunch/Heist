@@ -182,3 +182,13 @@
  (0,0): [02/04/2019 08:26:55.898 PM] Assembly-CSharp-Editor.dll compilation finished in 64ms  source files re-parsed: 0 metadata reloaded: 1
  (0,0): [02/04/2019 08:26:55.910 PM] Assembly-CSharp-Editor.dll: compilation was cached, 0 file(s) were found to have changed. Caller PID: 10704
  (0,0): [02/04/2019 08:26:55.922 PM] Assembly-CSharp-Editor.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 10704
+ (0,0): [02/04/2019 08:47:49.588 PM] Assembly-CSharp.dll compiling...
+ (0,0): [02/04/2019 08:47:49.703 PM] Assembly-CSharp.dll: emitting IL to : C:\Users\kc16rr\Desktop\Heist\Heist\Temp\Assembly-CSharp.dll
+ (0,0): [02/04/2019 08:47:49.778 PM] Assembly-CSharp.dll compilation finished in 191ms  source files re-parsed: 1 metadata reloaded: 0
+ (0,0): [02/04/2019 08:47:49.791 PM] Assembly-CSharp.dll: compilation was cached, 1 file(s) were found to have changed. Caller PID: 10704
+ (0,0): [02/04/2019 08:47:49.803 PM] Assembly-CSharp.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 10704
+ (0,0): [02/04/2019 08:47:50.256 PM] Assembly-CSharp-Editor.dll compiling...
+ (0,0): [02/04/2019 08:47:50.285 PM] Assembly-CSharp-Editor.dll: emitting IL to : C:\Users\kc16rr\Desktop\Heist\Heist\Temp\Assembly-CSharp-Editor.dll
+ (0,0): [02/04/2019 08:47:50.325 PM] Assembly-CSharp-Editor.dll compilation finished in 68ms  source files re-parsed: 0 metadata reloaded: 1
+ (0,0): [02/04/2019 08:47:50.337 PM] Assembly-CSharp-Editor.dll: compilation was cached, 0 file(s) were found to have changed. Caller PID: 10704
+ (0,0): [02/04/2019 08:47:50.348 PM] Assembly-CSharp-Editor.dll: session status updated to IncrementalCompilationStatus.Finished for Caller PID: 10704

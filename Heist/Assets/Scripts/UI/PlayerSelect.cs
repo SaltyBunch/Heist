@@ -23,6 +23,12 @@ namespace UI
         // Update is called once per frame
         void Update()
         {
+            if (ReInput.players.GetPlayer(player).GetButtonDown("UISubmit") && ready)
+            {
+                
+                MenuManager.menuManager.RestartGame();
+                mm.ExitPlayerSelect();
+            }
             readyFX.SetActive(false);
             if (ReInput.players.GetPlayer(player).GetButtonDown("UIHorizontal") && !ready)
             {
@@ -32,11 +38,7 @@ namespace UI
             {
                 ready = !ready;
             }
-            if (ReInput.players.GetPlayer(player).GetButtonDown("UISubmit") && ready)
-            {
-                //mm.ExitPlayerSelect();
-                MenuManager.menuManager.RestartGame();
-            }
+            
             if (!ready && ReInput.players.GetPlayer(player).GetButtonDown("UICancel"))
             {
                 mm.ExitPlayerSelect();

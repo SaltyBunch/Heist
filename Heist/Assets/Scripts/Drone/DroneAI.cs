@@ -29,6 +29,7 @@ namespace Drone
         // Start is called before the first frame update
         void Start()
         {
+            investigation.transform.parent = null;
             agent = GetComponent<NavMeshAgent>();
             obstacle = GetComponent<NavMeshObstacle>();
             if (bigPatrolPath.Count <= 0) bigPatrolPath = patrolPath;
@@ -47,7 +48,8 @@ namespace Drone
             {
                 //todo check layers
                 var temp = fsm.MoveNext(Command.SoundNotification);
-                if (temp.Equals(Drone.State.Investigate)) investigation.transform.position = e.Position;
+                if (fsm.CurrentState.Equals(State.Investigate)) investigation.transform.position = e.Position;
+                Target = investigation.transform;
             }
         }
 
@@ -102,7 +104,7 @@ namespace Drone
             if (fsm.CurrentState.Equals(State.Investigate))
             {
                 //Arrive at investigate zone
-                if (Vector3.Distance(transform.position, investigation.transform.position) < 0.5f)
+                if (Vector3.Distance(transform.position, investigation.transform.position) < 1f)
                 {
                     Target = patrolPath[patrol];
                     fsm.MoveNext(Command.LosePlayer);

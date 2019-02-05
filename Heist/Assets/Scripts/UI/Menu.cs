@@ -18,7 +18,7 @@ namespace UI
         [SerializeField] EventSystem ES;
 
         [SerializeField] GameObject mainMenu;
-        [SerializeField] GameObject mainMenuButton;
+        public GameObject mainMenuButton;
         [SerializeField] GameObject SelectionMenu; 
         //[SerializeField] GameObject SelectionMenuButton;
         [SerializeField] GameObject optionsMenu;

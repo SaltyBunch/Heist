@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 namespace UI
@@ -8,6 +9,8 @@ namespace UI
 
     public class MenuManager : MonoBehaviour
     {
+        [SerializeField] EventSystem ES;
+
         public static MenuManager menuManager;
         [SerializeField] Menu menu;
         [SerializeField] MasterMixer masterMixer;
@@ -20,6 +23,7 @@ namespace UI
 
         private GameObject current;
         private string GameScene = "SampleScene";
+        int inGame = 0;
 
         void Start()
         {
@@ -31,17 +35,35 @@ namespace UI
             }
         }
 
+        public void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.N) && Input.GetKeyDown(KeyCode.B) && inGame == 2) ToMain();
+            if (Input.GetKeyDown(KeyCode.N) && Input.GetKeyDown(KeyCode.B) && inGame == 1) EndGame();
+            
+        }
+
+        public void ToMain()
+        {
+            SceneManager.UnloadSceneAsync(GameScene);
+            if (current) current.SetActive(false);
+            menu.gameObject.SetActive(true);
+            ES.SetSelectedGameObject(menu.mainMenuButton);
+            current = menu.gameObject;
+            inGame = 0;
+        }
+
         public void RestartGame()
         {
             LoadingScreen();
             StartCoroutine(LoadScene());
+            inGame = 1;
 
             //set playerimage and player names
         }
 
         IEnumerator LoadScene()
         {
-            yield return null;
+            yield return new WaitForEndOfFrame();
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(GameScene, LoadSceneMode.Additive);
             asyncOperation.allowSceneActivation = false;
             while (!asyncOperation.isDone)
@@ -60,11 +82,10 @@ namespace UI
         public void EndGame()
         {
             if (current) current.SetActive(false);
-            victoryScreen.Initialize(playernames, playersImages);
+            //victoryScreen.Initialize(playernames, playersImages);  TODO with proepr inputs
             victoryScreen.gameObject.SetActive(true);
             current = victoryScreen.gameObject;
-            
-            
+            inGame = 2;
         }
 
         public void LoadingScreen()

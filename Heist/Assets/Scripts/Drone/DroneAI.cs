@@ -49,6 +49,8 @@ namespace Drone
                 //todo check layers
                 if (fsm.CurrentState.Equals(State.Patrol))
                 {
+                    investigation.transform.position = e.Position;
+                    if (Vector3.Distance(transform.position, investigation.transform.position) < 100)
                     fsm.MoveNext(Command.SoundNotification);
                     investigation.transform.position = e.Position;
                     Target = investigation.transform;

@@ -72,7 +72,7 @@ namespace Game
         private void Awake()
         {
             if (LevelManagerRef == null) LevelManagerRef = this;
-            else Destroy(gameObject);
+            
             if (_spawnpoints == null) _spawnpoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
 
             if (_audioSource == null) _audioSource = GetComponents<AudioSource>();

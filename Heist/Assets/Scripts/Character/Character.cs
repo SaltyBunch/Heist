@@ -70,8 +70,8 @@ namespace Character
             _timeSinceDamage += Time.deltaTime;
             if (_firstDamage && _stacks > 0)
             {
-                //wait for 20 sec
-                if (_timeSinceDamage >= 20)
+                //wait for 5 sec
+                if (_timeSinceDamage >= 5)
                 {
                     Stacks -= 1;
                     _timeSinceDamage = 0;
@@ -80,8 +80,8 @@ namespace Character
             }
             else if (_stacks > 0)
             {
-                //wait for 5 secs
-                if (_timeSinceDamage >= 5)
+                //wait for 1 secs
+                if (_timeSinceDamage >= 1)
                 {
                     Stacks -= 1;
                     _timeSinceDamage = 0;

@@ -2,7 +2,7 @@
 -target:library
 -nowarn:0169
 -langversion:7
--out:C:/Users/Administrator/Heist/Heist/Temp/Unity.CollabProxy.Editor.dll
+-out:C:/Users/Administrator/Desktop/Heist/Heist/Temp/Unity.CollabProxy.Editor.dll
 -nostdlib
 -unsafe
 -r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.dll"
@@ -82,15 +82,15 @@
 -r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll"
 -r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll"
 -r:"C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll"
--r:C:/Users/Administrator/Heist/Heist/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll
--r:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll
--r:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll
--r:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll
--r:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll
--r:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll
--r:C:/Users/Administrator/Heist/Heist/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Windows_Lib.dll
--r:C:/Users/Administrator/Heist/Heist/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Core.dll
--r:C:/Users/Administrator/Heist/Heist/Assets/Rewired/Internal/Libraries/Editor/Rewired_Editor.dll
+-r:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll
+-r:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll
+-r:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll
+-r:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll
+-r:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll
+-r:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll
+-r:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Windows_Lib.dll
+-r:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Core.dll
+-r:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Rewired/Internal/Libraries/Editor/Rewired_Editor.dll
 -r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll"
 -r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.dll"
 -r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Core.dll"
@@ -306,25 +306,26 @@
 -d:ENABLE_UNITY_COLLECTIONS_CHECKS
 -d:ENABLE_BURST_AOT
 -d:UNITY_TEAM_LICENSE
+-d:ENABLE_VSTU
 -d:UNITY_PRO_LICENSE
 -d:UNITY_POST_PROCESSING_STACK_V2
 -d:CSHARP_7_OR_LATER
 -d:CSHARP_7_3_OR_NEWER
--i:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/AssemblyInfo.cs
--i:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/Bootstrap.cs
--i:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/CollabAnalytics.cs
--i:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/CollabHistoryWindow.cs
--i:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/CollabToolbarButton.cs
--i:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/CollabToolbarWindow.cs
--i:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/Presenters/CollabHistoryPresenter.cs
--i:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/BuildStatusButton.cs
--i:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/CollabHistoryDropDown.cs
--i:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/CollabHistoryDropDownItem.cs
--i:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/CollabHistoryItem.cs
--i:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/CollabHistoryItemFactory.cs
--i:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/CollabHistoryRevisionLine.cs
--i:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/HistoryProgressSpinner.cs
--i:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/ICollabHistoryItemFactory.cs
--i:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/PagedListView.cs
--i:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/StatusView.cs
+-i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/AssemblyInfo.cs
+-i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/Bootstrap.cs
+-i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/CollabAnalytics.cs
+-i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/CollabHistoryWindow.cs
+-i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/CollabToolbarButton.cs
+-i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/CollabToolbarWindow.cs
+-i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/Presenters/CollabHistoryPresenter.cs
+-i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/BuildStatusButton.cs
+-i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/CollabHistoryDropDown.cs
+-i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/CollabHistoryDropDownItem.cs
+-i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/CollabHistoryItem.cs
+-i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/CollabHistoryItemFactory.cs
+-i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/CollabHistoryRevisionLine.cs
+-i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/HistoryProgressSpinner.cs
+-i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/ICollabHistoryItemFactory.cs
+-i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/PagedListView.cs
+-i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.collab-proxy@1.2.15/Editor/Collab/Views/StatusView.cs
 -v:0

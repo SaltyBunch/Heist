@@ -118,8 +118,8 @@ namespace Character
 
         private void InventoryOnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UI.UIManager.UiManagerRef.UpdateWeapon(e.Item, PlayerNumber - 1);
-            UI.UIManager.UiManagerRef.UpdateAmmo(e.Count, PlayerNumber - 1);
+            UI.UIManager.UiManagerRef.UpdateWeapon(e.Item, PlayerNumber);
+            UI.UIManager.UiManagerRef.UpdateAmmo(e.Count, PlayerNumber);
         }
 
         private void BaseCharacterOnHealthChanged(object sender, HealthChangedEventArgs e)

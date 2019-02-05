@@ -210,7 +210,7 @@ MonoBehaviour:
     Health: 0
     Speed: 5
     Dexterity: 0
-  _infFrames: 0.333
+  _invFrames: 0.333
   _inventory: {fileID: 3041015691421169925}
 --- !u!114 &3041015691421169925
 MonoBehaviour:
@@ -432,12 +432,12 @@ MonoBehaviour:
   _playerControl: {fileID: 498303954121022594}
   Camera: {fileID: 3050924103427918977}
   _bounds: 0.5
-  _smoothing: 1
+  _smoothing: 0.5
   _offset: 15
   _mask: {fileID: 1793823198}
   _layerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4026532353
   _seesPlayer: 0
 --- !u!1 &3050924103313246898
 GameObject:

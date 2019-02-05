@@ -217,6 +217,9 @@ namespace Game
                 _players[i].PlayerControl.Player = ReInput.players.GetPlayer(i);
             }
 
+            for (int i = 0; i < numPlayers; i++)
+                UI.UIManager.UiManagerRef.SetFace((int)GameManager.PlayerChoice[i], i);
+
             #endregion
 
             #region Audio

@@ -2,7 +2,7 @@
 -target:library
 -nowarn:0169
 -langversion:7
--out:C:/Users/Administrator/Heist/Heist/Temp/Unity.ProGrids.dll
+-out:C:/Users/Administrator/Desktop/Heist/Heist/Temp/Unity.ProGrids.dll
 -nostdlib
 -unsafe
 -r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.dll"
@@ -81,15 +81,15 @@
 -r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll"
 -r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll"
 -r:"C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll"
--r:C:/Users/Administrator/Heist/Heist/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll
--r:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll
--r:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll
--r:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll
--r:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll
--r:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll
--r:C:/Users/Administrator/Heist/Heist/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Windows_Lib.dll
--r:C:/Users/Administrator/Heist/Heist/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Core.dll
--r:C:/Users/Administrator/Heist/Heist/Assets/Rewired/Internal/Libraries/Editor/Rewired_Editor.dll
+-r:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll
+-r:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll
+-r:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll
+-r:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll
+-r:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll
+-r:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll
+-r:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Windows_Lib.dll
+-r:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Core.dll
+-r:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Rewired/Internal/Libraries/Editor/Rewired_Editor.dll
 -r:"C:\Program Files\Unity\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll"
 -r:"C:\Program Files\Unity\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\Microsoft.Win32.Primitives.dll"
 -r:"C:\Program Files\Unity\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.AppContext.dll"
@@ -302,10 +302,11 @@
 -d:ENABLE_UNITY_COLLECTIONS_CHECKS
 -d:ENABLE_BURST_AOT
 -d:UNITY_TEAM_LICENSE
+-d:ENABLE_VSTU
 -d:UNITY_PRO_LICENSE
 -d:UNITY_POST_PROCESSING_STACK_V2
 -d:CSHARP_7_OR_LATER
 -d:CSHARP_7_3_OR_NEWER
--i:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.progrids@3.0.0/Runtime/IgnoreSnap.cs
--i:C:/Users/Administrator/Heist/Heist/Library/PackageCache/com.unity.progrids@3.0.0/Runtime/IgnoreSnapAttribute.cs
+-i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.progrids@3.0.0/Runtime/IgnoreSnap.cs
+-i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.progrids@3.0.0/Runtime/IgnoreSnapAttribute.cs
 -v:0

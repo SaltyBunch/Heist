@@ -10,6 +10,7 @@ namespace UI
     public class MenuManager : MonoBehaviour
     {
         [SerializeField] EventSystem ES;
+        [SerializeField] List<UI.PlayerSelect> selction;
 
         public static MenuManager menuManager;
         [SerializeField] Menu menu;
@@ -35,8 +36,15 @@ namespace UI
             }
         }
 
+       
+
         public void Update()
         {
+            if (selction.TrueForAll(s => s.ready ||!s.gameObject.activeSelf) && inGame == 0) RestartGame();
+
+            
+            
+
             if (Input.GetKeyDown(KeyCode.N) && Input.GetKeyDown(KeyCode.B) && inGame == 2) ToMain();
             if (Input.GetKeyDown(KeyCode.N) && Input.GetKeyDown(KeyCode.B) && inGame == 1) EndGame();
             

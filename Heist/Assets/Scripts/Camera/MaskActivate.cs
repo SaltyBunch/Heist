@@ -9,20 +9,23 @@ public class MaskActivate : MonoBehaviour
 
     public void StartShow()
     {
-        StopAllCoroutines();
-        var temp = mat.color;
-        if (temp.a < 0.1f)
-        {
-            temp = new Color(temp.r, temp.g, temp.b, 0.1f);
-            mat.color = temp;
-        }
-        StartCoroutine(Activate());
+
+        this.gameObject.SetActive(true);
+        //        StopAllCoroutines();
+        //       var temp = mat.color;
+        //      if (temp.a < 0.1f)
+        //       {
+        //           temp = new Color(temp.r, temp.g, temp.b, 0.1f);
+        //           mat.color = temp;
+        //       }
+        //      StartCoroutine(Activate());
     }
 
     public void StopShow()
     {
-        StopAllCoroutines();
-        StartCoroutine(Deactivate());
+        this.gameObject.SetActive(false);
+        //StopAllCoroutines();
+        //StartCoroutine(Deactivate());
     } 
 
     IEnumerator Activate()

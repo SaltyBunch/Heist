@@ -48,8 +48,11 @@ namespace Drone
             {
                 //todo check layers
                 var temp = fsm.MoveNext(Command.SoundNotification);
-                if (fsm.CurrentState.Equals(State.Investigate)) investigation.transform.position = e.Position;
-                Target = investigation.transform;
+                if (fsm.CurrentState.Equals(State.Investigate))
+                {
+                    investigation.transform.position = e.Position;
+                    Target = investigation.transform;
+                }
             }
         }
 
@@ -87,17 +90,6 @@ namespace Drone
                     }
                 }
 
-                //Detect Sound
-//                foreach (var v in players)
-//                {
-//                    if (v.transform.parent.GetComponent<Character.PlayerControl>().Noise)
-//                    {
-//                        investigation.transform.position = v.transform.position;
-//                        Target = investigation.transform;
-//                        lastLoc = transform.position;
-//                        fsm.MoveNext(Command.SoundNotification);
-//                    }
-//                }
             }
 
             //Investigate State

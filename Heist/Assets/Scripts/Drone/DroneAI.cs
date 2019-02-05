@@ -69,14 +69,9 @@ namespace Drone
             if (fsm.CurrentState.Equals(State.Patrol))
             {
                 //chaing patrol dest
-                if (Vector3.Distance(transform.position, Target.position) < 0.1f)
+                if (Vector3.Distance(transform.position, Target.position) < 1f)
                 {
-                    if (patrol >= patrolPath.Count - 1)
-                    {
-                        patrol = -1;
-                    }
-
-                    Target = patrolPath[++patrol];
+                    Target = patrolPath[patrol++ % patrolPath.Count];
                 }
 
                 //Detect player

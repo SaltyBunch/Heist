@@ -409,8 +409,6 @@ MonoBehaviour:
   masterMixer: {fileID: 0}
   victoryScreen: {fileID: 0}
   loadingScreen: {fileID: 0}
-  playersImages: []
-  playernames: []
 --- !u!4 &72122924
 Transform:
   m_ObjectHideFlags: 0
@@ -441,8 +439,6 @@ MonoBehaviour:
   masterMixer: {fileID: 522888668}
   victoryScreen: {fileID: 368307302}
   loadingScreen: {fileID: 1163500337}
-  playersImages: []
-  playernames: []
 --- !u!1 &109063794
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ namespace UI
         [SerializeField] MasterMixer masterMixer;
         [SerializeField] VictoryScreen victoryScreen;
         [SerializeField] LoadingScreen loadingScreen;
+        [SerializeField] UIManager uiManager;
 
         [SerializeField] List<GameObject> playersImages;
         [SerializeField] List<string> playernames;
@@ -26,14 +27,34 @@ namespace UI
             {
                 menuManager = this;
                 DontDestroyOnLoad(this);
+                current = menu.gameObject;
             }
         }
 
         public void RestartGame()
         {
             LoadingScreen();
-            SceneManager.LoadScene(GameScene);
+            StartCoroutine(LoadScene());
+
             //set playerimage and player names
+        }
+
+        IEnumerator LoadScene()
+        {
+            yield return null;
+            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(GameScene, LoadSceneMode.Additive);
+            asyncOperation.allowSceneActivation = false;
+            while (!asyncOperation.isDone)
+            {
+                if (asyncOperation.progress >= 0.9f)
+                {
+                    InGameUI();
+                    asyncOperation.allowSceneActivation = true;
+                }
+                yield return null;
+            }
+        
+            
         }
 
         public void EndGame()
@@ -52,6 +73,14 @@ namespace UI
             loadingScreen.gameObject.SetActive(true);
             current = loadingScreen.gameObject;
             
+        }
+
+        public void InGameUI()
+        {
+            if (current) current.SetActive(false);
+            //create UI
+            uiManager.gameObject.SetActive(true);
+            current = uiManager.gameObject;
         }
     }
 }

@@ -44,12 +44,30 @@ namespace UI
 
         public void ToMain()
         {
-            SceneManager.UnloadSceneAsync(GameScene);
+            StartCoroutine(UNLoadScene());
             if (current) current.SetActive(false);
             menu.gameObject.SetActive(true);
             ES.SetSelectedGameObject(menu.mainMenuButton);
             current = menu.gameObject;
             inGame = 0;
+        }
+
+        IEnumerator UNLoadScene()
+        {
+            yield return new WaitForEndOfFrame();
+            AsyncOperation asyncOperation = SceneManager.UnloadSceneAsync(GameScene);
+            asyncOperation.allowSceneActivation = false;
+            while (!asyncOperation.isDone)
+            {
+                if (asyncOperation.progress >= 0.9f)
+                {
+                    InGameUI();
+                    asyncOperation.allowSceneActivation = true;
+                }
+                yield return null;
+            }
+
+
         }
 
         public void RestartGame()

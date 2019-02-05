@@ -41,7 +41,7 @@ namespace Camera
                 }
                 else _mask.GetComponent<MaskActivate>().StartShow();
             }
-            Debug.DrawRay(Camera.transform.position, (_playerControl.transform.position - Camera.transform.position).normalized, Color.red);
+            //Debug.DrawRay(Camera.transform.position, (_playerControl.transform.position - Camera.transform.position).normalized, Color.red);
         }
 
         private void FixedUpdate()

@@ -54,6 +54,7 @@ MonoBehaviour:
     type: 3}
   _spawnpoints:
   - {fileID: 0}
+  - {fileID: 0}
   _stunMultiplier: 100
   _vaultTimer: 0
 --- !u!114 &9203244888876118632

@@ -38,7 +38,7 @@ namespace UI
         public void EndGame()
         {
             if (current) current.SetActive(false);
-            current = victoryScreen.gameObject();
+            current = victoryScreen.gameObject;
             victoryScreen.Initialize(playernames, playersImages);
             victoryScreen.gameObject.SetActive(true);
             
@@ -47,7 +47,7 @@ namespace UI
         public void LoadingScreen()
         {
             if (current) current.SetActive(false);
-            current = loadingScreen.gameObject();
+            current = loadingScreen.gameObject;
             loadingScreen.gameObject.SetActive(true);
         }
     }

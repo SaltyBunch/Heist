@@ -21,15 +21,15 @@ namespace Hazard
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("player"))
+            if (other.CompareTag("Player"))
             {
-                StartCoroutine(Trigger(other.GetComponent<PlayerControl>()));
+                StartCoroutine(Trigger(other.GetComponentInParent<PlayerControl>()));
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.CompareTag("player"))
+            if (other.CompareTag("Player"))
             {
                 _players[other.GetComponent<PlayerControl>().PlayerNumber - 1] = false;
             }

@@ -124,7 +124,7 @@ namespace Character
 
         private void BaseCharacterOnHealthChanged(object sender, HealthChangedEventArgs e)
         {
-            UI.UIManager.UiManagerRef.UpdateHealth(e.Health, PlayerNumber - 1);
+            UI.UIManager.UiManagerRef.UpdateHealth(e.Health, PlayerNumber);
         }
 
         private void Pause()

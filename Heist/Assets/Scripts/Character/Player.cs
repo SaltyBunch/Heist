@@ -9,7 +9,7 @@ namespace Character
     {
         private Pickup.Pickup _currentlyOverPickup;
 
-        [SerializeField] private UIManager _ui;
+        [SerializeField] private UIManager _ui => UIManager.UiManagerRef;
         [SerializeField] private Inventory _inventory;
 
         public Inventory Inventory => _inventory;

@@ -21,9 +21,9 @@ namespace Hazard
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("player"))
+            if (other.CompareTag("Player"))
             {
-                StartCoroutine(Trigger(other.GetComponent<PlayerControl>()));
+                StartCoroutine(Trigger(other.GetComponentInParent<PlayerControl>()));
             }
         }
 
@@ -36,7 +36,6 @@ namespace Hazard
                 yield return null;
                 elapsed += Time.deltaTime;
             } while (elapsed < _cooldown);
-            
         }
     }
 }

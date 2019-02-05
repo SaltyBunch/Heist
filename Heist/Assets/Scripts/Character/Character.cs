@@ -33,18 +33,24 @@ namespace Character
         [SerializeField] public Stats Stats;
 
         internal int timesStunned;
+        private bool _invincible;
+        [SerializeField, Range(0.01f, 1)] private float _invFrames = 0.333f;
 
         public int Stacks
         {
             get => _stacks;
             set
             {
-                if (value > _stacks && !(_stun || _stunCooldown))
+                if (value > _stacks && !_invincible && !(_stun || _stunCooldown))
                 {
                     _firstDamage = true;
                     _timeSinceDamage = 0;
                     _stacks = value;
-                    if (_stacks >= Stats.Health) StartCoroutine(Stun());
+                    if (_stacks >= Stats.Health)
+                    {
+                        StartCoroutine(Stun());
+                    }
+                    StartCoroutine(IFrames());
                 }
                 else if (value < _stacks)
                 {
@@ -92,6 +98,13 @@ namespace Character
             _stunCooldown = true;
             yield return new WaitForSeconds(3);
             _stunCooldown = false;
+        }
+
+        private IEnumerator IFrames()
+        {
+            _invincible = true;
+            yield return new WaitForSeconds(_invFrames);
+            _invincible = false;
         }
     }
 }

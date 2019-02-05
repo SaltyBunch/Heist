@@ -29,7 +29,7 @@ namespace UI
 
         private void Awake()
         {
-            if (UiManagerRef == null) UiManagerRef = this;
+            UiManagerRef = this;
         }    
 
         private void Update()

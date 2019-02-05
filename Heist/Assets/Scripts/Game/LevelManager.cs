@@ -218,6 +218,13 @@ namespace Game
             }
 
             #endregion
+
+            #region Audio
+
+            _audioSource[_currentAudioSource].clip = _backgroundMusicInfiltration;
+            _audioSource[_currentAudioSource].Play();
+
+            #endregion
         }
 
         private void ShuffleSpawns()

@@ -47,9 +47,9 @@ namespace Drone
                 LevelManager.LevelManagerRef.NotificationRamge[e.NotifyType])
             {
                 //todo check layers
-                var temp = fsm.MoveNext(Command.SoundNotification);
-                if (fsm.CurrentState.Equals(State.Investigate))
+                if (fsm.CurrentState.Equals(State.Patrol))
                 {
+                    fsm.MoveNext(Command.SoundNotification);
                     investigation.transform.position = e.Position;
                     Target = investigation.transform;
                 }
@@ -175,8 +175,6 @@ namespace Drone
             {
                 agent.destination = transform.position;
             }
-
-            Debug.Log(fsm.CurrentState);
         }
 
         IEnumerator Revive()

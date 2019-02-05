@@ -77,6 +77,7 @@ namespace Drone
                 //Chase player
                 { new StateTransition(State.Patrol,Command.SeePlayer), State. Chase },
                 { new StateTransition(State.Investigate,Command.SeePlayer), State. Chase },
+                { new StateTransition(State.Chase,Command.SoundNotification), State. Chase },
                 //Lose player
                 { new StateTransition(State.Chase,Command.LosePlayer), State. Patrol },
                 { new StateTransition(State.Investigate,Command.LosePlayer), State. Patrol },

@@ -46,8 +46,8 @@ namespace Drone
                 LevelManager.LevelManagerRef.NotificationRamge[e.NotifyType])
             {
                 //todo check layers
-                fsm.MoveNext(Command.SoundNotification);
-                investigation.transform.position = e.Position;
+                var temp = fsm.MoveNext(Command.SoundNotification);
+                if (temp.Equals(Drone.State.Investigate)) investigation.transform.position = e.Position;
             }
         }
 

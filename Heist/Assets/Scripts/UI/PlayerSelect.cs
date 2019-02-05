@@ -32,6 +32,11 @@ namespace UI
             {
                 ready = !ready;
             }
+            if (ReInput.players.GetPlayer(player).GetButtonDown("UISubmit") && ready)
+            {
+                //mm.ExitPlayerSelect();
+                MenuManager.menuManager.RestartGame();
+            }
             if (!ready && ReInput.players.GetPlayer(player).GetButtonDown("UICancel"))
             {
                 mm.ExitPlayerSelect();

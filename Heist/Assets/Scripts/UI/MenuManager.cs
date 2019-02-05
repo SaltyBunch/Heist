@@ -31,6 +31,7 @@ namespace UI
 
         public void RestartGame()
         {
+            LoadingScreen();
             SceneManager.LoadScene(GameScene);
             //set playerimage and player names
         }
@@ -38,17 +39,19 @@ namespace UI
         public void EndGame()
         {
             if (current) current.SetActive(false);
-            current = victoryScreen.gameObject;
             victoryScreen.Initialize(playernames, playersImages);
             victoryScreen.gameObject.SetActive(true);
+            current = victoryScreen.gameObject;
+            
             
         }
 
         public void LoadingScreen()
         {
             if (current) current.SetActive(false);
-            current = loadingScreen.gameObject;
             loadingScreen.gameObject.SetActive(true);
+            current = loadingScreen.gameObject;
+            
         }
     }
 }

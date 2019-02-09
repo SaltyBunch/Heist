@@ -6,6 +6,7 @@ namespace Game
     {
         public enum Type
         {
+            None,
             Weapon,
             Hazard
         }

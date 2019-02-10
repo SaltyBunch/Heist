@@ -15,9 +15,7 @@ namespace Weapon
 
         [SerializeField] private AudioSource _audioSource;
 
-        
-        
-        
+
         public int Ammo;
 
         public void Bind(GameObject player)
@@ -25,6 +23,9 @@ namespace Weapon
             throw new System.NotImplementedException();
         }
 
+        public void Attack()
+        {
+        }
 
         public bool Equals(Weapon other)
         {

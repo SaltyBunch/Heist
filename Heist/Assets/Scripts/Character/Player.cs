@@ -62,7 +62,6 @@ namespace Character
                         _inventory.GoldAmount += ((GoldPickup) pickup).AmountOfGold;
                         Destroy(pickup.gameObject);
                     }
-
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(pickupType), pickupType, null);

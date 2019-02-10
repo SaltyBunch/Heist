@@ -14,8 +14,8 @@ namespace Character
         [SerializeField] internal bool Interact;
         [SerializeField] internal bool WeaponAttack;
 
-        [SerializeField] internal bool SwitchWeapon;
-        [SerializeField] internal bool SwitchTrap;
+        [SerializeField] internal bool SwitchPos;
+        [SerializeField] internal bool SwitchNeg;
 
         [SerializeField] internal Vector3 MoveVector;
         [SerializeField] internal Vector3 FaceVector;
@@ -77,10 +77,10 @@ namespace Character
                         WeaponAttack();
                     if (value.PushAttack && !_control.PushAttack)
                         PushAttack();
-                    if (value.SwitchWeapon && !_control.SwitchWeapon)
-                        SwitchWeapon();
-                    if (value.SwitchTrap && !_control.SwitchTrap)
-                        SwitchTrap();
+                    if (value.SwitchPos && !_control.SwitchPos)
+                        SwitchPos();
+                    if (value.SwitchNeg && !_control.SwitchNeg)
+                        SwitchNeg();
                     if (value.Pause && !_control.Pause)
                         Pause();
                 }
@@ -168,18 +168,19 @@ namespace Character
             }
         }
 
-        private void SwitchTrap()
+        private void SwitchNeg()
         {
-            Debug.Log("Switch Trap by Player " + (PlayerNumber + 1));
+            BaseCharacter.Inventory.SelectedIndex--;
         }
 
-        private void SwitchWeapon()
+        private void SwitchPos()
         {
-            Debug.Log("Switch Weapon by Player " + (PlayerNumber + 1));
+            BaseCharacter.Inventory.SelectedIndex++;
         }
 
         private void WeaponAttack()
         {
+            BaseCharacter.Inventory.Use();
             Debug.Log("Weapon Attack by Player " + (PlayerNumber + 1));
         }
 

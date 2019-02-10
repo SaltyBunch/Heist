@@ -18,11 +18,6 @@ namespace Editor
             var l2Position = laser.Laser2.transform.position;
             var l2Rotation = laser.Laser2.transform.rotation;
 
-
-            Handles.color = Color.red;
-
-            Handles.DrawLine(l1Position, l2Position);
-
             EditorGUI.BeginChangeCheck();
             switch (Tools.current)
             {

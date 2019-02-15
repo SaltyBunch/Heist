@@ -12,6 +12,7 @@ namespace Weapon
         {
             var proj = Instantiate(_projectile, transform.TransformPoint(Barrel), transform.rotation);
             proj.Shoot();
+            Ammo--;
         }
     }
 }

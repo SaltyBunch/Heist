@@ -29,6 +29,7 @@ namespace Character
         [SerializeField] private List<Hazard.Hazard> _hazard = new List<Hazard.Hazard>();
         private Item _selectedItem;
         private Game.Item.Type _type;
+        private int _count;
 
         public Item SelectedItem
         {
@@ -98,7 +99,7 @@ namespace Character
                 else
                     _selectedItem = null;
                 _type = _selectedItem is Weapon.Weapon ? Item.Type.Weapon : Item.Type.Hazard;
-                var count = _type == Item.Type.Weapon
+                _count = _type == Item.Type.Weapon
                     ? ((Weapon.Weapon) _selectedItem).Ammo
                     : _type == Item.Type.Hazard
                         ? _hazard.Count(h => h == _selectedItem)
@@ -108,7 +109,7 @@ namespace Character
                     {
                         Item = _selectedItem,
                         Type = _type,
-                        Count = count,
+                        Count = _count,
                     });
             }
         }
@@ -191,13 +192,25 @@ namespace Character
             {
                 case Item.Type.Weapon:
                     if (_selectedItem is Weapon.StunGun stunGun)
+                    {
                         stunGun.Attack();
+                        _count = stunGun.Ammo;
+                    }
                     else if (_selectedItem is Weapon.Baton baton)
                         ;
+
                     break;
                 case Item.Type.Hazard:
                     break;
             }
+
+            SelectionChanged?.Invoke(this,
+                new SelectionChangedEventArgs
+                {
+                    Item = _selectedItem,
+                    Type = _type,
+                    Count = _count,
+                });
         }
     }
 }

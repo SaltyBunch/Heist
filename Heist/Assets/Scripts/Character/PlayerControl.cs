@@ -186,10 +186,11 @@ namespace Character
                 if (_control.FaceVector.magnitude > 0)
                 {
                     RaycastHit hitInfo;
-                    _reticule.transform.localPosition = Physics.Raycast(transform.position, transform.forward,
-                        out hitInfo, _retMaxDist, _retLayerMask)
-                        ? transform.InverseTransformPoint(hitInfo.point)
-                        : _retMaxDist / 2 * Vector3.forward + Vector3.up;
+                    if (Physics.Raycast(transform.position, _control.FaceVector, out hitInfo, _retMaxDist,
+                        _retLayerMask))
+                        _reticule.transform.localPosition = transform.InverseTransformPoint(hitInfo.point);
+                    else
+                        _reticule.transform.localPosition = _retMaxDist / 2 * Vector3.forward + Vector3.up;
                 }
                 else
                 {

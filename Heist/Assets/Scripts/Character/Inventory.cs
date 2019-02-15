@@ -76,8 +76,8 @@ namespace Character
                                     break;
                             }
                     }
-                    else if (val >= _weapon.Count && val < _hazard.Count + _weapon.Count
-                    ) //new selection is a hazard but old one isnt
+                    else if (val >= _weapon.Count && val < _hazard.Count + _weapon.Count)
+                        //new selection is a hazard but old one isnt
                     {
                         switch (dir)
                         {

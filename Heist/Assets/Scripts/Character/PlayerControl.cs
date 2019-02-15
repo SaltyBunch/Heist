@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.ComponentModel;
 using System.Linq;
 using Game;
 using UnityEngine;
@@ -165,6 +166,12 @@ namespace Character
         private void FixedUpdate()
         {
             ///Direction based on FaceVector
+            if (Math.Abs(Control.FaceVector.magnitude) > 0.01f)
+            {
+                //fire event
+                OnMoveCancel?.Invoke(this, new EventArgs());
+            }
+
             var facing = Vector3.RotateTowards(transform.forward, Control.FaceVector, 1,
                 0.0f);
             transform.rotation = Quaternion.LookRotation(facing);
@@ -198,6 +205,8 @@ namespace Character
                 }
             }
         }
+
+        public event EventHandler OnMoveCancel;
 
         private void SwitchNeg()
         {

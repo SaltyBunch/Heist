@@ -3,18 +3,19 @@ using UnityEngine;
 
 namespace Pickup
 {
-     public enum PickupType
-        {
-            Weapon,
-            Trap,
-            Gold
-        }
+    public enum PickupType
+    {
+        Weapon,
+        Trap,
+        Gold,
+        Key
+    }
+
     [RequireComponent(typeof(Collider))]
     public class Pickup : MonoBehaviour
     {
-        
         [SerializeField] internal PickupType _pickupType;
-      
+
         private void Start()
         {
             var collider = GetComponent<Collider>();
@@ -24,7 +25,7 @@ namespace Pickup
                 Debug.LogError("Collider on {this.name} is not set as a Trigger, temporarily set to Trigger");
             }
         }
-        
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))

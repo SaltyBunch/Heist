@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Transactions;
 using UnityEngine;
 
 namespace Character
@@ -25,27 +24,19 @@ namespace Character
     {
         private bool _damageCooldown;
         private bool _firstDamage;
+        [SerializeField] [Range(0.01f, 1)] private float _invFrames = 0.333f;
+        private bool _invincible;
+        [SerializeField] private float _knockbackForce;
+
+        private Rigidbody _rgd;
         private int _stacks;
         private bool _stun;
         private bool _stunCooldown;
-
-        private Rigidbody _rgd;
-        public event HealthUpdatedEventHandler HealthChanged;
 
         private float _timeSinceDamage;
         [SerializeField] public Stats Stats;
 
         internal int timesStunned;
-        private bool _invincible;
-        [SerializeField, Range(0.01f, 1)] private float _invFrames = 0.333f;
-        [SerializeField] private float _knockbackForce;
-
-
-        private void Start()
-        {
-            if (_rgd == null)
-                _rgd = GetComponent<Rigidbody>();
-        }
 
         public int Stacks
         {
@@ -57,10 +48,7 @@ namespace Character
                     _firstDamage = true;
                     _timeSinceDamage = 0;
                     _stacks = value;
-                    if (_stacks >= Stats.Health)
-                    {
-                        StartCoroutine(Stun());
-                    }
+                    if (_stacks >= Stats.Health) StartCoroutine(Stun());
 
                     StartCoroutine(IFrames());
                 }
@@ -72,8 +60,17 @@ namespace Character
                 }
 
                 if (HealthChanged != null)
-                    HealthChanged(this, new HealthChangedEventArgs() {Health = Stats.Health - _stacks});
+                    HealthChanged(this, new HealthChangedEventArgs {Health = Stats.Health - _stacks});
             }
+        }
+
+        public event HealthUpdatedEventHandler HealthChanged;
+
+
+        private void Start()
+        {
+            if (_rgd == null)
+                _rgd = GetComponent<Rigidbody>();
         }
 
         internal virtual void Update()

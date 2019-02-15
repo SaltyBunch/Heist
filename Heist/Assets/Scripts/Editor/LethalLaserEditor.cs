@@ -13,10 +13,7 @@ namespace Editor
             var laser = target as LethalLaser;
 
             base.OnInspectorGUI();
-            if (GUILayout.Button("Place"))
-            {
-                laser.Place(laser.transform.position);
-            }
+            if (GUILayout.Button("Place")) laser.Place(laser.transform.position);
         }
 
         private void OnSceneGUI()
@@ -73,7 +70,7 @@ namespace Editor
                 laser.Laser2.transform.LookAt(laser.Laser1.transform);
 
 
-                laser.Collider.size = new Vector3()
+                laser.Collider.size = new Vector3
                 {
                     x = laser.Laser1.transform.localPosition.x * 2 + 0.1f,
                     z = laser.Laser1.transform.localPosition.z * 2, y = 1.5f

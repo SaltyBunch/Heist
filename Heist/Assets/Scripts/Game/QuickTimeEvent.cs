@@ -8,27 +8,27 @@ namespace Game
     {
         public delegate void QuickTimeEventHandler(Object sender, QuickTimeEventArgs e);
 
-        public enum Type
-        {
-            GoldPile,
-            Door,
-            MiniVault
-        }
-        
-        public class QuickTimeEventArgs : EventArgs
-        {
-            public LockQuickTimeEvent.Type Type;
-            public int State;
-            public bool Result;
-            public bool Complete;
-        }
-
         public enum Button
         {
             A,
             B,
             X,
             Y
+        }
+
+        public enum Type
+        {
+            GoldPile,
+            Door,
+            MiniVault
+        }
+
+        public class QuickTimeEventArgs : EventArgs
+        {
+            public bool Complete;
+            public bool Result;
+            public int State;
+            public Type Type;
         }
     }
 }

@@ -1,5 +1,3 @@
-using System.ComponentModel;
-using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Weapon
@@ -7,9 +5,8 @@ namespace Weapon
     [RequireComponent(typeof(Rigidbody), typeof(Collider))]
     public class Projectile : MonoBehaviour
     {
-        [SerializeField] private float _shootForce;
-
         [SerializeField] private Rigidbody _rgd;
+        [SerializeField] private float _shootForce;
 
         public void Shoot(Vector3? position = null, Quaternion? rotation = null)
         {
@@ -30,10 +27,10 @@ namespace Weapon
             if (character != null)
             {
                 character.Stacks += 1;
-                character.Knockback(this.transform);
+                character.Knockback(transform);
             }
 
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }

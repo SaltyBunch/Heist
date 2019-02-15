@@ -1,57 +1,57 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Rewired;
-using UnityEngine.EventSystems;
+﻿using Rewired;
 using UnityEditor;
+using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 namespace UI
 {
-    enum Menus
+    internal enum Menus
     {
-        Main, Selection, Options, Controls, Audio, Credits
+        Main,
+        Selection,
+        Options,
+        Controls,
+        Audio,
+        Credits
     }
 
     public class Menu : MonoBehaviour
     {
-        [SerializeField] EventSystem ES;
-
-        [SerializeField] GameObject mainMenu;
-        public GameObject mainMenuButton;
-        [SerializeField] GameObject SelectionMenu; 
-        //[SerializeField] GameObject SelectionMenuButton;
-        [SerializeField] GameObject optionsMenu;
-        [SerializeField] GameObject optionsButton;
-        [SerializeField] GameObject controlsMenu;
-        [SerializeField] GameObject audioMenu;
-        [SerializeField] GameObject audioButton;
-        [SerializeField] GameObject creditsMenu;
+        [SerializeField] private GameObject audioButton;
+        [SerializeField] private GameObject audioMenu;
+        [SerializeField] private GameObject controlsMenu;
+        [SerializeField] private GameObject creditsMenu;
 
         private Menus currentMenu;
+        [SerializeField] private EventSystem ES;
+
+        [SerializeField] private GameObject mainMenu;
+        public GameObject mainMenuButton;
+
+        [SerializeField] private GameObject optionsButton;
+
+        //[SerializeField] GameObject SelectionMenuButton;
+        [SerializeField] private GameObject optionsMenu;
+        [SerializeField] private GameObject SelectionMenu;
 
         // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
-
             LoadUIControls();
             currentMenu = Menus.Main;
         }
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.A) && Input.GetKeyDown(KeyCode.L))
-            {
-                SceneManager.LoadScene("AI Tests");
-            }
+            if (Input.GetKeyDown(KeyCode.A) && Input.GetKeyDown(KeyCode.L)) SceneManager.LoadScene("AI Tests");
 
             foreach (var player in ReInput.players.AllPlayers)
-            {
                 if (player.GetButtonDown("UICancel"))
                 {
                     switch (currentMenu)
                     {
-                        case Menus.Controls :
+                        case Menus.Controls:
                             ExitcontrolsMenu();
                             break;
                         case Menus.Audio:
@@ -64,9 +64,9 @@ namespace UI
                             ExitOptionsMenu();
                             break;
                     }
+
                     break;
                 }
-            }
         }
 
         public void LoadUIControls()
@@ -78,7 +78,7 @@ namespace UI
                 player.controllers.maps.LoadDefaultMaps(ControllerType.Joystick);
 
                 // Load joysticks maps in each joystick in the "UI" category and "Default" layout and set it to be enabled on start
-                foreach (Joystick joystick in player.controllers.Joysticks)
+                foreach (var joystick in player.controllers.Joysticks)
                 {
                     player.controllers.maps.LoadMap(ControllerType.Keyboard, 0, "Menu", "Default");
                     player.controllers.maps.LoadMap(ControllerType.Joystick, player.id, "Menu", "Default");
@@ -95,7 +95,7 @@ namespace UI
                 player.controllers.maps.LoadDefaultMaps(ControllerType.Joystick);
 
                 // Load joysticks maps in each joystick in the "UI" category and "Default" layout and set it to be enabled on start
-                foreach (Joystick joystick in player.controllers.Joysticks)
+                foreach (var joystick in player.controllers.Joysticks)
                 {
                     player.controllers.maps.LoadMap(ControllerType.Keyboard, 0, "Default", "Default");
                     player.controllers.maps.LoadMap(ControllerType.Joystick, player.id, "Default", "Default");
@@ -107,7 +107,7 @@ namespace UI
         {
 #if UNITY_EDITOR
             EditorApplication.isPlaying = false;
-#else 
+#else
             Application.Quit();
 #endif
         }
@@ -120,6 +120,7 @@ namespace UI
             ES.SetSelectedGameObject(null);
             currentMenu = Menus.Selection;
         }
+
         public void ExitPlayerSelect()
         {
             SelectionMenu.SetActive(false);
@@ -154,6 +155,7 @@ namespace UI
             ES.SetSelectedGameObject(null);
             currentMenu = Menus.Controls;
         }
+
         public void ExitcontrolsMenu()
         {
             controlsMenu.SetActive(false);
@@ -161,6 +163,7 @@ namespace UI
             ES.SetSelectedGameObject(optionsButton);
             currentMenu = Menus.Options;
         }
+
         public void EnterAudioMenu()
         {
             optionsButton = ES.currentSelectedGameObject;
@@ -169,6 +172,7 @@ namespace UI
             ES.SetSelectedGameObject(audioButton);
             currentMenu = Menus.Audio;
         }
+
         public void ExitAudioMenu()
         {
             audioButton = ES.currentSelectedGameObject;
@@ -177,6 +181,7 @@ namespace UI
             ES.SetSelectedGameObject(optionsButton);
             currentMenu = Menus.Options;
         }
+
         public void EnterCreditsMenu()
         {
             optionsButton = ES.currentSelectedGameObject;
@@ -185,6 +190,7 @@ namespace UI
             ES.SetSelectedGameObject(null);
             currentMenu = Menus.Credits;
         }
+
         public void ExitCreditsMenu()
         {
             creditsMenu.SetActive(false);

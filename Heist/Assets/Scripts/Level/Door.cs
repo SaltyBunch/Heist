@@ -12,17 +12,14 @@ namespace Level
         [SerializeField] private bool _locked;
 
         [SerializeField] private Color _lockedColor;
+
+        private bool _open;
+
+        private PlayerControl _player;
+        private LockQuickTimeEvent _quickTime;
         [SerializeField] private Color _unlockedColor;
 
         [SerializeField] private LockQuickTimeEvent lockQuickTimeEvent;
-        private LockQuickTimeEvent _quickTime;
-
-        private PlayerControl _player;
-
-        private void Reset()
-        {
-            gameObject.tag = "Door";
-        }
 
         public bool Locked
         {
@@ -32,6 +29,11 @@ namespace Level
                 if (_locked != value) _light.color = value ? _lockedColor : _unlockedColor;
                 _locked = value;
             }
+        }
+
+        private void Reset()
+        {
+            gameObject.tag = "Door";
         }
 
         public void Open(PlayerControl player)
@@ -45,7 +47,9 @@ namespace Level
                 _player.OnMoveCancel += PlayerOnOnMoveCancel;
             }
             else //todo open door
-                ;
+            {
+                _open = true;
+            }
         }
 
         private void PlayerOnOnMoveCancel(object sender, EventArgs e)

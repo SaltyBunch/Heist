@@ -1,18 +1,18 @@
-using System;
 using Camera;
 using Character;
 using Rewired;
 using UnityEngine;
+using Player = Rewired.Player;
 
 namespace Controller
 {
     [RequireComponent(typeof(PlayerControl))]
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private PlayerControl _playerControl;
         [SerializeField] private CameraLogic _camera;
+        [SerializeField] private PlayerControl _playerControl;
 
-        public Rewired.Player Player;
+        public Player Player;
 
         private void Awake()
         {
@@ -23,10 +23,7 @@ namespace Controller
         private void Start()
         {
             Player = _playerControl.Player;
-            if (Player == null)
-            {
-                Player = Rewired.ReInput.players.GetPlayer(_playerControl.PlayerNumber - 1);
-            }
+            if (Player == null) Player = ReInput.players.GetPlayer(_playerControl.PlayerNumber - 1);
         }
 
         private void Update()

@@ -1,16 +1,20 @@
-using Rewired.Data.Mapping;
+using Rewired;
 using UnityEngine;
 
 namespace Game
 {
     public class BarQuickTimeEvent : QuickTimeEvent
     {
-        private struct Input
-        {
-            public bool A;
-        }
+        private readonly float _bias = 0.05f;
 
         private Input _controlInput;
+        private int _dir;
+        private float _index;
+        private Player _player;
+
+        private float _range;
+
+        public Type QuickTimeType;
 
         private Input ControlInput
         {
@@ -18,9 +22,8 @@ namespace Game
             set
             {
                 if (!Equals(value, _controlInput))
-                {
-                    if (value.A && !_controlInput.A) PressButton(Button.A);
-                }
+                    if (value.A && !_controlInput.A)
+                        PressButton(Button.A);
 
                 _controlInput = value;
             }
@@ -31,7 +34,7 @@ namespace Game
             if (button == Button.A && _index > _range - _bias && _index < _range + _bias)
             {
                 //success
-                Events(this, new QuickTimeEventArgs()
+                Events(this, new QuickTimeEventArgs
                 {
                     Result = true, State = (int) (_index * 100), Type = QuickTimeType
                 });
@@ -41,7 +44,7 @@ namespace Game
             else
             {
                 //failure
-                Events(this, new QuickTimeEventArgs()
+                Events(this, new QuickTimeEventArgs
                 {
                     Result = false, State = (int) (_index * 100), Type = QuickTimeType
                 });
@@ -49,10 +52,6 @@ namespace Game
                 //todo update ui
             }
         }
-
-        private float _range;
-        private Rewired.Player _player;
-        private float _index;
 
         public void Generate()
         {
@@ -63,9 +62,9 @@ namespace Game
 
         public void Update()
         {
-            ControlInput = new Input()
+            ControlInput = new Input
             {
-                A = _player.GetButton("QuickTimeA"),
+                A = _player.GetButton("QuickTimeA")
             };
             //pingpong on _index
             _index += Time.deltaTime * _dir;
@@ -75,8 +74,9 @@ namespace Game
 
         public event QuickTimeEventHandler Events;
 
-        public Type QuickTimeType;
-        private int _dir;
-        private float _bias = 0.05f;
+        private struct Input
+        {
+            public bool A;
+        }
     }
 }

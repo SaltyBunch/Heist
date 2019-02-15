@@ -1,23 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Audio;
 
 namespace UI
 {
-
     public class MasterMixer : MonoBehaviour
     {
-        
-        [SerializeField]
-        AudioMixer masterMixer;
-
-        [SerializeField]
-        AudioMixerSnapshot pausedSnap;
-        [SerializeField]
-        AudioMixerSnapshot unpausedSnap;
-
         private bool isPaused;
+
+        [SerializeField] private AudioMixer masterMixer;
+
+        [SerializeField] private AudioMixerSnapshot pausedSnap;
+
+        [SerializeField] private AudioMixerSnapshot unpausedSnap;
+
         public bool CanPause { get; set; }
 
         public void UpdateMasterVolume(float lvl)
@@ -42,13 +37,9 @@ namespace UI
                 isPaused = isPaused == false ? true : false;
 
                 if (isPaused)
-                {
                     pausedSnap.TransitionTo(0.1f);
-                }
                 else
-                {
                     unpausedSnap.TransitionTo(1f);
-                }
             }
         }
     }

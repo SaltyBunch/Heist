@@ -8,26 +8,26 @@ namespace Drone
 {
     public class DroneAI : MonoBehaviour
     {
-        public Transform Target;
         private NavMeshAgent agent;
-        private NavMeshObstacle obstacle;
+        [SerializeField] private List<Transform> bigPatrolPath;
+        [SerializeField] private float detectPlayerRange;
         public FSM fsm;
-        [SerializeField] List<Transform> patrolPath;
-        [SerializeField] List<Transform> bigPatrolPath;
-        [SerializeField] List<GameObject> players;
-        [SerializeField] float detectPlayerRange;
-        [SerializeField] float patrolTetherRange;
-        [SerializeField] float investigateDuration;
-        [SerializeField] GameObject investigation;
-        [SerializeField] float reviveTimer;
+        private bool investg;
+        [SerializeField] private float investigateDuration;
+        [SerializeField] private GameObject investigation;
         private Vector3 lastLoc;
-        bool investg = false;
-        [SerializeField] private bool reviving = false;
-        int patrol = 0;
+        private NavMeshObstacle obstacle;
+        private int patrol;
+        [SerializeField] private List<Transform> patrolPath;
+        [SerializeField] private float patrolTetherRange;
+        [SerializeField] private List<GameObject> players;
+        [SerializeField] private float reviveTimer;
+        [SerializeField] private bool reviving;
+        public Transform Target;
 
 
         // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
             investigation.transform.parent = null;
             agent = GetComponent<NavMeshAgent>();
@@ -45,53 +45,39 @@ namespace Drone
             // e.NotifyType
             if (Vector3.Distance(transform.position, e.Position) <=
                 LevelManager.LevelManagerRef.NotificationRamge[e.NotifyType])
-            {
-                //todo check layers
                 if (fsm.CurrentState.Equals(State.Patrol))
                 {
                     investigation.transform.position = e.Position;
                     if (Vector3.Distance(transform.position, investigation.transform.position) < 100)
-                    fsm.MoveNext(Command.SoundNotification);
+                        fsm.MoveNext(Command.SoundNotification);
                     investigation.transform.position = e.Position;
                     Target = investigation.transform;
                 }
-            }
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
             //cheats
-            if (!reviving && Input.GetKeyDown(KeyCode.Q) && Input.GetKeyDown(KeyCode.P))
-            {
-                fsm.MoveNext(Command.Die);
-            }
+            if (!reviving && Input.GetKeyDown(KeyCode.Q) && Input.GetKeyDown(KeyCode.P)) fsm.MoveNext(Command.Die);
 
-            if (!reviving && Input.GetKeyDown(KeyCode.Z) && Input.GetKeyDown(KeyCode.M))
-            {
-                fsm.MoveNext(Command.LockDown);
-            }
+            if (!reviving && Input.GetKeyDown(KeyCode.Z) && Input.GetKeyDown(KeyCode.M)) fsm.MoveNext(Command.LockDown);
 
             //Patrol State
             if (fsm.CurrentState.Equals(State.Patrol))
             {
                 //chaing patrol dest
                 if (Vector3.Distance(transform.position, Target.position) < 1f)
-                {
                     Target = patrolPath[patrol++ % patrolPath.Count];
-                }
 
                 //Detect player
                 foreach (var v in players)
-                {
                     if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange)
                     {
                         Target = v.transform;
                         lastLoc = transform.position;
                         fsm.MoveNext(Command.SeePlayer);
                     }
-                }
-
             }
 
             //Investigate State
@@ -106,25 +92,21 @@ namespace Drone
 
                 //Detect player
                 foreach (var v in players)
-                {
                     if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange)
                     {
                         Target = v.transform;
                         lastLoc = transform.position;
                         fsm.MoveNext(Command.SeePlayer);
                     }
-                }
             }
 
             //Chase State
             if (fsm.CurrentState.Equals(State.Chase))
-            {
                 if (!investg && Vector3.Distance(transform.position, lastLoc) > patrolTetherRange)
                 {
                     investg = true;
                     StartCoroutine(DoInvestigate());
                 }
-            }
 
             //BigPatrol State
             if (fsm.CurrentState.Equals(State.BigPatrol))
@@ -132,24 +114,19 @@ namespace Drone
                 //chaing patrol dest
                 if (Vector3.Distance(transform.position, Target.position) < 0.2f)
                 {
-                    if (patrol >= patrolPath.Count)
-                    {
-                        patrol = -1;
-                    }
+                    if (patrol >= patrolPath.Count) patrol = -1;
 
                     Target = bigPatrolPath[++patrol];
                 }
 
                 //Detect player
                 foreach (var v in players)
-                {
                     if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange)
                     {
                         Target = v.transform;
                         lastLoc = transform.position;
                         fsm.MoveNext(Command.SeePlayer);
                     }
-                }
             }
 
             //BigChase State
@@ -170,16 +147,12 @@ namespace Drone
             }
 
             if (Target)
-            {
                 agent.destination = Target.position;
-            }
             else
-            {
                 agent.destination = transform.position;
-            }
         }
 
-        IEnumerator Revive()
+        private IEnumerator Revive()
         {
             yield return new WaitForSeconds(reviveTimer);
             Target = patrolPath[patrol];
@@ -187,7 +160,7 @@ namespace Drone
             reviving = false;
         }
 
-        IEnumerator DoInvestigate()
+        private IEnumerator DoInvestigate()
         {
             yield return new WaitForSeconds(investigateDuration);
             Target = patrolPath[patrol];
@@ -197,18 +170,12 @@ namespace Drone
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.tag == "Player")
-            {
-                players.Add(other.gameObject);
-            }
+            if (other.tag == "Player") players.Add(other.gameObject);
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.tag == "Player")
-            {
-                players.Remove(other.gameObject);
-            }
+            if (other.tag == "Player") players.Remove(other.gameObject);
         }
     }
 }

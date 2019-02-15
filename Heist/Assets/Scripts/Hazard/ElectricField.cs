@@ -21,18 +21,12 @@ namespace Hazard
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
-            {
-                StartCoroutine(Trigger(other.GetComponentInParent<PlayerControl>()));
-            }
+            if (other.CompareTag("Player")) StartCoroutine(Trigger(other.GetComponentInParent<PlayerControl>()));
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.CompareTag("Player"))
-            {
-                _players[other.GetComponent<PlayerControl>().PlayerNumber - 1] = false;
-            }
+            if (other.CompareTag("Player")) _players[other.GetComponent<PlayerControl>().PlayerNumber - 1] = false;
         }
 
         private new IEnumerator Trigger(PlayerControl player)
@@ -51,7 +45,7 @@ namespace Hazard
 
         public override void Place(Vector3 position)
         {
-            float dis = 1.24f;
+            var dis = 1.24f;
             LayerMask layers = ~LayerMask.GetMask("Hazard", "Environment", "VFX");
 
             Vector3 fwd = Vector3.positiveInfinity,
@@ -60,25 +54,13 @@ namespace Hazard
                 bk = Vector3.positiveInfinity;
 
             RaycastHit hit;
-            if (Physics.Raycast(position, Vector3.forward, out hit, 20, layers))
-            {
-                fwd = hit.point;
-            }
+            if (Physics.Raycast(position, Vector3.forward, out hit, 20, layers)) fwd = hit.point;
 
-            if (Physics.Raycast(position, Vector3.right, out hit, 20, layers))
-            {
-                rt = hit.point;
-            }
+            if (Physics.Raycast(position, Vector3.right, out hit, 20, layers)) rt = hit.point;
 
-            if (Physics.Raycast(position, Vector3.left, out hit, 20, layers))
-            {
-                lt = hit.point;
-            }
+            if (Physics.Raycast(position, Vector3.left, out hit, 20, layers)) lt = hit.point;
 
-            if (Physics.Raycast(position, Vector3.back, out hit, 20, layers))
-            {
-                bk = hit.point;
-            }
+            if (Physics.Raycast(position, Vector3.back, out hit, 20, layers)) bk = hit.point;
 
             if (Vector3.Distance(fwd, bk) > Vector3.Distance(rt, lt))
             {
@@ -94,7 +76,7 @@ namespace Hazard
                 Electric2.transform.LookAt(Electric1.transform);
 
 
-                Collider.size = new Vector3()
+                Collider.size = new Vector3
                 {
                     x = Electric1.transform.localPosition.x * 2 + 0.1f,
                     z = Electric1.transform.localPosition.z * 2, y = 1.5f
@@ -115,7 +97,7 @@ namespace Hazard
                 Electric2.transform.LookAt(Electric1.transform);
 
 
-                Collider.size = new Vector3()
+                Collider.size = new Vector3
                 {
                     x = Electric1.transform.localPosition.x * 2 + 0.1f,
                     z = Electric1.transform.localPosition.z * 2, y = 1.5f

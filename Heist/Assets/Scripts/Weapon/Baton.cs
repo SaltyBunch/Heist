@@ -10,10 +10,10 @@ namespace Weapon
             if (character != null)
             {
                 character.Stacks += 1;
-                character.Knockback(this.transform);
+                character.Knockback(transform);
             }
 
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }

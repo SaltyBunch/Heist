@@ -19,8 +19,8 @@ namespace Audio
 
             do
             {
-                audioSrc1.volume -= (vol / duration) * Time.deltaTime;
-                audioSrc2.volume += (vol / duration) * Time.deltaTime;
+                audioSrc1.volume -= vol / duration * Time.deltaTime;
+                audioSrc2.volume += vol / duration * Time.deltaTime;
                 yield return null;
                 time += Time.deltaTime;
             } while (time < duration);

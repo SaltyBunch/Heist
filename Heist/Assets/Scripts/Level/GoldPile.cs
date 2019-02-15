@@ -2,18 +2,18 @@ using System;
 using Character;
 using Game;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 namespace Level
 {
+    [RequireComponent(typeof(Collider))]
     public class GoldPile : MonoBehaviour
     {
-        [SerializeField] private BarQuickTimeEvent barQuickTimeEvent;
+        private PlayerControl _player;
 
         private BarQuickTimeEvent _quickTime;
-        private PlayerControl _player;
         [SerializeField] private int _transferAmount;
+        [SerializeField] private BarQuickTimeEvent barQuickTimeEvent;
 
         public void StartChanneling(PlayerControl player)
         {
@@ -35,10 +35,7 @@ namespace Level
 
         private void QuickTimeEventMonitor(Object sender, QuickTimeEvent.QuickTimeEventArgs e)
         {
-            if (e.Result)
-            {
-                _player.BaseCharacter.Inventory.GoldAmount += _transferAmount;
-            }
+            if (e.Result) _player.BaseCharacter.Inventory.GoldAmount += _transferAmount;
 
             if (e.Complete)
             {

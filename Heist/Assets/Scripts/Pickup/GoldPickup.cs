@@ -1,4 +1,3 @@
-using Character;
 using UnityEngine;
 
 namespace Pickup
@@ -7,7 +6,7 @@ namespace Pickup
     public class GoldPickup : Pickup
     {
         public int AmountOfGold;
-        
+
         private void Reset()
         {
             _pickupType = PickupType.Gold;

@@ -7,7 +7,7 @@ namespace Editor
     {
         private void OnSceneGUI()
         {
-            Hazard.Camera camera = target as Hazard.Camera;
+            var camera = target as Hazard.Camera;
 
             EditorGUI.BeginChangeCheck();
             var temp = camera.transform.InverseTransformPoint(

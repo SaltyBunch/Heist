@@ -1,19 +1,17 @@
 using System.Collections;
 using Character;
-using TMPro.EditorUtilities;
 using UnityEngine;
 
 namespace Hazard
 {
     public class LethalLaser : Hazard
     {
-        public GameObject Laser1;
-        public GameObject Laser2;
+        [SerializeField] [Range(0.5f, 10)] private float _cooldown;
 
 
         public BoxCollider Collider;
-
-        [SerializeField, Range(0.5f, 10)] private float _cooldown;
+        public GameObject Laser1;
+        public GameObject Laser2;
 
         private void Awake()
         {
@@ -22,10 +20,7 @@ namespace Hazard
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
-            {
-                StartCoroutine(Trigger(other.GetComponentInParent<PlayerControl>()));
-            }
+            if (other.CompareTag("Player")) StartCoroutine(Trigger(other.GetComponentInParent<PlayerControl>()));
         }
 
         private new IEnumerator Trigger(PlayerControl player)
@@ -49,25 +44,13 @@ namespace Hazard
                 bk = Vector3.positiveInfinity;
 
             RaycastHit hit;
-            if (Physics.Raycast(position, Vector3.forward, out hit, 20, layers))
-            {
-                fwd = hit.point;
-            }
+            if (Physics.Raycast(position, Vector3.forward, out hit, 20, layers)) fwd = hit.point;
 
-            if (Physics.Raycast(position, Vector3.right, out hit, 20, layers))
-            {
-                rt = hit.point;
-            }
+            if (Physics.Raycast(position, Vector3.right, out hit, 20, layers)) rt = hit.point;
 
-            if (Physics.Raycast(position, Vector3.left, out hit, 20, layers))
-            {
-                lt = hit.point;
-            }
+            if (Physics.Raycast(position, Vector3.left, out hit, 20, layers)) lt = hit.point;
 
-            if (Physics.Raycast(position, Vector3.back, out hit, 20, layers))
-            {
-                bk = hit.point;
-            }
+            if (Physics.Raycast(position, Vector3.back, out hit, 20, layers)) bk = hit.point;
 
             if (Vector3.Distance(fwd, bk) > Vector3.Distance(rt, lt))
             {
@@ -83,7 +66,7 @@ namespace Hazard
                 Laser2.transform.LookAt(Laser1.transform);
 
 
-                Collider.size = new Vector3()
+                Collider.size = new Vector3
                 {
                     x = Laser1.transform.localPosition.x * 2 + 0.1f,
                     z = Laser1.transform.localPosition.z * 2, y = 1.5f
@@ -104,7 +87,7 @@ namespace Hazard
                 Laser2.transform.LookAt(Laser1.transform);
 
 
-                Collider.size = new Vector3()
+                Collider.size = new Vector3
                 {
                     x = Laser1.transform.localPosition.x * 2 + 0.1f,
                     z = Laser1.transform.localPosition.z * 2, y = 1.5f

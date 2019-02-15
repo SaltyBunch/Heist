@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Game;
 using UnityEngine;
+using UnityEngine.Serialization;
+using Weapon;
 
 namespace Character
 {
@@ -17,24 +19,26 @@ namespace Character
 
     public class Inventory : MonoBehaviour
     {
+        private int _count;
+        [SerializeField] private List<Hazard.Hazard> _hazard = new List<Hazard.Hazard>();
+
+        [SerializeField] public Dictionary<KeyType, bool> keys = new Dictionary<KeyType, bool>
+        {
+            {KeyType.BlueKey, false}, {KeyType.YellowKey, false}, {KeyType.RedKey, false}
+        };
+
         [SerializeField] private PlayerControl _player;
         private int _selectedHazard;
 
         private int _selectedIndex;
         private int _selectedWeapon;
+        private Item.Type _type;
+
+        [SerializeField] private List<Weapon.Weapon> _weapon = new List<Weapon.Weapon>();
 
         public int GoldAmount;
 
-        [SerializeField] private List<Weapon.Weapon> _weapon = new List<Weapon.Weapon>();
-        [SerializeField] private List<Hazard.Hazard> _hazard = new List<Hazard.Hazard>();
-        private Item _selectedItem;
-        private Game.Item.Type _type;
-        private int _count;
-
-        public Item SelectedItem
-        {
-            get { return _selectedItem; }
-        }
+        public Item SelectedItem { get; private set; }
 
         public int SelectedIndex
         {
@@ -93,23 +97,23 @@ namespace Character
 
                 _selectedIndex = val;
                 if (_weapon.Count + _hazard.Count != 0)
-                    _selectedItem = _selectedIndex >= _weapon.Count
+                    SelectedItem = _selectedIndex >= _weapon.Count
                         ? _hazard[_selectedIndex - _weapon.Count]
                         : (Item) _weapon[_selectedIndex];
                 else
-                    _selectedItem = null;
-                _type = _selectedItem is Weapon.Weapon ? Item.Type.Weapon : Item.Type.Hazard;
+                    SelectedItem = null;
+                _type = SelectedItem is Weapon.Weapon ? Item.Type.Weapon : Item.Type.Hazard;
                 _count = _type == Item.Type.Weapon
-                    ? ((Weapon.Weapon) _selectedItem).Ammo
+                    ? ((Weapon.Weapon) SelectedItem).Ammo
                     : _type == Item.Type.Hazard
-                        ? _hazard.Count(h => h == _selectedItem)
+                        ? _hazard.Count(h => h == SelectedItem)
                         : 0; //todo better
                 SelectionChanged?.Invoke(this,
                     new SelectionChangedEventArgs
                     {
-                        Item = _selectedItem,
+                        Item = SelectedItem,
                         Type = _type,
-                        Count = _count,
+                        Count = _count
                     });
             }
         }
@@ -158,8 +162,8 @@ namespace Character
                 var count = _hazard.Count(h => h == hazard);
                 if (count < 2)
                 {
-                    int index = 0;
-                    for (int i = 0; i < _hazard.Count; i++)
+                    var index = 0;
+                    for (var i = 0; i < _hazard.Count; i++)
                     {
                         if (_hazard[i] == hazard)
                         {
@@ -172,11 +176,7 @@ namespace Character
                         index = i;
                     }
 
-                    if (_hazard.Count == 0 || index == _hazard.Count - 1)
-                    {
-                        //reached the end without inserting the hazard
-                        _hazard.Add(hazard);
-                    }
+                    if (_hazard.Count == 0 || index == _hazard.Count - 1) _hazard.Add(hazard);
                 }
 
                 SelectedIndex = _hazard.FindIndex(h => h == hazard) + _weapon.Count;
@@ -191,13 +191,15 @@ namespace Character
             switch (_type)
             {
                 case Item.Type.Weapon:
-                    if (_selectedItem is Weapon.StunGun stunGun)
+                    if (SelectedItem is StunGun stunGun)
                     {
                         stunGun.Attack();
                         _count = stunGun.Ammo;
                     }
-                    else if (_selectedItem is Weapon.Baton baton)
+                    else if (SelectedItem is Baton baton)
+                    {
                         ;
+                    }
 
                     break;
                 case Item.Type.Hazard:
@@ -207,9 +209,9 @@ namespace Character
             SelectionChanged?.Invoke(this,
                 new SelectionChangedEventArgs
                 {
-                    Item = _selectedItem,
+                    Item = SelectedItem,
                     Type = _type,
-                    Count = _count,
+                    Count = _count
                 });
         }
     }

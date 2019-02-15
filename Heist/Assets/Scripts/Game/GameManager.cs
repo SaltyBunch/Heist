@@ -22,7 +22,7 @@ namespace Game
                 {
                     Health = 5,
                     Speed = 2,
-                    Dexterity = 2,
+                    Dexterity = 2
                 }
             },
             {
@@ -30,7 +30,7 @@ namespace Game
                 {
                     Health = 4,
                     Speed = 5,
-                    Dexterity = 3,
+                    Dexterity = 3
                 }
             },
             {
@@ -38,7 +38,7 @@ namespace Game
                 {
                     Health = 3,
                     Speed = 4,
-                    Dexterity = 5,
+                    Dexterity = 5
                 }
             },
             {
@@ -46,7 +46,7 @@ namespace Game
                 {
                     Health = 4,
                     Speed = 4,
-                    Dexterity = 4,
+                    Dexterity = 4
                 }
             },
             {
@@ -54,9 +54,9 @@ namespace Game
                 {
                     Health = 3,
                     Speed = 3,
-                    Dexterity = -1,
+                    Dexterity = -1
                 }
-            },
+            }
         };
 
         public static GameManager GameManagerRef;
@@ -71,12 +71,14 @@ namespace Game
         private void Awake()
         {
             if (GameManagerRef == null || GameManagerRef == this) GameManagerRef = this;
-            else Destroy(this.gameObject);
+            else Destroy(gameObject);
 
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(gameObject);
         }
 
-        public static int GetPlayerMask(int playerNumber, bool bitShift) =>
-            bitShift ? 1 << (28 + playerNumber) : (28 + playerNumber);
+        public static int GetPlayerMask(int playerNumber, bool bitShift)
+        {
+            return bitShift ? 1 << (28 + playerNumber) : 28 + playerNumber;
+        }
     }
 }

@@ -6,27 +6,25 @@ using UnityEngine.SceneManagement;
 
 namespace UI
 {
-
     public class MenuManager : MonoBehaviour
     {
-        [SerializeField] EventSystem ES;
-        [SerializeField] List<UI.PlayerSelect> selction;
-
         public static MenuManager menuManager;
-        [SerializeField] Menu menu;
-        [SerializeField] MasterMixer masterMixer;
-        [SerializeField] VictoryScreen victoryScreen;
-        [SerializeField] LoadingScreen loadingScreen;
-        [SerializeField] UIManager uiManager;
-
-        [SerializeField] List<GameObject> playersImages;
-        [SerializeField] List<string> playernames;
 
         private GameObject current;
-        private string GameScene = "SampleScene";
-        int inGame = 0;
+        [SerializeField] private EventSystem ES;
+        private readonly string GameScene = "SampleScene";
+        private int inGame;
+        [SerializeField] private LoadingScreen loadingScreen;
+        [SerializeField] private MasterMixer masterMixer;
+        [SerializeField] private Menu menu;
+        [SerializeField] private List<string> playernames;
 
-        void Start()
+        [SerializeField] private List<GameObject> playersImages;
+        [SerializeField] private List<PlayerSelect> selction;
+        [SerializeField] private UIManager uiManager;
+        [SerializeField] private VictoryScreen victoryScreen;
+
+        private void Start()
         {
             if (!menuManager)
             {
@@ -36,18 +34,14 @@ namespace UI
             }
         }
 
-       
 
         public void Update()
         {
-            if (selction.TrueForAll(s => s.ready ||!s.gameObject.activeSelf) && inGame == 0) RestartGame();
+            if (selction.TrueForAll(s => s.ready || !s.gameObject.activeSelf) && inGame == 0) RestartGame();
 
-            
-            
 
             if (Input.GetKeyDown(KeyCode.N) && Input.GetKeyDown(KeyCode.B) && inGame == 2) ToMain();
             if (Input.GetKeyDown(KeyCode.N) && Input.GetKeyDown(KeyCode.B) && inGame == 1) EndGame();
-            
         }
 
         public void ToMain()
@@ -60,10 +54,10 @@ namespace UI
             inGame = 0;
         }
 
-        IEnumerator UNLoadScene()
+        private IEnumerator UNLoadScene()
         {
             yield return new WaitForEndOfFrame();
-            AsyncOperation asyncOperation = SceneManager.UnloadSceneAsync(GameScene);
+            var asyncOperation = SceneManager.UnloadSceneAsync(GameScene);
             asyncOperation.allowSceneActivation = false;
             while (!asyncOperation.isDone)
             {
@@ -72,10 +66,9 @@ namespace UI
                     InGameUI();
                     asyncOperation.allowSceneActivation = true;
                 }
+
                 yield return null;
             }
-
-
         }
 
         public void RestartGame()
@@ -87,10 +80,10 @@ namespace UI
             //set playerimage and player names
         }
 
-        IEnumerator LoadScene()
+        private IEnumerator LoadScene()
         {
             yield return new WaitForEndOfFrame();
-            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(GameScene, LoadSceneMode.Additive);
+            var asyncOperation = SceneManager.LoadSceneAsync(GameScene, LoadSceneMode.Additive);
             asyncOperation.allowSceneActivation = false;
             while (!asyncOperation.isDone)
             {
@@ -99,10 +92,9 @@ namespace UI
                     InGameUI();
                     asyncOperation.allowSceneActivation = true;
                 }
+
                 yield return null;
             }
-        
-            
         }
 
         public void EndGame()
@@ -119,7 +111,6 @@ namespace UI
             if (current) current.SetActive(false);
             loadingScreen.gameObject.SetActive(true);
             current = loadingScreen.gameObject;
-            
         }
 
         public void InGameUI()

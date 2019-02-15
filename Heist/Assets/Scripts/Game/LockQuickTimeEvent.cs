@@ -1,23 +1,17 @@
-using System;
 using Rewired;
 using UnityEngine;
-using UnityEngine.Experimental.PlayerLoop;
-using Object = UnityEngine.Object;
-using Random = UnityEngine.Random;
 
 namespace Game
 {
     public class LockQuickTimeEvent : QuickTimeEvent
     {
-        private struct Input
-        {
-            public bool A;
-            public bool B;
-            public bool X;
-            public bool Y;
-        }
+        private Button[] _buttons;
 
         private Input _controlInput;
+        private int _index;
+        private Player _player;
+
+        public Type QuickTimeType;
 
         private Input ControlInput
         {
@@ -41,9 +35,9 @@ namespace Game
             if (button == _buttons[_index])
             {
                 //success
-                Events?.Invoke(this, new QuickTimeEventArgs()
+                Events?.Invoke(this, new QuickTimeEventArgs
                 {
-                    Result = true, State = _index, Type = QuickTimeType, Complete = (_index + 1 == _buttons.Length)
+                    Result = true, State = _index, Type = QuickTimeType, Complete = _index + 1 == _buttons.Length
                 });
                 //todo update ui
                 _index++;
@@ -53,7 +47,7 @@ namespace Game
             else
             {
                 //failure
-                Events?.Invoke(this, new QuickTimeEventArgs()
+                Events?.Invoke(this, new QuickTimeEventArgs
                 {
                     Result = false, State = _index, Type = QuickTimeType
                 });
@@ -62,17 +56,10 @@ namespace Game
             }
         }
 
-        private Button[] _buttons;
-        private Rewired.Player _player;
-        private int _index;
-
         public void Generate()
         {
             _buttons = new Button[4];
-            for (int i = 0; i < _buttons.Length; i++)
-            {
-                _buttons[i] = (Button) Random.Range(0, 4);
-            }
+            for (var i = 0; i < _buttons.Length; i++) _buttons[i] = (Button) Random.Range(0, 4);
 
             _index = 0;
         }
@@ -80,17 +67,23 @@ namespace Game
 
         public void Update()
         {
-            ControlInput = new Input()
+            ControlInput = new Input
             {
                 A = _player.GetButton("QuickTimeA"),
                 B = _player.GetButton("QuickTimeB"),
                 X = _player.GetButton("QuickTimeX"),
-                Y = _player.GetButton("QuickTimeY"),
+                Y = _player.GetButton("QuickTimeY")
             };
         }
 
         public event QuickTimeEventHandler Events;
 
-        public Type QuickTimeType;
+        private struct Input
+        {
+            public bool A;
+            public bool B;
+            public bool X;
+            public bool Y;
+        }
     }
 }

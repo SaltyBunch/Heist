@@ -151,7 +151,7 @@ MonoBehaviour:
   Ammo: 0
   _projectile: {fileID: 2430004408962383017, guid: 094136b8cd01e9f458c64a263d57dfeb,
     type: 3}
-  Barrel: {x: 0, y: 0.08291116, z: 0.13538939}
+  Barrel: {x: 0, y: 0.1641427, z: 0.26825884}
 --- !u!1001 &717329688553323162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -159,10 +159,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7037665723251684081}
     m_Modifications:
-    - target: {fileID: 100000, guid: 68c7fa97e1ed11c4e9100765dbcb26a0, type: 3}
-      propertyPath: m_Name
-      value: StunGun
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 68c7fa97e1ed11c4e9100765dbcb26a0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -209,15 +205,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 68c7fa97e1ed11c4e9100765dbcb26a0, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 68c7fa97e1ed11c4e9100765dbcb26a0, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 68c7fa97e1ed11c4e9100765dbcb26a0, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 68c7fa97e1ed11c4e9100765dbcb26a0, type: 3}
+      propertyPath: m_Name
+      value: StunGun
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68c7fa97e1ed11c4e9100765dbcb26a0, type: 3}

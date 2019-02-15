@@ -48,7 +48,8 @@ namespace Controller
 
             playerControlControl.Pause = Player.GetButton("Pause");
 
-
+            playerControlControl.SwitchPos = Player.GetButton("InventorySwitchPositive");
+            playerControlControl.SwitchNeg = Player.GetButton("InventorySwitchNegative");
             //Debug.DrawRay(transform.position + Vector3.up, transform.forward * 2, Color.red);
 
 

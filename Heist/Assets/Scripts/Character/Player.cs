@@ -12,6 +12,8 @@ namespace Character
         [SerializeField] private UIManager _ui => UIManager.UiManagerRef;
         [SerializeField] private Inventory _inventory;
 
+        
+
         public Inventory Inventory => _inventory;
 
         private bool _overWeaponPickup;

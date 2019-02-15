@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using Game;
 using UnityEngine;
 
@@ -31,6 +32,7 @@ namespace Character
         public Player BaseCharacter => _baseCharacter;
         [SerializeField] private Control _control;
         private bool _dashCooldown = true;
+        [SerializeField] private Transform _hand;
 
         [SerializeField] [Range(10, 30)] private float _dashForce;
         [SerializeField] private float _dashTimer = 0.5f;
@@ -118,6 +120,31 @@ namespace Character
 
         private void InventoryOnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //if weapon, parent to hand and enable
+            if (e.Type == Item.Type.Weapon)
+            {
+                for (int i = 0; i < _hand.transform.childCount; i++)
+                {
+                    var child = _hand.transform.GetChild(i);
+                    child.transform.SetParent(this.gameObject.transform, false);
+                    child.gameObject.SetActive(false);
+                }
+
+                e.Item.gameObject.transform.SetParent(_hand, false);
+                e.Item.gameObject.transform.position = _hand.position;
+                e.Item.gameObject.transform.rotation = _hand.rotation;
+                e.Item.gameObject.SetActive(true);
+            }
+            else
+            {
+                for (int i = 0; i < _hand.transform.childCount; i++)
+                {
+                    var child = _hand.transform.GetChild(i);
+                    child.transform.SetParent(this.gameObject.transform, false);
+                    child.gameObject.SetActive(false);
+                }
+            }
+
             UI.UIManager.UiManagerRef.UpdateWeapon(e.Item, PlayerNumber);
             UI.UIManager.UiManagerRef.UpdateAmmo(e.Count, PlayerNumber);
         }

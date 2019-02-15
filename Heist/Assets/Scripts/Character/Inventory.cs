@@ -63,6 +63,7 @@ namespace Character
                                 val = index + _weapon.Count;
                                 break;
                             }
+
                         if (val == prevVal) //exited for loop without finding a new hazard to select
                             switch (dir)
                             {
@@ -88,6 +89,7 @@ namespace Character
                         }
                     }
                 }
+
                 _selectedIndex = val;
                 if (_weapon.Count + _hazard.Count != 0)
                     _selectedItem = _selectedIndex >= _weapon.Count
@@ -126,6 +128,12 @@ namespace Character
 
         public bool Add(Item item)
         {
+            if (item != null)
+            {
+                item = Instantiate(item, transform);
+                item.gameObject.SetActive(false);
+            }
+
             if (item is Weapon.Weapon weapon)
             {
                 if (_weapon.Contains(weapon))
@@ -139,9 +147,11 @@ namespace Character
                 {
                     _weapon.Add(weapon);
                 }
+
                 SelectedIndex = _weapon.Count - 1;
                 return true;
             }
+
             if (item is Hazard.Hazard hazard)
             {
                 var count = _hazard.Count(h => h == hazard);
@@ -160,12 +170,14 @@ namespace Character
 
                         index = i;
                     }
+
                     if (_hazard.Count == 0 || index == _hazard.Count - 1)
                     {
                         //reached the end without inserting the hazard
                         _hazard.Add(hazard);
                     }
                 }
+
                 SelectedIndex = _hazard.FindIndex(h => h == hazard) + _weapon.Count;
                 return count < 2;
             }
@@ -178,8 +190,10 @@ namespace Character
             switch (_type)
             {
                 case Item.Type.Weapon:
-                    var weapon = _selectedItem as Weapon.Weapon;
-                    if (weapon != null) weapon.Attack();
+                    if (_selectedItem is Weapon.StunGun stunGun)
+                        stunGun.Attack();
+                    else if (_selectedItem is Weapon.Baton baton)
+                        ;
                     break;
                 case Item.Type.Hazard:
                     break;

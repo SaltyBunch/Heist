@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -21,6 +22,18 @@ namespace Weapon
             transform.rotation = rotation.Value;
 
             _rgd.AddForce(_shootForce * transform.forward);
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            var character = other.transform.GetComponentInParent<Character.Character>();
+            if (character != null)
+            {
+                character.Stacks += 1;
+                character.Knockback(this.transform);
+            }
+
+            Destroy(this.gameObject);
         }
     }
 }

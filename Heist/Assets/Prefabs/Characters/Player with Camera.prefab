@@ -242,6 +242,7 @@ MonoBehaviour:
     Speed: 5
     Dexterity: 0
   _invFrames: 0.333
+  _knockbackForce: 100
   _inventory: {fileID: 3041015691421169925}
 --- !u!114 &3041015691421169925
 MonoBehaviour:

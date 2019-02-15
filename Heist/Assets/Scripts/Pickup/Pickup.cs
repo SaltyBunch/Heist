@@ -29,7 +29,7 @@ namespace Pickup
         {
             if (other.CompareTag("Player"))
             {
-                var player = other.GetComponent<Player>();
+                var player = other.GetComponentInParent<Player>();
                 player.OverPickup(_pickupType, true, this);
             }
         }
@@ -38,7 +38,7 @@ namespace Pickup
         {
             if (other.CompareTag("Player"))
             {
-                var player = other.GetComponent<Player>();
+                var player = other.GetComponentInParent<Player>();
                 player.OverPickup(_pickupType, false, this);
             }
         }

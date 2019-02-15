@@ -8,6 +8,17 @@ namespace Editor
     [CustomEditor(typeof(ElectricField))]
     public class ElectricFieldEditor : UnityEditor.Editor
     {
+        
+        public override void OnInspectorGUI()
+        {
+            var electric = target as ElectricField;
+
+            base.OnInspectorGUI();
+            if (GUILayout.Button("Place"))
+            {
+                electric.Place(electric.transform.position);
+            }
+        }
         private void OnSceneGUI()
         {
             var electric = target as ElectricField;

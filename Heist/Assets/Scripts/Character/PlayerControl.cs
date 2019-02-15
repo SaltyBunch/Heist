@@ -145,8 +145,11 @@ namespace Character
                 }
             }
 
-            UI.UIManager.UiManagerRef.UpdateWeapon(e.Item, PlayerNumber);
-            UI.UIManager.UiManagerRef.UpdateAmmo(e.Count, PlayerNumber);
+            if (UI.UIManager.UiManagerRef != null)
+            {
+                UI.UIManager.UiManagerRef.UpdateWeapon(e.Item, PlayerNumber);
+                UI.UIManager.UiManagerRef.UpdateAmmo(e.Count, PlayerNumber);
+            }
         }
 
         private void BaseCharacterOnHealthChanged(object sender, HealthChangedEventArgs e)

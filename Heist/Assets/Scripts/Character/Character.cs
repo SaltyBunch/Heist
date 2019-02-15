@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Transactions;
 using UnityEngine;
 
 namespace Character
@@ -19,6 +20,7 @@ namespace Character
         public int Health;
     }
 
+    [RequireComponent(typeof(Rigidbody))]
     public class Character : MonoBehaviour
     {
         private bool _damageCooldown;
@@ -27,6 +29,7 @@ namespace Character
         private bool _stun;
         private bool _stunCooldown;
 
+        private Rigidbody _rgd;
         public event HealthUpdatedEventHandler HealthChanged;
 
         private float _timeSinceDamage;
@@ -35,6 +38,14 @@ namespace Character
         internal int timesStunned;
         private bool _invincible;
         [SerializeField, Range(0.01f, 1)] private float _invFrames = 0.333f;
+        [SerializeField] private float _knockbackForce;
+
+
+        private void Start()
+        {
+            if (_rgd == null)
+                _rgd = GetComponent<Rigidbody>();
+        }
 
         public int Stacks
         {
@@ -50,6 +61,7 @@ namespace Character
                     {
                         StartCoroutine(Stun());
                     }
+
                     StartCoroutine(IFrames());
                 }
                 else if (value < _stacks)
@@ -105,6 +117,11 @@ namespace Character
             _invincible = true;
             yield return new WaitForSeconds(_invFrames);
             _invincible = false;
+        }
+
+        public void Knockback(Transform source)
+        {
+            _rgd.AddRelativeForce(source.position.normalized * _knockbackForce, ForceMode.Impulse);
         }
     }
 }

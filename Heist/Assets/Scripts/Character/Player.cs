@@ -26,7 +26,7 @@ namespace Character
                 if (value != _overWeaponPickup)
                 {
                     _overWeaponPickup = value;
-                    _ui.ShowPickup(Pickup.PickupType.Weapon, _overWeaponPickup);
+                    //_ui.ShowPickup(Pickup.PickupType.Weapon, _overWeaponPickup);
                 }
             }
         }
@@ -41,7 +41,7 @@ namespace Character
                 if (value != _overTrapPickup)
                 {
                     _overTrapPickup = value;
-                    _ui.ShowPickup(Pickup.PickupType.Trap, _overTrapPickup);
+                   // _ui.ShowPickup(Pickup.PickupType.Trap, _overTrapPickup);
                 }
             }
         }

@@ -2,7 +2,7 @@
 -target:library
 -nowarn:0169
 -langversion:7
--out:C:/Users/Administrator/Desktop/Heist/Heist/Temp/Unity.Analytics.DataPrivacy.dll
+-out:C:/Users/kc16rr/Desktop/Heist/Heist/Temp/Unity.Analytics.DataPrivacy.dll
 -nostdlib
 -unsafe
 -r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.dll"
@@ -80,16 +80,16 @@
 -r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll"
 -r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll"
 -r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll"
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll
 -r:"C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll"
--r:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Windows_Lib.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Core.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Rewired/Internal/Libraries/Editor/Rewired_Editor.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Windows_Lib.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Core.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Rewired/Internal/Libraries/Editor/Rewired_Editor.dll
 -r:"C:\Program Files\Unity\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll"
 -r:"C:\Program Files\Unity\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\Microsoft.Win32.Primitives.dll"
 -r:"C:\Program Files\Unity\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.AppContext.dll"
@@ -216,7 +216,7 @@
 -d:UNITY_2018_1_OR_NEWER
 -d:UNITY_2018_2_OR_NEWER
 -d:UNITY_2018_3_OR_NEWER
--d:UNITY_2018_3_4
+-d:UNITY_2018_3_6
 -d:UNITY_2018_3
 -d:UNITY_2018
 -d:PLATFORM_ARCH_64
@@ -307,7 +307,7 @@
 -d:UNITY_POST_PROCESSING_STACK_V2
 -d:CSHARP_7_OR_LATER
 -d:CSHARP_7_3_OR_NEWER
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/DataPrivacy/AssemblyInfo.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/DataPrivacy/DataPrivacy.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/DataPrivacy/DataPrivacyButton.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/DataPrivacy/AssemblyInfo.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/DataPrivacy/DataPrivacy.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/DataPrivacy/DataPrivacyButton.cs
 -v:0

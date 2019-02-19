@@ -2,10 +2,10 @@
 -target:library
 -nowarn:0169
 -langversion:7
--out:C:/Users/Administrator/Desktop/Heist/Heist/Temp/Unity.TextMeshPro.Editor.dll
+-out:C:/Users/kc16rr/Desktop/Heist/Heist/Temp/Unity.TextMeshPro.Editor.dll
 -nostdlib
 -unsafe
--r:C:/Users/Administrator/Desktop/Heist/Heist/Library/ScriptAssemblies/Unity.TextMeshPro.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Library/ScriptAssemblies/Unity.TextMeshPro.dll
 -r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.dll"
 -r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.AIModule.dll"
 -r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.ARModule.dll"
@@ -82,16 +82,16 @@
 -r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll"
 -r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll"
 -r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll"
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll
 -r:"C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll"
--r:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Windows_Lib.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Core.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Rewired/Internal/Libraries/Editor/Rewired_Editor.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Windows_Lib.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Core.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Rewired/Internal/Libraries/Editor/Rewired_Editor.dll
 -r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll"
 -r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.dll"
 -r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Core.dll"
@@ -221,7 +221,7 @@
 -d:UNITY_2018_1_OR_NEWER
 -d:UNITY_2018_2_OR_NEWER
 -d:UNITY_2018_3_OR_NEWER
--d:UNITY_2018_3_4
+-d:UNITY_2018_3_6
 -d:UNITY_2018_3
 -d:UNITY_2018
 -d:PLATFORM_ARCH_64
@@ -312,44 +312,44 @@
 -d:UNITY_POST_PROCESSING_STACK_V2
 -d:CSHARP_7_OR_LATER
 -d:CSHARP_7_3_OR_NEWER
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/DropdownOptionListDrawer.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/EditorCoroutine.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/GlyphInfoDrawer.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/KerningPairDrawer.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/SpriteInfoDrawer.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TextAlignmentDrawer.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_BaseEditorPanel.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_BaseShaderGUI.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_BitmapShaderGUI.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_ColorGradientAssetMenu.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_ColorGradientEditor.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_DropdownEditor.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_EditorPanel.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_EditorUtility.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_FontAssetEditor.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_InputFieldEditor.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_MeshRendererEditor.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_PackageUtilities.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_PostBuildProcessHandler.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_ProjectTextSettings.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_ResourcesLoader.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_SDFShaderGUI.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_SettingsEditor.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_SpriteAssetEditor.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_SpriteAssetImporter.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_SpriteAssetMenu.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_StyleAssetMenu.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_StyleSheetEditor.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_SubMesh_Editor.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_SubMeshUI_Editor.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_UiEditorPanel.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_UIStyleManager.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMPro_ContextMenus.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMPro_CreateObjectMenu.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMPro_EditorShaderUtilities.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMPro_FontAssetCreatorWindow.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMPro_FontPlugin.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMPro_SortingLayerHelper.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMPro_TextContainerEditor.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMPro_TexturePostProcessor.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/DropdownOptionListDrawer.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/EditorCoroutine.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/GlyphInfoDrawer.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/KerningPairDrawer.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/SpriteInfoDrawer.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TextAlignmentDrawer.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_BaseEditorPanel.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_BaseShaderGUI.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_BitmapShaderGUI.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_ColorGradientAssetMenu.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_ColorGradientEditor.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_DropdownEditor.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_EditorPanel.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_EditorUtility.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_FontAssetEditor.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_InputFieldEditor.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_MeshRendererEditor.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_PackageUtilities.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_PostBuildProcessHandler.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_ProjectTextSettings.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_ResourcesLoader.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_SDFShaderGUI.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_SettingsEditor.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_SpriteAssetEditor.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_SpriteAssetImporter.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_SpriteAssetMenu.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_StyleAssetMenu.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_StyleSheetEditor.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_SubMesh_Editor.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_SubMeshUI_Editor.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_UiEditorPanel.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMP_UIStyleManager.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMPro_ContextMenus.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMPro_CreateObjectMenu.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMPro_EditorShaderUtilities.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMPro_FontAssetCreatorWindow.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMPro_FontPlugin.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMPro_SortingLayerHelper.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMPro_TextContainerEditor.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.textmeshpro@1.3.0/Scripts/Editor/TMPro_TexturePostProcessor.cs
 -v:0

@@ -2,10 +2,19 @@
 -target:library
 -nowarn:0169
 -langversion:7
--out:C:/Users/Administrator/Desktop/Heist/Heist/Temp/Assembly-CSharp-Editor.dll
+-out:C:/Users/kc16rr/Desktop/Heist/Heist/Temp/Assembly-CSharp-Editor.dll
 -nostdlib
 -unsafe
--r:C:/Users/Administrator/Desktop/Heist/Heist/Library/ScriptAssemblies/Assembly-CSharp.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Library/ScriptAssemblies/Assembly-CSharp.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Library/ScriptAssemblies/Unity.ProGrids.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Library/ScriptAssemblies/Unity.ProGrids.Editor.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Library/ScriptAssemblies/Unity.TextMeshPro.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll
 -r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.dll"
 -r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.AIModule.dll"
 -r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.ARModule.dll"
@@ -69,15 +78,6 @@
 -r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.XRModule.dll"
 -r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEditor.dll"
 -r:"C:\Program Files\Unity\Editor\Data\Managed/Unity.Locator.dll"
--r:C:/Users/Administrator/Desktop/Heist/Heist/Library/ScriptAssemblies/Unity.ProGrids.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Library/ScriptAssemblies/Unity.ProGrids.Editor.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Library/ScriptAssemblies/Unity.TextMeshPro.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll
 -r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll"
 -r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/Editor/UnityEditor.UI.dll"
 -r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/Editor/UnityEditor.TestRunner.dll"
@@ -94,16 +94,16 @@
 -r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll"
 -r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll"
 -r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll"
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll
 -r:"C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll"
--r:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Windows_Lib.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Core.dll
--r:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Rewired/Internal/Libraries/Editor/Rewired_Editor.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Windows_Lib.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Core.dll
+-r:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Rewired/Internal/Libraries/Editor/Rewired_Editor.dll
 -r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll"
 -r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.dll"
 -r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\System.Core.dll"
@@ -233,7 +233,7 @@
 -d:UNITY_2018_1_OR_NEWER
 -d:UNITY_2018_2_OR_NEWER
 -d:UNITY_2018_3_OR_NEWER
--d:UNITY_2018_3_4
+-d:UNITY_2018_3_6
 -d:UNITY_2018_3
 -d:UNITY_2018
 -d:PLATFORM_ARCH_64
@@ -324,19 +324,19 @@
 -d:UNITY_POST_PROCESSING_STACK_V2
 -d:CSHARP_7_OR_LATER
 -d:CSHARP_7_3_OR_NEWER
--i:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Rewired/Integration/UnityUI/Editor/RewiredStandaloneInputModuleInspector.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/ControllerDataFilesInspector.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/CustomInspector_External.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/HardwareJoystickMapInspector.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/HardwareJoystickTemplateMapInspector.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/InitializerInspector.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/InputManagerInspector.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/PlayerControllerInspector.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/PlayerMouseInspector.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/UserDataStore_PlayerPrefsInspector.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Rewired/Internal/Scripts/Editor/UnityEditorBridge.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Scripts/Editor/CameraEditor.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Scripts/Editor/ElectricFieldEditor.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Scripts/Editor/FieldOfView.cs
--i:C:/Users/Administrator/Desktop/Heist/Heist/Assets/Scripts/Editor/LethalLaserEditor.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Rewired/Integration/UnityUI/Editor/RewiredStandaloneInputModuleInspector.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/ControllerDataFilesInspector.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/CustomInspector_External.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/HardwareJoystickMapInspector.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/HardwareJoystickTemplateMapInspector.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/InitializerInspector.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/InputManagerInspector.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/PlayerControllerInspector.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/PlayerMouseInspector.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Rewired/Internal/Scripts/Editor/CustomInspectors/UserDataStore_PlayerPrefsInspector.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Rewired/Internal/Scripts/Editor/UnityEditorBridge.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Scripts/Editor/CameraEditor.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Scripts/Editor/ElectricFieldEditor.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Scripts/Editor/FieldOfView.cs
+-i:C:/Users/kc16rr/Desktop/Heist/Heist/Assets/Scripts/Editor/LethalLaserEditor.cs
 -v:0

@@ -177,7 +177,6 @@ namespace Game
                 //put player on spawnpoint
                 _players[i].transform.position = _spawnpoints[i].transform.position;
 
-                //TODO don't split screen when players are alone on the screen
                 //set screen region
                 switch (playersOnDisplay[targetDisplay])
                 {

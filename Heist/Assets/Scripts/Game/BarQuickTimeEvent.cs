@@ -1,11 +1,18 @@
+using System;
+using System.Linq;
 using Rewired;
 using UnityEngine;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace Game
 {
     public class BarQuickTimeEvent : QuickTimeEvent
     {
-        private readonly float _bias = 0.05f;
+        [SerializeField] private Image _greenArea;
+
+        [SerializeField] private Image _pointer;
+
 
         private Input _controlInput;
         private int _dir;
@@ -31,20 +38,21 @@ namespace Game
 
         private void PressButton(Button button)
         {
-            if (button == Button.A && _index > _range - _bias && _index < _range + _bias)
+            if (button == Button.A && CheckIndex())
             {
                 //success
-                Events(this, new QuickTimeEventArgs
+                Events?.Invoke(this, new QuickTimeEventArgs
                 {
                     Result = true, State = (int) (_index * 100), Type = QuickTimeType
                 });
+                Debug.Log("Success");
+                Generate();
                 //todo update ui
-                _index++;
             }
             else
             {
                 //failure
-                Events(this, new QuickTimeEventArgs
+                Events?.Invoke(this, new QuickTimeEventArgs
                 {
                     Result = false, State = (int) (_index * 100), Type = QuickTimeType
                 });
@@ -55,21 +63,92 @@ namespace Game
 
         public void Generate()
         {
+            if (_player == null) _player = ReInput.players.Players.First();
+            if (Math.Abs(_range) < 0.05f) _range = Random.Range(0, .25f);
+
+            _greenArea.fillOrigin = Random.Range(0, 4);
+            _greenArea.fillAmount = _range;
+            _greenArea.fillClockwise = Random.Range(0, 2) == 0;
+
             _dir = 1;
-            _index = 0;
         }
 
+        private bool CheckIndex()
+        {
+            var point = ((int) _greenArea.fillOrigin) - 2; //top == 0, bottom == -2, right == -1, left == 1
+
+            float startAngle = 0;
+            switch (point)
+            {
+                case -2:
+                    startAngle = 0.5f;
+                    break;
+                case -1:
+                    startAngle = 0.75f;
+                    break;
+                case 0:
+                    startAngle = 0;
+                    break;
+                case 1:
+                    startAngle = 0.25f;
+                    break;
+            }
+
+            float origin;
+
+            if (_greenArea.fillClockwise)
+            {
+                origin = (startAngle - _range / 2) % 1;
+            }
+            else
+            {
+                origin = (startAngle + _range / 2) % 1;
+            }
+
+            Debug.Log("Start: " + (origin - _range / 2) + " End: " + (origin + _range / 2) + " Index: " + _index);
+
+            if (Math.Abs(_index - origin) < _range || Math.Abs((1 - _index) - origin) < _range)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public void SetDexterity(int dexterity)
+        {
+            switch (dexterity)
+            {
+                case 2:
+                    _range = 0.5f;
+                    break;
+                case 3:
+                    _range = 0.1f;
+                    break;
+                case 4:
+                    _range = 0.17f;
+                    break;
+                case 5:
+                    _range = 0.25f;
+                    break;
+            }
+        }
 
         public void Update()
         {
-            ControlInput = new Input
+            if (_player != null)
             {
-                A = _player.GetButton("QuickTimeA")
-            };
+                ControlInput = new Input
+                {
+                    A = _player.GetButton("QuickTimeA")
+                };
+            }
+
             //pingpong on _index
             _index += Time.deltaTime * _dir;
-            if (_index > 1)
-                _dir *= -1;
+
+            if (_index > 1) _index %= 1;
+            _pointer.transform.rotation = Quaternion.Euler(0, 0, _index * 360);
         }
 
         public event QuickTimeEventHandler Events;

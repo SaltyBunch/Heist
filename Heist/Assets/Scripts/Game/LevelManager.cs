@@ -182,7 +182,7 @@ namespace Game
                 switch (playersOnDisplay[targetDisplay])
                 {
                     case 1:
-                        _players[i].Camera.Camera.rect = new Rect
+                        _players[i].Camera.MainFloorCamera.rect = new Rect
                         {
                             x = 0,
                             y = 0,
@@ -191,7 +191,7 @@ namespace Game
                         };
                         break;
                     case 2:
-                        _players[i].Camera.Camera.rect = new Rect
+                        _players[i].Camera.MainFloorCamera.rect = new Rect
                         {
                             x = i % 2 * 0.5f,
                             y = 0,
@@ -201,7 +201,7 @@ namespace Game
                         break;
                     case 3:
                     case 4:
-                        _players[i].Camera.Camera.rect = new Rect
+                        _players[i].Camera.MainFloorCamera.rect = new Rect
                         {
                             x = i % 2 * 0.5f,
                             y = Mathf.Abs(1 - i / 2) * 0.5f,
@@ -211,7 +211,7 @@ namespace Game
                         break;
                 }
 
-                _players[i].Camera.Camera.targetDisplay = targetDisplay;
+                _players[i].Camera.MainFloorCamera.targetDisplay = targetDisplay;
                 //assign player number
                 _players[i].PlayerControl.PlayerNumber = i;
 

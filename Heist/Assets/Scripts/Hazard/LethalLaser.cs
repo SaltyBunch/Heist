@@ -1,5 +1,6 @@
 using System.Collections;
 using Character;
+using Game;
 using UnityEngine;
 
 namespace Hazard
@@ -93,6 +94,13 @@ namespace Hazard
                     z = Laser1.transform.localPosition.z * 2, y = 1.5f
                 };
             }
+        }
+
+        public void SetFloor(Floor floor, LayerMask layerMask)
+        {
+            Laser1.layer = layerMask;
+            Laser2.layer = layerMask;
+            //todo laser particles
         }
     }
 }

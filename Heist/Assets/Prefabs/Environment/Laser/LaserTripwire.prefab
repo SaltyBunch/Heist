@@ -9527,7 +9527,7 @@ GameObject:
   - component: {fileID: 5317978364337773794}
   m_Layer: 11
   m_Name: LaserTripwire
-  m_TagString: Untagged
+  m_TagString: Hazard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9573,10 +9573,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4676172568e414fb4a5d882b115dcf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cooldown: 1
+  Collider: {fileID: 5317978364337773795}
   Laser1: {fileID: 6231209157539245461}
   Laser2: {fileID: 5892395832013653989}
-  Collider: {fileID: 5317978364337773795}
-  _cooldown: 1
 --- !u!1 &6076151186811434950
 GameObject:
   m_ObjectHideFlags: 0

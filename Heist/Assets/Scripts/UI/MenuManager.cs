@@ -24,6 +24,8 @@ namespace UI
         [SerializeField] private UIManager uiManager;
         [SerializeField] private VictoryScreen victoryScreen;
 
+        [SerializeField] private UnityEngine.Camera _mainCamera;
+
         private void Start()
         {
             if (!menuManager)
@@ -91,6 +93,7 @@ namespace UI
                 {
                     InGameUI();
                     asyncOperation.allowSceneActivation = true;
+                    _mainCamera.gameObject.SetActive(false);
                 }
 
                 yield return null;

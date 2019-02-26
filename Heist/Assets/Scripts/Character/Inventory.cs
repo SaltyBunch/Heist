@@ -195,6 +195,11 @@ namespace Character
                     {
                         stunGun.Attack();
                         _count = stunGun.Ammo;
+                        if (_count == 0)
+                        {
+                            Remove(SelectedItem);
+                            return;
+                        }
                     }
                     else if (SelectedItem is Baton baton)
                     {
@@ -213,6 +218,47 @@ namespace Character
                     Type = _type,
                     Count = _count
                 });
+        }
+
+        private void Remove(Item selectedItem)
+        {
+            //remove item from list
+            if (selectedItem is Weapon.Weapon weapon)
+            {
+                for (int i = 0; i < _weapon.Count; i++)
+                {
+                    if (_weapon[i] == weapon)
+                    {
+                        var weap = _weapon[i];
+                        _weapon.RemoveAt(i);
+                        Destroy(weap);
+                        break;
+                    }
+                }
+
+                SelectedIndex = 0;
+            }
+            else if (selectedItem is Hazard.Hazard hazard)
+            {
+                int index = 0;
+                for (int j = 0; j < _hazard.Count; j++)
+                {
+                    if (_hazard[j] == hazard)
+                    {
+                        index = j;
+                        var haz = _hazard[j];
+                        _hazard.RemoveAt(j);
+                        if (_hazard.Count(h => h == hazard) == 0)
+                        {
+                            index = 0;
+                        }
+                        Destroy(haz);
+                        break;
+                    }
+                }
+
+                SelectedIndex = index;
+            }
         }
     }
 }

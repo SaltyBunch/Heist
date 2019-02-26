@@ -117,6 +117,17 @@ namespace Character
 
             _isReticuleNotNull = _reticule != null;
 
+            ///////////////////////////////////////////////////
+            /////////    Set Layer For Cameras    /////////////
+            ///////////////////////////////////////////////////
+
+            gameObject.layer = GameManager.GetPlayerMask(PlayerNumber, false);
+            for (int i = 0; i < gameObject.transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.layer = gameObject.layer;
+            }
+
+
             BaseCharacter.HealthChanged += BaseCharacterOnHealthChanged;
             BaseCharacter.Inventory.SelectionChanged += InventoryOnSelectionChanged;
         }

@@ -104,5 +104,11 @@ namespace Hazard
                 };
             }
         }
+
+        public void SetFloor(Floor floor, LayerMask layerMask)
+        {
+            throw new System.NotImplementedException();
+            //todo electric field
+        }
     }
 }

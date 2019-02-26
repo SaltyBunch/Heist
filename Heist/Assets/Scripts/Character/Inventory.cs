@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Game;
+using Hazard;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Weapon;
@@ -188,26 +189,28 @@ namespace Character
 
         public void Use()
         {
-            switch (_type)
+            switch (SelectedItem)
             {
-                case Item.Type.Weapon:
-                    if (SelectedItem is StunGun stunGun)
+                case ElectricField electricField:
+                    electricField.Place(transform.position + transform.forward * 2); //todo wall check
+                    Remove(SelectedItem);
+                    return;
+                case LethalLaser lethalLaser:
+                    lethalLaser.Place(transform.position + transform.forward * 2); //todo wall check
+                    Remove(SelectedItem);
+                    return;
+                case Baton baton:
+                    //todo play baton animation
+                    break;
+                case StunGun stunGun:
+                    stunGun.Attack();
+                    _count = stunGun.Ammo;
+                    if (_count == 0)
                     {
-                        stunGun.Attack();
-                        _count = stunGun.Ammo;
-                        if (_count == 0)
-                        {
-                            Remove(SelectedItem);
-                            return;
-                        }
-                    }
-                    else if (SelectedItem is Baton baton)
-                    {
-                        ;
+                        Remove(SelectedItem);
+                        return;
                     }
 
-                    break;
-                case Item.Type.Hazard:
                     break;
             }
 
@@ -246,13 +249,12 @@ namespace Character
                     if (_hazard[j] == hazard)
                     {
                         index = j;
-                        var haz = _hazard[j];
                         _hazard.RemoveAt(j);
                         if (_hazard.Count(h => h == hazard) == 0)
                         {
                             index = 0;
                         }
-                        Destroy(haz);
+
                         break;
                     }
                 }

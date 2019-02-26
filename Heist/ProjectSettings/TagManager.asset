@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - SpawnPoint
+  - Hazard
+  - Pickup
   layers:
   - Default
   - TransparentFX
@@ -15,22 +17,22 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - Player
-  - Environment
-  - Hazard
-  - FogOfWar
+  - 
+  - MainFloorEnvironment
+  - MainFloorHazard
+  - MainFloorPickup
   - 
   - 
   - 
-  - 
-  - 
+  - BasementEnvironment
+  - BasementHazard
+  - BasementPickup
   - 
   - 
   - 
   - 
   - 
   - Mask
-  - 
   - VFX
   - 
   - 

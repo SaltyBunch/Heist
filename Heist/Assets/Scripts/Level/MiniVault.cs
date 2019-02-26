@@ -1,14 +1,13 @@
+using Game;
 using UnityEngine;
 
 namespace Level
 {
     public class MiniVault : MonoBehaviour
     {
-        
-
         [SerializeField] private bool _canHoldKey;
-        [SerializeField] private Game.KeyType _key;
         [SerializeField] private int _goldAmount;
+        [SerializeField] private KeyType _key;
 
         private void Reset()
         {

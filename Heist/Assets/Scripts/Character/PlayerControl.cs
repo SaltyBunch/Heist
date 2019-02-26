@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using Game;
+using Level;
+using UI;
 using UnityEngine;
 
 namespace Character
@@ -14,8 +16,8 @@ namespace Character
         [SerializeField] internal bool Interact;
         [SerializeField] internal bool WeaponAttack;
 
-        [SerializeField] internal bool SwitchWeapon;
-        [SerializeField] internal bool SwitchTrap;
+        [SerializeField] internal bool SwitchPos;
+        [SerializeField] internal bool SwitchNeg;
 
         [SerializeField] internal Vector3 MoveVector;
         [SerializeField] internal Vector3 FaceVector;
@@ -28,39 +30,41 @@ namespace Character
     {
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private Player _baseCharacter;
-        public Player BaseCharacter => _baseCharacter;
+        [SerializeField] private AudioClip _collectGold;
         [SerializeField] private Control _control;
         private bool _dashCooldown = true;
 
         [SerializeField] [Range(10, 30)] private float _dashForce;
         [SerializeField] private float _dashTimer = 0.5f;
-
-        [Header("Sounds")] [SerializeField] private AudioClip _meleeAttack;
+        [SerializeField] private AudioClip _defeat;
 
         [Header("Voice Lines")] [SerializeField]
         private AudioClip _enterBank;
 
         [SerializeField] private AudioClip _exitBank;
-        [SerializeField] private AudioClip _pickupWeapon;
-        [SerializeField] private AudioClip _pickupTrap;
-        [SerializeField] private AudioClip _spotSecurity;
-        [SerializeField] private AudioClip _takeDamage;
-        [SerializeField] private AudioClip _collectGold;
-        [SerializeField] private AudioClip _loseGold;
-        [SerializeField] private AudioClip _taunt;
+        [SerializeField] private Transform _hand;
+        [SerializeField] private float _interactDistance;
+        private bool _isReticuleNotNull;
         [SerializeField] private AudioClip _joke;
-        [SerializeField] private AudioClip _victory;
-        [SerializeField] private AudioClip _defeat;
+        [SerializeField] private AudioClip _loseGold;
+
+        [Header("Sounds")] [SerializeField] private AudioClip _meleeAttack;
+        [SerializeField] private AudioClip _pickupTrap;
+        [SerializeField] private AudioClip _pickupWeapon;
 
         [Space(24)] [SerializeField] private GameObject _reticule;
         [SerializeField] private LayerMask _retLayerMask;
         [SerializeField] private float _retMaxDist;
         [SerializeField] private Rigidbody _rigid;
+        [SerializeField] private AudioClip _spotSecurity;
+        [SerializeField] private AudioClip _takeDamage;
+        [SerializeField] private AudioClip _taunt;
+        [SerializeField] private AudioClip _victory;
 
         public Rewired.Player Player;
 
         public int PlayerNumber;
-        [SerializeField] private float _interactDistance;
+        public Player BaseCharacter => _baseCharacter;
 
         internal Control Control
         {
@@ -77,10 +81,10 @@ namespace Character
                         WeaponAttack();
                     if (value.PushAttack && !_control.PushAttack)
                         PushAttack();
-                    if (value.SwitchWeapon && !_control.SwitchWeapon)
-                        SwitchWeapon();
-                    if (value.SwitchTrap && !_control.SwitchTrap)
-                        SwitchTrap();
+                    if (value.SwitchPos && !_control.SwitchPos)
+                        SwitchPos();
+                    if (value.SwitchNeg && !_control.SwitchNeg)
+                        SwitchNeg();
                     if (value.Pause && !_control.Pause)
                         Pause();
                 }
@@ -88,7 +92,6 @@ namespace Character
                 _control = value;
             }
         }
-
 
         private void Start()
         {
@@ -112,19 +115,60 @@ namespace Character
             if (_reticule != null) _reticule.layer = GameManager.GetPlayerMask(PlayerNumber, false);
             //if (_reticule != null) _reticule = Instantiate(_reticule, this.transform);
 
+            _isReticuleNotNull = _reticule != null;
+
+            ///////////////////////////////////////////////////
+            /////////    Set Layer For Cameras    /////////////
+            ///////////////////////////////////////////////////
+
+            gameObject.layer = GameManager.GetPlayerMask(PlayerNumber, false);
+            for (int i = 0; i < gameObject.transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.layer = gameObject.layer;
+            }
+
+
             BaseCharacter.HealthChanged += BaseCharacterOnHealthChanged;
             BaseCharacter.Inventory.SelectionChanged += InventoryOnSelectionChanged;
         }
 
         private void InventoryOnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UI.UIManager.UiManagerRef.UpdateWeapon(e.Item, PlayerNumber);
-            UI.UIManager.UiManagerRef.UpdateAmmo(e.Count, PlayerNumber);
+            //if weapon, parent to hand and enable
+            if (e.Type == Item.Type.Weapon)
+            {
+                for (var i = 0; i < _hand.transform.childCount; i++)
+                {
+                    var child = _hand.transform.GetChild(i);
+                    child.transform.SetParent(gameObject.transform, false);
+                    child.gameObject.SetActive(false);
+                }
+
+                e.Item.gameObject.transform.SetParent(_hand, false);
+                e.Item.gameObject.transform.position = _hand.position;
+                e.Item.gameObject.transform.rotation = _hand.rotation;
+                e.Item.gameObject.SetActive(true);
+            }
+            else
+            {
+                for (var i = 0; i < _hand.transform.childCount; i++)
+                {
+                    var child = _hand.transform.GetChild(i);
+                    child.transform.SetParent(gameObject.transform, false);
+                    child.gameObject.SetActive(false);
+                }
+            }
+
+            if (UIManager.UiManagerRef != null)
+            {
+                UIManager.UiManagerRef.UpdateWeapon(e.Item, PlayerNumber);
+                UIManager.UiManagerRef.UpdateAmmo(e.Count, PlayerNumber);
+            }
         }
 
         private void BaseCharacterOnHealthChanged(object sender, HealthChangedEventArgs e)
         {
-            UI.UIManager.UiManagerRef.UpdateHealth(e.Health, PlayerNumber);
+            UIManager.UiManagerRef.UpdateHealth(e.Health, PlayerNumber);
         }
 
         private void Pause()
@@ -135,6 +179,8 @@ namespace Character
         private void FixedUpdate()
         {
             ///Direction based on FaceVector
+            if (Math.Abs(Control.FaceVector.magnitude) > 0.01f) OnMoveCancel?.Invoke(this, new EventArgs());
+
             var facing = Vector3.RotateTowards(transform.forward, Control.FaceVector, 1,
                 0.0f);
             transform.rotation = Quaternion.LookRotation(facing);
@@ -151,15 +197,16 @@ namespace Character
             }
 
             /// Reticule
-            if (_reticule != null)
+            if (_isReticuleNotNull)
             {
                 if (_control.FaceVector.magnitude > 0)
                 {
                     RaycastHit hitInfo;
-                    _reticule.transform.localPosition = Physics.Raycast(transform.position, transform.forward,
-                        out hitInfo, _retMaxDist, _retLayerMask)
-                        ? transform.InverseTransformPoint(hitInfo.point)
-                        : _retMaxDist / 2 * Vector3.forward + Vector3.up;
+                    if (Physics.Raycast(transform.position, _control.FaceVector, out hitInfo, _retMaxDist,
+                        _retLayerMask))
+                        _reticule.transform.localPosition = transform.InverseTransformPoint(hitInfo.point);
+                    else
+                        _reticule.transform.localPosition = _retMaxDist / 2 * Vector3.forward + Vector3.up;
                 }
                 else
                 {
@@ -168,18 +215,21 @@ namespace Character
             }
         }
 
-        private void SwitchTrap()
+        public event EventHandler OnMoveCancel;
+
+        private void SwitchNeg()
         {
-            Debug.Log("Switch Trap by Player " + (PlayerNumber + 1));
+            BaseCharacter.Inventory.SelectedIndex--;
         }
 
-        private void SwitchWeapon()
+        private void SwitchPos()
         {
-            Debug.Log("Switch Weapon by Player " + (PlayerNumber + 1));
+            BaseCharacter.Inventory.SelectedIndex++;
         }
 
         private void WeaponAttack()
         {
+            BaseCharacter.Inventory.Use();
             Debug.Log("Weapon Attack by Player " + (PlayerNumber + 1));
         }
 
@@ -187,11 +237,30 @@ namespace Character
         {
             RaycastHit hit;
 
-            if (_baseCharacter.OverWeaponPickup || _baseCharacter.OverTrapPickup) _baseCharacter.PickupPickup();
-            else if (Physics.Raycast(transform.position, _control.FaceVector, out hit, _interactDistance))
+            if (_baseCharacter.OverWeaponPickup || _baseCharacter.OverTrapPickup)
+            {
+                _baseCharacter.PickupPickup();
+            }
+            else if (Physics.Raycast(transform.position, transform.forward, out hit, _interactDistance))
             {
                 if (hit.transform.CompareTag("Door"))
                 {
+                    var door = hit.transform.GetComponent<Door>();
+                    door.Open(this);
+                }
+                else if (hit.transform.CompareTag("GoldPile"))
+                {
+                    var gold = hit.transform.GetComponent<GoldPile>();
+                    gold.StartChanneling(this);
+                }
+                else if (hit.transform.CompareTag("MiniVault"))
+                {
+                    //todo
+                }
+                else if (hit.transform.CompareTag("Vault"))
+                {
+                    var vault = hit.transform.GetComponent<Vault>();
+                    vault.UseKey(BaseCharacter.Inventory.keys);
                 }
             }
         }
@@ -219,7 +288,7 @@ namespace Character
             _rigid.AddForce(Control.MoveVector * _dashForce, ForceMode.VelocityChange);
             yield return new WaitForSeconds(_dashTimer / 8);
             _rigid.AddForce(Control.MoveVector * _dashForce, ForceMode.VelocityChange);
-            yield return new WaitForSeconds((_dashTimer / 4) * 3);
+            yield return new WaitForSeconds(_dashTimer / 4 * 3);
             _dashCooldown = true;
         }
 

@@ -1,65 +1,45 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using Game;
 using Rewired;
-using UnityEngine.EventSystems;
-using UnityEditor;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI
 {
-
     public class PlayerSelect : MonoBehaviour
     {
-        [SerializeField] Menu mm;
-        [SerializeField] int player;
-        [SerializeField] Text display;
-        [SerializeField] GameObject readyFX;
-        [SerializeField] int selection;
-        [SerializeField] string[] charas = { "King", "Shadow", "Jailbird", "Racoon" };
         private bool _delay = true;
+        [SerializeField] private string[] charas = {"King", "Shadow", "Jailbird", "Racoon"};
+        [SerializeField] private Text display;
+        [SerializeField] private Menu mm;
+        [SerializeField] private int player;
 
-        public bool ready = false;
+        public bool ready;
+        [SerializeField] private GameObject readyFX;
+        [SerializeField] private int selection;
+
         private void OnEnable()
         {
             if (ReInput.controllers.joystickCount <= player) gameObject.SetActive(false);
             else gameObject.SetActive(true);
-
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
             readyFX.SetActive(false);
-            if (ReInput.players.GetPlayer(player).GetButtonDown("UIHorizontaPos") && !ready)
-            {
-                selection++;
-            }
-            if (ReInput.players.GetPlayer(player).GetButtonDown("UIHorizontaNeg") && !ready)
-            {
-                selection--;
-            }
+            if (ReInput.players.GetPlayer(player).GetButtonDown("UIHorizontaPos") && !ready) selection++;
+            if (ReInput.players.GetPlayer(player).GetButtonDown("UIHorizontaNeg") && !ready) selection--;
 
-            if (ReInput.players.GetPlayer(player).GetButtonDown("UISubmit") && !ready)
-            {
-                ready = true;
-            }
+            if (ReInput.players.GetPlayer(player).GetButtonDown("UISubmit") && !ready) ready = true;
 
-            if (!ready && ReInput.players.GetPlayer(player).GetButtonDown("UICancel"))
-            {
-                mm.ExitPlayerSelect();
-            }
+            if (!ready && ReInput.players.GetPlayer(player).GetButtonDown("UICancel")) mm.ExitPlayerSelect();
 
-            if (ready && ReInput.players.GetPlayer(player).GetButtonDown("UICancel"))
-            {
-                ready = false;
-            }
+            if (ready && ReInput.players.GetPlayer(player).GetButtonDown("UICancel")) ready = false;
 
             readyFX.SetActive(ready);
 
             switch (selection % 4)
             {
-
                 case -1:
                     selection = 3;
                     break;
@@ -68,24 +48,21 @@ namespace UI
                     break;
                 case 0:
                     display.text = charas[0];
-                    Game.GameManager.PlayerChoice[player] = Game.Characters.King;
+                    GameManager.PlayerChoice[player] = Characters.King;
                     break;
                 case 1:
                     display.text = charas[1];
-                    Game.GameManager.PlayerChoice[player] = Game.Characters.Shadow;
+                    GameManager.PlayerChoice[player] = Characters.Shadow;
                     break;
                 case 2:
                     display.text = charas[2];
-                    Game.GameManager.PlayerChoice[player] = Game.Characters.Jailbird;
+                    GameManager.PlayerChoice[player] = Characters.Jailbird;
                     break;
                 case 3:
                     display.text = charas[3];
-                    Game.GameManager.PlayerChoice[player] = Game.Characters.Raccoon;
+                    GameManager.PlayerChoice[player] = Characters.Raccoon;
                     break;
-
-
             }
         }
     }
-
 }

@@ -5,6 +5,7 @@ using Audio;
 using Character;
 using Level;
 using Rewired;
+using UI;
 using UnityEngine;
 using Player = Character.Player;
 using Random = UnityEngine.Random;
@@ -13,7 +14,6 @@ namespace Game
 {
     public enum KeyType
     {
-        None,
         BlueKey,
         RedKey,
         YellowKey
@@ -23,7 +23,7 @@ namespace Game
     {
         TripTrap,
         Dash,
-        Footstep,
+        Footstep
     }
 
     public class NotifyEventArgs : EventArgs
@@ -58,21 +58,22 @@ namespace Game
         private float _time;
 
         [SerializeField] private float _vaultTimer;
+
+        public Dictionary<NotifyType, float> NotificationRamge = new Dictionary<NotifyType, float>
+        {
+            {NotifyType.Dash, 10}, {NotifyType.Footstep, 5}, {NotifyType.TripTrap, 100}
+        };
+
         public static float Time => LevelManagerRef._time;
 
         [SerializeField] public FloorManager FloorManager { get; }
 
         public event NotifyEventHandler Notifty;
 
-        public Dictionary<NotifyType, float> NotificationRamge = new Dictionary<NotifyType, float>
-        {
-            {NotifyType.Dash, 10}, {NotifyType.Footstep, 5}, {NotifyType.TripTrap, 100},
-        };
-
         private void Awake()
         {
             if (LevelManagerRef == null) LevelManagerRef = this;
-            
+
             if (_spawnpoints == null) _spawnpoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
 
             if (_audioSource == null) _audioSource = GetComponents<AudioSource>();
@@ -181,7 +182,7 @@ namespace Game
                 switch (playersOnDisplay[targetDisplay])
                 {
                     case 1:
-                        _players[i].Camera.Camera.rect = new Rect
+                        _players[i].Camera.MainFloorCamera.rect = new Rect
                         {
                             x = 0,
                             y = 0,
@@ -190,7 +191,7 @@ namespace Game
                         };
                         break;
                     case 2:
-                        _players[i].Camera.Camera.rect = new Rect
+                        _players[i].Camera.MainFloorCamera.rect = new Rect
                         {
                             x = i % 2 * 0.5f,
                             y = 0,
@@ -200,7 +201,7 @@ namespace Game
                         break;
                     case 3:
                     case 4:
-                        _players[i].Camera.Camera.rect = new Rect
+                        _players[i].Camera.MainFloorCamera.rect = new Rect
                         {
                             x = i % 2 * 0.5f,
                             y = Mathf.Abs(1 - i / 2) * 0.5f,
@@ -210,15 +211,15 @@ namespace Game
                         break;
                 }
 
-                _players[i].Camera.Camera.targetDisplay = targetDisplay;
+                _players[i].Camera.MainFloorCamera.targetDisplay = targetDisplay;
                 //assign player number
                 _players[i].PlayerControl.PlayerNumber = i;
 
                 _players[i].PlayerControl.Player = ReInput.players.GetPlayer(i);
             }
 
-            for (int i = 0; i < numPlayers; i++)
-                UI.UIManager.UiManagerRef.SetFace((int)GameManager.PlayerChoice[i], i);
+            for (var i = 0; i < numPlayers; i++)
+                UIManager.UiManagerRef.SetFace((int) GameManager.PlayerChoice[i], i);
 
             #endregion
 

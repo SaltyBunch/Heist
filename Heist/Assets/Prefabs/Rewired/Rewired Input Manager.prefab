@@ -178,7 +178,10 @@ MonoBehaviour:
       - _enabled: 1
         _categoryId: 0
         _layoutId: 0
-      _defaultMouseMaps: []
+      _defaultMouseMaps:
+      - _enabled: 1
+        _categoryId: 0
+        _layoutId: 0
       _defaultKeyboardMaps:
       - _enabled: 1
         _categoryId: 0
@@ -354,6 +357,24 @@ MonoBehaviour:
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 1
+    - _id: 14
+      _name: InventorySwitchPositive
+      _type: 1
+      _descriptiveName: InventorySwitchPositive
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 0
+    - _id: 15
+      _name: InventorySwitchNegative
+      _type: 1
+      _descriptiveName: InventorySwitchNegative
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 0
     actionCategories:
     - _name: Default
       _descriptiveName: Default
@@ -368,7 +389,7 @@ MonoBehaviour:
     actionCategoryMap:
       list:
       - categoryId: 0
-        actionIds: 010000000200000004000000030000000500000006000000070000000800000009000000
+        actionIds: 0100000002000000040000000300000005000000060000000700000008000000090000000e0000000f000000
       - categoryId: 1
         actionIds: 0a0000000c0000000b0000000d000000
     inputBehaviors:
@@ -655,7 +676,7 @@ MonoBehaviour:
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
-        _actionId: -1
+        _actionId: 14
         _elementType: 1
         _elementIdentifierId: 20
         _axisRange: 0
@@ -677,7 +698,7 @@ MonoBehaviour:
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
-        _actionId: -1
+        _actionId: 15
         _elementType: 1
         _elementIdentifierId: 22
         _axisRange: 0
@@ -823,11 +844,40 @@ MonoBehaviour:
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
-    mouseMaps: []
+    mouseMaps:
+    - id: 0
+      categoryId: 0
+      layoutId: 0
+      name: 
+      hardwareGuidString: 
+      customControllerUid: 0
+      actionElementMaps:
+      - _actionCategoryId: 0
+        _actionId: 7
+        _elementType: 1
+        _elementIdentifierId: 3
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 6
+        _elementType: 1
+        _elementIdentifierId: 4
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
     customControllerMaps: []
     customControllers: []
     playerIdCounter: 5
-    actionIdCounter: 14
+    actionIdCounter: 16
     actionCategoryIdCounter: 2
     inputBehaviorIdCounter: 1
     mapCategoryIdCounter: 2
@@ -837,7 +887,7 @@ MonoBehaviour:
     customControllerLayoutIdCounter: 1
     joystickMapIdCounter: 4
     keyboardMapIdCounter: 2
-    mouseMapIdCounter: 0
+    mouseMapIdCounter: 1
     customControllerMapIdCounter: 0
     customControllerIdCounter: 0
   _controllerDataFiles: {fileID: 11400000, guid: d21d2b20df8369642b76aafbb2576ba7,

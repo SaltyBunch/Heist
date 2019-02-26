@@ -1,7 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Game;
+using Hazard;
 using UnityEngine;
+using UnityEngine.Serialization;
+using Weapon;
 
 namespace Character
 {
@@ -17,92 +20,101 @@ namespace Character
 
     public class Inventory : MonoBehaviour
     {
-        private readonly List<Hazard.Hazard> _hazard = new List<Hazard.Hazard>();
+        private int _count;
+        [SerializeField] private List<Hazard.Hazard> _hazard = new List<Hazard.Hazard>();
+
+        [SerializeField] public Dictionary<KeyType, bool> keys = new Dictionary<KeyType, bool>
+        {
+            {KeyType.BlueKey, false}, {KeyType.YellowKey, false}, {KeyType.RedKey, false}
+        };
 
         [SerializeField] private PlayerControl _player;
         private int _selectedHazard;
 
         private int _selectedIndex;
         private int _selectedWeapon;
+        private Item.Type _type;
 
-        private readonly List<Weapon.Weapon> _weapon = new List<Weapon.Weapon>();
+        [SerializeField] private List<Weapon.Weapon> _weapon = new List<Weapon.Weapon>();
+
         public int GoldAmount;
+
+        public Item SelectedItem { get; private set; }
 
         public int SelectedIndex
         {
             get => _selectedIndex;
             set
             {
-                var val = value;
-                //skip duplicates of hazard.
-                if ((val < 0 || val >= _weapon.Count) && _hazard.Count != 0)
+                var val = 0;
+                if (_weapon.Count + _hazard.Count != 0)
+                    val = value % (_weapon.Count + _hazard.Count); // normalize to range of values
+                if (val < 0) val += _weapon.Count + _hazard.Count;
+                if (val - _selectedIndex != 0) //selection has changed
                 {
-                    //value falls within the range of hazards
                     //get direction of selection changed
-                    int dir = (int) Mathf.Sign(val - _selectedIndex);
-
-                    if (val - _selectedIndex != 0)
+                    var dir = (int) Mathf.Sign(value - _selectedIndex);
+                    if (val >= _weapon.Count && val < _hazard.Count + _weapon.Count &&
+                        _selectedIndex >= _weapon.Count &&
+                        _selectedIndex < _hazard.Count + _weapon.Count
+                    ) //a hazard is selected and the prev selected is a hazard
                     {
-                        if (_selectedIndex < _weapon.Count)
-                        {
-                            //selection from the _weapons,
+                        var prevVal = val;
+                        //iterate in the direction of dir until selection at index != selection at _selected index or until index is <> _hazard.Count
+                        for (var index = (_selectedIndex - _weapon.Count) % _hazard.Count;
+                            index < _hazard.Count && index >= 0;
+                            index += dir)
+                            if (!(_hazard[index] == _hazard[(_selectedIndex - _weapon.Count) % _hazard.Count]))
+                            {
+                                val = index + _weapon.Count;
+                                break;
+                            }
+
+                        if (val == prevVal) //exited for loop without finding a new hazard to select
                             switch (dir)
                             {
                                 case 1:
-                                    //moving positively, select the first hazard
-                                    val = _weapon.Count;
+                                    val = 0;
                                     break;
                                 case -1:
-                                    //moving negatively, select the first of type of the last of _hazard
-                                    val = _hazard.FindIndex(h => h == _hazard[_hazard.Count - 1]);
+                                    val = _weapon.Count - 1;
                                     break;
                             }
-                        }
-                        else
+                    }
+                    else if (val >= _weapon.Count && val < _hazard.Count + _weapon.Count)
+                        //new selection is a hazard but old one isnt
+                    {
+                        switch (dir)
                         {
-                            //iterate in the direction of dir until selection at index != selection at _selected index or until index is <> _hazard.Count
-                            for (int index = _selectedIndex; index < _hazard.Count && index >= 0; index += dir)
-                            {
-                                if (_hazard[index] != _hazard[_selectedIndex])
-                                {
-                                    val = index;
-                                    break;
-                                }
-                            }
-                            //reached extents before finding another type
-                            if (val == value)
-                            {
-                                switch (dir)
-                                {
-                                    case 1:
-                                        //moving positively, select first weapon
-                                        val = 0;
-                                        break;
-                                    case -1:
-                                        //moving negatively, select last weapon
-                                        val = _weapon.Count - 1;
-                                        break;
-                                }
-                            }
+                            case 1:
+                                val = _weapon.Count;
+                                break;
+                            case -1:
+                                val = _weapon.Count + _hazard.Count - 1;
+                                break;
                         }
                     }
                 }
-                //
 
-                _selectedIndex = val % (_weapon.Count + _hazard.Count);
-                var selected = _selectedIndex >= _weapon.Count
-                    ? _hazard[_selectedIndex % _weapon.Count]
-                    : (Item) _weapon[_selectedIndex];
-
-                var type = selected is Weapon.Weapon ? Item.Type.Weapon : Item.Type.Hazard;
+                _selectedIndex = val;
+                if (_weapon.Count + _hazard.Count != 0)
+                    SelectedItem = _selectedIndex >= _weapon.Count
+                        ? _hazard[_selectedIndex - _weapon.Count]
+                        : (Item) _weapon[_selectedIndex];
+                else
+                    SelectedItem = null;
+                _type = SelectedItem is Weapon.Weapon ? Item.Type.Weapon : Item.Type.Hazard;
+                _count = _type == Item.Type.Weapon
+                    ? ((Weapon.Weapon) SelectedItem).Ammo
+                    : _type == Item.Type.Hazard
+                        ? _hazard.Count(h => h == SelectedItem)
+                        : 0; //todo better
                 SelectionChanged?.Invoke(this,
                     new SelectionChangedEventArgs
                     {
-                        Item = selected,
-                        Type = type,
-                        Count = type == Item.Type.Weapon
-                            ? ((Weapon.Weapon) selected).Ammo
-                            : _hazard.Count(h => h == selected) //todo better
+                        Item = SelectedItem,
+                        Type = _type,
+                        Count = _count
                     });
             }
         }
@@ -122,6 +134,12 @@ namespace Character
 
         public bool Add(Item item)
         {
+            if (item != null)
+            {
+                item = Instantiate(item, transform);
+                item.gameObject.SetActive(false);
+            }
+
             if (item is Weapon.Weapon weapon)
             {
                 if (_weapon.Contains(weapon))
@@ -137,7 +155,6 @@ namespace Character
                 }
 
                 SelectedIndex = _weapon.Count - 1;
-
                 return true;
             }
 
@@ -146,8 +163,8 @@ namespace Character
                 var count = _hazard.Count(h => h == hazard);
                 if (count < 2)
                 {
-                    int index = 0;
-                    for (int i = 0; i < _hazard.Count; i++)
+                    var index = 0;
+                    for (var i = 0; i < _hazard.Count; i++)
                     {
                         if (_hazard[i] == hazard)
                         {
@@ -160,19 +177,90 @@ namespace Character
                         index = i;
                     }
 
-                    if (_hazard.Count == 0 || index == _hazard.Count - 1)
-                    {
-                        //reached the end without inserting the hazard
-                        _hazard.Add(hazard);
-                    }
+                    if (_hazard.Count == 0 || index == _hazard.Count - 1) _hazard.Add(hazard);
                 }
 
                 SelectedIndex = _hazard.FindIndex(h => h == hazard) + _weapon.Count;
-
                 return count < 2;
             }
 
             return false;
+        }
+
+        public void Use()
+        {
+            switch (SelectedItem)
+            {
+                case ElectricField electricField:
+                    electricField.Place(transform.position + transform.forward * 2); //todo wall check
+                    Remove(SelectedItem);
+                    return;
+                case LethalLaser lethalLaser:
+                    lethalLaser.Place(transform.position + transform.forward * 2); //todo wall check
+                    Remove(SelectedItem);
+                    return;
+                case Baton baton:
+                    //todo play baton animation
+                    break;
+                case StunGun stunGun:
+                    stunGun.Attack();
+                    _count = stunGun.Ammo;
+                    if (_count == 0)
+                    {
+                        Remove(SelectedItem);
+                        return;
+                    }
+
+                    break;
+            }
+
+            SelectionChanged?.Invoke(this,
+                new SelectionChangedEventArgs
+                {
+                    Item = SelectedItem,
+                    Type = _type,
+                    Count = _count
+                });
+        }
+
+        private void Remove(Item selectedItem)
+        {
+            //remove item from list
+            if (selectedItem is Weapon.Weapon weapon)
+            {
+                for (int i = 0; i < _weapon.Count; i++)
+                {
+                    if (_weapon[i] == weapon)
+                    {
+                        var weap = _weapon[i];
+                        _weapon.RemoveAt(i);
+                        Destroy(weap);
+                        break;
+                    }
+                }
+
+                SelectedIndex = 0;
+            }
+            else if (selectedItem is Hazard.Hazard hazard)
+            {
+                int index = 0;
+                for (int j = 0; j < _hazard.Count; j++)
+                {
+                    if (_hazard[j] == hazard)
+                    {
+                        index = j;
+                        _hazard.RemoveAt(j);
+                        if (_hazard.Count(h => h == hazard) == 0)
+                        {
+                            index = 0;
+                        }
+
+                        break;
+                    }
+                }
+
+                SelectedIndex = index;
+            }
         }
     }
 }

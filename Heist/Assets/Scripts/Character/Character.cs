@@ -19,22 +19,24 @@ namespace Character
         public int Health;
     }
 
+    [RequireComponent(typeof(Rigidbody))]
     public class Character : MonoBehaviour
     {
         private bool _damageCooldown;
         private bool _firstDamage;
+        [SerializeField] [Range(0.01f, 1)] private float _invFrames = 0.333f;
+        private bool _invincible;
+        [SerializeField] private float _knockbackForce;
+
+        private Rigidbody _rgd;
         private int _stacks;
         private bool _stun;
         private bool _stunCooldown;
-
-        public event HealthUpdatedEventHandler HealthChanged;
 
         private float _timeSinceDamage;
         [SerializeField] public Stats Stats;
 
         internal int timesStunned;
-        private bool _invincible;
-        [SerializeField, Range(0.01f, 1)] private float _invFrames = 0.333f;
 
         public int Stacks
         {
@@ -46,10 +48,8 @@ namespace Character
                     _firstDamage = true;
                     _timeSinceDamage = 0;
                     _stacks = value;
-                    if (_stacks >= Stats.Health)
-                    {
-                        StartCoroutine(Stun());
-                    }
+                    if (_stacks >= Stats.Health) StartCoroutine(Stun());
+
                     StartCoroutine(IFrames());
                 }
                 else if (value < _stacks)
@@ -60,8 +60,17 @@ namespace Character
                 }
 
                 if (HealthChanged != null)
-                    HealthChanged(this, new HealthChangedEventArgs() {Health = Stats.Health - _stacks});
+                    HealthChanged(this, new HealthChangedEventArgs {Health = Stats.Health - _stacks});
             }
+        }
+
+        public event HealthUpdatedEventHandler HealthChanged;
+
+
+        private void Start()
+        {
+            if (_rgd == null)
+                _rgd = GetComponent<Rigidbody>();
         }
 
         internal virtual void Update()
@@ -105,6 +114,11 @@ namespace Character
             _invincible = true;
             yield return new WaitForSeconds(_invFrames);
             _invincible = false;
+        }
+
+        public void Knockback(Transform source)
+        {
+            _rgd.AddRelativeForce(source.position.normalized * _knockbackForce, ForceMode.Impulse);
         }
     }
 }

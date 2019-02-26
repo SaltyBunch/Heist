@@ -1,41 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Drone;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class setState : MonoBehaviour
 {
+    public DroneAI drone;
     public Text text;
-    public Drone.DroneAI drone;
 
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (drone.fsm.CurrentState.Equals(Drone.State.BigChase))
-        {
-            text.text = "Current State : Lock Down Chase";
-        }
-        if (drone.fsm.CurrentState.Equals(Drone.State.BigPatrol))
-        {
-            text.text = "Current State : Lock Down Patrol";
-        }
-        if (drone.fsm.CurrentState.Equals(Drone.State.Chase))
-        {
-            text.text = "Current State : Chase";
-        }
-        if (drone.fsm.CurrentState.Equals(Drone.State.Dead))
-        {
-            text.text = "Current State : Stunned";
-        }
-        if (drone.fsm.CurrentState.Equals(Drone.State.Investigate))
-        {
-            text.text = "Current State : Investigating";
-        }
-        if (drone.fsm.CurrentState.Equals(Drone.State.Patrol))
-        {
-            text.text = "Current State : Patrolling";
-        }
-
+        if (drone.fsm.CurrentState.Equals(State.BigChase)) text.text = "Current State : Lock Down Chase";
+        if (drone.fsm.CurrentState.Equals(State.BigPatrol)) text.text = "Current State : Lock Down Patrol";
+        if (drone.fsm.CurrentState.Equals(State.Chase)) text.text = "Current State : Chase";
+        if (drone.fsm.CurrentState.Equals(State.Dead)) text.text = "Current State : Stunned";
+        if (drone.fsm.CurrentState.Equals(State.Investigate)) text.text = "Current State : Investigating";
+        if (drone.fsm.CurrentState.Equals(State.Patrol)) text.text = "Current State : Patrolling";
     }
 }

@@ -1,16 +1,14 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MaskActivate : MonoBehaviour
 {
-    public float speed;
     [SerializeField] private Material mat;
+    public float speed;
 
     public void StartShow()
     {
-
-        this.gameObject.SetActive(true);
+        gameObject.SetActive(true);
         //        StopAllCoroutines();
         //       var temp = mat.color;
         //      if (temp.a < 0.1f)
@@ -23,12 +21,12 @@ public class MaskActivate : MonoBehaviour
 
     public void StopShow()
     {
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
         //StopAllCoroutines();
         //StartCoroutine(Deactivate());
-    } 
+    }
 
-    IEnumerator Activate()
+    private IEnumerator Activate()
     {
         var temp = mat.color;
         while (mat.color.a < 1)
@@ -39,14 +37,14 @@ public class MaskActivate : MonoBehaviour
         }
     }
 
-    IEnumerator Deactivate()
+    private IEnumerator Deactivate()
     {
         var temp = mat.color;
         while (mat.color.a > 0)
         {
             temp = new Color(temp.r, temp.g, temp.b, temp.a - 0.02F);
             mat.color = temp;
-            yield return new WaitForSeconds(speed/15f);
+            yield return new WaitForSeconds(speed / 15f);
         }
     }
 }

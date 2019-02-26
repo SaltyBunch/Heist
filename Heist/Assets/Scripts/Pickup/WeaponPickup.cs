@@ -1,4 +1,3 @@
-using Character;
 using UnityEngine;
 
 namespace Pickup
@@ -7,7 +6,7 @@ namespace Pickup
     public class WeaponPickup : Pickup
     {
         [SerializeField] public Weapon.Weapon WeaponGameObject;
-        
+
         private void Reset()
         {
             _pickupType = PickupType.Weapon;

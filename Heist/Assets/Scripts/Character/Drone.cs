@@ -6,9 +6,9 @@ namespace Character
     [RequireComponent(typeof(NavMeshAgent))]
     public class Drone : Character
     {
-        [SerializeField] NavMeshAgent agent;
+        [SerializeField] private NavMeshAgent agent;
 
-        void Start()
+        private void Start()
         {
             if (agent == null)
                 agent = GetComponent<NavMeshAgent>();

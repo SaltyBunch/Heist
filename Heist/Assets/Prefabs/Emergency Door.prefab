@@ -28,16 +28,67 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8820164282695653778}
-  - {fileID: 5437468642840277543}
+  - {fileID: 3866458373183881033}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6902528340688449806
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3866458373183881033}
+  - component: {fileID: 285106157761735250}
+  m_Layer: 0
+  m_Name: Pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3866458373183881033
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6902528340688449806}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.08327484, y: -0.33, z: -0.62}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5437468642840277543}
+  m_Father: {fileID: 4052465556688042641}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &285106157761735250
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6902528340688449806}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6b757f764dec3034d9f587c515fe40f4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &5437468642840668325
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 4052465556688042641}
+    m_TransformParent: {fileID: 3866458373183881033}
     m_Modifications:
     - target: {fileID: 100002, guid: 20b113313bec3104b8f03fabdb199cad, type: 3}
       propertyPath: m_Name
@@ -45,15 +96,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 20b113313bec3104b8f03fabdb199cad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.024971008
+      value: -0.10824585
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 20b113313bec3104b8f03fabdb199cad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.25
+      value: -0.91999996
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 20b113313bec3104b8f03fabdb199cad, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.06488609
+      value: 0.5551139
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 20b113313bec3104b8f03fabdb199cad, type: 3}
       propertyPath: m_LocalRotation.x
@@ -73,7 +124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 20b113313bec3104b8f03fabdb199cad, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 20b113313bec3104b8f03fabdb199cad, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -102,6 +153,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4052465556688042641}
     m_Modifications:
+    - target: {fileID: 100002, guid: df84537ecd346d44694ff8883a7b9275, type: 3}
+      propertyPath: m_Name
+      value: SingleDoorFrame
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: df84537ecd346d44694ff8883a7b9275, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.12902832
@@ -145,10 +200,6 @@ PrefabInstance:
     - target: {fileID: 400002, guid: df84537ecd346d44694ff8883a7b9275, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: df84537ecd346d44694ff8883a7b9275, type: 3}
-      propertyPath: m_Name
-      value: SingleDoorFrame
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df84537ecd346d44694ff8883a7b9275, type: 3}

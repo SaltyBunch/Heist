@@ -370,8 +370,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0177f084fe1041d4d9002fc950264915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 100666802}
   drone: {fileID: 1904668081}
+  text: {fileID: 100666802}
 --- !u!222 &100666804
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1643,22 +1643,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129e9e68d9ad95147a5557dba6297c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
-  fsm: {fileID: 0}
-  patrolPath:
-  - {fileID: 439492668}
-  - {fileID: 592865388}
   bigPatrolPath:
   - {fileID: 1717589165}
   - {fileID: 427694329}
   - {fileID: 1275037569}
-  players: []
   detectPlayerRange: 5
-  patrolTetherRange: 10
+  fsm: {fileID: 0}
   investigateDuration: 5
   investigation: {fileID: 486534211}
+  patrolPath:
+  - {fileID: 439492668}
+  - {fileID: 592865388}
+  patrolTetherRange: 5
+  players: []
   reviveTimer: 3
   reviving: 0
+  Target: {fileID: 0}
 --- !u!1 &1908082524
 GameObject:
   m_ObjectHideFlags: 0
@@ -1740,7 +1740,7 @@ GameObject:
   - component: {fileID: 1918485542}
   - component: {fileID: 1918485541}
   - component: {fileID: 1918485540}
-  m_Layer: 12
+  m_Layer: 20
   m_Name: 'Fog Of War '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1938,7 +1938,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1988877442}
   - component: {fileID: 1988877443}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: FOGCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1989,7 +1989,7 @@ Camera:
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 1048576
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

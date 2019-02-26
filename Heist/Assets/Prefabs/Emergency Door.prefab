@@ -29,9 +29,118 @@ Transform:
   m_Children:
   - {fileID: 8820164282695653778}
   - {fileID: 3866458373183881033}
+  - {fileID: 717600742422587773}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5861969672354531944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 717600742422587773}
+  - component: {fileID: 2329183221735700708}
+  - component: {fileID: 1656292784456591968}
+  - component: {fileID: 2461339885585956652}
+  - component: {fileID: 4322887302972425964}
+  m_Layer: 0
+  m_Name: OpenDoor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &717600742422587773
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5861969672354531944}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000029504295}
+  m_LocalPosition: {x: 0, y: -0.29, z: 0}
+  m_LocalScale: {x: 2.5, y: 1, z: 1.01657}
+  m_Children: []
+  m_Father: {fileID: 4052465556688042641}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &2329183221735700708
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5861969672354531944}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1656292784456591968
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5861969672354531944}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!65 &2461339885585956652
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5861969672354531944}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4322887302972425964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5861969672354531944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d24985507d918141b98993d5d7c0a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openName: EmergencyDoor
+  closeName: EmergencyDoorClose
+  animator: {fileID: 285106157761735250}
+  canOpen: 0
 --- !u!1 &6902528340688449806
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,10 +199,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3866458373183881033}
     m_Modifications:
-    - target: {fileID: 100002, guid: 20b113313bec3104b8f03fabdb199cad, type: 3}
-      propertyPath: m_Name
-      value: E-Door
-      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 20b113313bec3104b8f03fabdb199cad, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.10824585
@@ -138,6 +243,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 20b113313bec3104b8f03fabdb199cad, type: 3}
+      propertyPath: m_Name
+      value: E-Door
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20b113313bec3104b8f03fabdb199cad, type: 3}
 --- !u!4 &5437468642840277543 stripped
@@ -153,10 +262,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4052465556688042641}
     m_Modifications:
-    - target: {fileID: 100002, guid: df84537ecd346d44694ff8883a7b9275, type: 3}
-      propertyPath: m_Name
-      value: SingleDoorFrame
-      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: df84537ecd346d44694ff8883a7b9275, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.12902832
@@ -200,6 +305,10 @@ PrefabInstance:
     - target: {fileID: 400002, guid: df84537ecd346d44694ff8883a7b9275, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: df84537ecd346d44694ff8883a7b9275, type: 3}
+      propertyPath: m_Name
+      value: SingleDoorFrame
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df84537ecd346d44694ff8883a7b9275, type: 3}

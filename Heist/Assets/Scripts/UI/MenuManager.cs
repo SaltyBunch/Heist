@@ -21,7 +21,6 @@ namespace UI
 
         [SerializeField] private List<GameObject> playersImages;
         [SerializeField] private List<PlayerSelect> selction;
-        [SerializeField] private UIManager uiManager;
         [SerializeField] private VictoryScreen victoryScreen;
 
         [SerializeField] private UnityEngine.Camera _mainCamera;
@@ -118,10 +117,7 @@ namespace UI
 
         public void InGameUI()
         {
-            if (current) current.SetActive(false);
-            //create UI
-            uiManager.gameObject.SetActive(true);
-            current = uiManager.gameObject;
+            current = null;
         }
     }
 }

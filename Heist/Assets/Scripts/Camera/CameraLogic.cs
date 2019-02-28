@@ -20,6 +20,7 @@ namespace Camera
 
         [SerializeField] public UnityEngine.Camera MainFloorCamera;
         [SerializeField] public UnityEngine.Camera BasementCamera;
+        [SerializeField] public UnityEngine.Camera UICamera;
 
         private void Start()
         {

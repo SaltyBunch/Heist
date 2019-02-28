@@ -74,7 +74,7 @@ namespace Game
         {
             if (LevelManagerRef == null) LevelManagerRef = this;
 
-            if (_spawnpoints == null) _spawnpoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+            _spawnpoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
 
             if (_audioSource == null) _audioSource = GetComponents<AudioSource>();
 
@@ -85,7 +85,8 @@ namespace Game
         {
             //var players = Rewired.ReInput.players.playerCount;
             var players = ReInput.controllers.joystickCount;
-            InitGame(players);
+            InitGame(4);
+            //InitGame(players);
             _audioSource[_currentAudioSource].clip = _backgroundMusicInfiltration;
             _audioSource[_currentAudioSource].Play();
 
@@ -210,15 +211,22 @@ namespace Game
                         break;
                 }
 
+
+                _players[i].Camera.BasementCamera.rect = _players[i].Camera.MainFloorCamera.rect;
+                _players[i].Camera.UICamera.rect = _players[i].Camera.MainFloorCamera.rect;
+
                 _players[i].Camera.MainFloorCamera.targetDisplay = targetDisplay;
+                _players[i].Camera.BasementCamera.targetDisplay = targetDisplay;
+                _players[i].Camera.UICamera.targetDisplay = targetDisplay;
                 //assign player number
                 _players[i].PlayerControl.PlayerNumber = i;
 
                 _players[i].PlayerControl.Player = ReInput.players.GetPlayer(i);
-            }
 
-            for (var i = 0; i < numPlayers; i++)
-                UIManager.UiManagerRef.SetFace((int) GameManager.PlayerChoice[i], i);
+                _players[i].PlayerUiManager.SetPosition(_players[i].Camera.MainFloorCamera.rect, i);
+
+                _players[i].PlayerUiManager.SetCharacter(GameManager.PlayerChoice[i]);
+            }
 
             #endregion
 

@@ -1,4 +1,5 @@
 using Camera;
+using UI;
 using UnityEngine;
 
 namespace Character
@@ -8,5 +9,6 @@ namespace Character
         [SerializeField] public CameraLogic Camera;
         [SerializeField] public Player Player;
         [SerializeField] public PlayerControl PlayerControl;
+        [SerializeField] public PlayerUIManager PlayerUiManager;
     }
 }

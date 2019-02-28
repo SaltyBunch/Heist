@@ -30,6 +30,7 @@ namespace Character
     {
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private Player _baseCharacter;
+        [SerializeField] private PlayerUIManager _playerUiManager;
         [SerializeField] private AudioClip _collectGold;
         [SerializeField] private Control _control;
         private bool _dashCooldown = true;
@@ -159,16 +160,14 @@ namespace Character
                 }
             }
 
-            if (UIManager.UiManagerRef != null)
-            {
-                UIManager.UiManagerRef.UpdateWeapon(e.Item, PlayerNumber);
-                UIManager.UiManagerRef.UpdateAmmo(e.Count, PlayerNumber);
-            }
+
+            _playerUiManager.SetItem(e.Item);
+            _playerUiManager.UpdateAmmo(e.Count);
         }
 
         private void BaseCharacterOnHealthChanged(object sender, HealthChangedEventArgs e)
         {
-            UIManager.UiManagerRef.UpdateHealth(e.Health, PlayerNumber);
+            _playerUiManager.SetHealth(e.Health);
         }
 
         private void Pause()

@@ -52,9 +52,7 @@ MonoBehaviour:
   _goldMultiplier: 10
   _playerGo: {fileID: 8218528600448460733, guid: a674baf7b904b7b4eadebed851f3d83b,
     type: 3}
-  _spawnpoints:
-  - {fileID: 0}
-  - {fileID: 0}
+  _spawnpoints: []
   _stunMultiplier: 100
   _vaultTimer: 0
 --- !u!114 &9203244888876118632
@@ -69,8 +67,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f73a02ed3a34bca8be03b78cf3c1212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainFloor: {fileID: 0}
-  _basement: {fileID: 0}
+  Floor: 0
+  Layers: []
 --- !u!82 &8199425501971676588
 AudioSource:
   m_ObjectHideFlags: 0

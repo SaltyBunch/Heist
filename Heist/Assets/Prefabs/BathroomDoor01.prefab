@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 714133962251874868}
   - component: {fileID: 4018105626698491932}
   - component: {fileID: 1449260592300711793}
+  - component: {fileID: 7500400102332234999}
   m_Layer: 0
   m_Name: OpenDoor
   m_TagString: Untagged
@@ -216,6 +217,28 @@ MonoBehaviour:
   openName: SingleDoorBath
   closeName: SingleDoorBathClose
   animator: {fileID: 237396230650615365}
+  openName2: 
+  closeName2: 
+  animator2: {fileID: 0}
+  canOpen: 1
+--- !u!114 &7500400102332234999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3984998763154432411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c6fc016333bed4dbd1bcb0fa2bff8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _light: {fileID: 0}
+  _locked: 0
+  _lockedColor: {r: 0, g: 0, b: 0, a: 0}
+  _door: {fileID: 1449260592300711793}
+  _unlockedColor: {r: 0, g: 0, b: 0, a: 0}
+  lockQuickTimeEvent: {fileID: 0}
 --- !u!1 &6911624292372119158
 GameObject:
   m_ObjectHideFlags: 0

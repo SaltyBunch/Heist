@@ -12,7 +12,8 @@ namespace Level
         [SerializeField] private bool _locked;
 
         [SerializeField] private Color _lockedColor;
-
+        [SerializeField] private Animation.Door _door;
+ 
         private bool _open;
 
         private PlayerControl _player;
@@ -49,6 +50,7 @@ namespace Level
             else //todo open door
             {
                 _open = true;
+                _door.Open();
             }
         }
 
@@ -74,4 +76,7 @@ namespace Level
             }
         }
     }
+
+
+    //TODO Coroutine for close
 }

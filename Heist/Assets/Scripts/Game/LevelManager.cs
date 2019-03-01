@@ -70,6 +70,8 @@ namespace Game
 
         public event NotifyEventHandler Notifty;
 
+        [SerializeField] private GameObject[] playerModels;
+
         private void Awake()
         {
             if (LevelManagerRef == null) LevelManagerRef = this;
@@ -173,6 +175,8 @@ namespace Game
                     targetDisplay++;
                 _players[i] = Instantiate(_playerGo);
                 //todo set appropriate player models
+                _players[i].transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
+                GameObject child = Instantiate(playerModels[(int)GameManager.PlayerChoice[i]], _players[i].transform.GetChild(0));
 
                 //put player on spawnpoint
                 _players[i].transform.position = _spawnpoints[i].transform.position;

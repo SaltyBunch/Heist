@@ -63,6 +63,7 @@ GameObject:
   - component: {fileID: 3652005401489798487}
   - component: {fileID: 8326773980767069386}
   - component: {fileID: 5062786293351138589}
+  - component: {fileID: 58349583416054754}
   - component: {fileID: 6541419625945896347}
   m_Layer: 0
   m_Name: OpenDoor
@@ -143,6 +144,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &58349583416054754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3767739637021782560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c6fc016333bed4dbd1bcb0fa2bff8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _light: {fileID: 0}
+  _locked: 0
+  _lockedColor: {r: 0, g: 0, b: 0, a: 0}
+  _door: {fileID: 6541419625945896347}
+  _unlockedColor: {r: 0, g: 0, b: 0, a: 0}
+  lockQuickTimeEvent: {fileID: 0}
 --- !u!114 &6541419625945896347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,7 +176,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openName: SingleDoorBath2
   closeName: SingleDoorBath2Close
-  animator: {fileID: 0}
+  animator: {fileID: 5486996960981735254}
+  openName2: 
+  closeName2: 
+  animator2: {fileID: 0}
+  canOpen: 1
 --- !u!1 &6407772770317386772
 GameObject:
   m_ObjectHideFlags: 0

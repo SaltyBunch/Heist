@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 namespace Animation
 {
 
@@ -29,22 +30,17 @@ namespace Animation
             if (animator2) animator2.speed = 1.5f;
         }
 
-        private void OnTriggerEnter(Collider other)
+        public void Open()
         {
-            if (other.tag == "Player" && canOpen)
-            {
-                animator.Play(openName,0,0);
-                if (animator2) animator2.Play(openName2, 0, 0);
-            }
+ 
+            animator.Play(openName,0,0);
+            if (animator2) animator2.Play(openName2, 0, 0);
         }
 
-        private void OnTriggerExit(Collider other)
+        public void Close()
         {
-            if (other.tag == "Player")
-            {
-                animator.Play(closeName,0,0);
-                if (animator2) animator2.Play(closeName2, 0, 0);
-            }
+            animator.Play(closeName,0,0);
+            if (animator2) animator2.Play(closeName2, 0, 0);
         }
 
     }

@@ -8,6 +8,8 @@ namespace Hazard
     [RequireComponent(typeof(Collider))]
     public class Hazard : Item, IEquatable<Hazard>
     {
+
+        public bool PlacedByPlayer;
         public bool Equals(Hazard other)
         {
             return this is ElectricField && other is ElectricField || this is LethalLaser && other is LethalLaser;

@@ -58,7 +58,42 @@ namespace Game
 
         private float _time;
 
+        private float _timeSinceVaultOpened;
+
+        private float TimeSinceVaultOpened
+        {
+            get { return _timeSinceVaultOpened; }
+            set
+            {
+                _timeSinceVaultOpened = value;
+                if (_timeSinceVaultOpened > _endGameAtTime) AllPlayersLeft(false);
+            }
+        }
+
+        [SerializeField] private float _endGameAtTime;
+
         [SerializeField] private float _vaultTimer;
+
+        [SerializeField] private Collider _gameEndArea;
+        private bool[] _playerLeaving;
+
+        public bool[] PlayerLeaving
+        {
+            get { return _playerLeaving; }
+            set
+            {
+                _playerLeaving = value;
+                if (_playerLeaving.Count(x => x == true) == _players.Length)
+                {
+                    AllPlayersLeft(true);
+                }
+            }
+        }
+
+        private void AllPlayersLeft(bool b)
+        {
+            throw new NotImplementedException();
+        }
 
         public Dictionary<NotifyType, float> NotificationRamge = new Dictionary<NotifyType, float>
         {
@@ -70,16 +105,20 @@ namespace Game
             {Floor.MainFloor, 11},
             {Floor.Basement, 17}
         };
+
         public static Dictionary<Floor, LayerMask> PickupMask = new Dictionary<Floor, LayerMask>()
         {
             {Floor.MainFloor, 12},
             {Floor.Basement, 18}
         };
+
         public static Dictionary<Floor, LayerMask> EnvironementMask = new Dictionary<Floor, LayerMask>()
         {
             {Floor.MainFloor, 10},
             {Floor.Basement, 16}
         };
+
+        private bool _vaultOpen;
 
         public static float Time => LevelManagerRef._time;
 
@@ -114,6 +153,7 @@ namespace Game
         {
             yield return new WaitForSeconds(0.5f);
             _time += 0.5f;
+            if (_vaultOpen) TimeSinceVaultOpened += 0.5f;
         }
 
         public int CalculateScore(Player player)
@@ -275,6 +315,7 @@ namespace Game
             _currentAudioSource = (_currentAudioSource + 1) % _audioSource.Length;
             yield return new WaitForSeconds(_vaultTimer);
             callVault();
+            _vaultOpen = true;
         }
 
         public void Notify(Vector3 position, NotifyType notifyType)
@@ -299,6 +340,15 @@ namespace Game
         {
             return _players.Where(x => x.PlayerControl.Floor == floor).Select(x => x.PlayerControl.PlayerNumber)
                 .ToArray();
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                var player = other.GetComponentInParent<PlayerControl>();
+                PlayerLeaving[player.PlayerNumber] = true;
+            }
         }
     }
 }

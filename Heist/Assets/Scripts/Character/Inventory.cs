@@ -54,23 +54,24 @@ namespace Character
                 {
                     //get direction of selection changed
                     var dir = (int) Mathf.Sign(value - _selectedIndex);
-                    if (val >= _weapon.Count && val < _hazard.Count + _weapon.Count &&
+                    if (val >= _weapon.Count && val < _hazard.Count + _weapon.Count && 
                         _selectedIndex >= _weapon.Count &&
                         _selectedIndex < _hazard.Count + _weapon.Count
                     ) //a hazard is selected and the prev selected is a hazard
                     {
-                        var prevVal = val;
+                        var prevVal = false;
                         //iterate in the direction of dir until selection at index != selection at _selected index or until index is <> _hazard.Count
                         for (var index = (_selectedIndex - _weapon.Count) % _hazard.Count;
                             index < _hazard.Count && index >= 0;
                             index += dir)
-                            if (!(_hazard[index] == _hazard[(_selectedIndex - _weapon.Count) % _hazard.Count]))
+                            if (_hazard[index].GetType() != _hazard[(_selectedIndex - _weapon.Count) % _hazard.Count].GetType())
                             {
                                 val = index + _weapon.Count;
+                                prevVal = true;
                                 break;
                             }
 
-                        if (val == prevVal) //exited for loop without finding a new hazard to select
+                        if (!prevVal) //exited for loop without finding a new hazard to select
                             switch (dir)
                             {
                                 case 1:
@@ -167,7 +168,7 @@ namespace Character
                     var index = 0;
                     for (var i = 0; i < _hazard.Count; i++)
                     {
-                        if (_hazard[i] == hazard)
+                        if (_hazard[i].GetType() == hazard.GetType())
                         {
                             //hazard at i is the same as hazard
                             //insert at i and break
@@ -198,6 +199,7 @@ namespace Character
                         LevelManager.HazardMask[LevelManager.LevelManagerRef.GetFloor(_player.PlayerNumber)]);
                     electricField.Place(transform.position + transform.forward * 2); //todo wall check
                     Remove(SelectedItem);
+                    electricField.PlacedByPlayer = true;
                     electricField.gameObject.SetActive(true);
                     return;
                 case LethalLaser lethalLaser:
@@ -206,6 +208,7 @@ namespace Character
                         LevelManager.HazardMask[LevelManager.LevelManagerRef.GetFloor(_player.PlayerNumber)]);
                     lethalLaser.Place(transform.position + transform.forward * 2); //todo wall check
                     Remove(SelectedItem);
+                    lethalLaser.PlacedByPlayer = true;
                     lethalLaser.gameObject.SetActive(true);
                     return;
                 case Baton baton:

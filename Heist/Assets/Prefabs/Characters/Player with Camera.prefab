@@ -854,7 +854,7 @@ MonoBehaviour:
   _enterBank: {fileID: 0}
   _exitBank: {fileID: 0}
   _hand: {fileID: 3883993597796065074}
-  _interactDistance: 0
+  _interactDistance: 2
   _joke: {fileID: 0}
   _loseGold: {fileID: 0}
   _meleeAttack: {fileID: 0}
@@ -864,13 +864,14 @@ MonoBehaviour:
   _retLayerMask:
     serializedVersion: 2
     m_Bits: 311
-  _retMaxDist: 15
+  _retMaxDist: 6
   _rigid: {fileID: 3050924102516203410}
   _spotSecurity: {fileID: 0}
   _takeDamage: {fileID: 0}
   _taunt: {fileID: 0}
   _victory: {fileID: 0}
   PlayerNumber: 1
+  Floor: 0
 --- !u!114 &3050924102516203409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2439,6 +2440,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Reticule
       objectReference: {fileID: 0}
+    - target: {fileID: 9161404354553914696, guid: 65feebe10d7a6704692515373c07977a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5707230514326725150, guid: 65feebe10d7a6704692515373c07977a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2478,11 +2484,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ReceiveShadows
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9161404354553914696, guid: 65feebe10d7a6704692515373c07977a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65feebe10d7a6704692515373c07977a, type: 3}

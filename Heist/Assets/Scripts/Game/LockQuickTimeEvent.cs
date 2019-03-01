@@ -1,6 +1,7 @@
 using System.Linq;
 using Rewired;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Game
 {
@@ -9,8 +10,8 @@ namespace Game
         [SerializeField] private Sprite[] _spriteButtons;
         [SerializeField] private Sprite[] _spriteStatus;
 
-        [SerializeField] private SpriteRenderer[] _buttonRenderer;
-        [SerializeField] private SpriteRenderer[] _statusRenderer;
+        [SerializeField] private Image[] _buttonRenderer;
+        [SerializeField] private Image[] _statusRenderer;
 
         [SerializeField] private Animator _animator;
 

@@ -17,7 +17,6 @@ namespace Character
 
         [SerializeField] private PlayerUIManager _playerUiManager;
 
-
         public Inventory Inventory => _inventory;
 
         public bool OverWeaponPickup
@@ -38,6 +37,8 @@ namespace Character
             }
         }
 
+        
+        
         public void OverPickup(PickupType pickupType, bool overPickup, Pickup.Pickup pickup)
         {
             _playerUiManager.ShowPickup(pickupType, overPickup);
@@ -90,5 +91,11 @@ namespace Character
                 _playerUiManager.ClearHint();
             }
         }
+
+        public void SetGold(int amount) => _playerUiManager.SetGold(amount);
+        
+        public QuickTimeEvent InitializeQuickTime(QuickTimeEvent quickTimeEvent) =>
+            _playerUiManager.InitializeQuickTime(quickTimeEvent);
+
     }
 }

@@ -37,17 +37,19 @@ namespace Character
 
         [SerializeField] [Range(10, 30)] private float _dashForce;
         [SerializeField] private float _dashTimer = 0.5f;
-        [SerializeField] private AudioClip _defeat;
+
+        [SerializeField] private Transform _hand;
+        [SerializeField] private float _interactDistance;
+        private bool _isReticuleNotNull;
 
         [Header("Voice Lines")] [SerializeField]
         private AudioClip _enterBank;
 
-        [SerializeField] private AudioClip _exitBank;
-        [SerializeField] private Transform _hand;
-        [SerializeField] private float _interactDistance;
-        private bool _isReticuleNotNull;
+
+        [SerializeField] private AudioClip _defeat;
         [SerializeField] private AudioClip _joke;
         [SerializeField] private AudioClip _loseGold;
+        [SerializeField] private AudioClip _exitBank;
 
         [Header("Sounds")] [SerializeField] private AudioClip _meleeAttack;
         [SerializeField] private AudioClip _pickupTrap;
@@ -178,9 +180,9 @@ namespace Character
 
         private void FixedUpdate()
         {
-            ///Direction based on FaceVector
-            if (Math.Abs(Control.FaceVector.magnitude) > 0.01f) OnMoveCancel?.Invoke(this, new EventArgs());
+            if (Math.Abs(Control.MoveVector.magnitude) > 0.01f) OnMoveCancel?.Invoke(this, new EventArgs());
 
+            ///Direction based on FaceVector
             var facing = Vector3.RotateTowards(transform.forward, Control.FaceVector, 1,
                 0.0f);
             transform.rotation = Quaternion.LookRotation(facing);
@@ -235,32 +237,35 @@ namespace Character
 
         private void Interact()
         {
-            RaycastHit hit;
-
             if (_baseCharacter.OverWeaponPickup || _baseCharacter.OverTrapPickup)
             {
                 _baseCharacter.PickupPickup();
             }
-            else if (Physics.Raycast(transform.position, transform.forward, out hit, _interactDistance))
+            else
             {
-                if (hit.transform.CompareTag("Door"))
+                var hits = Physics.RaycastAll(transform.position + Vector3.up, transform.forward, _interactDistance);
+
+                foreach (var hit in hits)
                 {
-                    var door = hit.transform.GetComponent<Door>();
-                    door.Open(this);
-                }
-                else if (hit.transform.CompareTag("GoldPile"))
-                {
-                    var gold = hit.transform.GetComponent<GoldPile>();
-                    gold.StartChanneling(this);
-                }
-                else if (hit.transform.CompareTag("MiniVault"))
-                {
-                    //todo
-                }
-                else if (hit.transform.CompareTag("Vault"))
-                {
-                    var vault = hit.transform.GetComponent<Vault>();
-                    vault.UseKey(BaseCharacter.Inventory.keys);
+                    if (hit.transform.CompareTag("Door"))
+                    {
+                        var door = hit.transform.GetComponent<Door>();
+                        door.Open(this);
+                    }
+                    else if (hit.transform.CompareTag("GoldPile"))
+                    {
+                        var gold = hit.transform.GetComponent<GoldPile>();
+                        gold.StartChanneling(this);
+                    }
+                    else if (hit.transform.CompareTag("MiniVault"))
+                    {
+                        //todo
+                    }
+                    else if (hit.transform.CompareTag("Vault"))
+                    {
+                        var vault = hit.transform.GetComponent<Vault>();
+                        vault.UseKey(BaseCharacter.Inventory.keys);
+                    }
                 }
             }
         }

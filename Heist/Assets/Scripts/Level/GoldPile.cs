@@ -2,6 +2,7 @@ using System;
 using Character;
 using Game;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 namespace Level
@@ -13,13 +14,15 @@ namespace Level
 
         private BarQuickTimeEvent _quickTime;
         [SerializeField] private int _transferAmount;
-        [SerializeField] private BarQuickTimeEvent barQuickTimeEvent;
+        [SerializeField] private int _totalRemaining;
+        [SerializeField] private BarQuickTimeEvent _barQuickTimeEvent;
 
         public void StartChanneling(PlayerControl player)
         {
-            _quickTime = Instantiate(barQuickTimeEvent);
+            _quickTime = player.BaseCharacter.InitializeQuickTime(_barQuickTimeEvent) as BarQuickTimeEvent;
             _quickTime.QuickTimeType = QuickTimeEvent.Type.GoldPile;
             _quickTime.Events += QuickTimeEventMonitor;
+            _quickTime.Generate();
             _player = player;
             _player.OnMoveCancel += CancelChannel;
         }
@@ -35,9 +38,13 @@ namespace Level
 
         private void QuickTimeEventMonitor(Object sender, QuickTimeEvent.QuickTimeEventArgs e)
         {
-            if (e.Result) _player.BaseCharacter.Inventory.GoldAmount += _transferAmount;
+            if (e.Result)
+            {
+                _player.BaseCharacter.Inventory.GoldAmount += _transferAmount;
+                _totalRemaining -= _transferAmount;
+            }
 
-            if (e.Complete)
+            if (e.Complete || _totalRemaining <= 0)
             {
                 _quickTime.Events -= QuickTimeEventMonitor;
                 Destroy(_quickTime.gameObject, 0.2f);

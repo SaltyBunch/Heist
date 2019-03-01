@@ -112,5 +112,10 @@ namespace UI
         {
             _playerHint.text = "";
         }
+
+        public QuickTimeEvent InitializeQuickTime(QuickTimeEvent quickTimeEvent)
+        {
+            return Instantiate(quickTimeEvent, _quickTimePosition);
+        }
     }
 }

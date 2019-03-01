@@ -2,6 +2,7 @@ using System;
 using Character;
 using Game;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 namespace Level
@@ -19,7 +20,7 @@ namespace Level
         private LockQuickTimeEvent _quickTime;
         [SerializeField] private Color _unlockedColor;
 
-        [SerializeField] private LockQuickTimeEvent lockQuickTimeEvent;
+        [SerializeField] private LockQuickTimeEvent _lockQuickTimeEvent;
 
         public bool Locked
         {
@@ -40,7 +41,7 @@ namespace Level
         {
             if (_locked)
             {
-                _quickTime = Instantiate(lockQuickTimeEvent);
+                _quickTime = player.BaseCharacter.InitializeQuickTime(_lockQuickTimeEvent) as LockQuickTimeEvent;
                 _quickTime.QuickTimeType = QuickTimeEvent.Type.GoldPile;
                 _quickTime.Events += QuickTimeEventMonitor;
                 _player = player;

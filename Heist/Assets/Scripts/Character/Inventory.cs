@@ -36,8 +36,17 @@ namespace Character
         private Item.Type _type;
 
         [SerializeField] private List<Weapon.Weapon> _weapon = new List<Weapon.Weapon>();
+        private int _goldAmount;
 
-        public int GoldAmount;
+        public int GoldAmount
+        {
+            get => _goldAmount;
+            set
+            {
+                _goldAmount = value;
+                _player.BaseCharacter.SetGold(_goldAmount);
+            }
+        }
 
         public Item SelectedItem { get; private set; }
 
@@ -54,7 +63,7 @@ namespace Character
                 {
                     //get direction of selection changed
                     var dir = (int) Mathf.Sign(value - _selectedIndex);
-                    if (val >= _weapon.Count && val < _hazard.Count + _weapon.Count && 
+                    if (val >= _weapon.Count && val < _hazard.Count + _weapon.Count &&
                         _selectedIndex >= _weapon.Count &&
                         _selectedIndex < _hazard.Count + _weapon.Count
                     ) //a hazard is selected and the prev selected is a hazard
@@ -64,7 +73,8 @@ namespace Character
                         for (var index = (_selectedIndex - _weapon.Count) % _hazard.Count;
                             index < _hazard.Count && index >= 0;
                             index += dir)
-                            if (_hazard[index].GetType() != _hazard[(_selectedIndex - _weapon.Count) % _hazard.Count].GetType())
+                            if (_hazard[index].GetType() !=
+                                _hazard[(_selectedIndex - _weapon.Count) % _hazard.Count].GetType())
                             {
                                 val = index + _weapon.Count;
                                 prevVal = true;

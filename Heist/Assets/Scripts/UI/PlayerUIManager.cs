@@ -107,5 +107,10 @@ namespace UI
                     throw new ArgumentOutOfRangeException(nameof(pickupType), pickupType, null);
             }
         }
+
+        public void ClearHint()
+        {
+            _playerHint.text = "";
+        }
     }
 }

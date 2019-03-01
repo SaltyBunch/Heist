@@ -107,7 +107,7 @@ namespace Character
                 _count = _type == Item.Type.Weapon
                     ? ((Weapon.Weapon) SelectedItem).Ammo
                     : _type == Item.Type.Hazard
-                        ? _hazard.Count(h => h == SelectedItem)
+                        ? _hazard.Count(h => h.GetType() == SelectedItem.GetType())
                         : 0; //todo better
                 SelectionChanged?.Invoke(this,
                     new SelectionChangedEventArgs

@@ -59,7 +59,6 @@ namespace Character
                         _inventory.GoldAmount += ((GoldPickup) pickup).AmountOfGold;
                         Destroy(pickup.gameObject);
                     }
-
                     break;
                 case PickupType.Key:
                     if (overPickup && pickup is KeyPickup keyPickup)
@@ -68,7 +67,6 @@ namespace Character
                         _inventory.keys[keyPickup.Key] = true;
                         if (destroy) Destroy(pickup.gameObject);
                     }
-
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(pickupType), pickupType, null);
@@ -81,11 +79,15 @@ namespace Character
             {
                 var weapon = (_currentlyOverPickup as WeaponPickup)?.WeaponGameObject;
                 if (_inventory.Add(weapon)) Destroy(_currentlyOverPickup.gameObject);
+                OverWeaponPickup = false;
+                _playerUiManager.ClearHint();
             }
             else if (OverTrapPickup)
             {
                 var hazard = (_currentlyOverPickup as HazardPickup)?.HazardGameObject;
                 if (_inventory.Add(hazard)) Destroy(_currentlyOverPickup.gameObject);
+                OverTrapPickup = false;
+                _playerUiManager.ClearHint();
             }
         }
     }

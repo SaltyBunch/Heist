@@ -142,9 +142,10 @@ namespace Character
 
             if (item is Weapon.Weapon weapon)
             {
+                GameManager.SetLayerOnAll(item.gameObject, GameManager.GetPlayerMask(_player.PlayerNumber, false));
                 if (_weapon.Contains(weapon))
                 {
-                    var temp = _weapon.Find(x => x == weapon);
+                    var temp = _weapon.Find(x => x.GetType() == weapon.GetType());
                     _weapon.Remove(temp);
                     Destroy(temp.gameObject);
                     _weapon.Add(weapon);
@@ -160,7 +161,7 @@ namespace Character
 
             if (item is Hazard.Hazard hazard)
             {
-                var count = _hazard.Count(h => h == hazard);
+                var count = _hazard.Count(h => h.GetType() == hazard.GetType());
                 if (count < 2)
                 {
                     var index = 0;
@@ -192,18 +193,26 @@ namespace Character
             switch (SelectedItem)
             {
                 case ElectricField electricField:
+                    electricField.transform.parent = null;
+                    electricField.SetFloor(
+                        LevelManager.HazardMask[LevelManager.LevelManagerRef.GetFloor(_player.PlayerNumber)]);
                     electricField.Place(transform.position + transform.forward * 2); //todo wall check
                     Remove(SelectedItem);
+                    electricField.gameObject.SetActive(true);
                     return;
                 case LethalLaser lethalLaser:
+                    lethalLaser.transform.parent = null;
+                    lethalLaser.SetFloor(
+                        LevelManager.HazardMask[LevelManager.LevelManagerRef.GetFloor(_player.PlayerNumber)]);
                     lethalLaser.Place(transform.position + transform.forward * 2); //todo wall check
                     Remove(SelectedItem);
+                    lethalLaser.gameObject.SetActive(true);
                     return;
                 case Baton baton:
                     //todo play baton animation
                     break;
                 case StunGun stunGun:
-                    stunGun.Attack();
+                    stunGun.Attack(_player.PlayerNumber);
                     _count = stunGun.Ammo;
                     if (_count == 0)
                     {
@@ -234,7 +243,7 @@ namespace Character
                     {
                         var weap = _weapon[i];
                         _weapon.RemoveAt(i);
-                        Destroy(weap);
+                        Destroy(weap.gameObject);
                         break;
                     }
                 }

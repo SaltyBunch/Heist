@@ -80,5 +80,11 @@ namespace Game
         {
             return bitShift ? 1 << (28 + playerNumber) : 28 + playerNumber;
         }
+
+        public static void SetLayerOnAll(GameObject obj, int layer) {
+            foreach (Transform trans in obj.GetComponentsInChildren<Transform>(true)) {
+                trans.gameObject.layer = layer;
+            }
+        }
     }
 }

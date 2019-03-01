@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,19 +15,6 @@ namespace Editor
                 asset.globalScale = 0.0625f;
             }
 
-        }
-
-
-        [MenuItem("SaltyBunch/Scale Objects")]
-        static void DoSomething()
-        {
-            foreach (string s in AssetDatabase.GetAllAssetPaths()
-                .Where(s => s.EndsWith(".obj", StringComparison.OrdinalIgnoreCase)))
-            {
-                var model = (ModelImporter)AssetDatabase.LoadAssetAtPath(s, typeof(ModelImporter));
-                Debug.Log("Changed "  + model.assetPath + " to file scale 0.0625");
-                model.globalScale = 0.0625f;
-            }
         }
     }
 }

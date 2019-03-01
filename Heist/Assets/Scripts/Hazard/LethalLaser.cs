@@ -59,8 +59,8 @@ namespace Hazard
 
                 transform.LookAt(rt);
 
-                Laser1.transform.position = rt;
-                Laser2.transform.position = lt;
+                Laser1.transform.position = rt + Vector3.up;
+                Laser2.transform.position = lt + Vector3.up;
 
 
                 Laser1.transform.LookAt(Laser2.transform);
@@ -80,8 +80,8 @@ namespace Hazard
 
                 transform.LookAt(fwd);
 
-                Laser1.transform.position = fwd;
-                Laser2.transform.position = bk;
+                Laser1.transform.position = fwd + Vector3.up;
+                Laser2.transform.position = bk + Vector3.up;
 
 
                 Laser1.transform.LookAt(Laser2.transform);
@@ -96,11 +96,12 @@ namespace Hazard
             }
         }
 
-        public void SetFloor(Floor floor, LayerMask layerMask)
+        public void SetFloor(LayerMask layerMask)
         {
-            Laser1.layer = layerMask;
+            gameObject.layer = layerMask;
+            GameManager.SetLayerOnAll(Laser1, layerMask);
             Laser2.layer = layerMask;
-            //todo laser particles
+            Laser2.transform.GetChild(0).gameObject.layer = layerMask;
         }
     }
 }

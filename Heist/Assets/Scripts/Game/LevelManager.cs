@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Audio;
 using Character;
 using Level;
@@ -32,7 +33,7 @@ namespace Game
         public NotifyType NotifyType { get; set; }
     }
 
-    [RequireComponent(typeof(AudioSource), typeof(FloorManager))]
+    [RequireComponent(typeof(AudioSource))]
     public class LevelManager : MonoBehaviour
     {
         public delegate void NotifyEventHandler(object sender, NotifyEventArgs e);
@@ -64,6 +65,22 @@ namespace Game
             {NotifyType.Dash, 10}, {NotifyType.Footstep, 5}, {NotifyType.TripTrap, 100}
         };
 
+        public static Dictionary<Floor, LayerMask> HazardMask = new Dictionary<Floor, LayerMask>()
+        {
+            {Floor.MainFloor, 11},
+            {Floor.Basement, 17}
+        };
+        public static Dictionary<Floor, LayerMask> PickupMask = new Dictionary<Floor, LayerMask>()
+        {
+            {Floor.MainFloor, 12},
+            {Floor.Basement, 18}
+        };
+        public static Dictionary<Floor, LayerMask> EnvironementMask = new Dictionary<Floor, LayerMask>()
+        {
+            {Floor.MainFloor, 10},
+            {Floor.Basement, 16}
+        };
+
         public static float Time => LevelManagerRef._time;
 
         [SerializeField] public FloorManager FloorManager { get; }
@@ -85,8 +102,8 @@ namespace Game
         {
             //var players = Rewired.ReInput.players.playerCount;
             var players = ReInput.controllers.joystickCount;
-            InitGame(4);
-            //InitGame(players);
+            //InitGame(4);
+            InitGame(players);
             _audioSource[_currentAudioSource].clip = _backgroundMusicInfiltration;
             _audioSource[_currentAudioSource].Play();
 
@@ -271,6 +288,17 @@ namespace Game
         protected virtual void OnNotifty(NotifyEventArgs e)
         {
             Notifty?.Invoke(this, e);
+        }
+
+        public Floor GetFloor(int playerNumber)
+        {
+            return _players[playerNumber].PlayerControl.Floor;
+        }
+
+        public int[] GetPlayers(Floor floor)
+        {
+            return _players.Where(x => x.PlayerControl.Floor == floor).Select(x => x.PlayerControl.PlayerNumber)
+                .ToArray();
         }
     }
 }

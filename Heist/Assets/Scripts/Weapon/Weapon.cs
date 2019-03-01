@@ -28,7 +28,7 @@ namespace Weapon
             throw new NotImplementedException();
         }
 
-        public void Attack()
+        public void Attack(int playerNum)
         {
         }
     }

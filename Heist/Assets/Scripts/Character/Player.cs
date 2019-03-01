@@ -1,4 +1,5 @@
 using System;
+using Game;
 using Pickup;
 using UI;
 using UnityEngine;
@@ -13,6 +14,8 @@ namespace Character
         private bool _overTrapPickup;
 
         private bool _overWeaponPickup;
+
+        [SerializeField] private PlayerUIManager _playerUiManager;
 
 
         public Inventory Inventory => _inventory;
@@ -37,6 +40,9 @@ namespace Character
 
         public void OverPickup(PickupType pickupType, bool overPickup, Pickup.Pickup pickup)
         {
+            _playerUiManager.ShowPickup(pickupType, overPickup);
+
+
             switch (pickupType)
             {
                 case PickupType.Weapon:
@@ -44,7 +50,7 @@ namespace Character
                     _currentlyOverPickup = overPickup ? pickup : null;
                     break;
                 case PickupType.Trap:
-                    OverWeaponPickup = overPickup;
+                    OverTrapPickup = overPickup;
                     _currentlyOverPickup = overPickup ? pickup : null;
                     break;
                 case PickupType.Gold:
@@ -53,6 +59,7 @@ namespace Character
                         _inventory.GoldAmount += ((GoldPickup) pickup).AmountOfGold;
                         Destroy(pickup.gameObject);
                     }
+
                     break;
                 case PickupType.Key:
                     if (overPickup && pickup is KeyPickup keyPickup)
@@ -61,6 +68,7 @@ namespace Character
                         _inventory.keys[keyPickup.Key] = true;
                         if (destroy) Destroy(pickup.gameObject);
                     }
+
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(pickupType), pickupType, null);
@@ -71,12 +79,12 @@ namespace Character
         {
             if (OverWeaponPickup)
             {
-                var weapon = ((WeaponPickup) _currentlyOverPickup).WeaponGameObject;
+                var weapon = (_currentlyOverPickup as WeaponPickup)?.WeaponGameObject;
                 if (_inventory.Add(weapon)) Destroy(_currentlyOverPickup.gameObject);
             }
             else if (OverTrapPickup)
             {
-                var hazard = ((HazardPickup) _currentlyOverPickup).HazardGameObject;
+                var hazard = (_currentlyOverPickup as HazardPickup)?.HazardGameObject;
                 if (_inventory.Add(hazard)) Destroy(_currentlyOverPickup.gameObject);
             }
         }

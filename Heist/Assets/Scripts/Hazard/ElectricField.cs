@@ -105,10 +105,11 @@ namespace Hazard
             }
         }
 
-        public void SetFloor(Floor floor, LayerMask layerMask)
+        public void SetFloor(LayerMask layerMask)
         {
-            throw new System.NotImplementedException();
-            //todo electric field
+            gameObject.layer = layerMask;
+            GameManager.SetLayerOnAll(Electric1, layerMask);
+            Electric2.layer = layerMask;
         }
     }
 }

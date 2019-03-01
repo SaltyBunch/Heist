@@ -1,3 +1,4 @@
+using Game;
 using UnityEngine;
 
 namespace Weapon
@@ -8,9 +9,10 @@ namespace Weapon
         [SerializeField] public Vector3 Barrel;
 
 
-        public new void Attack()
+        public new void Attack(int playerNum)
         {
             var proj = Instantiate(_projectile, transform.TransformPoint(Barrel), transform.rotation);
+            proj.gameObject.layer = GameManager.GetPlayerMask(playerNum, false);
             proj.Shoot();
             Ammo--;
         }

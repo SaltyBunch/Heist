@@ -12,10 +12,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stungun Weapon Pickup
       objectReference: {fileID: 0}
+    - target: {fileID: 5578324402977719797, guid: 19631ef386ff7904494863fc594ac8e7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6334097178155128398, guid: 19631ef386ff7904494863fc594ac8e7,
+        type: 3}
+      propertyPath: WeaponGameObject
+      value: 
+      objectReference: {fileID: 5136496059663630737, guid: 26d8493148b950447a1a7d8b5306d00d,
+        type: 3}
     - target: {fileID: 3378029642818968833, guid: 19631ef386ff7904494863fc594ac8e7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.9
       objectReference: {fileID: 0}
     - target: {fileID: 3378029642818968833, guid: 19631ef386ff7904494863fc594ac8e7,
         type: 3}
@@ -25,7 +36,7 @@ PrefabInstance:
     - target: {fileID: 3378029642818968833, guid: 19631ef386ff7904494863fc594ac8e7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.09262431
+      value: -12.18
       objectReference: {fileID: 0}
     - target: {fileID: 3378029642818968833, guid: 19631ef386ff7904494863fc594ac8e7,
         type: 3}
@@ -67,11 +78,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6334097178155128398, guid: 19631ef386ff7904494863fc594ac8e7,
-        type: 3}
-      propertyPath: WeaponGameObject
-      value: 
-      objectReference: {fileID: 5136496059663630737, guid: 26d8493148b950447a1a7d8b5306d00d,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19631ef386ff7904494863fc594ac8e7, type: 3}

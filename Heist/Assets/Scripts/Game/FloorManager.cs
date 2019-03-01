@@ -14,8 +14,6 @@ namespace Game
     {
         [SerializeField] public Floor Floor;
 
-        [SerializeField] public LayerMask[] Layers;
-
         private void OnTriggerEnter(Collider other)
         {
             if (other.transform.CompareTag("Player"))
@@ -32,21 +30,21 @@ namespace Game
                 var hazard = floorTransform.GetComponent<Hazard.Hazard>();
                 if (hazard is LethalLaser laser)
                 {
-                    laser.SetFloor(floor, Layers[1]);
+                    laser.SetFloor(LevelManager.HazardMask[floor]);
                 }
                 else if (hazard is ElectricField electric)
                 {
-                    electric.SetFloor(floor, Layers[1]);
+                    electric.SetFloor(LevelManager.HazardMask[floor]);
                 }
             }
             else if (floorTransform.CompareTag("Pickup"))
             {
                 var pickup = floorTransform.GetComponent<Pickup.Pickup>();
-                //todo pickup
+                GameManager.SetLayerOnAll(pickup.gameObject, LevelManager.PickupMask[floor]);
             }
             else
             {
-                floorTransform.gameObject.layer = Layers[0];
+                floorTransform.gameObject.layer = LevelManager.EnvironementMask[floor];
                 var children = floorTransform.childCount;
                 for (int i = 0; i < children; i++)
                 {

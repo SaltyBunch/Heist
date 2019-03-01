@@ -17,7 +17,7 @@ namespace Editor
 
             if (GUILayout.Button("Fire"))
                 if (stunGun != null)
-                    stunGun.Attack();
+                    stunGun.Attack(1);
         }
 
         private void OnSceneGUI()

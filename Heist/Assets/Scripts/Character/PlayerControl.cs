@@ -65,6 +65,7 @@ namespace Character
         public Rewired.Player Player;
 
         public int PlayerNumber;
+        public Floor Floor = Floor.MainFloor;
         public Player BaseCharacter => _baseCharacter;
 
         internal Control Control
@@ -113,7 +114,7 @@ namespace Character
                                " with character choice " + GameManager.PlayerChoice[PlayerNumber]);
             }
 
-            if (_reticule != null) _reticule.layer = GameManager.GetPlayerMask(PlayerNumber, false);
+            if (_reticule != null) GameManager.SetLayerOnAll(_reticule, GameManager.GetPlayerMask(PlayerNumber, false));
             //if (_reticule != null) _reticule = Instantiate(_reticule, this.transform);
 
             _isReticuleNotNull = _reticule != null;

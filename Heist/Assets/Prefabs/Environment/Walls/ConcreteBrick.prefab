@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7545178526857855793}
   - component: {fileID: 243656492711919715}
   m_Layer: 0
-  m_Name: basementWall
+  m_Name: ConcreteBrick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

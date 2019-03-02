@@ -20,6 +20,8 @@ namespace Game
             {
                 var player = other.gameObject.GetComponentInParent<PlayerGameObject>();
                 player.Camera.SwitchFloors(Floor);
+                player.PlayerControl.Floor = Floor;
+                LevelManager.LevelManagerRef.UpdateCameras();
             }
         }
 

@@ -26,8 +26,10 @@ namespace Camera
         {
             MainFloorCamera.transform.localPosition = Vector3.back * _offset + Vector3.up * _offset;
 
-            MainFloorCamera.cullingMask += GameManager.GetPlayerMask(_playerControl.PlayerNumber, true);
-            BasementCamera.cullingMask += GameManager.GetPlayerMask(_playerControl.PlayerNumber, true);
+            MainFloorCamera.cullingMask = MainFloorCamera.cullingMask |
+                                          GameManager.GetPlayerMask(_playerControl.PlayerNumber, true);
+            BasementCamera.cullingMask = BasementCamera.cullingMask |
+                                         GameManager.GetPlayerMask(_playerControl.PlayerNumber, true);
         }
 
         private void Update()
@@ -70,6 +72,43 @@ namespace Camera
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(floor), floor, null);
+            }
+        }
+
+        public void ShowPlayers(int[] showPlayer, int[] hidePlayer)
+        {
+            switch (_playerControl.Floor)
+            {
+                case Floor.MainFloor:
+                    foreach (var player in showPlayer)
+                    {
+                        MainFloorCamera.cullingMask =
+                            MainFloorCamera.cullingMask | GameManager.GetPlayerMask(player, true);
+                    }
+
+                    foreach (var player in hidePlayer)
+                    {
+                        BasementCamera.cullingMask =
+                            BasementCamera.cullingMask & ~GameManager.GetPlayerMask(player, true);
+                    }
+
+                    break;
+                case Floor.Basement:
+                    foreach (var player in showPlayer)
+                    {
+                        BasementCamera.cullingMask =
+                            BasementCamera.cullingMask | GameManager.GetPlayerMask(player, true);
+                    }
+
+                    foreach (var player in hidePlayer)
+                    {
+                        MainFloorCamera.cullingMask =
+                            MainFloorCamera.cullingMask & ~GameManager.GetPlayerMask(player, true);
+                    }
+
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
     }

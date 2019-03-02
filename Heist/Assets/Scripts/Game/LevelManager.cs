@@ -282,8 +282,12 @@ namespace Game
 
                 _players[i].PlayerUiManager.SetPosition(_players[i].Camera.MainFloorCamera.rect, i);
 
+                _players[i].PlayerControl.Floor = Floor.MainFloor;
+
                 _players[i].PlayerUiManager.SetCharacter(GameManager.PlayerChoice[i]);
             }
+
+            UpdateCameras();
 
             #endregion
 
@@ -348,6 +352,15 @@ namespace Game
             {
                 var player = other.GetComponentInParent<PlayerControl>();
                 PlayerLeaving[player.PlayerNumber] = true;
+            }
+        }
+
+        public void UpdateCameras()
+        {
+            foreach (var player in _players)
+            {
+                player.Camera.ShowPlayers(GetPlayers(player.PlayerControl.Floor),
+                    GetPlayers(player.PlayerControl.Floor == Floor.MainFloor ? Floor.Basement : Floor.MainFloor));
             }
         }
     }

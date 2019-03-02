@@ -1,8 +1,11 @@
 using System;
+using System.Collections;
 using System.Linq;
+using Character;
 using Rewired;
 using UnityEngine;
 using UnityEngine.UI;
+using Player = Rewired.Player;
 using Random = UnityEngine.Random;
 
 namespace Game
@@ -46,8 +49,7 @@ namespace Game
                     Result = true, State = (int) (_index * 100), Type = QuickTimeType
                 });
                 Debug.Log("Success");
-                Generate();
-                //todo update ui
+                StartCoroutine(FlashColour(Color.green));
             }
             else
             {
@@ -56,15 +58,27 @@ namespace Game
                 {
                     Result = false, State = (int) (_index * 100), Type = QuickTimeType
                 });
-                Generate();
-                //todo update ui
+                StartCoroutine(FlashColour(Color.red));
             }
+        }
+
+        private IEnumerator FlashColour(Color color)
+        {
+            _pointer.color = color;
+            yield return new WaitForSeconds(0.1f);
+            _pointer.color = Color.white;
+            Generate();
+        }
+
+        public void Generate(PlayerControl player)
+        {
+            _player = player.Player;
+            Generate();
         }
 
         public void Generate()
         {
             if (_player == null) _player = ReInput.players.Players.First();
-            if (Math.Abs(_range) < 0.05f) _range = Random.Range(0, .25f);
 
             _greenArea.fillOrigin = Random.Range(0, 4);
             _greenArea.fillAmount = _range;

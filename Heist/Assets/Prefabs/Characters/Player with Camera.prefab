@@ -821,7 +821,6 @@ MonoBehaviour:
   _hazard: []
   _player: {fileID: 498303954121022594}
   _weapon: []
-  GoldAmount: 0
 --- !u!114 &498303954121022594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -850,13 +849,13 @@ MonoBehaviour:
     Pause: 0
   _dashForce: 15.2
   _dashTimer: 0.5
-  _defeat: {fileID: 0}
-  _enterBank: {fileID: 0}
-  _exitBank: {fileID: 0}
   _hand: {fileID: 3883993597796065074}
   _interactDistance: 2
+  _enterBank: {fileID: 0}
+  _defeat: {fileID: 0}
   _joke: {fileID: 0}
   _loseGold: {fileID: 0}
+  _exitBank: {fileID: 0}
   _meleeAttack: {fileID: 0}
   _pickupTrap: {fileID: 0}
   _pickupWeapon: {fileID: 0}
@@ -2435,15 +2434,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3050924102516203502}
     m_Modifications:
-    - target: {fileID: 8566115511321169219, guid: 65feebe10d7a6704692515373c07977a,
-        type: 3}
-      propertyPath: m_Name
-      value: Reticule
-      objectReference: {fileID: 0}
     - target: {fileID: 9161404354553914696, guid: 65feebe10d7a6704692515373c07977a,
         type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8566115511321169219, guid: 65feebe10d7a6704692515373c07977a,
+        type: 3}
+      propertyPath: m_Name
+      value: Reticule
       objectReference: {fileID: 0}
     - target: {fileID: 5707230514326725150, guid: 65feebe10d7a6704692515373c07977a,
         type: 3}

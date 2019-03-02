@@ -22,7 +22,8 @@ namespace Level
             _quickTime = player.BaseCharacter.InitializeQuickTime(_barQuickTimeEvent) as BarQuickTimeEvent;
             _quickTime.QuickTimeType = QuickTimeEvent.Type.GoldPile;
             _quickTime.Events += QuickTimeEventMonitor;
-            _quickTime.Generate();
+            _quickTime.SetDexterity(player.BaseCharacter.Stats.Dexterity);
+            _quickTime.Generate(player);
             _player = player;
             _player.OnMoveCancel += CancelChannel;
         }

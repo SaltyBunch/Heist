@@ -7,12 +7,12 @@ namespace Weapon
     [RequireComponent(typeof(AudioSource))]
     public class Weapon : Item, IEquatable<Weapon>
     {
-        [SerializeField] private AudioSource _audioSource;
-        [SerializeField] private AudioClip _fireSound;
-        [SerializeField] private AudioClip _hitSound;
-        [SerializeField] private AudioClip _outOfAmmoSound;
+        [SerializeField] internal AudioSource _audioSource;
+        [SerializeField] internal AudioClip _fireSound;
+        [SerializeField] internal AudioClip _hitSound;
+        [SerializeField] internal AudioClip _outOfAmmoSound;
 
-        [SerializeField] private AudioClip _pickupSound;
+        [SerializeField] internal AudioClip _pickupSound;
         [SerializeField] [Range(5, 30)] private int _pushForce;
 
 

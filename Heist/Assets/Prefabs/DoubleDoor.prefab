@@ -64,6 +64,136 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &4047256488474890512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4940472921679953800}
+  - component: {fileID: 2458604954741245228}
+  - component: {fileID: 6784035191865630563}
+  - component: {fileID: 2120704878961709117}
+  - component: {fileID: 307854390899834179}
+  - component: {fileID: 226981932467696880}
+  m_Layer: 0
+  m_Name: OpenDoor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4940472921679953800
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4047256488474890512}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.219, z: 0.2913}
+  m_LocalScale: {x: 2.4999998, y: 2.04, z: 1.8702686}
+  m_Children: []
+  m_Father: {fileID: 2952226937105562392}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &2458604954741245228
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4047256488474890512}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &6784035191865630563
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4047256488474890512}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!65 &2120704878961709117
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4047256488474890512}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &307854390899834179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4047256488474890512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d24985507d918141b98993d5d7c0a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openName: DoubleDoorL
+  closeName: DoubleDoorLClose
+  animator: {fileID: 9070651017085030306}
+  openName2: DoubleDoorL
+  closeName2: DoubleDoorLClose
+  animator2: {fileID: 6064577223651374801}
+  canOpen: 1
+--- !u!114 &226981932467696880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4047256488474890512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c6fc016333bed4dbd1bcb0fa2bff8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _light: {fileID: 0}
+  _locked: 0
+  _lockedColor: {r: 0, g: 0, b: 0, a: 0}
+  _door: {fileID: 307854390899834179}
+  _unlockedColor: {r: 0, g: 0, b: 0, a: 0}
+  lockQuickTimeEvent: {fileID: 0}
 --- !u!65 &3036105997235539882
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -158,6 +288,7 @@ Transform:
   - {fileID: 6712750591205786813}
   - {fileID: 9204366120087781566}
   - {fileID: 4468090520701200730}
+  - {fileID: 4940472921679953800}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -168,10 +299,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6712750591205786813}
     m_Modifications:
-    - target: {fileID: 100002, guid: 83cf67c7c0336d7429e434d4d858e85e, type: 3}
-      propertyPath: m_Name
-      value: DoubleDoor02 (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 83cf67c7c0336d7429e434d4d858e85e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -216,6 +343,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 83cf67c7c0336d7429e434d4d858e85e, type: 3}
+      propertyPath: m_Name
+      value: DoubleDoor02 (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83cf67c7c0336d7429e434d4d858e85e, type: 3}
 --- !u!4 &1736164163293066120 stripped
@@ -237,10 +368,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4468090520701200730}
     m_Modifications:
-    - target: {fileID: 100002, guid: 83cf67c7c0336d7429e434d4d858e85e, type: 3}
-      propertyPath: m_Name
-      value: DoubleDoor02
-      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 83cf67c7c0336d7429e434d4d858e85e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -285,6 +412,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 83cf67c7c0336d7429e434d4d858e85e, type: 3}
+      propertyPath: m_Name
+      value: DoubleDoor02
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83cf67c7c0336d7429e434d4d858e85e, type: 3}
 --- !u!4 &5009107724621474966 stripped
@@ -306,10 +437,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2952226937105562392}
     m_Modifications:
-    - target: {fileID: 100002, guid: 8d3200fdee4611643adaa9b127cd42c8, type: 3}
-      propertyPath: m_Name
-      value: DoubleDoorFrame02
-      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 8d3200fdee4611643adaa9b127cd42c8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.0146045685
@@ -353,6 +480,10 @@ PrefabInstance:
     - target: {fileID: 400002, guid: 8d3200fdee4611643adaa9b127cd42c8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 8d3200fdee4611643adaa9b127cd42c8, type: 3}
+      propertyPath: m_Name
+      value: DoubleDoorFrame02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d3200fdee4611643adaa9b127cd42c8, type: 3}

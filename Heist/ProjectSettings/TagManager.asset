@@ -7,10 +7,7 @@ TagManager:
   - SpawnPoint
   - Hazard
   - Pickup
-  - GoldPile
   - Door
-  - Vault
-  - MiniVault
   layers:
   - Default
   - TransparentFX
@@ -32,7 +29,7 @@ TagManager:
   - BasementHazard
   - BasementPickup
   - 
-  - 
+  - FogOfWar
   - 
   - 
   - 

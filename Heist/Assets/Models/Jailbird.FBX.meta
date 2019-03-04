@@ -1,14 +1,33 @@
 fileFormatVersion: 2
-guid: c32d349e39b9b8a46b880f5efb28ccd8
+guid: 54aba18397fe43e41839f3e458e0b431
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: No Name
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: body
+    100000: body
+    100002: hair\
+    100004: //RootNode
+    100006: Object003
+    100008: ref
+    400000: body
+    400002: hair\
+    400004: //RootNode
+    400006: Object003
+    400008: ref
+    2100000: 'Material #27'
+    2100002: 01 - Default
+    2100004: 'Material #30'
+    2300000: body
+    2300002: hair\
+    2300004: Object003
+    2300006: ref
+    3300000: body
+    3300002: hair\
+    3300004: Object003
+    3300006: ref
+    4300000: ref
+    4300002: body
+    4300004: hair\
+    4300006: Object003
   externalObjects: {}
   materials:
     importMaterials: 1

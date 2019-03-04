@@ -1,8 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Camera;
+using Character;
+using Rewired;
+using Player = Rewired.Player;
 
-namespace Character
+namespace Controller
 {
 
     public class AnimationControl : MonoBehaviour
@@ -10,16 +14,40 @@ namespace Character
         [SerializeField] Animator animator;
         [SerializeField] string runAnim;
         [SerializeField] string dashAnim;
-        private readonly int m_speed;
+        [SerializeField] string idleAnim;
+        [SerializeField] private PlayerControl _playerControl;
 
-        public void Run(float speed)
+        public Player Player;
+        private bool isRunning = false;
+
+        private void Start()
         {
-            animator.Play(runAnim);
+            Player = _playerControl.Player;
+            if (Player == null) Player = ReInput.players.GetPlayer(_playerControl.PlayerNumber - 1);
         }
 
-        public void Dash()
+
+        public void Update()
         {
-            animator.Play(dashAnim, 0, 0);
+            float move = Mathf.Abs( Player.GetAxis("Move Vertical")) + Mathf.Abs(Player.GetAxis("Move Horizontal"));
+
+
+            if (!isRunning && move != 0)
+            {
+                animator.CrossFadeInFixedTime(runAnim, 0.1f);
+                isRunning = true;
+            }
+
+            if (isRunning && move == 0)
+            {
+                animator.CrossFadeInFixedTime(idleAnim, 0.3f);
+                isRunning = false;
+            }
+
+            if (Player.GetButton("Dash"))
+            {
+                animator.CrossFadeInFixedTime(dashAnim, 0.1f);
+            }
         }
 
     }

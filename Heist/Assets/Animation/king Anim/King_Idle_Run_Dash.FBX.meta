@@ -195,8 +195,8 @@ ModelImporter:
     - serializedVersion: 16
       name: Dash
       takeName: Take 001
-      firstFrame: 633
-      lastFrame: 654
+      firstFrame: 636.12
+      lastFrame: 652
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

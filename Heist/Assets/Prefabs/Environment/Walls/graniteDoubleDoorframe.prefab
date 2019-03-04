@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 1193944318993040010}
   - component: {fileID: 2475146186346845381}
   - component: {fileID: 2963753076893623108}
+  - component: {fileID: 3895535815595645413}
   m_Layer: 0
   m_Name: HingePoint (1)
   m_TagString: Untagged
@@ -169,6 +170,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 94
   m_CollisionDetection: 0
+--- !u!95 &3895535815595645413
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120948992666834551}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aa2ebb2da9a0df2499e9314d7c5173ca, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4974333078092951872
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,6 +354,7 @@ GameObject:
   - component: {fileID: 5131452494611303617}
   - component: {fileID: 6694419863298360198}
   - component: {fileID: 6544867390408239848}
+  - component: {fileID: 4469577432750932732}
   m_Layer: 0
   m_Name: HingePoint
   m_TagString: Untagged
@@ -385,3 +406,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 94
   m_CollisionDetection: 0
+--- !u!95 &4469577432750932732
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8238130760265236169}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6c2e6e2952443964c966c840e1fa5097, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

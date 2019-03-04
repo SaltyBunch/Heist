@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Game;
 using Level;
+using Rewired.Data.Mapping;
 using UI;
 using UnityEngine;
 
@@ -126,10 +127,8 @@ namespace Character
             ///////////////////////////////////////////////////
 
             gameObject.layer = GameManager.GetPlayerMask(PlayerNumber, false);
-            for (int i = 0; i < gameObject.transform.childCount; i++)
-            {
-                transform.GetChild(i).gameObject.layer = gameObject.layer;
-            }
+
+            GameManager.SetLayerOnAll(gameObject, gameObject.layer);
 
 
             BaseCharacter.HealthChanged += BaseCharacterOnHealthChanged;
@@ -180,6 +179,13 @@ namespace Character
 
         private void FixedUpdate()
         {
+            if (Math.Abs(Control.FaceVector.magnitude) < 0.001f)
+            {
+                var control = Control;
+                control.FaceVector = Control.MoveVector;
+                Control = control;
+            }
+
             if (Math.Abs(Control.MoveVector.magnitude) > 0.01f) OnMoveCancel?.Invoke(this, new EventArgs());
 
             ///Direction based on FaceVector
@@ -243,8 +249,7 @@ namespace Character
             }
             else
             {
-                var hits = Physics.RaycastAll(transform.position + Vector3.up, transform.forward, _interactDistance);
-
+                var hits = Physics.OverlapSphere(transform.position, _interactDistance);
                 foreach (var hit in hits)
                 {
                     if (hit.transform.CompareTag("Door"))

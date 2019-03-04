@@ -49,11 +49,14 @@ MonoBehaviour:
     type: 3}
   _backgroundMusicLockdown: {fileID: 0}
   _goldMultiplier: 10
-  _playerGo: {fileID: 8218528600448460733, guid: a674baf7b904b7b4eadebed851f3d83b,
+  _playerGo: {fileID: 6986696923655994140, guid: f6115e0dd9298c84ab7a5c8434db458c,
     type: 3}
   _spawnpoints: []
   _stunMultiplier: 100
+  _endGameAtTime: 0
   _vaultTimer: 0
+  _gameEndArea: {fileID: 0}
+  playerModels: []
 --- !u!82 &8199425501971676588
 AudioSource:
   m_ObjectHideFlags: 0

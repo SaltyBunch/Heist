@@ -23,7 +23,6 @@ namespace Controller
         private void Start()
         {
             Player = _playerControl.Player;
-            if (Player == null) Player = ReInput.players.GetPlayer(_playerControl.PlayerNumber - 1);
         }
 
 

@@ -48,7 +48,6 @@ namespace Game
                 {
                     Result = true, State = (int) (_index * 100), Type = QuickTimeType
                 });
-                Debug.Log("Success");
                 StartCoroutine(FlashColour(Color.green));
             }
             else
@@ -80,9 +79,10 @@ namespace Game
         {
             if (_player == null) _player = ReInput.players.Players.First();
 
-            _greenArea.fillOrigin = Random.Range(0, 4);
+
+            _greenArea.fillOrigin = (Random.Range(1, 4) + _greenArea.fillOrigin) % 4;
             _greenArea.fillAmount = _range;
-            _greenArea.fillClockwise = Random.Range(0, 2) == 0;
+            _greenArea.fillClockwise = false;
 
             _dir = 1;
         }
@@ -118,9 +118,6 @@ namespace Game
             {
                 origin = (startAngle + _range / 2) % 1;
             }
-
-            Debug.Log("Start: " + (origin - _range / 2) + " End: " + (origin + _range / 2) + " Index: " + _index);
-
             if (Math.Abs(_index - origin) < _range || Math.Abs((1 - _index) - origin) < _range)
             {
                 return true;
@@ -134,7 +131,7 @@ namespace Game
             switch (dexterity)
             {
                 case 2:
-                    _range = 0.5f;
+                    _range = 0.05f;
                     break;
                 case 3:
                     _range = 0.1f;
@@ -158,7 +155,6 @@ namespace Game
                 };
             }
 
-            //pingpong on _index
             _index += Time.deltaTime * _dir;
 
             if (_index > 1) _index %= 1;

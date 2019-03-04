@@ -14,7 +14,7 @@ namespace Weapon
             _audioSource.clip = _fireSound;
             _audioSource.Play();
             var proj = Instantiate(_projectile, transform.TransformPoint(Barrel), transform.rotation);
-            proj.gameObject.layer = GameManager.GetPlayerMask(playerNum, false);
+            GameManager.SetLayerOnAll(proj.gameObject, GameManager.GetPlayerMask(playerNum, false));
             proj.Shoot();
             Ammo--;
         }

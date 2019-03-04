@@ -999,6 +999,7 @@ MonoBehaviour:
   runAnim: 
   dashAnim: 
   idleAnim: 
+  _playerControl: {fileID: 498303954121022594}
 --- !u!1 &3050924102963311526
 GameObject:
   m_ObjectHideFlags: 0
@@ -1065,8 +1066,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3050924103313246901}
-  - component: {fileID: 3050924103313246902}
-  - component: {fileID: 3050924103313246903}
   - component: {fileID: 3050924103313246900}
   m_Layer: 0
   m_Name: Capsule
@@ -1089,51 +1088,6 @@ Transform:
   m_Father: {fileID: 3050924102516203502}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3050924103313246902
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3050924103313246898}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &3050924103313246903
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3050924103313246898}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
 --- !u!136 &3050924103313246900
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2451,15 +2405,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3050924102516203502}
     m_Modifications:
-    - target: {fileID: 9161404354553914696, guid: 65feebe10d7a6704692515373c07977a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8566115511321169219, guid: 65feebe10d7a6704692515373c07977a,
         type: 3}
       propertyPath: m_Name
       value: Reticule
+      objectReference: {fileID: 0}
+    - target: {fileID: 9161404354553914696, guid: 65feebe10d7a6704692515373c07977a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5707230514326725150, guid: 65feebe10d7a6704692515373c07977a,
         type: 3}

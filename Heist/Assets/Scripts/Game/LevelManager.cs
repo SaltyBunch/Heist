@@ -331,9 +331,35 @@ namespace Game
                 StartCoroutine(AudioHelper.CrossFade(_audioSource[_currentAudioSource],
                     _audioSource[(_currentAudioSource + 1) % _audioSource.Length], _backgroundMusicLockdown, 5));
             _currentAudioSource = (_currentAudioSource + 1) % _audioSource.Length;
-            yield return new WaitForSeconds(_vaultTimer);
+
+            foreach (var player in _players)
+            {
+                player.PlayerUiManager.Siren.SetActive(true);
+            }
+
+           
+
             callVault();
             _vaultOpen = true;
+            
+            var time = _vaultTimer;
+            do
+            {
+                time -= 1;
+                foreach (var player in _players)
+                {
+                    player.PlayerUiManager.VaultTimer.text = time.ToString();
+                }
+
+                yield return new WaitForSeconds(1);
+            } while (time > 0);
+
+            foreach (var player in _players)
+            {
+                player.PlayerUiManager.VaultTimer.text = "";
+            }
+            
+            //todo hey david, make it go to the main menu pls
         }
 
         public void Notify(Vector3 position, NotifyType notifyType)

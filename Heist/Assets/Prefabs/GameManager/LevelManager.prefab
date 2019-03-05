@@ -54,7 +54,7 @@ MonoBehaviour:
   _spawnpoints: []
   _stunMultiplier: 100
   _endGameAtTime: 0
-  _vaultTimer: 0
+  _vaultTimer: 120
   _gameEndArea: {fileID: 0}
   playerModels: []
 --- !u!82 &8199425501971676588

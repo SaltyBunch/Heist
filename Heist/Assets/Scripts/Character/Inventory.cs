@@ -2,7 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Game;
 using Hazard;
+using Rewired;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.Serialization;
 using Weapon;
 
@@ -229,6 +231,20 @@ namespace Character
 
                     return;
                 case Baton baton:
+                    var objects = Physics.OverlapSphere(transform.position, 2);
+                    foreach (var o in objects)
+                    {
+                        if (o.CompareTag("Player") || o.CompareTag("Drone"))
+                        {
+                            var character = o.GetComponentInParent<Character>();
+                            if (character.gameObject.layer != this.gameObject.layer)
+                            {
+                                character.Stacks += 1;
+                                character.Knockback(transform);
+                            }
+                        }
+                    }
+
                     //todo play baton animation
                     break;
                 case StunGun stunGun:

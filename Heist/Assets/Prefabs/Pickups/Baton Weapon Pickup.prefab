@@ -81,6 +81,7 @@ GameObject:
   - component: {fileID: 1766515216260422706}
   - component: {fileID: 8367806847503875758}
   - component: {fileID: 4749442151483431866}
+  - component: {fileID: 4594123752195356385}
   m_Layer: 0
   m_Name: Baton Weapon Pickup
   m_TagString: Untagged
@@ -162,6 +163,21 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &4594123752195356385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5578324402977719797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cdf17f6310f44208421190e5062fb1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pickupType: 0
+  WeaponGameObject: {fileID: 1188453641327853641, guid: 1eb84dc68d0ed4b4aa2200a4057ea4f3,
+    type: 3}
 --- !u!1001 &8338069852379860723
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -175,15 +191,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cc308accb7b9936449f7a6de6e42e594, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.23024422
+      value: 0.44135
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cc308accb7b9936449f7a6de6e42e594, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.44600517
+      value: -1.0514
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cc308accb7b9936449f7a6de6e42e594, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.06475139
+      value: 0.064751
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cc308accb7b9936449f7a6de6e42e594, type: 3}
       propertyPath: m_LocalRotation.x
@@ -219,15 +235,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cc308accb7b9936449f7a6de6e42e594, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.625
+      value: 5.0625
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cc308accb7b9936449f7a6de6e42e594, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.625
+      value: 5.0625
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cc308accb7b9936449f7a6de6e42e594, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.625
+      value: 5.0625
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc308accb7b9936449f7a6de6e42e594, type: 3}

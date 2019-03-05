@@ -12,11 +12,7 @@ namespace Character
         {
             if (agent == null)
                 agent = GetComponent<NavMeshAgent>();
-        }
-
-        internal override void Update()
-        {
-            base.Update();
+            base.Start();
         }
     }
 }

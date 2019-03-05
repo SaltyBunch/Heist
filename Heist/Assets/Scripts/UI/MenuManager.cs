@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Game;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,7 +13,7 @@ namespace UI
 
         private GameObject current;
         [SerializeField] private EventSystem ES;
-        private readonly string GameScene = "SampleScene";
+        private readonly string GameScene = "Bank 2.0";
         private int inGame;
         [SerializeField] private LoadingScreen loadingScreen;
         [SerializeField] private MasterMixer masterMixer;
@@ -47,12 +48,15 @@ namespace UI
 
         public void ToMain()
         {
+            _mainCamera.gameObject.SetActive(true);
+            inGame = 0;
+            selction.ForEach(x => x.ready = false);
             StartCoroutine(UNLoadScene());
             if (current) current.SetActive(false);
             menu.gameObject.SetActive(true);
             ES.SetSelectedGameObject(menu.mainMenuButton);
             current = menu.gameObject;
-            inGame = 0;
+            
         }
 
         private IEnumerator UNLoadScene()
@@ -74,9 +78,11 @@ namespace UI
 
         public void RestartGame()
         {
-            LoadingScreen();
-            StartCoroutine(LoadScene());
             inGame = 1;
+            LoadingScreen();
+            menu.ExitPlayerSelect();
+            StartCoroutine(LoadScene());
+            
 
             //set playerimage and player names
         }
@@ -103,6 +109,12 @@ namespace UI
         {
             if (current) current.SetActive(false);
             //victoryScreen.Initialize(playernames, playersImages);  TODO with proepr inputs
+            foreach (var play in LevelManager.LevelManagerRef.Players)
+            {
+                Destroy(play.gameObject);
+            }
+
+            _mainCamera.gameObject.SetActive(true);
             victoryScreen.gameObject.SetActive(true);
             current = victoryScreen.gameObject;
             inGame = 2;

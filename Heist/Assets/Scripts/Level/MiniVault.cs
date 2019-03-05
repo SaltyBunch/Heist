@@ -55,12 +55,7 @@ namespace Level
             if (e.Complete)
             {
                 SpawnObjects();
-
-                _quickTime.Events -= QuickTimeEventMonitor;
-                Destroy(_quickTime.gameObject, 0.2f);
-                _quickTime = null;
-                _player.OnMoveCancel -= CancelChannel;
-                _player = null;
+                CancelChannel(sender, e);
             }
         }
 

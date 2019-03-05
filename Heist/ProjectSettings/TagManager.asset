@@ -11,6 +11,7 @@ TagManager:
   - GoldPile
   - MiniVault
   - Vault
+  - Drone
   layers:
   - Default
   - TransparentFX

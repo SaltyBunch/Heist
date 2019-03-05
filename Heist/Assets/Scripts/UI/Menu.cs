@@ -40,6 +40,7 @@ namespace UI
         {
             LoadUIControls();
             currentMenu = Menus.Main;
+            PlayerPrefs.DeleteAll();
         }
 
         private void Update()

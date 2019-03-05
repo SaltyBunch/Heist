@@ -10,5 +10,6 @@ namespace Character
         [SerializeField] public Player Player;
         [SerializeField] public PlayerControl PlayerControl;
         [SerializeField] public PlayerUIManager PlayerUiManager;
+        [SerializeField] public PlayerFOG fog;
     }
 }

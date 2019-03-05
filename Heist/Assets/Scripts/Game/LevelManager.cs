@@ -61,9 +61,12 @@ namespace Game
         [SerializeField] private PlayerGameObject _playerGo;
 
         private PlayerGameObject[] _players;
+        public PlayerGameObject[] Players => _players;
 
         [SerializeField] private GameObject[] _spawnpoints;
         [SerializeField] private int _stunMultiplier = 100;
+
+        [SerializeField] public GameObject FOG;
 
         private float _time;
 
@@ -181,7 +184,7 @@ namespace Game
             {
                 // Number of displays
 #if UNITY_EDITOR || UNITY_EDITOR_64
-                //displays = 4;
+                displays = 2;
 #else
                     displays = Display.displays.Length;
 #endif
@@ -298,7 +301,13 @@ namespace Game
 
                 _players[i].PlayerUiManager.SetCharacter(GameManager.PlayerChoice[i]);
 
+                _players[i].fog.FogOfWarPlane = FOG.transform;
+                _players[i].fog.num = (i + 1);
+
+               
+
                 NotifyMessage += _players[i].PlayerUiManager.NotifyMessage;
+
             }
 
             UpdateCameras();

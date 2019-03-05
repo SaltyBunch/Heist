@@ -69,7 +69,7 @@ namespace Character
         public event HealthUpdatedEventHandler HealthChanged;
 
 
-        private void Start()
+        public void Start()
         {
             if (_rgd == null)
                 _rgd = GetComponent<Rigidbody>();

@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 819dcba0bb389e745862139f16227634, type: 2}
+  - {fileID: 2100000, guid: 951b4fa1358d0a9419883920d733da84, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -196,6 +196,8 @@ MonoBehaviour:
   _locked: 0
   _lockedColor: {r: 0, g: 0, b: 0, a: 0}
   _door: {fileID: 3334695166092776487}
+  _anim: {fileID: 0}
+  _open: 0
   _unlockedColor: {r: 0, g: 0, b: 0, a: 0}
   _lockQuickTimeEvent: {fileID: 0}
 --- !u!1 &8852018715587683036
@@ -255,7 +257,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 819dcba0bb389e745862139f16227634, type: 2}
+  - {fileID: 2100000, guid: 951b4fa1358d0a9419883920d733da84, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

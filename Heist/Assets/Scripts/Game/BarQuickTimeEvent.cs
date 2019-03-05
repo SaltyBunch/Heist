@@ -43,13 +43,15 @@ namespace Game
 
         private void PressButton(Button button)
         {
-            _timer = 5;
+            //_timer = 5;
             if (button == Button.A && CheckIndex())
             {
                 //success
                 Events?.Invoke(this, new QuickTimeEventArgs
                 {
-                    Result = true, State = (int) (_index * 100), Type = QuickTimeType
+                    Result = true,
+                    State = (int)(_index * 100),
+                    Type = QuickTimeType
                 });
                 StartCoroutine(FlashColour(Color.green));
             }
@@ -58,7 +60,9 @@ namespace Game
                 //failure
                 Events?.Invoke(this, new QuickTimeEventArgs
                 {
-                    Result = false, State = (int) (_index * 100), Type = QuickTimeType
+                    Result = false,
+                    State = (int)(_index * 100),
+                    Type = QuickTimeType
                 });
                 StartCoroutine(FlashColour(Color.red));
             }
@@ -82,7 +86,7 @@ namespace Game
         {
             if (_player == null) _player = ReInput.players.Players.First();
 
-            _timer = 5;
+            //_timer = 5;
             _started = true;
 
             _greenArea.fillOrigin = (Random.Range(1, 4) + _greenArea.fillOrigin) % 4;
@@ -94,7 +98,7 @@ namespace Game
 
         private bool CheckIndex()
         {
-            var point = ((int) _greenArea.fillOrigin) - 2; //top == 0, bottom == -2, right == -1, left == 1
+            var point = ((int)_greenArea.fillOrigin) - 2; //top == 0, bottom == -2, right == -1, left == 1
 
             float startAngle = 0;
             switch (point)
@@ -161,11 +165,13 @@ namespace Game
                 };
             }
 
-            _timer -= Time.deltaTime;
+            if (_started) _timer -= Time.deltaTime;
             if (_started && _timer <= 0)
                 Events?.Invoke(this, new QuickTimeEventArgs
                 {
-                    Result = false, State = -1, Type = QuickTimeType
+                    Result = false,
+                    State = -1,
+                    Type = QuickTimeType
                 });
 
             _index += Time.deltaTime * _dir;

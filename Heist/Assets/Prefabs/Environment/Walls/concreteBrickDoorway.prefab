@@ -194,8 +194,6 @@ GameObject:
   - component: {fileID: 3890105714931707788}
   - component: {fileID: 3568451874359738590}
   - component: {fileID: 6955573619148361250}
-  - component: {fileID: 6581157718005352438}
-  - component: {fileID: 2630885613666901399}
   m_Layer: 0
   m_Name: HingePoint
   m_TagString: Door
@@ -210,14 +208,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8453223161468181734}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.72819287, z: -0, w: 0.68537235}
   m_LocalPosition: {x: 1.3749994, y: 0, z: -0.062491886}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4719073594312663446}
   m_Father: {fileID: 6752121063215969997}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 93.47, z: 0}
 --- !u!65 &3568451874359738590
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -250,40 +248,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6581157718005352438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8453223161468181734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d24985507d918141b98993d5d7c0a6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  openName: C_SingleDoorOpen
-  closeName: C_SingleDoorClose
-  animator: {fileID: 6955573619148361250}
-  openName2: 
-  closeName2: 
-  animator2: {fileID: 0}
-  canOpen: 1
---- !u!114 &2630885613666901399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8453223161468181734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48c6fc016333bed4dbd1bcb0fa2bff8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _light: {fileID: 0}
-  _locked: 0
-  _lockedColor: {r: 0, g: 0, b: 0, a: 0}
-  _door: {fileID: 6581157718005352438}
-  _unlockedColor: {r: 0, g: 0, b: 0, a: 0}
-  _lockQuickTimeEvent: {fileID: 0}

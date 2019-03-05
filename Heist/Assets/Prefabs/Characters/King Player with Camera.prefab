@@ -1237,7 +1237,7 @@ MonoBehaviour:
   _dashForce: 15.2
   _dashTimer: 7
   _hand: {fileID: 6954800431801890411}
-  _interactDistance: 2
+  _interactDistance: 5
   _enterBank: {fileID: 0}
   _defeat: {fileID: 0}
   _joke: {fileID: 0}

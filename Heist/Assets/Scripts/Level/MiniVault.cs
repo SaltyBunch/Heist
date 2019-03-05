@@ -68,7 +68,7 @@ namespace Level
         {
             foreach (var pickup in _pickups)
             {
-                var pickupGO = Instantiate(pickup, transform.position + _pickupSpawn, Quaternion.identity);
+                var pickupGO = Instantiate(pickup,_player.transform.position, Quaternion.identity);
                 GameManager.SetLayerOnAll(pickupGO.gameObject, LevelManager.PickupMask[_floor]);
             }
         }

@@ -194,7 +194,7 @@ namespace Character
                 Control = control;
             }
 
-            if (Math.Abs(Control.MoveVector.magnitude) > 0.01f || Control.WeaponAttack)
+            if (Math.Abs(Control.MoveVector.magnitude) > 0.01f)
                 OnMoveCancel?.Invoke(this, new EventArgs());
 
             ///Direction based on FaceVector
@@ -264,16 +264,16 @@ namespace Character
             }
             else
             {
-                var hits = Physics.OverlapSphere(transform.position, _interactDistance);
+                var hits = Physics.OverlapSphere(transform.position + transform.up, _interactDistance);
                 foreach (var hit in hits)
                 {
-                    if (hit.transform.CompareTag("Door"))
-                    {
-                        var door = hit.transform.GetComponent<Door>();
-
-                        door.Open(this);
-                    }
-                    else if (hit.transform.CompareTag("GoldPile"))
+                    //if (hit.transform.CompareTag("Door"))
+                    //{
+                     //   var door = hit.transform.GetComponentInChildren<Door>();
+//
+ //                       door.Open(this);
+  //                  }
+                    if (hit.transform.CompareTag("GoldPile"))
                     {
                         var gold = hit.transform.GetComponent<GoldPile>();
                         gold.StartChanneling(this);

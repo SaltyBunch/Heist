@@ -204,7 +204,7 @@ namespace Character
             switch (SelectedItem)
             {
                 case ElectricField electricField:
-                    if (electricField.Place(transform.position + transform.forward * 2))
+                    if (electricField.Place(transform.position))
                     {
                         electricField.transform.parent = null;
                         electricField.SetFloor(
@@ -217,7 +217,7 @@ namespace Character
 
                     return;
                 case LethalLaser lethalLaser:
-                    if (lethalLaser.Place(transform.position + transform.forward * 2))
+                    if (lethalLaser.Place(transform.position))
                     {
                         lethalLaser.transform.parent = null;
                         lethalLaser.SetFloor(

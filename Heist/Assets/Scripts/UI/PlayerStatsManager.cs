@@ -34,6 +34,11 @@ namespace UI
         [SerializeField] private Sprite[] _characters;
         [SerializeField] private Sprite[] _items;
 
+        [SerializeField] private TextMeshProUGUI _notifyMessage;
+
+        [SerializeField] private Image _siren;
+        [SerializeField] private TextMeshProUGUI _vaultTimer;
+
         public void SwitchSides(Side side, int playerNum)
         {
             var playerRect = _playerPortrait.gameObject.GetComponent<RectTransform>();
@@ -124,5 +129,14 @@ namespace UI
         {
             _ammoText.SetText(amount != 0 ? "" + amount : "");
         }
+
+        public void NotifyAll(string message)
+        {
+            _notifyMessage.text = message;
+        }
+
+        public GameObject Siren => _siren.gameObject;
+
+        public TextMeshProUGUI VaultTimer => _vaultTimer;
     }
 }

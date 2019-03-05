@@ -37,8 +37,7 @@ namespace Character
             }
         }
 
-        
-        
+
         public void OverPickup(PickupType pickupType, bool overPickup, Pickup.Pickup pickup)
         {
             _playerUiManager.ShowPickup(pickupType, overPickup);
@@ -60,14 +59,20 @@ namespace Character
                         _inventory.GoldAmount += ((GoldPickup) pickup).AmountOfGold;
                         Destroy(pickup.gameObject);
                     }
+
                     break;
                 case PickupType.Key:
                     if (overPickup && pickup is KeyPickup keyPickup)
                     {
                         var destroy = !_inventory.keys[keyPickup.Key];
                         _inventory.keys[keyPickup.Key] = true;
-                        if (destroy) Destroy(pickup.gameObject);
+                        if (destroy)
+                        {
+                            LevelManager.LevelManagerRef.NotifyPlayers("A player has picked up the " + keyPickup.Key);
+                            Destroy(pickup.gameObject);
+                        }
                     }
+
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(pickupType), pickupType, null);
@@ -93,9 +98,8 @@ namespace Character
         }
 
         public void SetGold(int amount) => _playerUiManager.SetGold(amount);
-        
+
         public QuickTimeEvent InitializeQuickTime(QuickTimeEvent quickTimeEvent) =>
             _playerUiManager.InitializeQuickTime(quickTimeEvent);
-
     }
 }

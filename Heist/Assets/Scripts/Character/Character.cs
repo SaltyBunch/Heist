@@ -62,8 +62,7 @@ namespace Character
                         _stacks = 0;
                 }
 
-                if (HealthChanged != null)
-                    HealthChanged(this, new HealthChangedEventArgs {Health = Stats.Health - _stacks});
+                HealthChanged?.Invoke(this, new HealthChangedEventArgs {Health = Stats.Health - _stacks});
             }
         }
 

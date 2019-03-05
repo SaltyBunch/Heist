@@ -33,10 +33,19 @@ namespace Game
         public NotifyType NotifyType { get; set; }
     }
 
+    public class NotifyMessageArgs : EventArgs
+    {
+        public string Message;
+    }
+
     [RequireComponent(typeof(AudioSource))]
     public class LevelManager : MonoBehaviour
     {
         public delegate void NotifyEventHandler(object sender, NotifyEventArgs e);
+
+
+        public delegate void NotifyMessageHandler(object sender, NotifyMessageArgs e);
+
 
         public static LevelManager LevelManagerRef;
 
@@ -233,7 +242,7 @@ namespace Game
                     targetDisplay++;
                 _players[i] = Instantiate(_playerGo);
                 //todo set appropriate player models
-                
+
 
                 //put player on spawnpoint
                 _players[i].transform.position = _spawnpoints[i].transform.position;
@@ -288,6 +297,8 @@ namespace Game
                 _players[i].PlayerControl.Floor = Floor.MainFloor;
 
                 _players[i].PlayerUiManager.SetCharacter(GameManager.PlayerChoice[i]);
+
+                NotifyMessage += _players[i].PlayerUiManager.NotifyMessage;
             }
 
             UpdateCameras();
@@ -320,9 +331,35 @@ namespace Game
                 StartCoroutine(AudioHelper.CrossFade(_audioSource[_currentAudioSource],
                     _audioSource[(_currentAudioSource + 1) % _audioSource.Length], _backgroundMusicLockdown, 5));
             _currentAudioSource = (_currentAudioSource + 1) % _audioSource.Length;
-            yield return new WaitForSeconds(_vaultTimer);
+
+            foreach (var player in _players)
+            {
+                player.PlayerUiManager.Siren.SetActive(true);
+            }
+
+           
+
             callVault();
             _vaultOpen = true;
+            
+            var time = _vaultTimer;
+            do
+            {
+                time -= 1;
+                foreach (var player in _players)
+                {
+                    player.PlayerUiManager.VaultTimer.text = time.ToString();
+                }
+
+                yield return new WaitForSeconds(1);
+            } while (time > 0);
+
+            foreach (var player in _players)
+            {
+                player.PlayerUiManager.VaultTimer.text = "";
+            }
+            
+            //todo hey david, make it go to the main menu pls
         }
 
         public void Notify(Vector3 position, NotifyType notifyType)
@@ -365,6 +402,26 @@ namespace Game
                 player.Camera.ShowPlayers(GetPlayers(player.PlayerControl.Floor),
                     GetPlayers(player.PlayerControl.Floor == Floor.MainFloor ? Floor.Basement : Floor.MainFloor));
             }
+        }
+
+        public event NotifyMessageHandler NotifyMessage;
+
+        public void NotifyPlayers(string message)
+        {
+            NotifyMessage?.Invoke(this, new NotifyMessageArgs()
+            {
+                Message = message
+            });
+            StartCoroutine(Delay(5));
+        }
+
+        private IEnumerator Delay(int i)
+        {
+            yield return new WaitForSeconds(i);
+            NotifyMessage?.Invoke(this, new NotifyMessageArgs()
+            {
+                Message = ""
+            });
         }
     }
 }

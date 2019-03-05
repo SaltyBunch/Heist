@@ -10,12 +10,14 @@ namespace Level
     public class Door : MonoBehaviour
     {
         [SerializeField] private Light _light;
-        [SerializeField] private bool _locked;
+        [SerializeField] private bool _locked = false;
 
         [SerializeField] private Color _lockedColor;
         [SerializeField] private Animation.Door _door;
- 
-        private bool _open;
+
+        [SerializeField] private Animator _anim;
+
+        [SerializeField] private bool _open;
 
         private PlayerControl _player;
         private LockQuickTimeEvent _quickTime;
@@ -28,10 +30,11 @@ namespace Level
             get => _locked;
             set
             {
-                if (_locked != value) _light.color = value ? _lockedColor : _unlockedColor;
+                if (_locked != value && _light != null) _light.color = value ? _lockedColor : _unlockedColor;
                 _locked = value;
             }
         }
+
 
         private void Reset()
         {
@@ -50,8 +53,11 @@ namespace Level
             }
             else //todo open door
             {
-                _open = true;
-                _door.Open();
+                _open = !_open;
+                if (_open)
+                    _anim.SetTrigger("Open");
+                else
+                    _anim.SetTrigger("Close");
             }
         }
 

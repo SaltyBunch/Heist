@@ -14,6 +14,8 @@ namespace UI
         [SerializeField] private Transform _quickTimePosition;
 
         [SerializeField] private TextMeshProUGUI _playerHint;
+        public GameObject Siren => _playerStatsManager.Siren;
+
 
         public void SetPosition(Rect rect, int playerNumber)
         {
@@ -77,6 +79,9 @@ namespace UI
 
         public void SetHealth(int amount) => _playerStatsManager.SetHealth(amount);
 
+        public void NotifyMessage(object sender, NotifyMessageArgs notifyMessageArgs) =>
+            _playerStatsManager.NotifyAll(notifyMessageArgs.Message);
+
         public void SetGold(int amount) => _playerStatsManager.SetGold(amount);
 
         public void SetCharacter(Game.Characters character) => _playerStatsManager.SetCharacter(character);
@@ -85,6 +90,8 @@ namespace UI
 
         public void UpdateAmmo(int amount) => _playerStatsManager.SetAmmo(amount);
 
+        public TextMeshProUGUI VaultTimer => _playerStatsManager.VaultTimer;
+        
         public void ShowPickup(PickupType pickupType, bool overPickup)
         {
             if (!overPickup)

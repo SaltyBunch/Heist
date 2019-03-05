@@ -47,7 +47,7 @@ namespace Hazard
         public override bool Place(Vector3 position)
         {
             var dis = 1.24f;
-            LayerMask layers = ~LayerMask.GetMask("Hazard", "Environment", "VFX");
+            LayerMask layers = ~(LevelManager.EnvironementMask[Floor.Basement] | LevelManager.EnvironementMask[Floor.MainFloor]);
 
             Vector3 fwd = Vector3.positiveInfinity,
                 rt = Vector3.positiveInfinity,

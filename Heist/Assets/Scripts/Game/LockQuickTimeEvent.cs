@@ -1,7 +1,9 @@
 using System.Linq;
+using Character;
 using Rewired;
 using UnityEngine;
 using UnityEngine.UI;
+using Player = Rewired.Player;
 
 namespace Game
 {
@@ -20,6 +22,7 @@ namespace Game
         private Input _controlInput;
         private int _index;
         private Player _player;
+        private Vector3 _position;
 
         public Type QuickTimeType;
         private static readonly int Unlock = Animator.StringToHash("Unlock");
@@ -66,8 +69,16 @@ namespace Game
                 {
                     Result = false, State = _index, Type = QuickTimeType
                 });
+                LevelManager.LevelManagerRef.Notify(_position, NotifyType.TripTrap);
                 Generate();
             }
+        }
+
+
+        public void Generate(PlayerControl player, Vector3 position)
+        {
+            _player = player.Player;
+            Generate();
         }
 
         public void Generate()

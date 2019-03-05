@@ -186,7 +186,16 @@ namespace Character
                 Control = control;
             }
 
-            if (Math.Abs(Control.MoveVector.magnitude) > 0.01f) OnMoveCancel?.Invoke(this, new EventArgs());
+            if (_baseCharacter.Stunned)
+            {
+                var control = Control;
+                control.MoveVector = Vector3.zero;
+                control.FaceVector = Vector3.zero;
+                Control = control;
+            }
+
+            if (Math.Abs(Control.MoveVector.magnitude) > 0.01f || Control.WeaponAttack)
+                OnMoveCancel?.Invoke(this, new EventArgs());
 
             ///Direction based on FaceVector
             var facing = Vector3.RotateTowards(transform.forward, Control.FaceVector, 1,
@@ -215,10 +224,14 @@ namespace Character
                         _reticule.transform.localPosition = transform.InverseTransformPoint(hitInfo.point);
                     else
                         _reticule.transform.localPosition = _retMaxDist / 2 * Vector3.forward + Vector3.up;
+
+
+                    _reticule.SetActive(true);
                 }
                 else
                 {
                     _reticule.transform.localPosition = Vector3.up;
+                    _reticule.SetActive(false);
                 }
             }
         }
@@ -237,12 +250,14 @@ namespace Character
 
         private void WeaponAttack()
         {
+            if (_baseCharacter.Stunned) return;
             BaseCharacter.Inventory.Use();
             Debug.Log("Weapon Attack by Player " + (PlayerNumber + 1));
         }
 
         private void Interact()
         {
+            if (_baseCharacter.Stunned) return;
             if (_baseCharacter.OverWeaponPickup || _baseCharacter.OverTrapPickup)
             {
                 _baseCharacter.PickupPickup();
@@ -286,19 +301,14 @@ namespace Character
             {
                 LevelManager.LevelManagerRef.Notify(transform.position, NotifyType.Dash);
                 StartCoroutine(DashCooldown());
-                _rigid.AddForce(Control.MoveVector * _dashForce * 2.5f, ForceMode.VelocityChange);
             }
         }
 
         private IEnumerator DashCooldown()
         {
             _dashCooldown = false;
-            _rigid.AddForce(Control.MoveVector * _dashForce, ForceMode.VelocityChange);
-            yield return new WaitForSeconds(_dashTimer / 8);
-            _rigid.AddForce(Control.MoveVector * _dashForce, ForceMode.VelocityChange);
-            yield return new WaitForSeconds(_dashTimer / 8);
-            _rigid.AddForce(Control.MoveVector * _dashForce, ForceMode.VelocityChange);
-            yield return new WaitForSeconds(_dashTimer / 4 * 3);
+            _rigid.AddForce(Control.MoveVector * _dashForce * 2.5f, ForceMode.VelocityChange);
+            yield return new WaitForSeconds(_dashTimer);
             _dashCooldown = true;
         }
 

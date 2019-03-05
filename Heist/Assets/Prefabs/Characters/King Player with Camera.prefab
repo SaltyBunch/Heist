@@ -884,7 +884,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _invFrames: 0.333
-  _knockbackForce: 100
+  _knockbackForce: 5
   Stats:
     Health: 0
     Speed: 5
@@ -933,7 +933,7 @@ MonoBehaviour:
     FaceVector: {x: 0, y: 0, z: 0}
     Pause: 0
   _dashForce: 15.2
-  _dashTimer: 0.5
+  _dashTimer: 7
   _hand: {fileID: 6954800431801890411}
   _interactDistance: 2
   _enterBank: {fileID: 0}

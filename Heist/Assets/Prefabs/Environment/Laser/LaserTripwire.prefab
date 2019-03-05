@@ -9573,6 +9573,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4676172568e414fb4a5d882b115dcf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlacedByPlayer: 0
+  _maxGap: 15
+  Floor: 0
   _cooldown: 1
   Collider: {fileID: 5317978364337773795}
   Laser1: {fileID: 6231209157539245461}

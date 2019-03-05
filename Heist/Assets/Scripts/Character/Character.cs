@@ -31,8 +31,11 @@ namespace Character
         private Rigidbody _rgd;
         private int _stacks;
         private bool _stun;
-        private bool _stunCooldown;
 
+        public bool Stunned => _stun;
+        
+        private bool _stunCooldown;
+        
         private float _timeSinceDamage;
         [SerializeField] public Stats Stats;
 

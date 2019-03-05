@@ -17,14 +17,8 @@ namespace Controller
         [SerializeField] string idleAnim;
         [SerializeField] private PlayerControl _playerControl;
 
-        public Player Player;
+        public Player Player => _playerControl.Player;
         private bool isRunning = false;
-
-        private void Start()
-        {
-            Player = _playerControl.Player;
-        }
-
 
         public void Update()
         {

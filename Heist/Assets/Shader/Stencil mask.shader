@@ -12,9 +12,9 @@
 		LOD 200
 
 		Stencil{
-		Ref 1
-		Pass replace
-	}
+			Ref 2
+			Pass replace
+		}
 
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types

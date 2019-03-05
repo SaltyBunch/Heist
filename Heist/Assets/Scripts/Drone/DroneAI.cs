@@ -37,6 +37,15 @@ namespace Drone
             Target = patrolPath[0];
 
             LevelManager.LevelManagerRef.Notifty += LevelManagerRefOnNotifty;
+
+            foreach (var v in patrolPath)
+            {
+                v.transform.parent = null;
+            }
+            foreach (var v in bigPatrolPath)
+            {
+                v.transform.parent = null;
+            }
         }
 
         private void LevelManagerRefOnNotifty(object sender, NotifyEventArgs e)

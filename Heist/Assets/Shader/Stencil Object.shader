@@ -10,7 +10,7 @@
 		LOD 200
 
 		Stencil{
-		Ref 1
+		Ref 2
 		Comp equal
 	}
 

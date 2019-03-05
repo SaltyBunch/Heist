@@ -16,9 +16,9 @@ Shader "Custom/Wall" {
 		LOD 200
 
 		Stencil {
-  Ref 1
-  Comp NotEqual
-}
+			 Ref 1
+			Comp NotEqual
+		}
 		
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types

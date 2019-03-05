@@ -18,8 +18,15 @@ Shader "Custom/FogOfWar"
     {
         Tags { "Queue" = "Transparent"  "IgnoreProjector" = "True" "RenderType" = "transparent"}
         LOD 200
+
+			Stencil{
+			Ref 2
+			Comp notequal
+		}
 		Blend SrcAlpha OneMinusSrcAlpha
 		Cull off
+
+			
 
         CGPROGRAM
         // Physically based Standard lighting model, and enable shadows on all light types

@@ -25,6 +25,8 @@ namespace Game
         private float _range;
 
         public Type QuickTimeType;
+        private float _timer = 5;
+        private bool _started = false;
 
         private Input ControlInput
         {
@@ -41,6 +43,7 @@ namespace Game
 
         private void PressButton(Button button)
         {
+            _timer = 5;
             if (button == Button.A && CheckIndex())
             {
                 //success
@@ -79,6 +82,8 @@ namespace Game
         {
             if (_player == null) _player = ReInput.players.Players.First();
 
+            _timer = 5;
+            _started = true;
 
             _greenArea.fillOrigin = (Random.Range(1, 4) + _greenArea.fillOrigin) % 4;
             _greenArea.fillAmount = _range;
@@ -118,6 +123,7 @@ namespace Game
             {
                 origin = (startAngle + _range / 2) % 1;
             }
+
             if (Math.Abs(_index - origin) < _range || Math.Abs((1 - _index) - origin) < _range)
             {
                 return true;
@@ -154,6 +160,13 @@ namespace Game
                     A = _player.GetButton("QuickTimeA")
                 };
             }
+
+            _timer -= Time.deltaTime;
+            if (_started && _timer <= 0)
+                Events?.Invoke(this, new QuickTimeEventArgs
+                {
+                    Result = false, State = -1, Type = QuickTimeType
+                });
 
             _index += Time.deltaTime * _dir;
 

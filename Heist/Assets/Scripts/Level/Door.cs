@@ -14,7 +14,7 @@ namespace Level
 
         [SerializeField] private Color _lockedColor;
         [SerializeField] private Animation.Door _door;
- 
+
         private bool _open;
 
         private PlayerControl _player;
@@ -33,6 +33,7 @@ namespace Level
             }
         }
 
+
         private void Reset()
         {
             gameObject.tag = "Door";
@@ -50,8 +51,11 @@ namespace Level
             }
             else //todo open door
             {
-                _open = true;
-                _door.Open();
+                _open = !_open;
+                if (_open)
+                    _door.Open();
+                else
+                    _door.Close();
             }
         }
 

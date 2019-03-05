@@ -13,6 +13,8 @@ namespace Game
         Drone
     }
 
+    
+    
     public class GameManager : MonoBehaviour
     {
         public static readonly Dictionary<Characters, Stats> CharacterStats = new Dictionary<Characters, Stats>

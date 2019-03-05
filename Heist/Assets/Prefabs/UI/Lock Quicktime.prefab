@@ -752,14 +752,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1239ead0bc5238d40a4bf99236f3fbf7, type: 3}
   - {fileID: 21300000, guid: 10c6d47a218b17646b651fccf6c061fd, type: 3}
   _buttonRenderer:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 137910623547243372}
+  - {fileID: 4131687497035054590}
+  - {fileID: 2900067986582718723}
+  - {fileID: 2957881908773040927}
   _statusRenderer:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 6339796594475748034}
+  - {fileID: 4506062673761807977}
+  - {fileID: 8092859975563001411}
+  - {fileID: 5574788037824386401}
   _animator: {fileID: 6866759645524142608}
   QuickTimeType: 1

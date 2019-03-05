@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 243656492711919715}
   m_Layer: 0
   m_Name: ConcreteBrick
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,16 +99,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7545178526859755985}
     m_Modifications:
-    - target: {fileID: 7617362245694957690, guid: 658575bc3e961d94e997f295a1afcf57,
-        type: 3}
-      propertyPath: m_Name
-      value: GraniteBrick 1 (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7617362245694957690, guid: 658575bc3e961d94e997f295a1afcf57,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1959585663, guid: 658575bc3e961d94e997f295a1afcf57, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -151,6 +141,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1959585663, guid: 658575bc3e961d94e997f295a1afcf57, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7617362245694957690, guid: 658575bc3e961d94e997f295a1afcf57,
+        type: 3}
+      propertyPath: m_Name
+      value: GraniteBrick 1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7617362245694957690, guid: 658575bc3e961d94e997f295a1afcf57,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7974773549818586801, guid: 658575bc3e961d94e997f295a1afcf57,

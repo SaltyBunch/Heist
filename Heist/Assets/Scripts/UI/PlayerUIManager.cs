@@ -15,6 +15,8 @@ namespace UI
 
         [SerializeField] private TextMeshProUGUI _playerHint;
 
+        
+        
         public void SetPosition(Rect rect, int playerNumber)
         {
             var uiLocation = _playerStatsManager.GetComponent<RectTransform>();
@@ -77,6 +79,8 @@ namespace UI
 
         public void SetHealth(int amount) => _playerStatsManager.SetHealth(amount);
 
+        public void NotifyMessage(object sender, NotifyMessageArgs notifyMessageArgs) => _playerStatsManager.NotifyAll(notifyMessageArgs.Message);
+        
         public void SetGold(int amount) => _playerStatsManager.SetGold(amount);
 
         public void SetCharacter(Game.Characters character) => _playerStatsManager.SetCharacter(character);

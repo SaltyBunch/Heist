@@ -88,9 +88,12 @@ GameObject:
   - component: {fileID: 5452385336074273787}
   - component: {fileID: 2303257516220678255}
   - component: {fileID: 4055551776365336572}
+  - component: {fileID: 5675448452751511188}
+  - component: {fileID: 3334695166092776487}
+  - component: {fileID: 7848524050389491121}
   m_Layer: 0
   m_Name: HingePoint
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,6 +142,62 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 94
   m_CollisionDetection: 0
+--- !u!95 &5675448452751511188
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7952621597198293357}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 35773cf02a6aa5c45971fee5e820f2e2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3334695166092776487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7952621597198293357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d24985507d918141b98993d5d7c0a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openName: B_DoorOpen
+  closeName: B_DoorClose
+  animator: {fileID: 5675448452751511188}
+  openName2: 
+  closeName2: 
+  animator2: {fileID: 0}
+  canOpen: 1
+--- !u!114 &7848524050389491121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7952621597198293357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c6fc016333bed4dbd1bcb0fa2bff8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _light: {fileID: 0}
+  _locked: 0
+  _lockedColor: {r: 0, g: 0, b: 0, a: 0}
+  _door: {fileID: 3334695166092776487}
+  _unlockedColor: {r: 0, g: 0, b: 0, a: 0}
+  _lockQuickTimeEvent: {fileID: 0}
 --- !u!1 &8852018715587683036
 GameObject:
   m_ObjectHideFlags: 0

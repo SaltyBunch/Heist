@@ -8,6 +8,8 @@ TagManager:
   - Hazard
   - Pickup
   - Door
+  - GoldPile
+  - MiniVault
   layers:
   - Default
   - TransparentFX

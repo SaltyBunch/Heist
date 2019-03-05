@@ -270,6 +270,7 @@ namespace Character
                     if (hit.transform.CompareTag("Door"))
                     {
                         var door = hit.transform.GetComponent<Door>();
+
                         door.Open(this);
                     }
                     else if (hit.transform.CompareTag("GoldPile"))
@@ -279,7 +280,8 @@ namespace Character
                     }
                     else if (hit.transform.CompareTag("MiniVault"))
                     {
-                        //todo
+                        var miniVault = hit.transform.GetComponent<MiniVault>();
+                        miniVault.StartChanneling(this);
                     }
                     else if (hit.transform.CompareTag("Vault"))
                     {

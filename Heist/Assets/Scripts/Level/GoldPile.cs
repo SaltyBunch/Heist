@@ -50,7 +50,7 @@ namespace Level
                 _totalRemaining -= _transferAmount;
             }
 
-            if (e.Complete || _totalRemaining <= 0)
+            if (e.Complete || _totalRemaining <= 0 || e.State == -1)
             {
                 _quickTime.Events -= QuickTimeEventMonitor;
                 Destroy(_quickTime.gameObject, 0.2f);

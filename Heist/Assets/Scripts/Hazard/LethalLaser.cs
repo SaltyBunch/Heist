@@ -26,6 +26,7 @@ namespace Hazard
 
         private new IEnumerator Trigger(PlayerControl player)
         {
+            if (PlacedByPlayer) Destroy(this.gameObject, 5);
             float elapsed = 0;
             do
             {
@@ -35,7 +36,7 @@ namespace Hazard
             } while (elapsed < _cooldown);
         }
 
-        public override void Place(Vector3 position)
+        public override bool Place(Vector3 position)
         {
             LayerMask layers = ~LayerMask.GetMask("Hazard", "Environment", "VFX");
 
@@ -53,6 +54,8 @@ namespace Hazard
 
             if (Physics.Raycast(position, Vector3.back, out hit, 20, layers)) bk = hit.point;
 
+            if (Vector3.Distance(fwd, bk) > _maxGap && Vector3.Distance(rt, lt) > _maxGap) return false;
+            
             if (Vector3.Distance(fwd, bk) > Vector3.Distance(rt, lt))
             {
                 transform.position = (rt + lt) / 2;
@@ -94,6 +97,8 @@ namespace Hazard
                     z = Laser1.transform.localPosition.z * 2, y = 1.5f
                 };
             }
+
+            return true;
         }
 
         public void SetFloor(LayerMask layerMask)

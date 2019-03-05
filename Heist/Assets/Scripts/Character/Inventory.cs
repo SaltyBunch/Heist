@@ -204,22 +204,29 @@ namespace Character
             switch (SelectedItem)
             {
                 case ElectricField electricField:
-                    electricField.transform.parent = null;
-                    electricField.SetFloor(
-                        LevelManager.HazardMask[LevelManager.LevelManagerRef.GetFloor(_player.PlayerNumber)]);
-                    electricField.Place(transform.position + transform.forward * 2); //todo wall check
-                    Remove(SelectedItem);
-                    electricField.PlacedByPlayer = true;
-                    electricField.gameObject.SetActive(true);
+                    if (electricField.Place(transform.position + transform.forward * 2))
+                    {
+                        electricField.transform.parent = null;
+                        electricField.SetFloor(
+                            LevelManager.HazardMask[LevelManager.LevelManagerRef.GetFloor(_player.PlayerNumber)]);
+                        electricField.Place(transform.position + transform.forward * 2); //todo wall check
+                        Remove(SelectedItem);
+                        electricField.PlacedByPlayer = true;
+                        electricField.gameObject.SetActive(true);
+                    }
+
                     return;
                 case LethalLaser lethalLaser:
-                    lethalLaser.transform.parent = null;
-                    lethalLaser.SetFloor(
-                        LevelManager.HazardMask[LevelManager.LevelManagerRef.GetFloor(_player.PlayerNumber)]);
-                    lethalLaser.Place(transform.position + transform.forward * 2); //todo wall check
-                    Remove(SelectedItem);
-                    lethalLaser.PlacedByPlayer = true;
-                    lethalLaser.gameObject.SetActive(true);
+                    if (lethalLaser.Place(transform.position + transform.forward * 2))
+                    {
+                        lethalLaser.transform.parent = null;
+                        lethalLaser.SetFloor(
+                            LevelManager.HazardMask[LevelManager.LevelManagerRef.GetFloor(_player.PlayerNumber)]);
+                        Remove(SelectedItem);
+                        lethalLaser.PlacedByPlayer = true;
+                        lethalLaser.gameObject.SetActive(true);
+                    }
+
                     return;
                 case Baton baton:
                     //todo play baton animation

@@ -13,7 +13,6 @@ namespace Weapon
         [SerializeField] internal AudioClip _outOfAmmoSound;
 
         [SerializeField] internal AudioClip _pickupSound;
-        [SerializeField] [Range(5, 30)] private int _pushForce;
 
 
         public int Ammo;

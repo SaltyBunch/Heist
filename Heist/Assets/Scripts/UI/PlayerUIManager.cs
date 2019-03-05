@@ -103,6 +103,8 @@ namespace UI
                     break;
                 case PickupType.Gold:
                     break;
+                case PickupType.Key:
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(pickupType), pickupType, null);
             }

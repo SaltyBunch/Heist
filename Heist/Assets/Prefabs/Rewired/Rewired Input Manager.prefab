@@ -352,8 +352,8 @@ MonoBehaviour:
       _name: UIHorizontal
       _type: 0
       _descriptiveName: UIHorizontal
-      _positiveDescriptiveName: Right
-      _negativeDescriptiveName: Left
+      _positiveDescriptiveName: UIHorizontalRight
+      _negativeDescriptiveName: UIHorizontalLeft
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 1
@@ -361,8 +361,8 @@ MonoBehaviour:
       _name: UIVertical
       _type: 0
       _descriptiveName: UIVertical
-      _positiveDescriptiveName: Up
-      _negativeDescriptiveName: Down
+      _positiveDescriptiveName: UIVerticalUp
+      _negativeDescriptiveName: UIVerticalDown
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 1

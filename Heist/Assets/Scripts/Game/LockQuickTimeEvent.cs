@@ -7,7 +7,7 @@ using Player = Rewired.Player;
 
 namespace Game
 {
-    public class LockQuickTimeEvent : QuickTimeEvent
+    public class     LockQuickTimeEvent : QuickTimeEvent
     {
         [SerializeField] private Sprite[] _spriteButtons;
         [SerializeField] private Sprite[] _spriteStatus;
@@ -21,7 +21,7 @@ namespace Game
 
         private Input _controlInput;
         private int _index;
-        private Player _player;
+        private PlayerControl _player;
         private Vector3 _position;
 
         public Type QuickTimeType;
@@ -77,13 +77,12 @@ namespace Game
 
         public void Generate(PlayerControl player, Vector3 position)
         {
-            _player = player.Player;
+            _player = player;
             Generate();
         }
 
         public void Generate()
         {
-            if (_player == null) _player = ReInput.players.Players.First();
             _buttons = new Button[4];
             for (var i = 0; i < _buttons.Length; i++) _buttons[i] = (Button) Random.Range(0, 4);
 
@@ -104,10 +103,10 @@ namespace Game
             {
                 ControlInput = new Input
                 {
-                    A = _player.GetButton("QuickTimeA"),
-                    B = _player.GetButton("QuickTimeB"),
-                    X = _player.GetButton("QuickTimeX"),
-                    Y = _player.GetButton("QuickTimeY")
+                    A = _player.Control.QuickTimeA,
+                    B = _player.Control.QuickTimeB,
+                    X = _player.Control.QuickTimeX,
+                    Y = _player.Control.QuickTimeY,
                 };
             }
         }

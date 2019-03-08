@@ -180,7 +180,7 @@ namespace Game
         public void InitGame(int numPlayers)
         {
             var displays = 1;
-            if (GameManager.UseMultiScreen)
+            if (GameManager.GameManagerRef.UseMultiScreen)
             {
                 // Number of displays
 #if UNITY_EDITOR || UNITY_EDITOR_64
@@ -293,7 +293,7 @@ namespace Game
                 //assign player number
                 _players[i].PlayerControl.PlayerNumber = i;
 
-                _players[i].PlayerControl.Player = ReInput.players.GetPlayer(i);
+                _players[i].PlayerController.Player = ReInput.players.GetPlayer(i);
 
                 _players[i].PlayerUiManager.SetPosition(_players[i].Camera.MainFloorCamera.rect, i);
 

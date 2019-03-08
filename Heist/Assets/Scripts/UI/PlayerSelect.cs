@@ -26,9 +26,12 @@ namespace UI
         // Update is called once per frame
         private void Update()
         {
+            
+            
+            
             readyFX.SetActive(false);
-            if (ReInput.players.GetPlayer(player).GetButtonDown("UIHorizontaPos") && !ready) selection++;
-            if (ReInput.players.GetPlayer(player).GetButtonDown("UIHorizontaNeg") && !ready) selection--;
+            if (ReInput.players.GetPlayer(player).GetAxisDelta("UIHorizontal") > 0.5f && ReInput.players.GetPlayer(player).GetAxis("UIHorizontal") > 0.5f && !ready) selection++;
+            if (ReInput.players.GetPlayer(player).GetAxisDelta("UIHorizontal") < -0.5f && ReInput.players.GetPlayer(player).GetAxis("UIHorizontal") < -0.5f && !ready) selection--;
 
             if (ReInput.players.GetPlayer(player).GetButtonDown("UISubmit") && !ready) ready = true;
 

@@ -24,6 +24,11 @@ namespace Character
         [SerializeField] internal Vector3 FaceVector;
 
         [SerializeField] internal bool Pause;
+
+        [SerializeField] internal bool QuickTimeA;
+        [SerializeField] internal bool QuickTimeB;
+        [SerializeField] internal bool QuickTimeX;
+        [SerializeField] internal bool QuickTimeY;
     }
 
     [RequireComponent(typeof(Player), typeof(Rigidbody), typeof(AudioSource))]
@@ -65,12 +70,14 @@ namespace Character
         [SerializeField] private AudioClip _taunt;
         [SerializeField] private AudioClip _victory;
 
-        public Rewired.Player Player;
 
         public int PlayerNumber;
         public Floor Floor = Floor.MainFloor;
         public Player BaseCharacter => _baseCharacter;
 
+        [Header("Animation")] [SerializeField] private Animator _anim;
+        
+        
         internal Control Control
         {
             get => _control;
@@ -234,6 +241,7 @@ namespace Character
                     _reticule.SetActive(false);
                 }
             }
+            _anim.SetFloat("Speed", Control.MoveVector.magnitude);
         }
 
         public event EventHandler OnMoveCancel;
@@ -301,6 +309,7 @@ namespace Character
         {
             if (_dashCooldown)
             {
+                _anim.SetTrigger("Dash");
                 LevelManager.LevelManagerRef.Notify(transform.position, NotifyType.Dash);
                 StartCoroutine(DashCooldown());
             }

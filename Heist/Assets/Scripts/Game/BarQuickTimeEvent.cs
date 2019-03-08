@@ -20,7 +20,7 @@ namespace Game
         private Input _controlInput;
         private int _dir;
         private float _index;
-        private Player _player;
+        private PlayerControl _player;
 
         private float _range;
 
@@ -78,14 +78,12 @@ namespace Game
 
         public void Generate(PlayerControl player)
         {
-            _player = player.Player;
+            _player = player;
             Generate();
         }
 
         public void Generate()
         {
-            if (_player == null) _player = ReInput.players.Players.First();
-
             //_timer = 5;
             _started = true;
 
@@ -161,7 +159,7 @@ namespace Game
             {
                 ControlInput = new Input
                 {
-                    A = _player.GetButton("QuickTimeA")
+                    A = _player.Control.QuickTimeA
                 };
             }
 

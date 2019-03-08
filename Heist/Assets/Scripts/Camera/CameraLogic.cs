@@ -10,7 +10,7 @@ namespace Camera
         [SerializeField] [Range(0, 30)] private float _bounds = 3;
         [SerializeField] private LayerMask _layerMask;
 
-        [SerializeField] private GameObject _mask;
+        //[SerializeField] private GameObject _mask;
 
         [SerializeField] private float _offset = 10;
         [SerializeField] private PlayerControl _playerControl;
@@ -39,12 +39,12 @@ namespace Camera
             var _seesPlayer = Physics.Raycast(MainFloorCamera.transform.position,
                 (_playerControl.transform.position - MainFloorCamera.transform.position).normalized,
                 out hit, 100, _layerMask);
-            if (_seesPlayer)
+            /**if (_seesPlayer)
             {
                 if (hit.collider.CompareTag("Player"))
                     _mask.GetComponent<MaskActivate>().StopShow();
                 else _mask.GetComponent<MaskActivate>().StartShow();
-            }
+            }*/
 
             //Debug.DrawRay(Camera.transform.position, (_playerControl.transform.position - Camera.transform.position).normalized, Color.red);
         }

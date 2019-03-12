@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9106227243653911275}
   - component: {fileID: 2335637587800878316}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9161404354553914696}
   - component: {fileID: 2732303915464649454}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Reticule
   m_TagString: Untagged
   m_Icon: {fileID: 0}

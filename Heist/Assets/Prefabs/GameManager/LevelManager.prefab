@@ -44,16 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7af51329575c41218d697e75774be678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _backgroundMusicGathering: {fileID: 0}
+  _backgroundMusicGathering: {fileID: 8300000, guid: 0ae7bd73539a50941b6097af3be17bd5,
+    type: 3}
   _backgroundMusicInfiltration: {fileID: 8300000, guid: b3cebf82f2d39734f8ef77a74ce6bfee,
     type: 3}
   _backgroundMusicLockdown: {fileID: 0}
   _goldMultiplier: 10
   _playerGo:
   - {fileID: 4946971795689322956, guid: 613811141d73ca54eaab31152b8da794, type: 3}
-  - {fileID: 0}
+  - {fileID: 5604010285336927436, guid: 9f0697b46d8111c49968fdf37e54a973, type: 3}
   - {fileID: 4912976719489221536, guid: bbe9e5bbb3ccf7442b6cfed75a8181de, type: 3}
-  - {fileID: 0}
+  - {fileID: 3799809592492375803, guid: a00d20b7374013c43ac13394e251c758, type: 3}
   _spawnpoints: []
   _stunMultiplier: 100
   FOG: {fileID: 0}

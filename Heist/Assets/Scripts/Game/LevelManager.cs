@@ -324,7 +324,7 @@ namespace Game
             {
                 if (_audioSource.Length > 1)
                     StartCoroutine(AudioHelper.CrossFade(_audioSource[_currentAudioSource],
-                        _audioSource[(_currentAudioSource + 1) % _audioSource.Length], _backgroundMusicLockdown, 5));
+                        _audioSource[(_currentAudioSource + 1) % _audioSource.Length], _backgroundMusicGathering, 5));
                 _currentAudioSource = (_currentAudioSource + 1) % _audioSource.Length;
                 _doorOpen = true;
             }

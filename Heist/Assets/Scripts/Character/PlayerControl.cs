@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Game;
+using JetBrains.Annotations;
 using Level;
 using Rewired.Data.Mapping;
 using UI;
@@ -75,8 +76,9 @@ namespace Character
         public Player BaseCharacter => _baseCharacter;
 
         [Header("Animation")] [SerializeField] private Animator _anim;
-        
-        
+        private bool _isAnimNotNull;
+
+
         internal Control Control
         {
             get => _control;
@@ -106,6 +108,7 @@ namespace Character
 
         private void Start()
         {
+            _isAnimNotNull = _anim != null;
             if (_baseCharacter == null)
                 _baseCharacter = GetComponent<Player>();
             if (_rigid == null)
@@ -240,7 +243,8 @@ namespace Character
                     _reticule.SetActive(false);
                 }
             }
-            _anim.SetFloat("Speed", Control.MoveVector.magnitude);
+
+            if (_isAnimNotNull) _anim.SetFloat("Speed", Control.MoveVector.magnitude);
         }
 
         public event EventHandler OnMoveCancel;
@@ -319,7 +323,7 @@ namespace Character
         {
             if (_dashCooldown)
             {
-                _anim.SetTrigger("Dash");
+                if (_isAnimNotNull) _anim.SetTrigger("Dash");
                 LevelManager.LevelManagerRef.Notify(transform.position, NotifyType.Dash);
                 StartCoroutine(DashCooldown());
             }

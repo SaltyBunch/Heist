@@ -248,7 +248,7 @@ namespace Character
                     //todo play baton animation
                     break;
                 case StunGun stunGun:
-                    stunGun.Attack(_player.PlayerNumber);
+                    stunGun.Attack();
                     _count = stunGun.Ammo;
                     if (_count == 0)
                     {

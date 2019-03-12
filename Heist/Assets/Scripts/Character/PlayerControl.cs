@@ -72,7 +72,6 @@ namespace Character
 
 
         public int PlayerNumber;
-        public Floor Floor = Floor.MainFloor;
         public Player BaseCharacter => _baseCharacter;
 
         [Header("Animation")] [SerializeField] private Animator _anim;

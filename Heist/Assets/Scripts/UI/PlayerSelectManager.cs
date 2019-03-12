@@ -8,6 +8,11 @@ namespace UI
     {
         [SerializeField] private List<PlayerSelect> selection;
 
+        private void OnEnable()
+        {
+            GameManager.PlayerChoice = new Characters[GameManager.NumPlayers];
+        }
+
         public void Update()
         {
             if (selection.TrueForAll(s => s.ready || !s.gameObject.activeSelf))

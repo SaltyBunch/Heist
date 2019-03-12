@@ -22,7 +22,6 @@ namespace Level
         private LockQuickTimeEvent _quickTime;
         [SerializeField] private LockQuickTimeEvent _lockQuickTimeEvent;
         [SerializeField] private Vector3 _pickupSpawn;
-        [SerializeField] private Floor _floor;
 
         public void StartChanneling(PlayerControl player)
         {
@@ -64,7 +63,6 @@ namespace Level
             foreach (var pickup in _pickups)
             {
                 var pickupGO = Instantiate(pickup,_player.transform.position, Quaternion.identity);
-                GameManager.SetLayerOnAll(pickupGO.gameObject, LevelManager.PickupMask[_floor]);
             }
         }
     }

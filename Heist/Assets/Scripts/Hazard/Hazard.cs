@@ -10,7 +10,6 @@ namespace Hazard
     {
         public bool PlacedByPlayer;
         [SerializeField, Range(1, 25)] internal float _maxGap;
-        public Floor Floor;
 
         public bool Equals(Hazard other)
         {

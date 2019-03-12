@@ -15,7 +15,6 @@ namespace Editor
 
             base.OnInspectorGUI();
             if (GUILayout.Button("Place")) electric.Place(electric.transform.position);
-            if (GUILayout.Button("Set Floor")) electric.SetFloor(LevelManager.HazardMask[electric.Floor]);
         }
 
         private void OnSceneGUI()

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Character;
+using Rewired;
 using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -38,6 +39,7 @@ namespace Game
         public int GoldAmount;
         public int TimesStunned;
 
+        public int PlayerNumber;
 
         public int PlayerScore =>
             (int) (GoldAmount * GameManager.GoldMultiplier - TimesStunned * GameManager.StunnedMultiplier);
@@ -104,7 +106,9 @@ namespace Game
 
         public static float GoldMultiplier = 10;
         public static float StunnedMultiplier = 100;
-        public Dictionary<int, Score> Scores;
+        public List<Score> Scores;
+        public static int NumPlayers { get; set; }
+        public static List<Color> PlayerColour;
 
         private void Awake()
         {
@@ -116,6 +120,7 @@ namespace Game
         private void Start()
         {
             StartCoroutine(LoadScene(_scenes.MainMenu));
+            NumPlayers = ReInput.controllers.joystickCount;
         }
 
         public static int GetPlayerMask(int playerNumber, bool bitShift)

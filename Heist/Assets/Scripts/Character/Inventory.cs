@@ -209,8 +209,6 @@ namespace Character
                     if (electricField.Place(transform.position))
                     {
                         electricField.transform.parent = null;
-                        electricField.SetFloor(
-                            LevelManager.HazardMask[LevelManager.LevelManagerRef.GetFloor(_player.PlayerNumber)]);
                         electricField.Place(transform.position + transform.forward * 2); //todo wall check
                         Remove(SelectedItem);
                         electricField.PlacedByPlayer = true;
@@ -222,8 +220,6 @@ namespace Character
                     if (lethalLaser.Place(transform.position))
                     {
                         lethalLaser.transform.parent = null;
-                        lethalLaser.SetFloor(
-                            LevelManager.HazardMask[LevelManager.LevelManagerRef.GetFloor(_player.PlayerNumber)]);
                         Remove(SelectedItem);
                         lethalLaser.PlacedByPlayer = true;
                         lethalLaser.gameObject.SetActive(true);

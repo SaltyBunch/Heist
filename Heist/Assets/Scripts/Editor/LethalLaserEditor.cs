@@ -15,7 +15,6 @@ namespace Editor
 
             base.OnInspectorGUI();
             if (GUILayout.Button("Place")) laser.Place(laser.transform.position);
-            if (GUILayout.Button("Set Floor")) laser.SetFloor(LevelManager.HazardMask[laser.Floor]);
 
         }
 

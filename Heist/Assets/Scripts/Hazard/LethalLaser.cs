@@ -38,7 +38,7 @@ namespace Hazard
 
         public override bool Place(Vector3 position)
         {
-            LayerMask layers = ~(LevelManager.EnvironementMask[Floor.Basement] | LevelManager.EnvironementMask[Floor.MainFloor]);
+            LayerMask layers = ~(LevelManager.LevelManagerRef.EnvironmentLayer);
 
             Vector3 fwd = Vector3.positiveInfinity,
                 rt = Vector3.positiveInfinity,
@@ -99,14 +99,6 @@ namespace Hazard
             }
 
             return true;
-        }
-
-        public void SetFloor(LayerMask layerMask)
-        {
-            gameObject.layer = layerMask;
-            GameManager.SetLayerOnAll(Laser1, layerMask);
-            Laser2.layer = layerMask;
-            Laser2.transform.GetChild(0).gameObject.layer = layerMask;
         }
     }
 }

@@ -113,29 +113,11 @@ namespace Game
             {NotifyType.Dash, 10}, {NotifyType.Footstep, 5}, {NotifyType.TripTrap, 100}
         };
 
-        public static Dictionary<Floor, LayerMask> HazardMask = new Dictionary<Floor, LayerMask>()
-        {
-            {Floor.MainFloor, 11},
-            {Floor.Basement, 17}
-        };
-
-        public static Dictionary<Floor, LayerMask> PickupMask = new Dictionary<Floor, LayerMask>()
-        {
-            {Floor.MainFloor, 12},
-            {Floor.Basement, 18}
-        };
-
-        public static Dictionary<Floor, LayerMask> EnvironementMask = new Dictionary<Floor, LayerMask>()
-        {
-            {Floor.MainFloor, 10},
-            {Floor.Basement, 16}
-        };
-
         private bool _vaultOpen;
 
         public static float Time => LevelManagerRef._time;
 
-        [SerializeField] public FloorManager FloorManager { get; }
+        public LayerMask EnvironmentLayer;
 
         public event NotifyEventHandler Notifty;
 
@@ -156,7 +138,7 @@ namespace Game
         private void Start()
         {
             //var players = Rewired.ReInput.players.playerCount;
-            var players = ReInput.controllers.joystickCount;
+            var players = GameManager.NumPlayers;
             //InitGame(4);
             InitGame(players);
 
@@ -172,15 +154,17 @@ namespace Game
 
         public void CalculateScore()
         {
+            GameManager.GameManagerRef.Scores = new List<Score>();
             foreach (var playerGO in _players)
             {
                 var player = _playerGo.Player;
 
                 GameManager.GameManagerRef.Scores.Add(
-                    _playerGo.PlayerControl.PlayerNumber, new Score()
+                    new Score()
                     {
                         GoldAmount = player.Inventory.GoldAmount,
                         TimesStunned = player.timesStunned,
+                        PlayerNumber =  _playerGo.PlayerControl.PlayerNumber, 
                     });
             }
         }
@@ -262,7 +246,7 @@ namespace Game
                 switch (playersOnDisplay[targetDisplay])
                 {
                     case 1:
-                        _players[i].Camera.MainFloorCamera.rect = new Rect
+                        _players[i].Camera.MainCamera.rect = new Rect
                         {
                             x = 0,
                             y = 0,
@@ -271,7 +255,7 @@ namespace Game
                         };
                         break;
                     case 2:
-                        _players[i].Camera.MainFloorCamera.rect = new Rect
+                        _players[i].Camera.MainCamera.rect = new Rect
                         {
                             x = i % 2 * 0.5f,
                             y = 0,
@@ -281,7 +265,7 @@ namespace Game
                         break;
                     case 3:
                     case 4:
-                        _players[i].Camera.MainFloorCamera.rect = new Rect
+                        _players[i].Camera.MainCamera.rect = new Rect
                         {
                             x = i % 2 * 0.5f,
                             y = Mathf.Abs(1 - i / 2) * 0.5f,
@@ -292,20 +276,16 @@ namespace Game
                 }
 
 
-                _players[i].Camera.BasementCamera.rect = _players[i].Camera.MainFloorCamera.rect;
-                _players[i].Camera.UICamera.rect = _players[i].Camera.MainFloorCamera.rect;
+                _players[i].Camera.UICamera.rect = _players[i].Camera.MainCamera.rect;
 
-                _players[i].Camera.MainFloorCamera.targetDisplay = targetDisplay;
-                _players[i].Camera.BasementCamera.targetDisplay = targetDisplay;
+                _players[i].Camera.MainCamera.targetDisplay = targetDisplay;
                 _players[i].Camera.UICamera.targetDisplay = targetDisplay;
                 //assign player number
                 _players[i].PlayerControl.PlayerNumber = i;
 
                 _players[i].PlayerController.Player = ReInput.players.GetPlayer(i);
 
-                _players[i].PlayerUiManager.SetPosition(_players[i].Camera.MainFloorCamera.rect, i);
-
-                _players[i].PlayerControl.Floor = Floor.MainFloor;
+                _players[i].PlayerUiManager.SetPosition(_players[i].Camera.MainCamera.rect, i);
 
                 _players[i].PlayerUiManager.SetCharacter(GameManager.PlayerChoice[i]);
 
@@ -316,7 +296,6 @@ namespace Game
                 NotifyMessage += _players[i].PlayerUiManager.NotifyMessage;
             }
 
-            UpdateCameras();
 
             #endregion
 
@@ -399,17 +378,6 @@ namespace Game
             Notifty?.Invoke(this, e);
         }
 
-        public Floor GetFloor(int playerNumber)
-        {
-            return _players[playerNumber].PlayerControl.Floor;
-        }
-
-        public int[] GetPlayers(Floor floor)
-        {
-            return _players.Where(x => x.PlayerControl.Floor == floor).Select(x => x.PlayerControl.PlayerNumber)
-                .ToArray();
-        }
-
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
@@ -419,14 +387,6 @@ namespace Game
             }
         }
 
-        public void UpdateCameras()
-        {
-            foreach (var player in _players)
-            {
-                player.Camera.ShowPlayers(GetPlayers(player.PlayerControl.Floor),
-                    GetPlayers(player.PlayerControl.Floor == Floor.MainFloor ? Floor.Basement : Floor.MainFloor));
-            }
-        }
 
         public event NotifyMessageHandler NotifyMessage;
 

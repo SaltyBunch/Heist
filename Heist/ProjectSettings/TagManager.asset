@@ -8,6 +8,7 @@ TagManager:
   - Hazard
   - Pickup
   - Walls
+  - Door
   layers:
   - Default
   - TransparentFX
@@ -19,15 +20,15 @@ TagManager:
   - 
   - PostProcessing
   - LightCulled
-  - MainFloorEnvironment
-  - MainFloorHazard
-  - MainFloorPickup
+  - Environment
+  - Hazard
+  - Pickup
   - 
   - 
   - 
-  - BasementEnvironment
-  - BasementHazard
-  - BasementPickup
+  - 
+  - 
+  - 
   - 
   - NotRendered
   - 

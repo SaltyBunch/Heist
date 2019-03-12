@@ -99,7 +99,12 @@ ModelImporter:
     9500000: //RootNode
     13700000: body
     13700002: hair\
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #29'
+    second: {fileID: 2100000, guid: 6d8ce41aee3ad2447ad57850b5fa3cba, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

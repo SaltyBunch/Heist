@@ -165,8 +165,16 @@ namespace Game
 
             var scene = SceneManager.GetSceneByName(sceneName);
             SceneManager.SetActiveScene(scene);
-
+            SetupScene(sceneName);
             _loadingScreen.gameObject.SetActive(false);
+        }
+
+        private void SetupScene(string sceneName)
+        {
+            if (sceneName == _scenes.GameScene)
+            {
+                LevelManager.LevelManagerRef.InitGame(NumPlayers);
+            }
         }
 
         public void EndGame()
@@ -182,14 +190,9 @@ namespace Game
         private IEnumerator UnLoadScene(string scene)
         {
             yield return new WaitForEndOfFrame();
-            var asyncOperation = SceneManager.UnloadSceneAsync(_scenes.GameScene);
-            asyncOperation.allowSceneActivation = false;
+            var asyncOperation = SceneManager.UnloadSceneAsync(scene);
             while (!asyncOperation.isDone)
             {
-                if (asyncOperation.progress >= 0.9f)
-                {
-                    asyncOperation.allowSceneActivation = true;
-                }
 
                 yield return null;
             }

@@ -108,7 +108,17 @@ ModelImporter:
     13700002: hair\
     13700004: Object001
     13700006: Object002
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #29'
+    second: {fileID: 2100000, guid: 969ac717203097f4aba275e5f0f46892, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 969ac717203097f4aba275e5f0f46892, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

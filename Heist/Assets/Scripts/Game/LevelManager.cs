@@ -140,7 +140,6 @@ namespace Game
             //var players = Rewired.ReInput.players.playerCount;
             var players = GameManager.NumPlayers;
             //InitGame(4);
-            InitGame(players);
 
             StartCoroutine(LevelTimer());
         }
@@ -176,7 +175,7 @@ namespace Game
             {
                 // Number of displays
 #if UNITY_EDITOR || UNITY_EDITOR_64
-                displays = 2;
+                displays = 1;
 #else
                     displays = Display.displays.Length;
 #endif

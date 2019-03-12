@@ -8,7 +8,7 @@ namespace Character
     {
         [SerializeField] private NavMeshAgent agent;
 
-        private void Start()
+        private new void Start()
         {
             if (agent == null)
                 agent = GetComponent<NavMeshAgent>();

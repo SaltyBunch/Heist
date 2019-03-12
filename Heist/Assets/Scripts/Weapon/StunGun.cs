@@ -9,12 +9,11 @@ namespace Weapon
         [SerializeField] public Vector3 Barrel;
 
 
-        public new void Attack(int playerNum)
+        public new void Attack()
         {
             _audioSource.clip = _fireSound;
             _audioSource.Play();
             var proj = Instantiate(_projectile, transform.TransformPoint(Barrel), transform.rotation);
-            GameManager.SetLayerOnAll(proj.gameObject, GameManager.GetPlayerMask(playerNum, false));
             proj.Shoot();
             Ammo--;
         }

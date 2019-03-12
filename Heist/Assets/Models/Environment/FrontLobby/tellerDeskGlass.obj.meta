@@ -16,7 +16,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: tellerDeskGlassMat
-    second: {fileID: 2100000, guid: 819dcba0bb389e745862139f16227634, type: 2}
+    second: {fileID: 2100000, guid: b943615a7de8a3641a48317a213c9466, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

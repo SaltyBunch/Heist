@@ -7,6 +7,7 @@ TagManager:
   - SpawnPoint
   - Hazard
   - Pickup
+  - Walls
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
+  - LightCulled
   - MainFloorEnvironment
   - MainFloorHazard
   - MainFloorPickup
@@ -28,7 +29,7 @@ TagManager:
   - BasementHazard
   - BasementPickup
   - 
-  - 
+  - NotRendered
   - 
   - 
   - 

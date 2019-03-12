@@ -8,6 +8,7 @@ ModelImporter:
     400000: FloorTileChecker2
     400002: //RootNode
     2100000: palette
+    2100002: FloorTileChecker2Mat
     2300000: FloorTileChecker2
     3300000: FloorTileChecker2
     4300000: FloorTileChecker2

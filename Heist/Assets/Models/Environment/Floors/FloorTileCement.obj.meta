@@ -8,6 +8,7 @@ ModelImporter:
     400000: FloorTileCement
     400002: //RootNode
     2100000: palette
+    2100002: FloorTileCementMat
     2300000: FloorTileCement
     3300000: FloorTileCement
     4300000: FloorTileCement

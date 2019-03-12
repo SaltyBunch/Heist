@@ -8,6 +8,7 @@ ModelImporter:
     400000: FloorTile6
     400002: //RootNode
     2100000: palette
+    2100002: FloorTile6Mat
     2300000: FloorTile6
     3300000: FloorTile6
     4300000: FloorTile6

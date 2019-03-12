@@ -8,6 +8,7 @@ ModelImporter:
     400000: Laser
     400002: //RootNode
     2100000: palette
+    2100002: LaserMat
     2300000: Laser
     3300000: Laser
     4300000: Laser

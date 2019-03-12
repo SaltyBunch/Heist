@@ -8,6 +8,7 @@ ModelImporter:
     400000: ATM
     400002: //RootNode
     2100000: palette
+    2100002: ATMMat
     2300000: ATM
     3300000: ATM
     4300000: ATM

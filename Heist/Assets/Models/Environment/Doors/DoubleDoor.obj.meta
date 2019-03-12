@@ -8,6 +8,7 @@ ModelImporter:
     400000: DoubleDoor
     400002: //RootNode
     2100000: palette
+    2100002: DoubleDoorMat
     2300000: DoubleDoor
     3300000: DoubleDoor
     4300000: DoubleDoor

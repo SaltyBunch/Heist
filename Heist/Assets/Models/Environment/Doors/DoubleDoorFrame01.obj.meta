@@ -8,6 +8,7 @@ ModelImporter:
     400000: DoubleDoorFrame01
     400002: //RootNode
     2100000: palette
+    2100002: DoubleDoorFrame01Mat
     2300000: DoubleDoorFrame01
     3300000: DoubleDoorFrame01
     4300000: DoubleDoorFrame01

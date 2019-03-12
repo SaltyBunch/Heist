@@ -8,6 +8,7 @@ ModelImporter:
     400000: Sink
     400002: //RootNode
     2100000: palette
+    2100002: SinkMat
     2300000: Sink
     3300000: Sink
     4300000: Sink

@@ -8,6 +8,7 @@ ModelImporter:
     400000: OfficeDoor01
     400002: //RootNode
     2100000: palette
+    2100002: OfficeDoor01Mat
     2300000: OfficeDoor01
     3300000: OfficeDoor01
     4300000: OfficeDoor01

@@ -8,6 +8,7 @@ ModelImporter:
     400000: WoodFloor
     400002: //RootNode
     2100000: palette
+    2100002: WoodFloorMat
     2300000: WoodFloor
     3300000: WoodFloor
     4300000: WoodFloor

@@ -8,6 +8,7 @@ ModelImporter:
     400000: SingleDoorFrame
     400002: //RootNode
     2100000: palette
+    2100002: SingleDoorFrameMat
     2300000: SingleDoorFrame
     3300000: SingleDoorFrame
     4300000: SingleDoorFrame

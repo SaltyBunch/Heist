@@ -8,6 +8,7 @@ ModelImporter:
     400000: Pick-up
     400002: //RootNode
     2100000: palette
+    2100002: Pick-upMat
     2300000: Pick-up
     3300000: Pick-up
     4300000: Pick-up

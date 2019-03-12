@@ -8,6 +8,7 @@ ModelImporter:
     400000: DefaultMainWall
     400002: //RootNode
     2100000: palette
+    2100002: DefaultMainWallMat
     2300000: DefaultMainWall
     3300000: DefaultMainWall
     4300000: DefaultMainWall

@@ -8,6 +8,7 @@ ModelImporter:
     400000: FloorSidePiece
     400002: //RootNode
     2100000: palette
+    2100002: FloorSidePieceMat
     2300000: FloorSidePiece
     3300000: FloorSidePiece
     4300000: FloorSidePiece

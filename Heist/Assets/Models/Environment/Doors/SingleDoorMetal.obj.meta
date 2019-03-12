@@ -8,6 +8,7 @@ ModelImporter:
     400000: SingleDoorMetal
     400002: //RootNode
     2100000: palette
+    2100002: SingleDoorMetalMat
     2300000: SingleDoorMetal
     3300000: SingleDoorMetal
     4300000: SingleDoorMetal

@@ -8,6 +8,7 @@ ModelImporter:
     400000: ElectricField_Nick
     400002: //RootNode
     2100000: palette
+    2100002: ElectricField_NickMat
     2300000: ElectricField_Nick
     3300000: ElectricField_Nick
     4300000: ElectricField_Nick

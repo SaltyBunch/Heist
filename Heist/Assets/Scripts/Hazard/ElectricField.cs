@@ -26,27 +26,28 @@ namespace Hazard
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.CompareTag("Player")) _players[other.GetComponent<PlayerControl>().PlayerNumber - 1] = false;
+            if (other.CompareTag("Player")) _players[other.GetComponentInParent<PlayerControl>().PlayerNumber] = false;
         }
 
         private new IEnumerator Trigger(PlayerControl player)
         {
+            if (PlacedByPlayer) Destroy(this.gameObject, 5);
             var prevSpeed = player.BaseCharacter.Stats.Speed;
-            _players[player.PlayerNumber - 1] = true;
+            _players[player.PlayerNumber] = true;
             player.BaseCharacter.Stats.Speed /= 2;
             do
             {
                 player.BaseCharacter.Stacks += 1;
                 yield return new WaitForSeconds(1f);
-            } while (_players[player.PlayerNumber - 1]);
+            } while (_players[player.PlayerNumber]);
 
             player.BaseCharacter.Stats.Speed = prevSpeed;
         }
 
-        public override void Place(Vector3 position)
+        public override bool Place(Vector3 position)
         {
             var dis = 1.24f;
-            LayerMask layers = ~LayerMask.GetMask("Hazard", "Environment", "VFX");
+            LayerMask layers = ~(LevelManager.LevelManagerRef.EnvironmentLayer);
 
             Vector3 fwd = Vector3.positiveInfinity,
                 rt = Vector3.positiveInfinity,
@@ -62,6 +63,8 @@ namespace Hazard
 
             if (Physics.Raycast(position, Vector3.back, out hit, 20, layers)) bk = hit.point;
 
+            if (Vector3.Distance(fwd, bk) > _maxGap && Vector3.Distance(rt, lt) > _maxGap) return false;
+            
             if (Vector3.Distance(fwd, bk) > Vector3.Distance(rt, lt))
             {
                 transform.position = (rt + lt) / 2;
@@ -103,12 +106,8 @@ namespace Hazard
                     z = Electric1.transform.localPosition.z * 2, y = 1.5f
                 };
             }
-        }
 
-        public void SetFloor(Floor floor, LayerMask layerMask)
-        {
-            throw new System.NotImplementedException();
-            //todo electric field
+            return true;
         }
     }
 }

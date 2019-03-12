@@ -31,8 +31,11 @@ namespace Character
         private Rigidbody _rgd;
         private int _stacks;
         private bool _stun;
-        private bool _stunCooldown;
 
+        public bool Stunned => _stun;
+        
+        private bool _stunCooldown;
+        
         private float _timeSinceDamage;
         [SerializeField] public Stats Stats;
 
@@ -59,15 +62,14 @@ namespace Character
                         _stacks = 0;
                 }
 
-                if (HealthChanged != null)
-                    HealthChanged(this, new HealthChangedEventArgs {Health = Stats.Health - _stacks});
+                HealthChanged?.Invoke(this, new HealthChangedEventArgs {Health = Stats.Health - _stacks});
             }
         }
 
         public event HealthUpdatedEventHandler HealthChanged;
 
 
-        private void Start()
+        public void Start()
         {
             if (_rgd == null)
                 _rgd = GetComponent<Rigidbody>();

@@ -1,4 +1,5 @@
-﻿using Rewired;
+﻿using Game;
+using Rewired;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -40,6 +41,7 @@ namespace UI
         {
             LoadUIControls();
             currentMenu = Menus.Main;
+            PlayerPrefs.DeleteAll();
         }
 
         private void Update()

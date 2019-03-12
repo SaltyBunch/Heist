@@ -1,3 +1,4 @@
+using Game;
 using UnityEngine;
 
 namespace Weapon
@@ -10,6 +11,8 @@ namespace Weapon
 
         public new void Attack()
         {
+            _audioSource.clip = _fireSound;
+            _audioSource.Play();
             var proj = Instantiate(_projectile, transform.TransformPoint(Barrel), transform.rotation);
             proj.Shoot();
             Ammo--;

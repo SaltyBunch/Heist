@@ -2,6 +2,7 @@ using System;
 using Character;
 using Game;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 namespace Level
@@ -9,38 +10,42 @@ namespace Level
     public class Door : MonoBehaviour
     {
         [SerializeField] private Light _light;
-        [SerializeField] private bool _locked;
+        [SerializeField] private bool _locked = false;
 
         [SerializeField] private Color _lockedColor;
+        [SerializeField] private Animation.Door _door;
 
-        private bool _open;
+        [SerializeField] internal Animator _anim;
+
+        [SerializeField] internal bool _open;
 
         private PlayerControl _player;
         private LockQuickTimeEvent _quickTime;
         [SerializeField] private Color _unlockedColor;
 
-        [SerializeField] private LockQuickTimeEvent lockQuickTimeEvent;
+        [SerializeField] private LockQuickTimeEvent _lockQuickTimeEvent;
 
         public bool Locked
         {
             get => _locked;
             set
             {
-                if (_locked != value) _light.color = value ? _lockedColor : _unlockedColor;
+                if (_locked != value && _light != null) _light.color = value ? _lockedColor : _unlockedColor;
                 _locked = value;
             }
         }
+
 
         private void Reset()
         {
             gameObject.tag = "Door";
         }
 
-        public void Open(PlayerControl player)
+        public virtual void Open(PlayerControl player)
         {
             if (_locked)
             {
-                _quickTime = Instantiate(lockQuickTimeEvent);
+                _quickTime = player.BaseCharacter.InitializeQuickTime(_lockQuickTimeEvent) as LockQuickTimeEvent;
                 _quickTime.QuickTimeType = QuickTimeEvent.Type.GoldPile;
                 _quickTime.Events += QuickTimeEventMonitor;
                 _player = player;
@@ -48,7 +53,11 @@ namespace Level
             }
             else //todo open door
             {
-                _open = true;
+                _open = !_open;
+                if (_open)
+                    _anim.SetTrigger("Open");
+                else
+                    _anim.SetTrigger("Close");
             }
         }
 
@@ -74,4 +83,7 @@ namespace Level
             }
         }
     }
+
+
+    //TODO Coroutine for close
 }

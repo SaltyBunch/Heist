@@ -58,7 +58,7 @@ namespace Game
 
         [SerializeField] private int _goldMultiplier = 10;
 
-        [SerializeField] private PlayerGameObject _playerGo;
+        [SerializeField] private List<PlayerGameObject> _playerGo;
 
         private PlayerGameObject[] _players;
         public PlayerGameObject[] Players => _players;
@@ -157,14 +157,14 @@ namespace Game
             GameManager.GameManagerRef.Scores = new List<Score>();
             foreach (var playerGO in _players)
             {
-                var player = _playerGo.Player;
+                var player = playerGO.Player;
 
                 GameManager.GameManagerRef.Scores.Add(
                     new Score()
                     {
                         GoldAmount = player.Inventory.GoldAmount,
                         TimesStunned = player.timesStunned,
-                        PlayerNumber =  _playerGo.PlayerControl.PlayerNumber, 
+                        PlayerNumber = playerGO.PlayerControl.PlayerNumber,
                     });
             }
         }
@@ -235,7 +235,7 @@ namespace Game
             {
                 if (i != 0 && i % playersPerDisplay == 0)
                     targetDisplay++;
-                _players[i] = Instantiate(_playerGo);
+                _players[i] = Instantiate(_playerGo[(int)GameManager.PlayerChoice[i]]);
                 //todo set appropriate player models
 
 
@@ -295,7 +295,6 @@ namespace Game
 
                 NotifyMessage += _players[i].PlayerUiManager.NotifyMessage;
             }
-
 
             #endregion
 

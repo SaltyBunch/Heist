@@ -49,13 +49,20 @@ MonoBehaviour:
     type: 3}
   _backgroundMusicLockdown: {fileID: 0}
   _goldMultiplier: 10
-  _playerGo: {fileID: 6986696923655994140, guid: f6115e0dd9298c84ab7a5c8434db458c,
-    type: 3}
+  _playerGo:
+  - {fileID: 4946971795689322956, guid: 613811141d73ca54eaab31152b8da794, type: 3}
+  - {fileID: 0}
+  - {fileID: 4912976719489221536, guid: bbe9e5bbb3ccf7442b6cfed75a8181de, type: 3}
+  - {fileID: 0}
   _spawnpoints: []
   _stunMultiplier: 100
+  FOG: {fileID: 0}
   _endGameAtTime: 0
   _vaultTimer: 120
   _gameEndArea: {fileID: 0}
+  EnvironmentLayer:
+    serializedVersion: 2
+    m_Bits: 0
   playerModels: []
 --- !u!82 &8199425501971676588
 AudioSource:

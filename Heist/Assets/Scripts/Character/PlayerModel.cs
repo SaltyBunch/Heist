@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace Character
 {
-    [RequireComponent(typeof(SkinnedMeshRenderer))]
     public class PlayerModel : MonoBehaviour
     {
         [SerializeField] private Material _characterMaterial;

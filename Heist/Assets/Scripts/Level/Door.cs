@@ -15,9 +15,9 @@ namespace Level
         [SerializeField] private Color _lockedColor;
         [SerializeField] private Animation.Door _door;
 
-        [SerializeField] private Animator _anim;
+        [SerializeField] internal Animator _anim;
 
-        [SerializeField] private bool _open;
+        [SerializeField] internal bool _open;
 
         private PlayerControl _player;
         private LockQuickTimeEvent _quickTime;
@@ -41,7 +41,7 @@ namespace Level
             gameObject.tag = "Door";
         }
 
-        public void Open(PlayerControl player)
+        public virtual void Open(PlayerControl player)
         {
             if (_locked)
             {

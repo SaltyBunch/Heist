@@ -340,7 +340,7 @@ namespace Game
             }
         }
 
-        private void OpenDoor()
+        public void OpenDoor()
         {
             if (_doorOpen == false)
             {

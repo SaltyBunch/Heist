@@ -302,7 +302,18 @@ namespace Character
 
         private void PushAttack()
         {
-            Debug.Log("Push Attack by Player " + (PlayerNumber + 1));
+            var objects = Physics.OverlapSphere(transform.position, 2);
+            foreach (var o in objects)
+            {
+                if (o.CompareTag("Player") || o.CompareTag("Drone"))
+                {
+                    var character = o.GetComponentInParent<Character>();
+                    if (character.gameObject.layer != this.gameObject.layer)
+                    {
+                        character.Knockback(transform);
+                    }
+                }
+            }
         }
 
         private void Dash()

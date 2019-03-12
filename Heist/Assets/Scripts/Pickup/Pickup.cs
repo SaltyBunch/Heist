@@ -1,3 +1,4 @@
+using System.Collections;
 using Character;
 using UnityEngine;
 
@@ -16,6 +17,10 @@ namespace Pickup
     {
         [SerializeField] internal PickupType _pickupType;
 
+        [SerializeField] private float _verticalSpeed = 0.02f, _rotationSpeed = 1;
+        private int _direction = 1;
+        private Coroutine _rotation;
+
         private void Start()
         {
             var collider = GetComponent<Collider>();
@@ -24,6 +29,27 @@ namespace Pickup
                 collider.isTrigger = true;
                 Debug.LogError("Collider on {this.name} is not set as a Trigger, temporarily set to Trigger");
             }
+
+            _rotation = StartCoroutine(Rotate());
+        }
+
+        private IEnumerator Rotate()
+        {
+            float current = 0;
+            do
+            {
+                current += _verticalSpeed;
+                if (current > 1)
+                {
+                    current = 0;
+                    _direction *= -1;
+                }
+
+                transform.position = Vector3.Lerp(transform.position,
+                    transform.position + Vector3.up * 0.5f * _direction, _verticalSpeed);
+                transform.localRotation = transform.localRotation * Quaternion.Euler(0, _rotationSpeed, 0);
+                yield return new WaitForFixedUpdate();
+            } while (true);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -42,6 +68,11 @@ namespace Pickup
                 var player = other.GetComponentInParent<Player>();
                 player.OverPickup(_pickupType, false, this);
             }
+        }
+
+        private void OnDestroy()
+        {
+            StopCoroutine(_rotation);
         }
     }
 }

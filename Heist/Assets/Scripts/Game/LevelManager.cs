@@ -104,7 +104,8 @@ namespace Game
 
         private void AllPlayersLeft(bool b)
         {
-            throw new NotImplementedException();
+            CalculateScore();
+            //todo go to score screen
         }
 
         public Dictionary<NotifyType, float> NotificationRamge = new Dictionary<NotifyType, float>
@@ -139,6 +140,7 @@ namespace Game
         public event NotifyEventHandler Notifty;
 
         [SerializeField] private GameObject[] playerModels;
+        private bool _doorOpen;
 
         private void Awake()
         {
@@ -157,8 +159,6 @@ namespace Game
             var players = ReInput.controllers.joystickCount;
             //InitGame(4);
             InitGame(players);
-            _audioSource[_currentAudioSource].clip = _backgroundMusicInfiltration;
-            _audioSource[_currentAudioSource].Play();
 
             StartCoroutine(LevelTimer());
         }
@@ -170,11 +170,19 @@ namespace Game
             if (_vaultOpen) TimeSinceVaultOpened += 0.5f;
         }
 
-        public int CalculateScore(Player player)
+        public void CalculateScore()
         {
-            var score = player.Inventory.GoldAmount * _goldMultiplier;
-            score -= player.timesStunned * _stunMultiplier;
-            return score;
+            foreach (var playerGO in _players)
+            {
+                var player = _playerGo.Player;
+
+                GameManager.GameManagerRef.Scores.Add(
+                    _playerGo.PlayerControl.PlayerNumber, new Score()
+                    {
+                        GoldAmount = player.Inventory.GoldAmount,
+                        TimesStunned = player.timesStunned,
+                    });
+            }
         }
 
         public void InitGame(int numPlayers)
@@ -304,10 +312,8 @@ namespace Game
                 _players[i].fog.FogOfWarPlane = FOG.transform;
                 _players[i].fog.num = (i + 1);
 
-               
 
                 NotifyMessage += _players[i].PlayerUiManager.NotifyMessage;
-
             }
 
             UpdateCameras();
@@ -316,7 +322,7 @@ namespace Game
 
             #region Audio
 
-            _audioSource[_currentAudioSource].clip = _backgroundMusicInfiltration;
+            _audioSource[_currentAudioSource].clip = _backgroundMusicGathering;
             _audioSource[_currentAudioSource].Play();
 
             #endregion
@@ -334,6 +340,18 @@ namespace Game
             }
         }
 
+        private void OpenDoor()
+        {
+            if (_doorOpen == false)
+            {
+                if (_audioSource.Length > 1)
+                    StartCoroutine(AudioHelper.CrossFade(_audioSource[_currentAudioSource],
+                        _audioSource[(_currentAudioSource + 1) % _audioSource.Length], _backgroundMusicLockdown, 5));
+                _currentAudioSource = (_currentAudioSource + 1) % _audioSource.Length;
+                _doorOpen = true;
+            }
+        }
+
         public IEnumerator OpenVault(Vault.OpenDoor callVault)
         {
             if (_audioSource.Length > 1)
@@ -346,11 +364,10 @@ namespace Game
                 player.PlayerUiManager.Siren.SetActive(true);
             }
 
-           
 
             callVault();
             _vaultOpen = true;
-            
+
             var time = _vaultTimer;
             do
             {
@@ -367,8 +384,6 @@ namespace Game
             {
                 player.PlayerUiManager.VaultTimer.text = "";
             }
-            
-            //todo hey david, make it go to the main menu pls
         }
 
         public void Notify(Vector3 position, NotifyType notifyType)

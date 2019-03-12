@@ -33,6 +33,16 @@ namespace Game
         Victory
     }
 
+    public struct Score
+    {
+        public int GoldAmount;
+        public int TimesStunned;
+
+
+        public int PlayerScore =>
+            (int) (GoldAmount * GameManager.GoldMultiplier - TimesStunned * GameManager.StunnedMultiplier);
+    }
+
     public class GameManager : MonoBehaviour
     {
         [SerializeField] private Scenes _scenes;
@@ -92,6 +102,10 @@ namespace Game
         public static Characters[] PlayerChoice =
             {Characters.Raccoon, Characters.Jailbird, Characters.Shadow, Characters.King};
 
+        public static float GoldMultiplier = 10;
+        public static float StunnedMultiplier = 100;
+        public Dictionary<int, Score> Scores;
+
         private void Awake()
         {
             if (GameManagerRef == null || GameManagerRef == this) GameManagerRef = this;
@@ -143,6 +157,7 @@ namespace Game
 
                 yield return null;
             }
+
             var scene = SceneManager.GetSceneByName(sceneName);
             SceneManager.SetActiveScene(scene);
 

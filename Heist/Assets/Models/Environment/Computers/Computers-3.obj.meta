@@ -12,7 +12,12 @@ ModelImporter:
     2300000: Computers-3
     3300000: Computers-3
     4300000: Computers-3
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Computers-3Mat
+    second: {fileID: 2100000, guid: a57a9b5a695872e41859d7f03bd1ad0f, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -43,7 +48,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.0625
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1

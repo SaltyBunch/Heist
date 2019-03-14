@@ -40,6 +40,15 @@ namespace Drone
         private void Start()
         {
             investigation.transform.parent = null;
+            foreach(var v in patrolPath)
+            {
+                v.transform.parent = null;
+            }
+            foreach (var v in bigPatrolPath)
+            {
+                v.transform.parent = null;
+            }
+
             agent = GetComponent<NavMeshAgent>();
             obstacle = GetComponent<NavMeshObstacle>();
             if (bigPatrolPath.Count <= 0) bigPatrolPath = patrolPath;

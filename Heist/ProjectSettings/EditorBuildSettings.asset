@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: b5d8a0687500f544a844ac0db3133bde
   - enabled: 1
-    path: Assets/Scenes/Bank 2.0.unity
+    path: Assets/Scenes/Bank 2.1.unity
     guid: 9789a4d1496dd1248b6af9a85e9cc6ae
   m_configObjects: {}

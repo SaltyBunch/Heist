@@ -16,7 +16,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: HarrisL_TheVault_Heist-36Mat
-    second: {fileID: 2100000, guid: 761b149f056196848afd3e7ad9cc2987, type: 2}
+    second: {fileID: 2100000, guid: 053eda0abac24cd439de08b4d59f1847, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

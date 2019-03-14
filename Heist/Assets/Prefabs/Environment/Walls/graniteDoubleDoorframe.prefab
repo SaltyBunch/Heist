@@ -13,10 +13,9 @@ GameObject:
   - component: {fileID: 1360513127907577103}
   - component: {fileID: 2890508644732356434}
   - component: {fileID: 1266608528118869333}
-  - component: {fileID: 4353081141139929555}
   m_Layer: 0
   m_Name: graniteDoubleDoorframe
-  m_TagString: Door
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,25 +107,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.70057297, y: 4, z: 0.5}
   m_Center: {x: 1.6497135, y: 2, z: 0}
---- !u!114 &4353081141139929555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1360513127905317839}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d24985507d918141b98993d5d7c0a6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  openName: DoubleDoorROpen
-  closeName: DoubleDoorRClose
-  animator: {fileID: 3895535815595645413}
-  openName2: DoubleDoorLOpen
-  closeName2: DoubleDoorLClose
-  animator2: {fileID: 4469577432750932732}
-  canOpen: 1
 --- !u!1 &2120948992666834551
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,6 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1193944318993040010}
   - component: {fileID: 2475146186346845381}
+  - component: {fileID: 2963753076893623108}
   - component: {fileID: 3895535815595645413}
   m_Layer: 0
   m_Name: HingePoint (1)
@@ -152,14 +133,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2120948992666834551}
-  m_LocalRotation: {x: -0, y: 0.7177217, z: -0, w: 0.69633013}
+  m_LocalRotation: {x: -0, y: -0.00000016391255, z: -0, w: 1}
   m_LocalPosition: {x: 1.25, y: 0.0625, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1597389567474351579}
   m_Father: {fileID: 1360513127905153007}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 91.733, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
 --- !u!65 &2475146186346845381
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -173,6 +154,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1650949, y: 2.2187455, z: 0.035064697}
   m_Center: {x: -0.63470197, y: 1.2228724, z: 0.033863463}
+--- !u!54 &2963753076893623108
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120948992666834551}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 94
+  m_CollisionDetection: 0
 --- !u!95 &3895535815595645413
 Animator:
   serializedVersion: 3
@@ -356,6 +353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5131452494611303617}
   - component: {fileID: 6694419863298360198}
+  - component: {fileID: 6544867390408239848}
   - component: {fileID: 4469577432750932732}
   m_Layer: 0
   m_Name: HingePoint
@@ -371,14 +369,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8238130760265236169}
-  m_LocalRotation: {x: -0, y: -0.72337645, z: -0, w: 0.69045395}
+  m_LocalRotation: {x: -0, y: -0.00000016391255, z: -0, w: 1}
   m_LocalPosition: {x: -1.25, y: 0.0625, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 2939597678649861656}
   m_Father: {fileID: 1360513127905153007}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 267.332, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
 --- !u!65 &6694419863298360198
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -392,6 +390,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1650949, y: 2.2187455, z: 0.035064697}
   m_Center: {x: -0.63470197, y: 1.2228724, z: 0.033863463}
+--- !u!54 &6544867390408239848
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8238130760265236169}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 94
+  m_CollisionDetection: 0
 --- !u!95 &4469577432750932732
 Animator:
   serializedVersion: 3

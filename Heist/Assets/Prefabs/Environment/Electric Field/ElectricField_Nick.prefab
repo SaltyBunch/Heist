@@ -150,7 +150,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a57a9b5a695872e41859d7f03bd1ad0f, type: 2}
+  - {fileID: 2100000, guid: a397665fd10ea074281025efce7289e0, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -360,7 +360,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a57a9b5a695872e41859d7f03bd1ad0f, type: 2}
+  - {fileID: 2100000, guid: a397665fd10ea074281025efce7289e0, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -439,8 +439,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdfb27c1e2f141118ecf743b44c0d7ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlacedByPlayer: 0
-  _maxGap: 15
   Collider: {fileID: 8428732421374892429}
   Electric1: {fileID: 5556288528404577491}
   Electric2: {fileID: 1105273635}
@@ -451,6 +449,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4826128160559464896}
     m_Modifications:
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Name
+      value: Lightning (7)
+      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034137, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -506,11 +509,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Name
-      value: Lightning (7)
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: ShapeModule.m_Scale.x
@@ -551,16 +549,6 @@ PrefabInstance:
       propertyPath: SubModule.subEmitters.Array.data[0].emitter
       value: 
       objectReference: {fileID: 4826128159492012481}
-    - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].probability
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: CollisionModule.enabled
@@ -627,6 +615,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4826128160559464896}
     m_Modifications:
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Name
+      value: Lightning (10)
+      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034137, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -682,11 +675,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Name
-      value: Lightning (10)
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: ShapeModule.m_Scale.x
@@ -727,16 +715,6 @@ PrefabInstance:
       propertyPath: SubModule.subEmitters.Array.data[0].emitter
       value: 
       objectReference: {fileID: 4826128159501113029}
-    - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].probability
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: CollisionModule.enabled
@@ -803,6 +781,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4826128160559464896}
     m_Modifications:
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Name
+      value: Lightning (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034137, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -858,11 +841,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Name
-      value: Lightning (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: ShapeModule.m_Scale.x
@@ -903,16 +881,6 @@ PrefabInstance:
       propertyPath: SubModule.subEmitters.Array.data[0].emitter
       value: 
       objectReference: {fileID: 4826128158907786177}
-    - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].probability
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: CollisionModule.enabled
@@ -979,6 +947,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4826128160559464896}
     m_Modifications:
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Name
+      value: Lightning (5)
+      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034137, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1034,11 +1007,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Name
-      value: Lightning (5)
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: ShapeModule.m_Scale.x
@@ -1079,16 +1047,6 @@ PrefabInstance:
       propertyPath: SubModule.subEmitters.Array.data[0].emitter
       value: 
       objectReference: {fileID: 4826128158766928729}
-    - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].probability
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: CollisionModule.enabled
@@ -1155,6 +1113,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4826128160559464896}
     m_Modifications:
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Name
+      value: Lightning (8)
+      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034137, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1210,11 +1173,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Name
-      value: Lightning (8)
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: ShapeModule.m_Scale.x
@@ -1255,16 +1213,6 @@ PrefabInstance:
       propertyPath: SubModule.subEmitters.Array.data[0].emitter
       value: 
       objectReference: {fileID: 4826128160381235289}
-    - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].probability
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: CollisionModule.enabled
@@ -1331,6 +1279,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6954365183085770246}
     m_Modifications:
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Name
+      value: Lightning
+      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034137, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1386,11 +1339,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Name
-      value: Lightning
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: ShapeModule.m_Scale.x
@@ -1431,16 +1379,6 @@ PrefabInstance:
       propertyPath: SubModule.subEmitters.Array.data[0].emitter
       value: 
       objectReference: {fileID: 4826128160193927323}
-    - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].probability
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: CollisionModule.enabled
@@ -1466,21 +1404,6 @@ PrefabInstance:
       propertyPath: SubModule.subEmitters.Array.data[0].emitter
       value: 
       objectReference: {fileID: 4826128158545770347}
-    - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].time
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].probability
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320045227595506, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: CollisionModule.enabled
@@ -1528,6 +1451,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4826128160559464896}
     m_Modifications:
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Name
+      value: Lightning (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034137, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1583,11 +1511,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Name
-      value: Lightning (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: ShapeModule.m_Scale.x
@@ -1628,16 +1551,6 @@ PrefabInstance:
       propertyPath: SubModule.subEmitters.Array.data[0].emitter
       value: 
       objectReference: {fileID: 4826128160354226776}
-    - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].probability
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: CollisionModule.enabled
@@ -1704,6 +1617,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4826128160559464896}
     m_Modifications:
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Name
+      value: Lightning (12)
+      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034137, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1759,11 +1677,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Name
-      value: Lightning (12)
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: ShapeModule.m_Scale.x
@@ -1804,16 +1717,6 @@ PrefabInstance:
       propertyPath: SubModule.subEmitters.Array.data[0].emitter
       value: 
       objectReference: {fileID: 4826128160320243702}
-    - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].probability
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: CollisionModule.enabled
@@ -1880,6 +1783,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4826128160559464896}
     m_Modifications:
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Name
+      value: Lightning (6)
+      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034137, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1935,11 +1843,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Name
-      value: Lightning (6)
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: ShapeModule.m_Scale.x
@@ -1980,16 +1883,6 @@ PrefabInstance:
       propertyPath: SubModule.subEmitters.Array.data[0].emitter
       value: 
       objectReference: {fileID: 4826128160249895060}
-    - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].probability
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: CollisionModule.enabled
@@ -2056,6 +1949,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4826128160559464896}
     m_Modifications:
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Name
+      value: Lightning (4)
+      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034137, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2111,11 +2009,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Name
-      value: Lightning (4)
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: ShapeModule.m_Scale.x
@@ -2156,16 +2049,6 @@ PrefabInstance:
       propertyPath: SubModule.subEmitters.Array.data[0].emitter
       value: 
       objectReference: {fileID: 4826128159659949754}
-    - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].probability
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: CollisionModule.enabled
@@ -2232,6 +2115,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4826128160559464896}
     m_Modifications:
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Name
+      value: Lightning (11)
+      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034137, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2287,11 +2175,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Name
-      value: Lightning (11)
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: ShapeModule.m_Scale.x
@@ -2332,16 +2215,6 @@ PrefabInstance:
       propertyPath: SubModule.subEmitters.Array.data[0].emitter
       value: 
       objectReference: {fileID: 4826128159613871560}
-    - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].probability
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: CollisionModule.enabled
@@ -2408,6 +2281,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4826128160559464896}
     m_Modifications:
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Name
+      value: Lightning (9)
+      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034137, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2463,11 +2341,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Name
-      value: Lightning (9)
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: ShapeModule.m_Scale.x
@@ -2508,16 +2381,6 @@ PrefabInstance:
       propertyPath: SubModule.subEmitters.Array.data[0].emitter
       value: 
       objectReference: {fileID: 4826128159639567703}
-    - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034136, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].probability
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: CollisionModule.enabled

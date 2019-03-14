@@ -1,5 +1,4 @@
 using System;
-using Game;
 using Pickup;
 using UI;
 using UnityEngine;
@@ -15,7 +14,8 @@ namespace Character
 
         private bool _overWeaponPickup;
 
-        [SerializeField] private PlayerUIManager _playerUiManager;
+        [SerializeField] private UIManager _ui => UIManager.UiManagerRef;
+
 
         public Inventory Inventory => _inventory;
 
@@ -37,12 +37,8 @@ namespace Character
             }
         }
 
-
         public void OverPickup(PickupType pickupType, bool overPickup, Pickup.Pickup pickup)
         {
-            _playerUiManager.ShowPickup(pickupType, overPickup);
-
-
             switch (pickupType)
             {
                 case PickupType.Weapon:
@@ -50,7 +46,7 @@ namespace Character
                     _currentlyOverPickup = overPickup ? pickup : null;
                     break;
                 case PickupType.Trap:
-                    OverTrapPickup = overPickup;
+                    OverWeaponPickup = overPickup;
                     _currentlyOverPickup = overPickup ? pickup : null;
                     break;
                 case PickupType.Gold:
@@ -59,20 +55,14 @@ namespace Character
                         _inventory.GoldAmount += ((GoldPickup) pickup).AmountOfGold;
                         Destroy(pickup.gameObject);
                     }
-
                     break;
                 case PickupType.Key:
                     if (overPickup && pickup is KeyPickup keyPickup)
                     {
                         var destroy = !_inventory.keys[keyPickup.Key];
                         _inventory.keys[keyPickup.Key] = true;
-                        if (destroy)
-                        {
-                            LevelManager.LevelManagerRef.NotifyPlayers("A player has picked up the " + keyPickup.Key);
-                            Destroy(pickup.gameObject);
-                        }
+                        if (destroy) Destroy(pickup.gameObject);
                     }
-
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(pickupType), pickupType, null);
@@ -83,23 +73,14 @@ namespace Character
         {
             if (OverWeaponPickup)
             {
-                var weapon = (_currentlyOverPickup as WeaponPickup)?.WeaponGameObject;
+                var weapon = ((WeaponPickup) _currentlyOverPickup).WeaponGameObject;
                 if (_inventory.Add(weapon)) Destroy(_currentlyOverPickup.gameObject);
-                OverWeaponPickup = false;
-                _playerUiManager.ClearHint();
             }
             else if (OverTrapPickup)
             {
-                var hazard = (_currentlyOverPickup as HazardPickup)?.HazardGameObject;
+                var hazard = ((HazardPickup) _currentlyOverPickup).HazardGameObject;
                 if (_inventory.Add(hazard)) Destroy(_currentlyOverPickup.gameObject);
-                OverTrapPickup = false;
-                _playerUiManager.ClearHint();
             }
         }
-
-        public void SetGold(int amount) => _playerUiManager.SetGold(amount);
-
-        public QuickTimeEvent InitializeQuickTime(QuickTimeEvent quickTimeEvent) =>
-            _playerUiManager.InitializeQuickTime(quickTimeEvent);
     }
 }

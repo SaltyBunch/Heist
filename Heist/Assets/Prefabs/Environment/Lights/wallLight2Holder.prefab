@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5451102765465384831}
   - component: {fileID: 5451102765461993311}
   - component: {fileID: 5451102765463090591}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: wallLight2Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9204614477907775752}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.125, z: -0.01}
+  m_LocalPosition: {x: 0, y: 0.125, z: -0.019348145}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5451102765465384831}
@@ -216,7 +216,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4078378295
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}

@@ -1,31 +1,17 @@
-using System.Linq;
-using Character;
 using Rewired;
 using UnityEngine;
-using UnityEngine.UI;
-using Player = Rewired.Player;
 
 namespace Game
 {
-    public class     LockQuickTimeEvent : QuickTimeEvent
+    public class LockQuickTimeEvent : QuickTimeEvent
     {
-        [SerializeField] private Sprite[] _spriteButtons;
-        [SerializeField] private Sprite[] _spriteStatus;
-
-        [SerializeField] private Image[] _buttonRenderer;
-        [SerializeField] private Image[] _statusRenderer;
-
-        [SerializeField] private Animator _animator;
-
         private Button[] _buttons;
 
         private Input _controlInput;
         private int _index;
-        private PlayerControl _player;
-        private Vector3 _position;
+        private Player _player;
 
         public Type QuickTimeType;
-        private static readonly int Unlock = Animator.StringToHash("Unlock");
 
         private Input ControlInput
         {
@@ -53,14 +39,10 @@ namespace Game
                 {
                     Result = true, State = _index, Type = QuickTimeType, Complete = _index + 1 == _buttons.Length
                 });
-                _statusRenderer[_index].sprite = _spriteStatus[0];
-
+                //todo update ui
                 _index++;
                 if (_index == _buttons.Length)
-                {
-                    _animator.SetTrigger(Unlock);
-                    Destroy(gameObject, 0.954918f);
-                }
+                    Destroy(gameObject, 0.2f);
             }
             else
             {
@@ -69,16 +51,9 @@ namespace Game
                 {
                     Result = false, State = _index, Type = QuickTimeType
                 });
-                LevelManager.LevelManagerRef.Notify(_position, NotifyType.TripTrap);
                 Generate();
+                //todo update ui
             }
-        }
-
-
-        public void Generate(PlayerControl player, Vector3 position)
-        {
-            _player = player;
-            Generate();
         }
 
         public void Generate()
@@ -86,29 +61,19 @@ namespace Game
             _buttons = new Button[4];
             for (var i = 0; i < _buttons.Length; i++) _buttons[i] = (Button) Random.Range(0, 4);
 
-            //put buttons on sprite
-            for (int i = 0; i < _buttons.Length; i++)
-            {
-                _buttonRenderer[i].sprite = _spriteButtons[(int) _buttons[i]];
-                _statusRenderer[i].sprite = _spriteStatus[1];
-            }
-
             _index = 0;
         }
 
 
         public void Update()
         {
-            if (_player != null)
+            ControlInput = new Input
             {
-                ControlInput = new Input
-                {
-                    A = _player.Control.QuickTimeA,
-                    B = _player.Control.QuickTimeB,
-                    X = _player.Control.QuickTimeX,
-                    Y = _player.Control.QuickTimeY,
-                };
-            }
+                A = _player.GetButton("QuickTimeA"),
+                B = _player.GetButton("QuickTimeB"),
+                X = _player.GetButton("QuickTimeX"),
+                Y = _player.GetButton("QuickTimeY")
+            };
         }
 
         public event QuickTimeEventHandler Events;
@@ -119,15 +84,6 @@ namespace Game
             public bool B;
             public bool X;
             public bool Y;
-        }
-
-        public void Clear()
-        {
-            for (int i = 0; i < _buttons.Length; i++)
-            {
-                _buttonRenderer[i].sprite = null;
-                _statusRenderer[i].sprite = null;
-            }
         }
     }
 }

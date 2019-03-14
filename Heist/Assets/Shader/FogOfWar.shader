@@ -78,7 +78,7 @@ Shader "Custom/FogOfWar"
 			o.Alpha = alpha;
         }
 
-		//return 0 if (pos - nearVertex) > _FogRadius
+		//return 0 if (pos - nearVertex) > _ForRadius
 		float powerForPos(float4 pos, float2 nearVertex) 
 		{
 			float atten = clamp(_FogRadius - length(pos.xz - nearVertex.xy),0.0,_FogRadius);

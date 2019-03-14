@@ -8,11 +8,15 @@ namespace Character
     {
         [SerializeField] private NavMeshAgent agent;
 
-        private new void Start()
+        private void Start()
         {
             if (agent == null)
                 agent = GetComponent<NavMeshAgent>();
-            base.Start();
+        }
+
+        internal override void Update()
+        {
+            base.Update();
         }
     }
 }

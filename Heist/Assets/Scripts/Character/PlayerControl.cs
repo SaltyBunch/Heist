@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
 using Game;
-using JetBrains.Annotations;
 using Level;
-using Rewired.Data.Mapping;
 using UI;
 using UnityEngine;
 
@@ -25,11 +23,6 @@ namespace Character
         [SerializeField] internal Vector3 FaceVector;
 
         [SerializeField] internal bool Pause;
-
-        [SerializeField] internal bool QuickTimeA;
-        [SerializeField] internal bool QuickTimeB;
-        [SerializeField] internal bool QuickTimeX;
-        [SerializeField] internal bool QuickTimeY;
     }
 
     [RequireComponent(typeof(Player), typeof(Rigidbody), typeof(AudioSource))]
@@ -37,26 +30,23 @@ namespace Character
     {
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private Player _baseCharacter;
-        [SerializeField] private PlayerUIManager _playerUiManager;
         [SerializeField] private AudioClip _collectGold;
         [SerializeField] private Control _control;
         private bool _dashCooldown = true;
 
         [SerializeField] [Range(10, 30)] private float _dashForce;
         [SerializeField] private float _dashTimer = 0.5f;
-
-        [SerializeField] private Transform _hand;
-        [SerializeField] private float _interactDistance;
-        private bool _isReticuleNotNull;
+        [SerializeField] private AudioClip _defeat;
 
         [Header("Voice Lines")] [SerializeField]
         private AudioClip _enterBank;
 
-
-        [SerializeField] private AudioClip _defeat;
+        [SerializeField] private AudioClip _exitBank;
+        [SerializeField] private Transform _hand;
+        [SerializeField] private float _interactDistance;
+        private bool _isReticuleNotNull;
         [SerializeField] private AudioClip _joke;
         [SerializeField] private AudioClip _loseGold;
-        [SerializeField] private AudioClip _exitBank;
 
         [Header("Sounds")] [SerializeField] private AudioClip _meleeAttack;
         [SerializeField] private AudioClip _pickupTrap;
@@ -71,13 +61,10 @@ namespace Character
         [SerializeField] private AudioClip _taunt;
         [SerializeField] private AudioClip _victory;
 
+        public Rewired.Player Player;
 
         public int PlayerNumber;
         public Player BaseCharacter => _baseCharacter;
-
-        [Header("Animation")] [SerializeField] private Animator _anim;
-        private bool _isAnimNotNull;
-
 
         internal Control Control
         {
@@ -108,7 +95,6 @@ namespace Character
 
         private void Start()
         {
-            _isAnimNotNull = _anim != null;
             if (_baseCharacter == null)
                 _baseCharacter = GetComponent<Player>();
             if (_rigid == null)
@@ -126,7 +112,7 @@ namespace Character
                                " with character choice " + GameManager.PlayerChoice[PlayerNumber]);
             }
 
-            if (_reticule != null) GameManager.SetLayerOnAll(_reticule, GameManager.GetPlayerMask(PlayerNumber, false));
+            if (_reticule != null) _reticule.layer = GameManager.GetPlayerMask(PlayerNumber, false);
             //if (_reticule != null) _reticule = Instantiate(_reticule, this.transform);
 
             _isReticuleNotNull = _reticule != null;
@@ -136,8 +122,10 @@ namespace Character
             ///////////////////////////////////////////////////
 
             gameObject.layer = GameManager.GetPlayerMask(PlayerNumber, false);
-
-            GameManager.SetLayerOnAll(gameObject, gameObject.layer);
+            for (int i = 0; i < gameObject.transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.layer = gameObject.layer;
+            }
 
 
             BaseCharacter.HealthChanged += BaseCharacterOnHealthChanged;
@@ -171,14 +159,16 @@ namespace Character
                 }
             }
 
-
-            _playerUiManager.SetItem(e.Item);
-            _playerUiManager.UpdateAmmo(e.Count);
+            if (UIManager.UiManagerRef != null)
+            {
+                UIManager.UiManagerRef.UpdateWeapon(e.Item, PlayerNumber);
+                UIManager.UiManagerRef.UpdateAmmo(e.Count, PlayerNumber);
+            }
         }
 
         private void BaseCharacterOnHealthChanged(object sender, HealthChangedEventArgs e)
         {
-            _playerUiManager.SetHealth(e.Health);
+            UIManager.UiManagerRef.UpdateHealth(e.Health, PlayerNumber);
         }
 
         private void Pause()
@@ -188,25 +178,9 @@ namespace Character
 
         private void FixedUpdate()
         {
-            if (Math.Abs(Control.FaceVector.magnitude) < 0.001f)
-            {
-                var control = Control;
-                control.FaceVector = Control.MoveVector;
-                Control = control;
-            }
-
-            if (_baseCharacter.Stunned)
-            {
-                var control = Control;
-                control.MoveVector = Vector3.zero;
-                control.FaceVector = Vector3.zero;
-                Control = control;
-            }
-
-            if (Math.Abs(Control.MoveVector.magnitude) > 0.01f)
-                OnMoveCancel?.Invoke(this, new EventArgs());
-
             ///Direction based on FaceVector
+            if (Math.Abs(Control.FaceVector.magnitude) > 0.01f) OnMoveCancel?.Invoke(this, new EventArgs());
+
             var facing = Vector3.RotateTowards(transform.forward, Control.FaceVector, 1,
                 0.0f);
             transform.rotation = Quaternion.LookRotation(facing);
@@ -233,18 +207,12 @@ namespace Character
                         _reticule.transform.localPosition = transform.InverseTransformPoint(hitInfo.point);
                     else
                         _reticule.transform.localPosition = _retMaxDist / 2 * Vector3.forward + Vector3.up;
-
-
-                    _reticule.SetActive(true);
                 }
                 else
                 {
                     _reticule.transform.localPosition = Vector3.up;
-                    _reticule.SetActive(false);
                 }
             }
-
-            if (_isAnimNotNull) _anim.SetFloat("Speed", Control.MoveVector.magnitude);
         }
 
         public event EventHandler OnMoveCancel;
@@ -261,79 +229,66 @@ namespace Character
 
         private void WeaponAttack()
         {
-            if (_baseCharacter.Stunned) return;
             BaseCharacter.Inventory.Use();
             Debug.Log("Weapon Attack by Player " + (PlayerNumber + 1));
         }
 
         private void Interact()
         {
-            if (_baseCharacter.Stunned) return;
+            RaycastHit hit;
+
             if (_baseCharacter.OverWeaponPickup || _baseCharacter.OverTrapPickup)
             {
                 _baseCharacter.PickupPickup();
             }
-            else
+            else if (Physics.Raycast(transform.position, transform.forward, out hit, _interactDistance))
             {
-                var hits = Physics.OverlapSphere(transform.position + transform.up, _interactDistance);
-                foreach (var hit in hits)
+                if (hit.transform.CompareTag("Door"))
                 {
-                    //if (hit.transform.CompareTag("Door"))
-                    //{
-                     //   var door = hit.transform.GetComponentInChildren<Door>();
-//
- //                       door.Open(this);
-  //                  }
-                    if (hit.transform.CompareTag("GoldPile"))
-                    {
-                        var gold = hit.transform.GetComponent<GoldPile>();
-                        gold.StartChanneling(this);
-                    }
-                    else if (hit.transform.CompareTag("MiniVault"))
-                    {
-                        var miniVault = hit.transform.GetComponent<MiniVault>();
-                        miniVault.StartChanneling(this);
-                    }
-                    else if (hit.transform.CompareTag("Vault"))
-                    {
-                        var vault = hit.transform.GetComponent<Vault>();
-                        vault.UseKey(BaseCharacter.Inventory.keys);
-                    }
+                    var door = hit.transform.GetComponent<Door>();
+                    door.Open(this);
+                }
+                else if (hit.transform.CompareTag("GoldPile"))
+                {
+                    var gold = hit.transform.GetComponent<GoldPile>();
+                    gold.StartChanneling(this);
+                }
+                else if (hit.transform.CompareTag("MiniVault"))
+                {
+                    //todo
+                }
+                else if (hit.transform.CompareTag("Vault"))
+                {
+                    var vault = hit.transform.GetComponent<Vault>();
+                    vault.UseKey(BaseCharacter.Inventory.keys);
                 }
             }
         }
 
         private void PushAttack()
         {
-            var objects = Physics.OverlapSphere(transform.position, 2);
-            foreach (var o in objects)
-            {
-                if (o.CompareTag("Player") || o.CompareTag("Drone"))
-                {
-                    var character = o.GetComponentInParent<Character>();
-                    if (character.gameObject.layer != this.gameObject.layer)
-                    {
-                        character.Knockback(transform);
-                    }
-                }
-            }
+            Debug.Log("Push Attack by Player " + (PlayerNumber + 1));
         }
 
         private void Dash()
         {
             if (_dashCooldown)
             {
-                if (_isAnimNotNull) _anim.SetTrigger("Dash");
                 LevelManager.LevelManagerRef.Notify(transform.position, NotifyType.Dash);
                 StartCoroutine(DashCooldown());
+                _rigid.AddForce(Control.MoveVector * _dashForce * 2.5f, ForceMode.VelocityChange);
             }
         }
 
         private IEnumerator DashCooldown()
         {
             _dashCooldown = false;
-            _rigid.AddForce(Control.MoveVector * _dashForce * 2.5f, ForceMode.VelocityChange);
-            yield return new WaitForSeconds(_dashTimer);
+            _rigid.AddForce(Control.MoveVector * _dashForce, ForceMode.VelocityChange);
+            yield return new WaitForSeconds(_dashTimer / 8);
+            _rigid.AddForce(Control.MoveVector * _dashForce, ForceMode.VelocityChange);
+            yield return new WaitForSeconds(_dashTimer / 8);
+            _rigid.AddForce(Control.MoveVector * _dashForce, ForceMode.VelocityChange);
+            yield return new WaitForSeconds(_dashTimer / 4 * 3);
             _dashCooldown = true;
         }
 

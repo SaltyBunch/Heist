@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Audio;
 using Character;
 using Level;
@@ -33,19 +32,10 @@ namespace Game
         public NotifyType NotifyType { get; set; }
     }
 
-    public class NotifyMessageArgs : EventArgs
-    {
-        public string Message;
-    }
-
-    [RequireComponent(typeof(AudioSource))]
+    [RequireComponent(typeof(AudioSource), typeof(FloorManager))]
     public class LevelManager : MonoBehaviour
     {
         public delegate void NotifyEventHandler(object sender, NotifyEventArgs e);
-
-
-        public delegate void NotifyMessageHandler(object sender, NotifyMessageArgs e);
-
 
         public static LevelManager LevelManagerRef;
 
@@ -58,78 +48,33 @@ namespace Game
 
         [SerializeField] private int _goldMultiplier = 10;
 
-        [SerializeField] private List<PlayerGameObject> _playerGo;
+        [SerializeField] private PlayerGameObject _playerGo;
 
         private PlayerGameObject[] _players;
-        public PlayerGameObject[] Players => _players;
 
         [SerializeField] private GameObject[] _spawnpoints;
         [SerializeField] private int _stunMultiplier = 100;
 
-        [SerializeField] public GameObject FOG;
-        [SerializeField] public drone.DroneLoad droneSpawner;
-
         private float _time;
 
-        private float _timeSinceVaultOpened;
-
-        private float TimeSinceVaultOpened
-        {
-            get { return _timeSinceVaultOpened; }
-            set
-            {
-                _timeSinceVaultOpened = value;
-                if (_timeSinceVaultOpened > _endGameAtTime) AllPlayersLeft(false);
-            }
-        }
-
-        [SerializeField] private float _endGameAtTime;
-
         [SerializeField] private float _vaultTimer;
-
-        [SerializeField] private Collider _gameEndArea;
-        private bool[] _playerLeaving;
-
-        public bool[] PlayerLeaving
-        {
-            get { return _playerLeaving; }
-            set
-            {
-                _playerLeaving = value;
-                if (_playerLeaving.Count(x => x == true) == _players.Length)
-                {
-                    AllPlayersLeft(true);
-                }
-            }
-        }
-
-        private void AllPlayersLeft(bool b)
-        {
-            CalculateScore();
-            //todo go to score screen
-        }
 
         public Dictionary<NotifyType, float> NotificationRamge = new Dictionary<NotifyType, float>
         {
             {NotifyType.Dash, 10}, {NotifyType.Footstep, 5}, {NotifyType.TripTrap, 100}
         };
 
-        private bool _vaultOpen;
-
         public static float Time => LevelManagerRef._time;
 
-        public LayerMask EnvironmentLayer;
+        [SerializeField] public FloorManager FloorManager { get; }
 
         public event NotifyEventHandler Notifty;
-
-        [SerializeField] private GameObject[] playerModels;
-        private bool _doorOpen;
 
         private void Awake()
         {
             if (LevelManagerRef == null) LevelManagerRef = this;
 
-            _spawnpoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+            if (_spawnpoints == null) _spawnpoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
 
             if (_audioSource == null) _audioSource = GetComponents<AudioSource>();
 
@@ -139,8 +84,10 @@ namespace Game
         private void Start()
         {
             //var players = Rewired.ReInput.players.playerCount;
-            var players = GameManager.NumPlayers;
-            //InitGame(4);
+            var players = ReInput.controllers.joystickCount;
+            InitGame(players);
+            _audioSource[_currentAudioSource].clip = _backgroundMusicInfiltration;
+            _audioSource[_currentAudioSource].Play();
 
             StartCoroutine(LevelTimer());
         }
@@ -149,34 +96,23 @@ namespace Game
         {
             yield return new WaitForSeconds(0.5f);
             _time += 0.5f;
-            if (_vaultOpen) TimeSinceVaultOpened += 0.5f;
         }
 
-        public void CalculateScore()
+        public int CalculateScore(Player player)
         {
-            GameManager.GameManagerRef.Scores = new List<Score>();
-            foreach (var playerGO in _players)
-            {
-                var player = playerGO.Player;
-
-                GameManager.GameManagerRef.Scores.Add(
-                    new Score()
-                    {
-                        GoldAmount = player.Inventory.GoldAmount,
-                        TimesStunned = player.timesStunned,
-                        PlayerNumber = playerGO.PlayerControl.PlayerNumber,
-                    });
-            }
+            var score = player.Inventory.GoldAmount * _goldMultiplier;
+            score -= player.timesStunned * _stunMultiplier;
+            return score;
         }
 
         public void InitGame(int numPlayers)
         {
             var displays = 1;
-            if (GameManager.GameManagerRef.UseMultiScreen)
+            if (GameManager.UseMultiScreen)
             {
                 // Number of displays
 #if UNITY_EDITOR || UNITY_EDITOR_64
-                displays = 1;
+                //displays = 4;
 #else
                     displays = Display.displays.Length;
 #endif
@@ -221,7 +157,6 @@ namespace Game
             #region Drone Setup
 
             //todo drone setup
-            droneSpawner.Begin();
 
             #endregion
 
@@ -236,18 +171,18 @@ namespace Game
             {
                 if (i != 0 && i % playersPerDisplay == 0)
                     targetDisplay++;
-                _players[i] = Instantiate(_playerGo[(int)GameManager.PlayerChoice[i]]);
+                _players[i] = Instantiate(_playerGo);
                 //todo set appropriate player models
-
 
                 //put player on spawnpoint
                 _players[i].transform.position = _spawnpoints[i].transform.position;
 
+                //TODO don't split screen when players are alone on the screen
                 //set screen region
                 switch (playersOnDisplay[targetDisplay])
                 {
                     case 1:
-                        _players[i].Camera.MainCamera.rect = new Rect
+                        _players[i].Camera.MainFloorCamera.rect = new Rect
                         {
                             x = 0,
                             y = 0,
@@ -256,7 +191,7 @@ namespace Game
                         };
                         break;
                     case 2:
-                        _players[i].Camera.MainCamera.rect = new Rect
+                        _players[i].Camera.MainFloorCamera.rect = new Rect
                         {
                             x = i % 2 * 0.5f,
                             y = 0,
@@ -266,7 +201,7 @@ namespace Game
                         break;
                     case 3:
                     case 4:
-                        _players[i].Camera.MainCamera.rect = new Rect
+                        _players[i].Camera.MainFloorCamera.rect = new Rect
                         {
                             x = i % 2 * 0.5f,
                             y = Mathf.Abs(1 - i / 2) * 0.5f,
@@ -276,32 +211,21 @@ namespace Game
                         break;
                 }
 
-
-                _players[i].Camera.UICamera.rect = _players[i].Camera.MainCamera.rect;
-
-                _players[i].Camera.MainCamera.targetDisplay = targetDisplay;
-                _players[i].Camera.UICamera.targetDisplay = targetDisplay;
+                _players[i].Camera.MainFloorCamera.targetDisplay = targetDisplay;
                 //assign player number
                 _players[i].PlayerControl.PlayerNumber = i;
 
-                _players[i].PlayerController.Player = ReInput.players.GetPlayer(i);
-
-                _players[i].PlayerUiManager.SetPosition(_players[i].Camera.MainCamera.rect, i);
-
-                _players[i].PlayerUiManager.SetCharacter(GameManager.PlayerChoice[i]);
-
-                _players[i].fog.FogOfWarPlane = FOG.transform;
-                _players[i].fog.num = (i + 1);
-
-
-                NotifyMessage += _players[i].PlayerUiManager.NotifyMessage;
+                _players[i].PlayerControl.Player = ReInput.players.GetPlayer(i);
             }
+
+            for (var i = 0; i < numPlayers; i++)
+                UIManager.UiManagerRef.SetFace((int) GameManager.PlayerChoice[i], i);
 
             #endregion
 
             #region Audio
 
-            _audioSource[_currentAudioSource].clip = _backgroundMusicGathering;
+            _audioSource[_currentAudioSource].clip = _backgroundMusicInfiltration;
             _audioSource[_currentAudioSource].Play();
 
             #endregion
@@ -319,50 +243,14 @@ namespace Game
             }
         }
 
-        public void OpenDoor()
-        {
-            if (_doorOpen == false)
-            {
-                if (_audioSource.Length > 1)
-                    StartCoroutine(AudioHelper.CrossFade(_audioSource[_currentAudioSource],
-                        _audioSource[(_currentAudioSource + 1) % _audioSource.Length], _backgroundMusicGathering, 5));
-                _currentAudioSource = (_currentAudioSource + 1) % _audioSource.Length;
-                _doorOpen = true;
-            }
-        }
-
         public IEnumerator OpenVault(Vault.OpenDoor callVault)
         {
             if (_audioSource.Length > 1)
                 StartCoroutine(AudioHelper.CrossFade(_audioSource[_currentAudioSource],
                     _audioSource[(_currentAudioSource + 1) % _audioSource.Length], _backgroundMusicLockdown, 5));
             _currentAudioSource = (_currentAudioSource + 1) % _audioSource.Length;
-
-            foreach (var player in _players)
-            {
-                player.PlayerUiManager.Siren.SetActive(true);
-            }
-
-
+            yield return new WaitForSeconds(_vaultTimer);
             callVault();
-            _vaultOpen = true;
-
-            var time = _vaultTimer;
-            do
-            {
-                time -= 1;
-                foreach (var player in _players)
-                {
-                    player.PlayerUiManager.VaultTimer.text = time.ToString();
-                }
-
-                yield return new WaitForSeconds(1);
-            } while (time > 0);
-
-            foreach (var player in _players)
-            {
-                player.PlayerUiManager.VaultTimer.text = "";
-            }
         }
 
         public void Notify(Vector3 position, NotifyType notifyType)
@@ -376,36 +264,6 @@ namespace Game
         protected virtual void OnNotifty(NotifyEventArgs e)
         {
             Notifty?.Invoke(this, e);
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.CompareTag("Player"))
-            {
-                var player = other.GetComponentInParent<PlayerControl>();
-                PlayerLeaving[player.PlayerNumber] = true;
-            }
-        }
-
-
-        public event NotifyMessageHandler NotifyMessage;
-
-        public void NotifyPlayers(string message)
-        {
-            NotifyMessage?.Invoke(this, new NotifyMessageArgs()
-            {
-                Message = message
-            });
-            StartCoroutine(Delay(5));
-        }
-
-        private IEnumerator Delay(int i)
-        {
-            yield return new WaitForSeconds(i);
-            NotifyMessage?.Invoke(this, new NotifyMessageArgs()
-            {
-                Message = ""
-            });
         }
     }
 }

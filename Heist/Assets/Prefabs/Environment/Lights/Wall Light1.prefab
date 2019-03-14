@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 8654715894102316860}
   - component: {fileID: 8654715894100989724}
   - component: {fileID: 8654715894099891676}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall Light1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

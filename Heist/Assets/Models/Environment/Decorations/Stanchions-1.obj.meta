@@ -12,12 +12,7 @@ ModelImporter:
     2300000: Stanchions-1
     3300000: Stanchions-1
     4300000: Stanchions-1
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Stanchions-1Mat
-    second: {fileID: 2100000, guid: a57a9b5a695872e41859d7f03bd1ad0f, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0

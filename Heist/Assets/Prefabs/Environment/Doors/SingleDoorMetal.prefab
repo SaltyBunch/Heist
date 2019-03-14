@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6395885143679459904}
   - component: {fileID: 7447133286671606451}
-  - component: {fileID: 7623364947714256658}
-  - component: {fileID: 3879452368259512517}
   m_Layer: 0
   m_Name: Pivot
   m_TagString: Untagged
@@ -54,43 +52,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7623364947714256658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5411976983613267215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d24985507d918141b98993d5d7c0a6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  openName: SingleDoor
-  closeName: SingleDoorClose
-  animator: {fileID: 7447133286671606451}
-  openName2: 
-  closeName2: 
-  animator2: {fileID: 0}
-  canOpen: 1
---- !u!114 &3879452368259512517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5411976983613267215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48c6fc016333bed4dbd1bcb0fa2bff8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _light: {fileID: 0}
-  _locked: 0
-  _lockedColor: {r: 0, g: 0, b: 0, a: 0}
-  _door: {fileID: 7623364947714256658}
-  _unlockedColor: {r: 0, g: 0, b: 0, a: 0}
-  lockQuickTimeEvent: {fileID: 0}
 --- !u!1 &8908021546929365855
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,7 +62,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8049979065022499851}
   m_Layer: 0
-  m_Name: SingleDoorMetal
+  m_Name: SingleDoor 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,6 +91,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6395885143679459904}
     m_Modifications:
+    - target: {fileID: 100002, guid: 5137c3f7b6cee6945bca634fb7d4e87e, type: 3}
+      propertyPath: m_Name
+      value: SingleDoor01
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 5137c3f7b6cee6945bca634fb7d4e87e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 5137c3f7b6cee6945bca634fb7d4e87e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.09861755
@@ -172,14 +141,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 5137c3f7b6cee6945bca634fb7d4e87e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 5137c3f7b6cee6945bca634fb7d4e87e, type: 3}
-      propertyPath: m_Name
-      value: SingleDoor01
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 5137c3f7b6cee6945bca634fb7d4e87e, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -260,6 +221,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8049979065022499851}
     m_Modifications:
+    - target: {fileID: 100002, guid: df84537ecd346d44694ff8883a7b9275, type: 3}
+      propertyPath: m_Name
+      value: SingleDoorFrame
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: df84537ecd346d44694ff8883a7b9275, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.18625641
@@ -303,10 +268,6 @@ PrefabInstance:
     - target: {fileID: 400002, guid: df84537ecd346d44694ff8883a7b9275, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: df84537ecd346d44694ff8883a7b9275, type: 3}
-      propertyPath: m_Name
-      value: SingleDoorFrame
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df84537ecd346d44694ff8883a7b9275, type: 3}

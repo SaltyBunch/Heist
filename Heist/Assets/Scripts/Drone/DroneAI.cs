@@ -39,19 +39,22 @@ namespace Drone
         // Start is called before the first frame update
         private void Start()
         {
+            if (bigPatrolPath.Count <= 0) bigPatrolPath = patrolPath;
             investigation.transform.parent = null;
             foreach(var v in patrolPath)
             {
-                v.transform.parent = null;
+                v.parent = null;
             }
-            foreach (var v in bigPatrolPath)
+            if (bigPatrolPath.Count > 0)
             {
-                v.transform.parent = null;
+                foreach (var v in bigPatrolPath)
+                {
+                    if(v) v.parent = null;
+                }
             }
 
             agent = GetComponent<NavMeshAgent>();
             obstacle = GetComponent<NavMeshObstacle>();
-            if (bigPatrolPath.Count <= 0) bigPatrolPath = patrolPath;
             drone = this.GetComponent<Character.Drone>();
             fsm = new FSM();
             Target = patrolPath[0];
@@ -134,6 +137,7 @@ namespace Drone
                     {
                         gameObject.GetComponent<Weapon.StunGun>().Attack();
                         canAtk = false;
+                        StartCoroutine(reload());
                     }
             }
 
@@ -168,6 +172,7 @@ namespace Drone
                     {
                         gameObject.GetComponent<Weapon.StunGun>().Attack();
                         canAtk = false;
+                        StartCoroutine(reload());
                     }
             }
 

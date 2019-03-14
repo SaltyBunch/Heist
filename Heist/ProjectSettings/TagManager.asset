@@ -11,6 +11,8 @@ TagManager:
   - Door
   - Vault
   - MiniVault
+  - GoldPile
+  - Drone
   layers:
   - Default
   - TransparentFX
@@ -38,7 +40,7 @@ TagManager:
   - 
   - Mask
   - VFX
-  - 
+  - HitBox
   - 
   - Player 1
   - Player 2

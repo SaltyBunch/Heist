@@ -645,7 +645,7 @@ GameObject:
   - component: {fileID: 2471853898492640306}
   m_Layer: 0
   m_Name: Rocco_Run_Dash
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -694,7 +694,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7038090366892240325}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: aee8bfdba164a54468a9a58bdc51f02e, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.2

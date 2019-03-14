@@ -142,12 +142,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c4d545de11045b99246f70b7b1f653c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pushForce: 5
-  _pickupSound: {fileID: 0}
-  _fireSound: {fileID: 0}
+  _audioSource: {fileID: 836799958461511945}
+  _fireSound: {fileID: 8300000, guid: efe79a159925ca644b5267efbb380540, type: 3}
   _hitSound: {fileID: 0}
   _outOfAmmoSound: {fileID: 0}
-  _audioSource: {fileID: 0}
+  _pickupSound: {fileID: 0}
   Ammo: 5
   _projectile: {fileID: 2430004408962383017, guid: 094136b8cd01e9f458c64a263d57dfeb,
     type: 3}

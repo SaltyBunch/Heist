@@ -35,11 +35,12 @@ namespace UI
         //[SerializeField] GameObject SelectionMenuButton;
         [SerializeField] private GameObject optionsMenu;
         [SerializeField] private GameObject SelectionMenu;
+        
 
         // Start is called before the first frame update
         public void Begin()
         {
-            LoadUIControls();
+            //LoadUIControls();
             currentMenu = Menus.Main;
             PlayerPrefs.DeleteAll();
             EnterPlayerSelect();

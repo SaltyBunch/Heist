@@ -49,7 +49,8 @@ namespace Character
         [SerializeField] private float _interactDistance;
         private bool _isReticuleNotNull;
 
-        [Header("Voice Lines")] [SerializeField]
+        [Header("Voice Lines")]
+        [SerializeField]
         private AudioClip _enterBank;
 
 
@@ -77,7 +78,8 @@ namespace Character
 
         [Header("Animation")] [SerializeField] private Animator _anim;
         private bool _isAnimNotNull;
-
+        [SerializeField] private GameObject _hitbox;
+        [SerializeField] private int _hitboxLayer;
 
         internal Control Control
         {
@@ -139,6 +141,7 @@ namespace Character
 
             GameManager.SetLayerOnAll(gameObject, gameObject.layer);
 
+            _hitbox.layer = _hitboxLayer;
 
             BaseCharacter.HealthChanged += BaseCharacterOnHealthChanged;
             BaseCharacter.Inventory.SelectionChanged += InventoryOnSelectionChanged;
@@ -280,10 +283,10 @@ namespace Character
                 {
                     //if (hit.transform.CompareTag("Door"))
                     //{
-                     //   var door = hit.transform.GetComponentInChildren<Door>();
-//
- //                       door.Open(this);
-  //                  }
+                    //   var door = hit.transform.GetComponentInChildren<Door>();
+                    //
+                    //                       door.Open(this);
+                    //                  }
                     if (hit.transform.CompareTag("GoldPile"))
                     {
                         var gold = hit.transform.GetComponent<GoldPile>();

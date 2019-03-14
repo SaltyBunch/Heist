@@ -38,21 +38,21 @@ namespace Hazard
 
         public override bool Place(Vector3 position)
         {
-            LayerMask layers = ~(LevelManager.LevelManagerRef.EnvironmentLayer);
+            LayerMask layers = (LevelManager.LevelManagerRef.EnvironmentLayer);
 
             Vector3 fwd = Vector3.positiveInfinity,
                 rt = Vector3.positiveInfinity,
-                lt = Vector3.positiveInfinity,
-                bk = Vector3.positiveInfinity;
+                lt = Vector3.negativeInfinity,
+                bk = Vector3.negativeInfinity;
 
             RaycastHit hit;
-            if (Physics.Raycast(position, Vector3.forward, out hit, 20, layers)) fwd = hit.point;
+            if (Physics.Raycast(position, Vector3.forward, out hit, _maxGap, layers)) fwd = hit.point;
 
-            if (Physics.Raycast(position, Vector3.right, out hit, 20, layers)) rt = hit.point;
+            if (Physics.Raycast(position, Vector3.right, out hit, _maxGap, layers)) rt = hit.point;
 
-            if (Physics.Raycast(position, Vector3.left, out hit, 20, layers)) lt = hit.point;
+            if (Physics.Raycast(position, Vector3.left, out hit, _maxGap, layers)) lt = hit.point;
 
-            if (Physics.Raycast(position, Vector3.back, out hit, 20, layers)) bk = hit.point;
+            if (Physics.Raycast(position, Vector3.back, out hit, _maxGap, layers)) bk = hit.point;
 
             if (Vector3.Distance(fwd, bk) > _maxGap && Vector3.Distance(rt, lt) > _maxGap) return false;
             

@@ -25,8 +25,7 @@ namespace Camera
         {
             MainCamera.transform.localPosition = Vector3.back * _offset + Vector3.up * _offset;
 
-            MainCamera.cullingMask = MainCamera.cullingMask |
-                                          GameManager.GetPlayerMask(_playerControl.PlayerNumber, true);
+            MainCamera.cullingMask = MainCamera.cullingMask;
         }
 
         private void Update()

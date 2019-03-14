@@ -25,7 +25,8 @@ namespace Character
         private int _count;
         [SerializeField] private List<Hazard.Hazard> _hazard = new List<Hazard.Hazard>();
 
-        [SerializeField] public Dictionary<KeyType, bool> keys = new Dictionary<KeyType, bool>
+        [SerializeField]
+        public Dictionary<KeyType, bool> keys = new Dictionary<KeyType, bool>
         {
             {KeyType.BlueKey, false}, {KeyType.YellowKey, false}, {KeyType.RedKey, false}
         };
@@ -64,7 +65,7 @@ namespace Character
                 if (val - _selectedIndex != 0) //selection has changed
                 {
                     //get direction of selection changed
-                    var dir = (int) Mathf.Sign(value - _selectedIndex);
+                    var dir = (int)Mathf.Sign(value - _selectedIndex);
                     if (val >= _weapon.Count && val < _hazard.Count + _weapon.Count &&
                         _selectedIndex >= _weapon.Count &&
                         _selectedIndex < _hazard.Count + _weapon.Count
@@ -95,7 +96,7 @@ namespace Character
                             }
                     }
                     else if (val >= _weapon.Count && val < _hazard.Count + _weapon.Count)
-                        //new selection is a hazard but old one isnt
+                    //new selection is a hazard but old one isnt
                     {
                         switch (dir)
                         {
@@ -113,12 +114,12 @@ namespace Character
                 if (_weapon.Count + _hazard.Count != 0)
                     SelectedItem = _selectedIndex >= _weapon.Count
                         ? _hazard[_selectedIndex - _weapon.Count]
-                        : (Item) _weapon[_selectedIndex];
+                        : (Item)_weapon[_selectedIndex];
                 else
                     SelectedItem = null;
                 _type = SelectedItem is Weapon.Weapon ? Item.Type.Weapon : Item.Type.Hazard;
                 _count = _type == Item.Type.Weapon
-                    ? ((Weapon.Weapon) SelectedItem).Ammo
+                    ? ((Weapon.Weapon)SelectedItem).Ammo
                     : _type == Item.Type.Hazard
                         ? _hazard.Count(h => h.GetType() == SelectedItem.GetType())
                         : 0; //todo better
@@ -206,10 +207,9 @@ namespace Character
             switch (SelectedItem)
             {
                 case ElectricField electricField:
-                    if (electricField.Place(transform.position))
+                    if (electricField.Place(transform.position + transform.forward * -2))
                     {
                         electricField.transform.parent = null;
-                        electricField.Place(transform.position + transform.forward * 2); //todo wall check
                         Remove(SelectedItem);
                         electricField.PlacedByPlayer = true;
                         electricField.gameObject.SetActive(true);
@@ -217,7 +217,7 @@ namespace Character
 
                     return;
                 case LethalLaser lethalLaser:
-                    if (lethalLaser.Place(transform.position))
+                    if (lethalLaser.Place(transform.position + transform.forward * -2))
                     {
                         lethalLaser.transform.parent = null;
                         Remove(SelectedItem);

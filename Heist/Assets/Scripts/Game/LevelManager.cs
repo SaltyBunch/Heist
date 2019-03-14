@@ -199,7 +199,7 @@ namespace Game
             for (var j = 0; j < playersOnDisplay.Length; j++)
                 if (playersOnDisplay[j] == 0)
                 {
-                    displays = j + 1;
+                    displays = j;
                     break;
                 }
 

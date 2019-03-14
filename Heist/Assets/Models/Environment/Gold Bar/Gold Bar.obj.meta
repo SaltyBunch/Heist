@@ -11,7 +11,12 @@ ModelImporter:
     2300000: Gold_Bar
     3300000: Gold_Bar
     4300000: Gold_Bar
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gold_BarMat
+    second: {fileID: 2100000, guid: a57a9b5a695872e41859d7f03bd1ad0f, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

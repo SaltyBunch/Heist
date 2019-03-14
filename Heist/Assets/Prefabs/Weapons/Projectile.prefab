@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6367081531067136871}
   - component: {fileID: 4820412352611773539}
   - component: {fileID: 925712867373451180}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,8 +79,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 376a72a235d24361803dddde6fc2762e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shootForce: 500
   _rgd: {fileID: 7969080668723434073}
+  _shootForce: 1000
 --- !u!198 &2581798929625137565
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4861,7 +4861,7 @@ GameObject:
   - component: {fileID: 8512538865507727660}
   - component: {fileID: 4007673622042773442}
   - component: {fileID: 1961240035978195256}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}

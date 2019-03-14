@@ -175,6 +175,10 @@ namespace Game
             {
                 LevelManager.LevelManagerRef.InitGame(NumPlayers);
             }
+            if (sceneName == _scenes.MainMenu)
+            {
+                GameObject.Find("Menus").GetComponent<Menu>().ExitPlayerSelect();
+            }
         }
 
         public void EndGame()

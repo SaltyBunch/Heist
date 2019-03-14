@@ -67,6 +67,7 @@ namespace Game
         [SerializeField] private int _stunMultiplier = 100;
 
         [SerializeField] public GameObject FOG;
+        [SerializeField] public drone.DroneLoad droneSpawner;
 
         private float _time;
 
@@ -220,6 +221,7 @@ namespace Game
             #region Drone Setup
 
             //todo drone setup
+            droneSpawner.Begin();
 
             #endregion
 

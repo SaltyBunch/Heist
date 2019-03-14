@@ -7,7 +7,7 @@ namespace drone
     public class DroneLoad : MonoBehaviour
     {
 
-        [SerializeField] List<Wave> droneWaves;
+        [SerializeField]public  List<Wave> droneWaves;
         // Start is called before the first frame update
         public void activateDrones()
         {
@@ -19,7 +19,7 @@ namespace drone
 
         }
 
-        public void Start()
+        public void Begin()
         {
             foreach (var v in droneWaves)
             {
@@ -42,7 +42,7 @@ namespace drone
 
     }
 
-    [SerializeField]
+    [System.Serializable]
     public class Wave
     {
         public float spawnDelay;

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8199425502067558914}
   - component: {fileID: 8199425502067558925}
+  - component: {fileID: 6376195039705395618}
   - component: {fileID: 8199425501971676588}
   m_Layer: 0
   m_Name: LevelManager
@@ -65,6 +66,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   playerModels: []
+--- !u!114 &6376195039705395618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8199425502067558924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f4feb1f16400b44c92ea0bd8c8a32e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &8199425501971676588
 AudioSource:
   m_ObjectHideFlags: 0

@@ -176,8 +176,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pickupType: 1
+  _verticalSpeed: 0.02
+  _rotationSpeed: 1
   HazardGameObject: {fileID: 5317978364337773794, guid: c5c02eea2624a824dbb91be2a5cfe9d9,
     type: 3}
+--- !u!95 &7202042751645573448
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9004499904459745246}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1ea718f6ab37acd41892384a2064b9e5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &9004499904459776380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -245,8 +266,18 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 994d7e7e432529140a71ca4ddaeba085, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a57a9b5a695872e41859d7f03bd1ad0f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 994d7e7e432529140a71ca4ddaeba085, type: 3}
+--- !u!1 &9004499904459745246 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100002, guid: 994d7e7e432529140a71ca4ddaeba085,
+    type: 3}
+  m_PrefabInstance: {fileID: 9004499904459776380}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9004499904459652094 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 994d7e7e432529140a71ca4ddaeba085,

@@ -9575,7 +9575,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlacedByPlayer: 0
   _maxGap: 15
-  Floor: 0
   _cooldown: 1
   Collider: {fileID: 5317978364337773795}
   Laser1: {fileID: 6231209157539245461}
@@ -14451,6 +14450,11 @@ PrefabInstance:
       propertyPath: m_DynamicOccludee
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5832146919464250072, guid: 51c99364103cb7e498e05ad3339f38f4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a57a9b5a695872e41859d7f03bd1ad0f, type: 2}
     - target: {fileID: 1730082870370122853, guid: 51c99364103cb7e498e05ad3339f38f4,
         type: 3}
       propertyPath: m_IsTrigger
@@ -14536,6 +14540,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5832146919464250072, guid: 51c99364103cb7e498e05ad3339f38f4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a57a9b5a695872e41859d7f03bd1ad0f, type: 2}
     - target: {fileID: 1730082870370122853, guid: 51c99364103cb7e498e05ad3339f38f4,
         type: 3}
       propertyPath: m_IsTrigger

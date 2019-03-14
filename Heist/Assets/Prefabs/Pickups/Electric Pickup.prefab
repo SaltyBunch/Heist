@@ -176,6 +176,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pickupType: 1
+  _verticalSpeed: 0.02
+  _rotationSpeed: 1
   HazardGameObject: {fileID: 8428732421374892428, guid: ee1f58333114d6c48a841cc5321f22a5,
     type: 3}
 --- !u!1001 &8930685032229187532
@@ -195,11 +197,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: a397665fd10ea074281025efce7289e0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.26492
+      value: -0.55825
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: a397665fd10ea074281025efce7289e0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.2728
+      value: 1.0137
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: a397665fd10ea074281025efce7289e0, type: 3}
       propertyPath: m_LocalRotation.x
@@ -235,16 +237,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: a397665fd10ea074281025efce7289e0, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8125
+      value: 1.47109
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: a397665fd10ea074281025efce7289e0, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8125
+      value: 1.47109
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: a397665fd10ea074281025efce7289e0, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.8125
+      value: 1.47109
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: a397665fd10ea074281025efce7289e0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a57a9b5a695872e41859d7f03bd1ad0f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a397665fd10ea074281025efce7289e0, type: 3}
 --- !u!4 &8930685032229320014 stripped

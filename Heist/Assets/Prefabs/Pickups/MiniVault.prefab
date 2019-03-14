@@ -43,7 +43,7 @@ Light:
   m_Type: 2
   m_Color: {r: 0.48771805, g: 0.754717, b: 0.5060742, a: 1}
   m_Intensity: 1
-  m_Range: 10
+  m_Range: 3
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 3510903029168117140}
   m_Layer: 0
   m_Name: MiniVault
-  m_TagString: Untagged
+  m_TagString: MiniVault
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

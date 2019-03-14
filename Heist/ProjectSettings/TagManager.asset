@@ -9,6 +9,8 @@ TagManager:
   - Pickup
   - Walls
   - Door
+  - Vault
+  - MiniVault
   layers:
   - Default
   - TransparentFX

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5886460604068312469}
   - component: {fileID: 4262116389590194279}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ Light:
   m_Type: 2
   m_Color: {r: 0.99215686, g: 0.33534577, b: 0.22745097, a: 1}
   m_Intensity: 1
-  m_Range: 10
+  m_Range: 3
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -82,9 +82,9 @@ GameObject:
   - component: {fileID: 5573992614714313694}
   - component: {fileID: 7036233248255400074}
   - component: {fileID: 876418964750941255}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: LethalLaser Pick
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -209,6 +209,14 @@ PrefabInstance:
     - target: {fileID: 100002, guid: 994d7e7e432529140a71ca4ddaeba085, type: 3}
       propertyPath: m_Name
       value: Laser
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 994d7e7e432529140a71ca4ddaeba085, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 994d7e7e432529140a71ca4ddaeba085, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 994d7e7e432529140a71ca4ddaeba085, type: 3}
       propertyPath: m_LocalPosition.x

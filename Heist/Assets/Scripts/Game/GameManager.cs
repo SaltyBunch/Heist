@@ -177,7 +177,7 @@ namespace Game
             }
             if (sceneName == _scenes.MainMenu)
             {
-                GameObject.Find("Menus").GetComponent<Menu>().ExitPlayerSelect();
+                GameObject.Find("Menus").GetComponent<Menu>().Begin();
             }
         }
 

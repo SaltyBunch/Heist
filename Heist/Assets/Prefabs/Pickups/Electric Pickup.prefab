@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8056544239488740351}
   - component: {fileID: 4596830940814333264}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3791344293979482912}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.06204033, y: 0.4987843, z: -0.23876953}
+  m_LocalPosition: {x: -0.06204033, y: 1.42, z: -0.49}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 5466808476260621433}
@@ -43,7 +43,7 @@ Light:
   m_Type: 2
   m_Color: {r: 0, g: 0.75732875, b: 1, a: 1}
   m_Intensity: 1
-  m_Range: 10
+  m_Range: 3
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -82,9 +82,9 @@ GameObject:
   - component: {fileID: 3046509798203005344}
   - component: {fileID: 4946679142027695210}
   - component: {fileID: 2439757593638407659}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Electric Pickup
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -190,6 +190,14 @@ PrefabInstance:
     - target: {fileID: 100002, guid: a397665fd10ea074281025efce7289e0, type: 3}
       propertyPath: m_Name
       value: ElectricField_Nick
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: a397665fd10ea074281025efce7289e0, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a397665fd10ea074281025efce7289e0, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: a397665fd10ea074281025efce7289e0, type: 3}
       propertyPath: m_LocalPosition.x

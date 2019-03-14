@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Game;
 using UnityEngine;
 using UnityEngine.AI;
@@ -21,38 +20,19 @@ namespace Drone
         private int patrol;
         [SerializeField] private List<Transform> patrolPath;
         [SerializeField] private float patrolTetherRange;
-        [SerializeField] private List<GameObject> players => LevelManager.LevelManagerRef.Players.Select(x => x.PlayerControl.gameObject).ToList();
+        [SerializeField] private List<GameObject> players;
         [SerializeField] private float reviveTimer;
         [SerializeField] private bool reviving;
         public Transform Target;
-
-        [SerializeField] private float atkRange;
-        [SerializeField] private float atkSpeed;
-        [SerializeField] private bool isShooter;
-        private bool canAtk = true;
-        [SerializeField] private AnimControl control;
-        //[SerializeField] private ;
-
-        [SerializeField] Character.Drone drone;
 
 
         // Start is called before the first frame update
         private void Start()
         {
             investigation.transform.parent = null;
-            foreach(var v in patrolPath)
-            {
-                v.transform.parent = null;
-            }
-            foreach (var v in bigPatrolPath)
-            {
-                v.transform.parent = null;
-            }
-
             agent = GetComponent<NavMeshAgent>();
             obstacle = GetComponent<NavMeshObstacle>();
             if (bigPatrolPath.Count <= 0) bigPatrolPath = patrolPath;
-            drone = this.GetComponent<Character.Drone>();
             fsm = new FSM();
             Target = patrolPath[0];
 
@@ -79,7 +59,7 @@ namespace Drone
         private void Update()
         {
             //cheats
-            if (!reviving && drone.Stunned) fsm.MoveNext(Command.Die);
+            if (!reviving && Input.GetKeyDown(KeyCode.Q) && Input.GetKeyDown(KeyCode.P)) fsm.MoveNext(Command.Die);
 
             if (!reviving && Input.GetKeyDown(KeyCode.Z) && Input.GetKeyDown(KeyCode.M)) fsm.MoveNext(Command.LockDown);
 
@@ -101,7 +81,7 @@ namespace Drone
             }
 
             //Investigate State
-            else if (fsm.CurrentState.Equals(State.Investigate))
+            if (fsm.CurrentState.Equals(State.Investigate))
             {
                 //Arrive at investigate zone
                 if (Vector3.Distance(transform.position, investigation.transform.position) < 1f)
@@ -121,24 +101,15 @@ namespace Drone
             }
 
             //Chase State
-            else if (fsm.CurrentState.Equals(State.Chase))
-            {
+            if (fsm.CurrentState.Equals(State.Chase))
                 if (!investg && Vector3.Distance(transform.position, lastLoc) > patrolTetherRange)
                 {
                     investg = true;
                     StartCoroutine(DoInvestigate());
                 }
-                //shoot player
-                foreach (var v in players)
-                    if (Vector3.Distance(transform.position, v.transform.position) < atkRange && canAtk)
-                    {
-                        gameObject.GetComponent<Weapon.StunGun>().Attack();
-                        canAtk = false;
-                    }
-            }
 
             //BigPatrol State
-            else if (fsm.CurrentState.Equals(State.BigPatrol))
+            if (fsm.CurrentState.Equals(State.BigPatrol))
             {
                 //chaing patrol dest
                 if (Vector3.Distance(transform.position, Target.position) < 0.2f)
@@ -159,29 +130,19 @@ namespace Drone
             }
 
             //BigChase State
-            else if (fsm.CurrentState.Equals(State.BigChase))
+            if (fsm.CurrentState.Equals(State.BigChase))
             {
                 //Do Big Chase
-                //shoot player
-                foreach (var v in players)
-                    if (Vector3.Distance(transform.position, v.transform.position) < atkRange && canAtk)
-                    {
-                        gameObject.GetComponent<Weapon.StunGun>().Attack();
-                        canAtk = false;
-                    }
             }
 
             //Dead State
-            else if (fsm.CurrentState.Equals(State.Dead))
+            if (fsm.CurrentState.Equals(State.Dead))
             {
-                control.DoStun();
-                reviving = true;
                 Target = null;
-                if (!drone.Stunned)
+                if (!reviving)
                 {
-                    Target = patrolPath[patrol];
-                    fsm.MoveNext(Command.Wake);
-                    control.DoAlive();
+                    reviving = true;
+                    StartCoroutine(Revive());
                 }
             }
 
@@ -191,6 +152,13 @@ namespace Drone
                 agent.destination = transform.position;
         }
 
+        private IEnumerator Revive()
+        {
+            yield return new WaitForSeconds(reviveTimer);
+            Target = patrolPath[patrol];
+            fsm.MoveNext(Command.Wake);
+            reviving = false;
+        }
 
         private IEnumerator DoInvestigate()
         {
@@ -200,20 +168,14 @@ namespace Drone
             investg = false;
         }
 
-        private IEnumerator reload()
-        {
-            yield return new WaitForSeconds(atkSpeed);
-            canAtk = true;
-        }
-
         private void OnTriggerEnter(Collider other)
         {
-           // if (other.tag == "Player") players.Add(other.gameObject);
+            if (other.tag == "Player") players.Add(other.gameObject);
         }
 
         private void OnTriggerExit(Collider other)
         {
-          //  if (other.tag == "Player") players.Remove(other.gameObject);
+            if (other.tag == "Player") players.Remove(other.gameObject);
         }
     }
 }

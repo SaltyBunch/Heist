@@ -2,9 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Game;
 using Hazard;
-using Rewired;
 using UnityEngine;
-using UnityEngine.Networking;
 using UnityEngine.Serialization;
 using Weapon;
 
@@ -38,17 +36,8 @@ namespace Character
         private Item.Type _type;
 
         [SerializeField] private List<Weapon.Weapon> _weapon = new List<Weapon.Weapon>();
-        private int _goldAmount;
 
-        public int GoldAmount
-        {
-            get => _goldAmount;
-            set
-            {
-                _goldAmount = value;
-                _player.BaseCharacter.SetGold(_goldAmount);
-            }
-        }
+        public int GoldAmount;
 
         public Item SelectedItem { get; private set; }
 
@@ -70,20 +59,18 @@ namespace Character
                         _selectedIndex < _hazard.Count + _weapon.Count
                     ) //a hazard is selected and the prev selected is a hazard
                     {
-                        var prevVal = false;
+                        var prevVal = val;
                         //iterate in the direction of dir until selection at index != selection at _selected index or until index is <> _hazard.Count
                         for (var index = (_selectedIndex - _weapon.Count) % _hazard.Count;
                             index < _hazard.Count && index >= 0;
                             index += dir)
-                            if (_hazard[index].GetType() !=
-                                _hazard[(_selectedIndex - _weapon.Count) % _hazard.Count].GetType())
+                            if (!(_hazard[index] == _hazard[(_selectedIndex - _weapon.Count) % _hazard.Count]))
                             {
                                 val = index + _weapon.Count;
-                                prevVal = true;
                                 break;
                             }
 
-                        if (!prevVal) //exited for loop without finding a new hazard to select
+                        if (val == prevVal) //exited for loop without finding a new hazard to select
                             switch (dir)
                             {
                                 case 1:
@@ -120,7 +107,7 @@ namespace Character
                 _count = _type == Item.Type.Weapon
                     ? ((Weapon.Weapon) SelectedItem).Ammo
                     : _type == Item.Type.Hazard
-                        ? _hazard.Count(h => h.GetType() == SelectedItem.GetType())
+                        ? _hazard.Count(h => h == SelectedItem)
                         : 0; //todo better
                 SelectionChanged?.Invoke(this,
                     new SelectionChangedEventArgs
@@ -155,10 +142,9 @@ namespace Character
 
             if (item is Weapon.Weapon weapon)
             {
-                GameManager.SetLayerOnAll(item.gameObject, GameManager.GetPlayerMask(_player.PlayerNumber, false));
                 if (_weapon.Contains(weapon))
                 {
-                    var temp = _weapon.Find(x => x.GetType() == weapon.GetType());
+                    var temp = _weapon.Find(x => x == weapon);
                     _weapon.Remove(temp);
                     Destroy(temp.gameObject);
                     _weapon.Add(weapon);
@@ -174,13 +160,13 @@ namespace Character
 
             if (item is Hazard.Hazard hazard)
             {
-                var count = _hazard.Count(h => h.GetType() == hazard.GetType());
+                var count = _hazard.Count(h => h == hazard);
                 if (count < 2)
                 {
                     var index = 0;
                     for (var i = 0; i < _hazard.Count; i++)
                     {
-                        if (_hazard[i].GetType() == hazard.GetType())
+                        if (_hazard[i] == hazard)
                         {
                             //hazard at i is the same as hazard
                             //insert at i and break
@@ -206,41 +192,14 @@ namespace Character
             switch (SelectedItem)
             {
                 case ElectricField electricField:
-                    if (electricField.Place(transform.position))
-                    {
-                        electricField.transform.parent = null;
-                        electricField.Place(transform.position + transform.forward * 2); //todo wall check
-                        Remove(SelectedItem);
-                        electricField.PlacedByPlayer = true;
-                        electricField.gameObject.SetActive(true);
-                    }
-
+                    electricField.Place(transform.position + transform.forward * 2); //todo wall check
+                    Remove(SelectedItem);
                     return;
                 case LethalLaser lethalLaser:
-                    if (lethalLaser.Place(transform.position))
-                    {
-                        lethalLaser.transform.parent = null;
-                        Remove(SelectedItem);
-                        lethalLaser.PlacedByPlayer = true;
-                        lethalLaser.gameObject.SetActive(true);
-                    }
-
+                    lethalLaser.Place(transform.position + transform.forward * 2); //todo wall check
+                    Remove(SelectedItem);
                     return;
                 case Baton baton:
-                    var objects = Physics.OverlapSphere(transform.position, 2);
-                    foreach (var o in objects)
-                    {
-                        if (o.CompareTag("Player") || o.CompareTag("Drone"))
-                        {
-                            var character = o.GetComponentInParent<Character>();
-                            if (character.gameObject.layer != this.gameObject.layer)
-                            {
-                                character.Stacks += 1;
-                                character.Knockback(transform);
-                            }
-                        }
-                    }
-
                     //todo play baton animation
                     break;
                 case StunGun stunGun:
@@ -275,7 +234,7 @@ namespace Character
                     {
                         var weap = _weapon[i];
                         _weapon.RemoveAt(i);
-                        Destroy(weap.gameObject);
+                        Destroy(weap);
                         break;
                     }
                 }

@@ -22,6 +22,7 @@ namespace Controller
 
         private void Start()
         {
+            Player = _playerControl.Player;
             if (Player == null) Player = ReInput.players.GetPlayer(_playerControl.PlayerNumber - 1);
         }
 
@@ -30,28 +31,24 @@ namespace Controller
             var playerControlControl = _playerControl.Control;
 
 
-            playerControlControl.MoveVector = (Player.GetAxis("Move Vertical") * Vector3.forward +
-                                               Player.GetAxis("Move Horizontal") * Vector3.right).normalized;
+            playerControlControl.MoveVector = Player.GetAxis("Move Vertical") * Vector3.forward +
+                                              Player.GetAxis("Move Horizontal") * Vector3.right;
 
             playerControlControl.FaceVector = Player.GetAxis("Look Vertical") * Vector3.forward +
                                               Player.GetAxis("Look Horizontal") * Vector3.right;
 
-            playerControlControl.Dash = Player.GetButtonDown("Dash");
-            playerControlControl.Interact = Player.GetButtonDown("Interact");
+            playerControlControl.Dash = Player.GetButton("Dash");
+            playerControlControl.Interact = Player.GetButton("Interact");
 
-            playerControlControl.PushAttack = Player.GetButtonDown("Push Attack");
-            playerControlControl.WeaponAttack = Player.GetButtonDown("Weapon Attack");
+            playerControlControl.PushAttack = Player.GetButton("Push Attack");
+            playerControlControl.WeaponAttack = Player.GetButton("Weapon Attack");
 
-            playerControlControl.Pause = Player.GetButtonDown("Pause");
+            playerControlControl.Pause = Player.GetButton("Pause");
 
-            playerControlControl.SwitchPos = Player.GetButtonDown("InventorySwitchPositive");
-            playerControlControl.SwitchNeg = Player.GetButtonDown("InventorySwitchNegative");
+            playerControlControl.SwitchPos = Player.GetButton("InventorySwitchPositive");
+            playerControlControl.SwitchNeg = Player.GetButton("InventorySwitchNegative");
             //Debug.DrawRay(transform.position + Vector3.up, transform.forward * 2, Color.red);
 
-            playerControlControl.QuickTimeA = Player.GetButtonDown("QuickTimeA");
-            playerControlControl.QuickTimeB = Player.GetButtonDown("QuickTimeB");
-            playerControlControl.QuickTimeX = Player.GetButtonDown("QuickTimeX");
-            playerControlControl.QuickTimeY = Player.GetButtonDown("QuickTimeY");
 
             _playerControl.Control = playerControlControl;
         }

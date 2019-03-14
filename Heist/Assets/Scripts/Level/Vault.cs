@@ -9,16 +9,12 @@ namespace Level
     {
         public delegate void OpenDoor();
 
-        [SerializeField] private Animator _anim;
-        
         private bool _closed = true;
 
         [SerializeField] private Dictionary<KeyType, bool> _keys = new Dictionary<KeyType, bool>
         {
             {KeyType.YellowKey, false}, {KeyType.RedKey, false}
         };
-
-        private static readonly int Open = Animator.StringToHash("Open");
 
         public bool OpenVault()
         {
@@ -42,7 +38,7 @@ namespace Level
 
         private void OpenDoorMethod()
         {
-            _anim.SetTrigger(Open);
+            //todo call animation on door
         }
     }
 }

@@ -26,7 +26,6 @@ namespace Hazard
 
         private new IEnumerator Trigger(PlayerControl player)
         {
-            if (PlacedByPlayer) Destroy(this.gameObject, 5);
             float elapsed = 0;
             do
             {
@@ -36,9 +35,9 @@ namespace Hazard
             } while (elapsed < _cooldown);
         }
 
-        public override bool Place(Vector3 position)
+        public override void Place(Vector3 position)
         {
-            LayerMask layers = ~(LevelManager.LevelManagerRef.EnvironmentLayer);
+            LayerMask layers = ~LayerMask.GetMask("Hazard", "Environment", "VFX");
 
             Vector3 fwd = Vector3.positiveInfinity,
                 rt = Vector3.positiveInfinity,
@@ -54,16 +53,14 @@ namespace Hazard
 
             if (Physics.Raycast(position, Vector3.back, out hit, 20, layers)) bk = hit.point;
 
-            if (Vector3.Distance(fwd, bk) > _maxGap && Vector3.Distance(rt, lt) > _maxGap) return false;
-            
             if (Vector3.Distance(fwd, bk) > Vector3.Distance(rt, lt))
             {
                 transform.position = (rt + lt) / 2;
 
                 transform.LookAt(rt);
 
-                Laser1.transform.position = rt + Vector3.up;
-                Laser2.transform.position = lt + Vector3.up;
+                Laser1.transform.position = rt;
+                Laser2.transform.position = lt;
 
 
                 Laser1.transform.LookAt(Laser2.transform);
@@ -83,8 +80,8 @@ namespace Hazard
 
                 transform.LookAt(fwd);
 
-                Laser1.transform.position = fwd + Vector3.up;
-                Laser2.transform.position = bk + Vector3.up;
+                Laser1.transform.position = fwd;
+                Laser2.transform.position = bk;
 
 
                 Laser1.transform.LookAt(Laser2.transform);
@@ -97,8 +94,13 @@ namespace Hazard
                     z = Laser1.transform.localPosition.z * 2, y = 1.5f
                 };
             }
+        }
 
-            return true;
+        public void SetFloor(Floor floor, LayerMask layerMask)
+        {
+            Laser1.layer = layerMask;
+            Laser2.layer = layerMask;
+            //todo laser particles
         }
     }
 }

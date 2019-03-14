@@ -162,8 +162,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5138474, y: 2.2610836, z: 1.5752945}
-  m_Center: {x: -0.008205414, y: 0.64612675, z: 0.20373917}
+  m_Size: {x: 1.0469513, y: 2.2610836, z: 1.5752945}
+  m_Center: {x: -0.03852378, y: 0.64612675, z: 0.20373917}
 --- !u!114 &3510903029168117140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,7 +176,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22697fee91934160ba08bcc5abcce434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pickups: []
+  _pickups:
+  - {fileID: 1519479542422855983, guid: 99fad195904e4464dbdd1c68d26d8e62, type: 3}
   _lockQuickTimeEvent: {fileID: 5161225311952668459, guid: b66ac9ce57d0dee48bed4a217e56cace,
     type: 3}
   _pickupSpawn: {x: 0, y: 0, z: 1}
@@ -321,11 +322,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5192621543832696389, guid: fab2df8a6133f6147b78e467ff2b5dfd,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fab2df8a6133f6147b78e467ff2b5dfd, type: 3}

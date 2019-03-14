@@ -1,17 +1,16 @@
 fileFormatVersion: 2
-guid: 36a4cc4aac1c3b54fbd6d1fa74e2791a
+guid: 605774df5ee667549903ea69a357c861
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Bookcases-0
+    100000: Mug
     100002: //RootNode
-    400000: Bookcases-0
+    400000: Mug
     400002: //RootNode
     2100000: palette
-    2100002: Bookcases-0Mat
-    2300000: Bookcases-0
-    3300000: Bookcases-0
-    4300000: Bookcases-0
+    2300000: Mug
+    3300000: Mug
+    4300000: Mug
   externalObjects: {}
   materials:
     importMaterials: 1

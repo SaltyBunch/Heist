@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: 53b1bf7ed6aff4d449740581652a8ba2
+guid: 528b014937eb62c4a80adbe86f405920
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: woodfloorPlank
+    100000: wfloorplank-1
     100002: //RootNode
-    400000: woodfloorPlank
+    400000: wfloorplank-1
     400002: //RootNode
-    2100000: woodfloorPlankMat
-    2300000: woodfloorPlank
-    3300000: woodfloorPlank
-    4300000: woodfloorPlank
+    2100000: wfloorplank-1Mat
+    2300000: wfloorplank-1
+    3300000: wfloorplank-1
+    4300000: wfloorplank-1
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: woodfloorPlankMat
-    second: {fileID: 2100000, guid: 053eda0abac24cd439de08b4d59f1847, type: 2}
+      name: wfloorplank-1Mat
+    second: {fileID: 2100000, guid: 31fc4af0e4cdd5a4899036bf08a7ee45, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

@@ -1,22 +1,17 @@
 fileFormatVersion: 2
-guid: abeb0f1fb9cec0542b4aac7bc0421c6d
+guid: e56058d00cc18864dab721a286982ff2
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: HarrisL_TheVault_Heist-43
-    100002: //RootNode
-    400000: HarrisL_TheVault_Heist-43
-    400002: //RootNode
-    2100000: HarrisL_TheVault_Heist-43Mat
-    2300000: HarrisL_TheVault_Heist-43
-    3300000: HarrisL_TheVault_Heist-43
-    4300000: HarrisL_TheVault_Heist-43
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: HarrisL_TheVault_Heist-43Mat
-    second: {fileID: 2100000, guid: 2d27c1a52ed067d4b97a7d844842937e, type: 2}
+    100000: //RootNode
+    100002: Menu_Obs-0
+    400000: //RootNode
+    400002: Menu_Obs-0
+    2100000: Menu_Obs-0Mat
+    2300000: Menu_Obs-0
+    3300000: Menu_Obs-0
+    4300000: Menu_Obs-0
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0

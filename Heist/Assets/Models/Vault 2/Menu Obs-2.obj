@@ -1,10 +1,10 @@
 # MagicaVoxel @ Ephtracy
 
 # group
-g HarrisL_TheVault_Heist-43
+g Menu Obs-2
 
 # material
-mtllib HarrisL_TheVault_Heist-43.mtl
+mtllib Menu Obs-2.mtl
 usemtl palette
 
 # normals
@@ -16,33 +16,33 @@ vn 0 -1 0
 vn 0 1 0
 
 # texcoords
-vt 0.0175781 0.5
+vt 0.427734 0.5
 
 # verts
-v -0.5 0 26
-v -0.5 0 -26
-v -0.5 1 26
-v -0.5 1 -26
-v 0.5 0 26
-v 0.5 0 -26
-v 0.5 1 26
-v 0.5 1 -26
-v -0.5 0 26
-v -0.5 1 26
-v 0.5 0 26
-v 0.5 1 26
-v -0.5 0 -26
-v -0.5 1 -26
-v 0.5 0 -26
-v 0.5 1 -26
-v -0.5 0 26
-v 0.5 0 26
-v -0.5 0 -26
-v 0.5 0 -26
-v -0.5 1 26
-v 0.5 1 26
-v -0.5 1 -26
-v 0.5 1 -26
+v -32 0 32
+v -32 0 -32
+v -32 8 32
+v -32 8 -32
+v 32 0 32
+v 32 0 -32
+v 32 8 32
+v 32 8 -32
+v -32 0 32
+v -32 8 32
+v 32 0 32
+v 32 8 32
+v -32 0 -32
+v -32 8 -32
+v 32 0 -32
+v 32 8 -32
+v -32 0 32
+v 32 0 32
+v -32 0 -32
+v 32 0 -32
+v -32 8 32
+v 32 8 32
+v -32 8 -32
+v 32 8 -32
 
 # faces
 f 3/1/1 2/1/1 1/1/1

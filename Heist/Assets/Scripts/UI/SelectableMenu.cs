@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.IO.MemoryMappedFiles;
-using Rewired;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace UI
 {
@@ -22,6 +21,9 @@ namespace UI
         [SerializeField] private SelectionDirection _selectionDirection;
         [SerializeField] private int _selected;
 
+
+        [SerializeField] private List<UnityEvent> _submit;
+        [SerializeField] private UnityEvent _cancel;
 
         public int Selected
         {
@@ -65,12 +67,12 @@ namespace UI
 
         public void Submit()
         {
-            throw new System.NotImplementedException();
+            _submit[Selected].Invoke();
         }
 
         public void Cancel()
         {
-            throw new System.NotImplementedException();
+            _cancel.Invoke();
         }
     }
 }

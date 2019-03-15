@@ -1,5 +1,6 @@
 using Rewired;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace UI
 {
@@ -42,36 +43,79 @@ namespace UI
 
         [SerializeField] private SelectableMenu _currentMenu;
         private static Control _menuControl;
+        [SerializeField] private Animator _menuAnimator;
+        private UnityEvent SwitchToOptions = new UnityEvent();
+        private UnityEvent SwitchToMain = new UnityEvent();
+
+
+        [SerializeField] private SelectableMenu _mainMenu;
+        [SerializeField] private SelectableMenu _optionsMenu;
+        private bool _input = true;
 
         private void Start()
         {
             MenuManagerRef = this;
+            SwitchToOptions.AddListener(() =>
+            {
+                _currentMenu = _optionsMenu;
+                _input = true;
+            });
+            SwitchToMain.AddListener(() =>
+            {
+                _currentMenu = _mainMenu;
+
+                _input = true;
+            });
         }
 
 
         private void Update()
         {
-            //j - nick C
-            //Get control
-            var right = _menuControl.Right;
-            var left = _menuControl.Left;
-            var down = _menuControl.Down;
-            var up = _menuControl.Up;
-            
-            foreach (var player in ReInput.players.Players)
-            {
-                right = right || player.GetButtonDown("UIHorizontalRight");
-                left =  left ||player.GetButtonDown("UIHorizontalLeft");
-                up = up || player.GetButtonDown("UIVerticalUp");
-                down = down || player.GetButtonDown("UIVerticalDown");
-            }
+            //if (_menuAnimator.IsInTransition(0))
+            //{
+                //j - nick C
+                //Get control
+                var control = MenuControl;
 
-            var control = MenuControl;
-            control.Right = right;
-            control.Left = left;
-            control.Up = up;
-            control.Down = down;
-            MenuControl = control;
+                foreach (var player in ReInput.players.Players)
+                {
+                    control.Right = control.Right || player.GetButtonDown("UIHorizontalRight");
+                    control.Left = control.Left || player.GetButtonDown("UIHorizontalLeft");
+                    control.Up = control.Up || player.GetButtonDown("UIVerticalUp");
+                    control.Down = control.Down || player.GetButtonDown("UIVerticalDown");
+                    control.Submit = control.Submit || player.GetButtonDown("UISubmit");
+                    control.Cancel = control.Cancel || player.GetButtonDown("UICancel");
+                }
+
+                MenuControl = control;
+          //  }
+        }
+
+        public void ExitGame()
+        {
+        }
+
+        public void GoToMainFromOptions()
+        {
+            _menuAnimator.SetTrigger("ToMainFromOptions");
+            _currentMenu = _mainMenu;
+        }
+
+        public void GoToMainFromPlayerSelect()
+        {
+            _menuAnimator.SetTrigger("ToMainFromPlayerSelect");
+            _currentMenu = _mainMenu;
+        }
+
+        public void GoToOptions()
+        {
+            _menuAnimator.SetTrigger("GoToOptions");
+            _currentMenu = _optionsMenu;
+        }
+
+        public void GoToCharSelect()
+        {
+            _menuAnimator.SetTrigger("GoToPlayerSelect");
         }
     }
 }

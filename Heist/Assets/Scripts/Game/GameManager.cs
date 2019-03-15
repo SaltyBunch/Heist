@@ -136,7 +136,7 @@ namespace Game
             StartCoroutine(LoadScene(_scenes.MainMenu));
             NumPlayers = ReInput.controllers.joystickCount;
 
-            _skins = new List<Material>(4);
+            _skins = new List<Material>(NumPlayers);
         }
 
         public static int GetPlayerMask(int playerNumber, bool bitShift)
@@ -190,10 +190,6 @@ namespace Game
             if (sceneName == _scenes.GameScene)
             {
                 LevelManager.LevelManagerRef.InitGame(NumPlayers);
-            }
-            if (sceneName == _scenes.MainMenu)
-            {
-                GameObject.Find("Menus").GetComponent<Menu>().Begin();
             }
         }
 

@@ -26,18 +26,28 @@ namespace UI
                 if (!Equals(value, _menuControl))
                 {
                     if (value.Right && !_menuControl.Right)
-                        MenuManagerRef._currentMenu.Right();
+                        MenuManagerRef.CurrentMenu.Right();
                     if (value.Left && !_menuControl.Left)
-                        MenuManagerRef._currentMenu.Left();
+                        MenuManagerRef.CurrentMenu.Left();
                     if (value.Up && !_menuControl.Up)
-                        MenuManagerRef._currentMenu.Up();
+                        MenuManagerRef.CurrentMenu.Up();
                     if (value.Down && !_menuControl.Down)
-                        MenuManagerRef._currentMenu.Down();
+                        MenuManagerRef.CurrentMenu.Down();
                     if (value.Submit && !_menuControl.Submit)
-                        MenuManagerRef._currentMenu.Submit();
+                        MenuManagerRef.CurrentMenu.Submit();
                     if (value.Cancel && !_menuControl.Cancel)
-                        MenuManagerRef._currentMenu.Cancel();
+                        MenuManagerRef.CurrentMenu.Cancel();
                 }
+            }
+        }
+
+        public SelectableMenu CurrentMenu
+        {
+            get { return _currentMenu; }
+            set
+            {
+                _currentMenu = value;
+                _currentMenu.Activate();
             }
         }
 
@@ -50,6 +60,7 @@ namespace UI
 
         [SerializeField] private SelectableMenu _mainMenu;
         [SerializeField] private SelectableMenu _optionsMenu;
+        [SerializeField] private SelectableMenu _playerSelect;
         private bool _input = true;
 
         private void Start()
@@ -57,12 +68,12 @@ namespace UI
             MenuManagerRef = this;
             SwitchToOptions.AddListener(() =>
             {
-                _currentMenu = _optionsMenu;
+                CurrentMenu = _optionsMenu;
                 _input = true;
             });
             SwitchToMain.AddListener(() =>
             {
-                _currentMenu = _mainMenu;
+                CurrentMenu = _mainMenu;
 
                 _input = true;
             });
@@ -73,44 +84,49 @@ namespace UI
         {
             //if (_menuAnimator.IsInTransition(0))
             //{
-                //j - nick C
-                //Get control
-                var control = MenuControl;
+            //j - nick C
+            //Get control
+            var control = MenuControl;
 
-                foreach (var player in ReInput.players.Players)
-                {
-                    control.Right = control.Right || player.GetButtonDown("UIHorizontalRight");
-                    control.Left = control.Left || player.GetButtonDown("UIHorizontalLeft");
-                    control.Up = control.Up || player.GetButtonDown("UIVerticalUp");
-                    control.Down = control.Down || player.GetButtonDown("UIVerticalDown");
-                    control.Submit = control.Submit || player.GetButtonDown("UISubmit");
-                    control.Cancel = control.Cancel || player.GetButtonDown("UICancel");
-                }
+            foreach (var player in ReInput.players.Players)
+            {
+                control.Right = control.Right || player.GetButtonDown("UIHorizontalRight");
+                control.Left = control.Left || player.GetButtonDown("UIHorizontalLeft");
+                control.Up = control.Up || player.GetButtonDown("UIVerticalUp");
+                control.Down = control.Down || player.GetButtonDown("UIVerticalDown");
+                control.Submit = control.Submit || player.GetButtonDown("UISubmit");
+                control.Cancel = control.Cancel || player.GetButtonDown("UICancel");
+            }
 
-                MenuControl = control;
-          //  }
+            MenuControl = control;
+            //  }
         }
 
         public void ExitGame()
         {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
         }
 
         public void GoToMainFromOptions()
         {
             _menuAnimator.SetTrigger("ToMainFromOptions");
-            _currentMenu = _mainMenu;
+            CurrentMenu = _mainMenu;
         }
 
         public void GoToMainFromPlayerSelect()
         {
             _menuAnimator.SetTrigger("ToMainFromPlayerSelect");
-            _currentMenu = _mainMenu;
+            CurrentMenu = _mainMenu;
         }
 
         public void GoToOptions()
         {
             _menuAnimator.SetTrigger("GoToOptions");
-            _currentMenu = _optionsMenu;
+            CurrentMenu = _optionsMenu;
         }
 
         public void GoToCharSelect()

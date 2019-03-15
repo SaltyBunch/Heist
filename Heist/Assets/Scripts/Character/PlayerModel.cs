@@ -5,10 +5,12 @@ namespace Character
     public class PlayerModel : MonoBehaviour
     {
         [SerializeField] private SkinnedMeshRenderer _character;
-        
+
         public void SetMaterial(Material mat)
         {
-            _character.sharedMaterial = mat;
+            var temp = _character.sharedMaterials;
+            temp[0] = mat;
+            _character.sharedMaterials = temp;
         }
     }
 }

@@ -156,6 +156,7 @@ GameObject:
   - component: {fileID: 4741335194666406404}
   - component: {fileID: 4741335194675510754}
   - component: {fileID: 3445066503101186810}
+  - component: {fileID: 5912857049955782243}
   m_Layer: 0
   m_Name: Jailbird_Run_Dash
   m_TagString: Player
@@ -215,6 +216,19 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5912857049955782243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4741335194666110500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebef33df7b8d4ae39b0c5c2dd2313793, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _character: {fileID: 4741335194679706402}
 --- !u!1 &4741335194666110502
 GameObject:
   m_ObjectHideFlags: 0

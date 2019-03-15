@@ -23,16 +23,19 @@ namespace UI
 
 
         [SerializeField] private List<UnityEvent> _submit;
-        [SerializeField] private UnityEvent _cancel;
+        [SerializeField] internal UnityEvent _cancel;
 
         public int Selected
         {
             get { return _selected; }
             set
             {
-                _buttons[_selected].color = Color.white;
-                _selected = value;
-                _buttons[_selected].color = Color.cyan / 2;
+                if (_buttons != null && _buttons.Count > value)
+                {
+                    _buttons[_selected].color = Color.white;
+                    _selected = value;
+                    _buttons[_selected].color = Color.cyan / 2;
+                }
             }
         }
 
@@ -41,38 +44,43 @@ namespace UI
             Selected = 0;
         }
 
-        public void Right()
+        public virtual void Right()
         {
             if (_selectionDirection == SelectionDirection.Horizontal)
                 Selected = (((Selected + 1) % _buttons.Count) + _buttons.Count) % _buttons.Count;
         }
 
-        public void Left()
+        public virtual void Left()
         {
             if (_selectionDirection == SelectionDirection.Horizontal)
                 Selected = (((Selected - 1) % _buttons.Count) + _buttons.Count) % _buttons.Count;
         }
 
-        public void Up()
+        public virtual void Up()
         {
             if (_selectionDirection == SelectionDirection.Vertical)
                 Selected = (((Selected - 1) % _buttons.Count) + _buttons.Count) % _buttons.Count;
         }
 
-        public void Down()
+        public virtual void Down()
         {
             if (_selectionDirection == SelectionDirection.Vertical)
                 Selected = (((Selected + 1) % _buttons.Count) + _buttons.Count) % _buttons.Count;
         }
 
-        public void Submit()
+        public virtual void Submit()
         {
             _submit[Selected].Invoke();
         }
 
-        public void Cancel()
+        public virtual void Cancel()
         {
             _cancel.Invoke();
+        }
+
+        public virtual void Activate()
+        {
+            Selected = 0;
         }
     }
 }

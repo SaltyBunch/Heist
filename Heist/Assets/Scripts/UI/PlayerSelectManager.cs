@@ -8,6 +8,11 @@ namespace UI
     {
         [SerializeField] private List<PlayerSelect> selection;
 
+        [SerializeField] public List<Material> KingSkin;
+        [SerializeField] public List<Material> JailbirdSkin;
+        [SerializeField] public List<Material> ShadowSkin;
+        [SerializeField] public List<Material> RoccoSkin;
+
         private void OnEnable()
         {
             GameManager.PlayerChoice = new Characters[GameManager.NumPlayers];

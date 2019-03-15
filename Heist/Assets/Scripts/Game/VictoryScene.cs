@@ -20,7 +20,7 @@ namespace Game
             for (int i = 0; i < GameManager.NumPlayers; i++)
             {
                 var playerModel = Instantiate(playerModels[(int) GameManager.PlayerChoice[order[i].PlayerNumber]],_places[i]);
-                playerModel.SetColor(GameManager.PlayerColour[order[i].PlayerNumber]);
+                playerModel.SetMaterial(GameManager.Skins[order[i].PlayerNumber]);
                 _placeTexts[i].ScoreText.text = order[i].PlayerScore.ToString();
             }
         }

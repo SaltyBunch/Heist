@@ -3607,13 +3607,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scenes:
-    MainMenu: MainMenu
+    MainMenu: Main Menu
     GameScene: Bank 2.1
     VictoryScreen: 
     Persistent: Persistent
   _state: 0
   _loadingScreen: {fileID: 1163500337}
   UseMultiScreen: 1
+  _skins: []
 --- !u!4 &1678145375
 Transform:
   m_ObjectHideFlags: 0

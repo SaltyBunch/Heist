@@ -4,17 +4,11 @@ namespace Character
 {
     public class PlayerModel : MonoBehaviour
     {
-        [SerializeField] private Material _characterMaterial;
         [SerializeField] private SkinnedMeshRenderer _character;
-
-        private void Start()
+        
+        public void SetMaterial(Material mat)
         {
-            _characterMaterial = _character.sharedMaterial;
-        }
-
-        public void SetColor(Color color)
-        {
-            _characterMaterial.color = color;
+            _character.sharedMaterial = mat;
         }
     }
 }

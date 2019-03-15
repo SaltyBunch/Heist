@@ -109,7 +109,17 @@ namespace Game
         public List<Score> Scores;
         public static int NumPlayers { get; set; }
         [SerializeField] private List<Material> _skins; //actual player choice of skin
-        public static List<Material> Skins => GameManagerRef._skins;
+        public static List<Material> Skins
+        {
+            get
+            {
+                return GameManagerRef._skins;
+            }
+            set
+            {
+                
+            }
+        }
 
 
 

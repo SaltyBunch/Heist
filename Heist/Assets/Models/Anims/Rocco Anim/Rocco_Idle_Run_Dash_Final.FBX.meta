@@ -104,7 +104,12 @@ ModelImporter:
     13700000: body
     13700002: ear
     13700004: Object001
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #51'
+    second: {fileID: 2100000, guid: efb060e4930f4a54d8ed9831291e76ef, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

@@ -35,6 +35,8 @@ namespace UI
             {
                 _playerSkinchoice = value;
                 GameManager.Skins[player] = CharacterSkins[GameManager.PlayerChoice[player]][_playerSkinchoice];
+
+                //todo update player models
             }
         }
 

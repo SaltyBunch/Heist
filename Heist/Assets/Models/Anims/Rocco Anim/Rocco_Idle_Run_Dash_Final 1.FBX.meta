@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 70c0b36e21e68734685bd84801245f42
+guid: 9be4f4d33502aef47a001104428eea2e
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: body
-    100002: hair\
+    100002: ear
     100004: mixamorig:Head
     100006: mixamorig:HeadTop_End
     100008: mixamorig:Hips
@@ -46,9 +46,10 @@ ModelImporter:
     100080: mixamorig:Spine
     100082: mixamorig:Spine1
     100084: mixamorig:Spine2
-    100086: //RootNode
+    100086: Object001
+    100088: //RootNode
     400000: body
-    400002: hair\
+    400002: ear
     400004: mixamorig:Head
     400006: mixamorig:HeadTop_End
     400008: mixamorig:Hips
@@ -90,20 +91,23 @@ ModelImporter:
     400080: mixamorig:Spine
     400082: mixamorig:Spine1
     400084: mixamorig:Spine2
-    400086: //RootNode
-    2100000: 'Material #29'
+    400086: Object001
+    400088: //RootNode
+    2100000: 'Material #51'
     4300000: body
-    4300002: hair\
-    7400000: Idle
+    4300002: Object001
+    4300004: ear
+    7400000: Take 001
     9500000: //RootNode
     13700000: body
-    13700002: hair\
+    13700002: ear
+    13700004: Object001
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: 'Material #29'
-    second: {fileID: 2100000, guid: 4cb1906101e47e74ea884c819feda378, type: 2}
+      name: 'Material #51'
+    second: {fileID: 2100000, guid: efb060e4930f4a54d8ed9831291e76ef, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -130,35 +134,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: Idle
-      takeName: Take 001
-      firstFrame: 0
-      lastFrame: 492
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []

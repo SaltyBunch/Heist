@@ -438,6 +438,42 @@ MonoBehaviour:
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 2
+    - _id: 20
+      _name: UIHorizontalRight
+      _type: 1
+      _descriptiveName: UIHorizontalRight
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 1
+    - _id: 21
+      _name: UIHorizontalLeft
+      _type: 1
+      _descriptiveName: UIHorizontalLeft
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 1
+    - _id: 22
+      _name: UIVerticalUp
+      _type: 1
+      _descriptiveName: UIVerticalUp
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 1
+    - _id: 23
+      _name: UIVerticalDown
+      _type: 1
+      _descriptiveName: UIVerticalDown
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 1
     actionCategories:
     - _name: Default
       _descriptiveName: Default
@@ -459,7 +495,7 @@ MonoBehaviour:
       - categoryId: 0
         actionIds: 0100000002000000040000000300000005000000060000000700000008000000090000000e0000000f000000
       - categoryId: 1
-        actionIds: 0a0000000c0000000b0000000d000000
+        actionIds: 0a00000014000000150000000c00000016000000170000000b0000000d000000
       - categoryId: 2
         actionIds: 10000000110000001200000013000000
     inputBehaviors:
@@ -777,6 +813,50 @@ MonoBehaviour:
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 20
+        _elementType: 0
+        _elementIdentifierId: 0
+        _axisRange: 1
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 21
+        _elementType: 0
+        _elementIdentifierId: 0
+        _axisRange: 2
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 23
+        _elementType: 0
+        _elementIdentifierId: 1
+        _axisRange: 2
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 22
+        _elementType: 0
+        _elementIdentifierId: 1
+        _axisRange: 1
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
     keyboardMaps:
     - id: 0
       categoryId: 0
@@ -848,7 +928,7 @@ MonoBehaviour:
       customControllerUid: 0
       actionElementMaps:
       - _actionCategoryId: 0
-        _actionId: 12
+        _actionId: 22
         _elementType: 1
         _elementIdentifierId: -1
         _axisRange: 0
@@ -859,29 +939,29 @@ MonoBehaviour:
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
-        _actionId: 12
+        _actionId: 23
         _elementType: 1
         _elementIdentifierId: -1
         _axisRange: 0
         _invert: 0
-        _axisContribution: 1
+        _axisContribution: 0
         _keyboardKeyCode: 115
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
-        _actionId: 10
+        _actionId: 21
         _elementType: 1
         _elementIdentifierId: -1
         _axisRange: 0
         _invert: 0
-        _axisContribution: 1
+        _axisContribution: 0
         _keyboardKeyCode: 97
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
-        _actionId: 10
+        _actionId: 20
         _elementType: 1
         _elementIdentifierId: -1
         _axisRange: 0
@@ -964,7 +1044,7 @@ MonoBehaviour:
     customControllerMaps: []
     customControllers: []
     playerIdCounter: 5
-    actionIdCounter: 20
+    actionIdCounter: 24
     actionCategoryIdCounter: 3
     inputBehaviorIdCounter: 1
     mapCategoryIdCounter: 3

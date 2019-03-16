@@ -702,7 +702,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebef33df7b8d4ae39b0c5c2dd2313793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _character: {fileID: 7400297915479931679}
+  _characterSkinnedMeshRenderers:
+  - {fileID: 7400297915479931679}
+  - {fileID: 7400297915479931677}
   _playerNumber: -1
 --- !u!136 &5915164789346165433
 CapsuleCollider:

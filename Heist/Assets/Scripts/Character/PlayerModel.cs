@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
-
 namespace Character
 {
     public class PlayerModel : MonoBehaviour
     {
-        [SerializeField] private SkinnedMeshRenderer _character;
+        [SerializeField] private List<SkinnedMeshRenderer> _characterSkinnedMeshRenderers;
 
         [SerializeField] private int _playerNumber;
 
@@ -18,18 +17,24 @@ namespace Character
 
         public void SetMaterial(Material mat)
         {
-            var temp = _character.sharedMaterials;
-            temp[0] = mat;
-            _character.sharedMaterials = temp;
+            foreach (var character in _characterSkinnedMeshRenderers)
+            {
+                var temp = character.sharedMaterials;
+                temp[0] = mat;
+                character.sharedMaterials = temp;
+            }
         }
 
-        private void Update()
+        private void UpdateColor()
         {
             if (_playerNumber >= 0)
             {
-                _character.GetPropertyBlock(_prop);
-                _prop.SetColor("_OccludedColor", _colors[_playerNumber]);
-                _character.SetPropertyBlock(_prop);
+                foreach (var character in _characterSkinnedMeshRenderers)
+                {
+                    character.GetPropertyBlock(_prop);
+                    _prop.SetColor("_OccludedColor", _colors[_playerNumber]);
+                    character.SetPropertyBlock(_prop);
+                }
             }
         }
 
@@ -37,6 +42,7 @@ namespace Character
         {
             _prop = new MaterialPropertyBlock();
             _playerNumber = playerNumber;
+            UpdateColor();
         }
     }
 }

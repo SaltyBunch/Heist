@@ -714,7 +714,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebef33df7b8d4ae39b0c5c2dd2313793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _character: {fileID: 7038090366886961309}
+  _characterSkinnedMeshRenderers:
+  - {fileID: 7038090366886961309}
+  - {fileID: 7038090366886961311}
+  - {fileID: 7038090366886961305}
   _playerNumber: -1
 --- !u!1 &7038090366892240329
 GameObject:

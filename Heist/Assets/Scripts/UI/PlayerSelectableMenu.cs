@@ -7,7 +7,6 @@ namespace UI
 {
     public class PlayerSelectableMenu : SelectableMenu
     {
-
         [SerializeField] private List<PlayerSelect> selection;
 
         [SerializeField] public List<Material> KingSkin;
@@ -18,6 +17,7 @@ namespace UI
 
         [SerializeField] public bool CaptureInput = false;
 
+        private bool _entered;
 
 
         private void Start()
@@ -27,9 +27,10 @@ namespace UI
 
         public void Update()
         {
-            if (selection.TrueForAll(s => s.ready || !s.gameObject.activeSelf))
+            if (!_entered && selection.TrueForAll(s => s.ready || !s.gameObject.activeSelf) )
             {
                 GameManager.GameManagerRef.EnterGame();
+                _entered = true;
             }
         }
 
@@ -45,11 +46,11 @@ namespace UI
         {
         }
 
-        public override  void Down()
+        public override void Down()
         {
         }
 
-        public override  void Submit()
+        public override void Submit()
         {
         }
 

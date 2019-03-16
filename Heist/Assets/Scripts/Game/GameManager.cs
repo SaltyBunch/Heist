@@ -108,20 +108,11 @@ namespace Game
         public static float StunnedMultiplier = 100;
         public List<Score> Scores;
         public static int NumPlayers { get; set; }
-        [SerializeField] private List<Material> _skins; //actual player choice of skin
-        public static List<Material> Skins
+
+        public static List<Material> Skins = new List<Material>()
         {
-            get
-            {
-                return GameManagerRef._skins;
-            }
-            set
-            {
-                
-            }
-        }
-
-
+            null, null, null, null
+        };
 
 
         private void Awake()
@@ -136,7 +127,6 @@ namespace Game
             StartCoroutine(LoadScene(_scenes.MainMenu));
             NumPlayers = ReInput.controllers.joystickCount;
 
-            _skins = new List<Material>(NumPlayers);
         }
 
         public static int GetPlayerMask(int playerNumber, bool bitShift)
@@ -209,7 +199,6 @@ namespace Game
             var asyncOperation = SceneManager.UnloadSceneAsync(scene);
             while (!asyncOperation.isDone)
             {
-
                 yield return null;
             }
         }

@@ -715,6 +715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _character: {fileID: 7038090366886961309}
+  _playerNumber: -1
 --- !u!1 &7038090366892240329
 GameObject:
   m_ObjectHideFlags: 0

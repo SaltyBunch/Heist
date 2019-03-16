@@ -54,8 +54,6 @@ namespace UI
         [SerializeField] private SelectableMenu _currentMenu;
         private static Control _menuControl;
         [SerializeField] private Animator _menuAnimator;
-        private UnityEvent SwitchToOptions = new UnityEvent();
-        private UnityEvent SwitchToMain = new UnityEvent();
 
 
         [SerializeField] private SelectableMenu _mainMenu;
@@ -66,17 +64,6 @@ namespace UI
         private void Start()
         {
             MenuManagerRef = this;
-            SwitchToOptions.AddListener(() =>
-            {
-                CurrentMenu = _optionsMenu;
-                _input = true;
-            });
-            SwitchToMain.AddListener(() =>
-            {
-                CurrentMenu = _mainMenu;
-
-                _input = true;
-            });
         }
 
 
@@ -132,6 +119,7 @@ namespace UI
         public void GoToCharSelect()
         {
             _menuAnimator.SetTrigger("GoToPlayerSelect");
+            CurrentMenu = _playerSelect;
         }
     }
 }

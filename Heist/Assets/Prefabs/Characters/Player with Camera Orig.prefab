@@ -1080,7 +1080,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 45
+  field of view: 30
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -2141,7 +2141,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 45
+  field of view: 30
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -2670,10 +2670,11 @@ MonoBehaviour:
   _takeDamage: {fileID: 0}
   _taunt: {fileID: 0}
   _victory: {fileID: 0}
-  PlayerNumber: 1
+  PlayerNumber: 0
   _anim: {fileID: 0}
   _hitbox: {fileID: 5963048592310755935}
   _hitboxLayer: 26
+  _playerModel: {fileID: 0}
 --- !u!114 &3081516943516742322
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -28,23 +28,6 @@ namespace Camera
             MainCamera.cullingMask = MainCamera.cullingMask;
         }
 
-        private void Update()
-        {
-            RaycastHit hit;
-
-            var _seesPlayer = Physics.Raycast(MainCamera.transform.position,
-                (_playerControl.transform.position - MainCamera.transform.position).normalized,
-                out hit, 100, _layerMask);
-            /**if (_seesPlayer)
-            {
-                if (hit.collider.CompareTag("Player"))
-                    _mask.GetComponent<MaskActivate>().StopShow();
-                else _mask.GetComponent<MaskActivate>().StartShow();
-            }*/
-
-            //Debug.DrawRay(Camera.transform.position, (_playerControl.transform.position - Camera.transform.position).normalized, Color.red);
-        }
-
         private void FixedUpdate()
         {
             var trackedPosition = _playerControl.transform.position +
@@ -52,6 +35,9 @@ namespace Camera
                                   _playerControl.Control.FaceVector * _bounds / 2;
 
             transform.position = Vector3.Lerp(transform.position, trackedPosition, _smoothing);
+
+            // transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward,
+            //    _playerControl.Control.FaceVector, 1, 0.0f));
         }
     }
 }

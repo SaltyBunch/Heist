@@ -74,12 +74,15 @@ namespace Character
 
 
         public int PlayerNumber;
+
+
         public Player BaseCharacter => _baseCharacter;
 
         [Header("Animation")] [SerializeField] private Animator _anim;
         private bool _isAnimNotNull;
         [SerializeField] private GameObject _hitbox;
         [SerializeField] private int _hitboxLayer;
+        [SerializeField] private PlayerModel _playerModel;
 
         internal Control Control
         {
@@ -142,6 +145,11 @@ namespace Character
             GameManager.SetLayerOnAll(gameObject, gameObject.layer);
 
             _hitbox.layer = _hitboxLayer;
+
+            _reticule.layer = 5;
+
+            _playerModel.SetMaterial(GameManager.Skins[PlayerNumber]);
+            _playerModel.SetPlayer(PlayerNumber);
 
             BaseCharacter.HealthChanged += BaseCharacterOnHealthChanged;
             BaseCharacter.Inventory.SelectionChanged += InventoryOnSelectionChanged;
@@ -231,12 +239,10 @@ namespace Character
                 if (_control.FaceVector.magnitude > 0)
                 {
                     RaycastHit hitInfo;
-                    if (Physics.Raycast(transform.position, _control.FaceVector, out hitInfo, _retMaxDist,
-                        _retLayerMask))
+                    if (Physics.Raycast(transform.position, _control.FaceVector, out hitInfo, _retMaxDist, _retLayerMask))
                         _reticule.transform.localPosition = transform.InverseTransformPoint(hitInfo.point);
                     else
                         _reticule.transform.localPosition = _retMaxDist / 2 * Vector3.forward + Vector3.up;
-
 
                     _reticule.SetActive(true);
                 }

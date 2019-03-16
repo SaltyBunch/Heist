@@ -497,8 +497,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebef33df7b8d4ae39b0c5c2dd2313793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterMaterial: {fileID: 2100000, guid: a2778969f119f0f4da29a2ccb5333027, type: 2}
   _character: {fileID: 3325007291822754085}
+  _playerNumber: -1
 --- !u!136 &4122435441488290923
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414736, b: 0.12107852, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731725, g: 0.13414745, b: 0.12107873, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -288,6 +288,86 @@ PrefabInstance:
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].outWeight
       value: 0.19999999
       objectReference: {fileID: 0}
+    - target: {fileID: 6270533219923854228, guid: 151eba01055bb2147adb6bf760a299fe,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270533219923854228, guid: 151eba01055bb2147adb6bf760a299fe,
+        type: 3}
+      propertyPath: VelocityModule.y.scalar
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270533219923854228, guid: 151eba01055bb2147adb6bf760a299fe,
+        type: 3}
+      propertyPath: SizeModule.separateAxes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270533219923854228, guid: 151eba01055bb2147adb6bf760a299fe,
+        type: 3}
+      propertyPath: SizeBySpeedModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270533219923854228, guid: 151eba01055bb2147adb6bf760a299fe,
+        type: 3}
+      propertyPath: RotationBySpeedModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270533219923854228, guid: 151eba01055bb2147adb6bf760a299fe,
+        type: 3}
+      propertyPath: RotationModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270533219923854228, guid: 151eba01055bb2147adb6bf760a299fe,
+        type: 3}
+      propertyPath: LightsModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270533219923854228, guid: 151eba01055bb2147adb6bf760a299fe,
+        type: 3}
+      propertyPath: NoiseModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270533219923854228, guid: 151eba01055bb2147adb6bf760a299fe,
+        type: 3}
+      propertyPath: NoiseModule.strength.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270533219923854228, guid: 151eba01055bb2147adb6bf760a299fe,
+        type: 3}
+      propertyPath: NoiseModule.quality
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270533219923854228, guid: 151eba01055bb2147adb6bf760a299fe,
+        type: 3}
+      propertyPath: NoiseModule.scrollSpeed.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270533219923854228, guid: 151eba01055bb2147adb6bf760a299fe,
+        type: 3}
+      propertyPath: NoiseModule.separateAxes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270533219923854228, guid: 151eba01055bb2147adb6bf760a299fe,
+        type: 3}
+      propertyPath: NoiseModule.strengthZ.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270533219923854228, guid: 151eba01055bb2147adb6bf760a299fe,
+        type: 3}
+      propertyPath: NoiseModule.strengthY.scalar
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263371188422352980, guid: 151eba01055bb2147adb6bf760a299fe,
+        type: 3}
+      propertyPath: m_RenderAlignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263371188422352980, guid: 151eba01055bb2147adb6bf760a299fe,
+        type: 3}
+      propertyPath: m_UseCustomVertexStreams
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 151eba01055bb2147adb6bf760a299fe, type: 3}
 --- !u!1001 &1907949558
@@ -356,6 +436,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4331759944810733789, guid: a45efdd4ab4969146a04ac194a3ae6ad,
+        type: 3}
+      propertyPath: sharedProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: d56fa6ad3c5d0644db9049c78362d187,
+        type: 2}
+    - target: {fileID: 4331759944810733789, guid: a45efdd4ab4969146a04ac194a3ae6ad,
+        type: 3}
+      propertyPath: isGlobal
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a45efdd4ab4969146a04ac194a3ae6ad, type: 3}

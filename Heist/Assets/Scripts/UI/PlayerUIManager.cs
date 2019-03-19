@@ -91,7 +91,7 @@ namespace UI
         public void UpdateAmmo(int amount) => _playerStatsManager.SetAmmo(amount);
 
         public TextMeshProUGUI VaultTimer => _playerStatsManager.VaultTimer;
-        
+
         public void ShowPickup(PickupType pickupType, bool overPickup)
         {
             if (!overPickup)
@@ -125,6 +125,28 @@ namespace UI
         public QuickTimeEvent InitializeQuickTime(QuickTimeEvent quickTimeEvent)
         {
             return Instantiate(quickTimeEvent, _quickTimePosition);
+        }
+
+        public void SetOpen(string type)
+        {
+            switch (type)
+            {
+                case "Door":
+                    _playerHint.text = TextHelper.OpenDoor;
+                    break;
+                case "Vault":
+                    _playerHint.text = TextHelper.OpenVault;
+                    break;
+                case "MiniVault":
+                    _playerHint.text = TextHelper.OpenMiniVault;
+                    break;
+                case "GoldPile":
+                    _playerHint.text = TextHelper.TakeGold;
+                    break;
+                default:
+                    ClearHint();
+                    break;
+            }
         }
     }
 }

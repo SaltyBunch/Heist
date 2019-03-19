@@ -84,6 +84,9 @@ namespace Character
         [SerializeField] private int _hitboxLayer;
         [SerializeField] private PlayerModel _playerModel;
 
+
+        private Tuple<GameObject, string> _interactObject;
+
         internal Control Control
         {
             get => _control;
@@ -256,6 +259,43 @@ namespace Character
                 _anim.SetFloat("Speed", Control.MoveVector.magnitude);
                 _anim.SetBool("Shoot", _baseCharacter.Inventory.SelectedItem is StunGun);
             }
+
+            var hits = Physics.OverlapSphere(transform.position + transform.up, _interactDistance);
+            foreach (var hit in hits)
+            {
+                if (hit.transform.CompareTag("Door"))
+                {
+                    _interactObject = new Tuple<GameObject, string>(hit.gameObject, "Door");
+                    _playerUiManager.SetOpen("Door");
+                    break;
+                }
+                else if (hit.transform.CompareTag("GoldPile"))
+                {
+                    _interactObject = new Tuple<GameObject, string>(hit.gameObject, "GoldPile");
+                    _playerUiManager.SetOpen("GoldPile");
+                    break;
+                }
+                else if (hit.transform.CompareTag("MiniVault"))
+                {
+                    _interactObject = new Tuple<GameObject, string>(hit.gameObject, "MiniVault");
+                    _playerUiManager.SetOpen("MiniVault");
+                    break;
+                }
+                else if (hit.transform.CompareTag("Vault"))
+                {
+                    _interactObject = new Tuple<GameObject, string>(hit.gameObject, "Vault");
+                    _playerUiManager.SetOpen("Vault");
+                    break;
+                }
+                else
+                {
+                    _interactObject = new Tuple<GameObject, string>(null, "");
+                    if (!(_baseCharacter.OverWeaponPickup || _baseCharacter.OverTrapPickup))
+                    {
+                        _playerUiManager.SetOpen("None");
+                    }
+                }
+            }
         }
 
         public event EventHandler OnMoveCancel;
@@ -287,7 +327,6 @@ namespace Character
 
             if (_baseCharacter.Stunned) return;
             BaseCharacter.Inventory.Use();
-            Debug.Log("Weapon Attack by Player " + (PlayerNumber + 1));
         }
 
         private void Interact()
@@ -299,30 +338,24 @@ namespace Character
             }
             else
             {
-                var hits = Physics.OverlapSphere(transform.position + transform.up, _interactDistance);
-                foreach (var hit in hits)
+                switch (_interactObject.Item2)
                 {
-                    if (hit.transform.CompareTag("Door"))
-                    {
-                        var door = hit.transform.GetComponentInParent<Door>();
+                    case "Door":
+                        var door = _interactObject.Item1.GetComponentInParent<Door>();
                         door.Open(this);
-                    }
-
-                    if (hit.transform.CompareTag("GoldPile"))
-                    {
-                        var gold = hit.transform.GetComponent<GoldPile>();
+                        break;
+                    case "GoldPile":
+                        var gold = _interactObject.Item1.GetComponent<GoldPile>();
                         gold.StartChanneling(this);
-                    }
-                    else if (hit.transform.CompareTag("MiniVault"))
-                    {
-                        var miniVault = hit.transform.GetComponent<MiniVault>();
+                        break;
+                    case "MiniVault":
+                        var miniVault = _interactObject.Item1.GetComponent<MiniVault>();
                         miniVault.StartChanneling(this);
-                    }
-                    else if (hit.transform.CompareTag("Vault"))
-                    {
-                        var vault = hit.transform.GetComponent<Vault>();
+                        break;
+                    case "Vault":
+                        var vault = _interactObject.Item1.GetComponent<Vault>();
                         vault.UseKey(BaseCharacter.Inventory.keys);
-                    }
+                        break;
                 }
             }
         }

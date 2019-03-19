@@ -237,7 +237,8 @@ MonoBehaviour:
   _anim: {fileID: 3335810100262775151}
   _open: 0
   _unlockedColor: {r: 0, g: 0, b: 0, a: 0}
-  _lockQuickTimeEvent: {fileID: 0}
+  _lockQuickTimeEvent: {fileID: 5161225311952668459, guid: b66ac9ce57d0dee48bed4a217e56cace,
+    type: 3}
 --- !u!1 &5258114338784273798
 GameObject:
   m_ObjectHideFlags: 0

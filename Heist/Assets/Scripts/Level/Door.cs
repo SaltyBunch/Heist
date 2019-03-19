@@ -10,20 +10,20 @@ namespace Level
 {
     public class Door : MonoBehaviour
     {
-        [SerializeField] private Light _light;
+        [SerializeField] internal Light _light;
         [SerializeField] private bool _locked = false;
 
-        [SerializeField] private Color _lockedColor;
+        [SerializeField] internal Color _lockedColor;
 
         [SerializeField] internal Animator _anim;
 
         [SerializeField] internal bool _open;
 
-        private bool _animating = false;
+        internal bool _animating = false;
         
         private PlayerControl _player;
         private LockQuickTimeEvent _quickTime;
-        [SerializeField] private Color _unlockedColor;
+        [SerializeField] internal Color _unlockedColor;
 
         [SerializeField] private LockQuickTimeEvent _lockQuickTimeEvent;
 

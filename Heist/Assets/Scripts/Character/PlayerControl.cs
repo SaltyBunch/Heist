@@ -356,7 +356,7 @@ namespace Character
         private IEnumerator DashCooldown()
         {
             _dashCooldown = false;
-            _rigid.AddForce(Control.MoveVector * _dashForce * 2.5f, ForceMode.VelocityChange);
+            _rigid.AddForce(Control.MoveVector * _dashForce * 3f, ForceMode.VelocityChange);
             yield return new WaitForSeconds(_dashTimer);
             _dashCooldown = true;
         }

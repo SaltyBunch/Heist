@@ -2,6 +2,7 @@ using System;
 using Character;
 using Game;
 using UnityEngine;
+using UnityEngine.Experimental.XR.Interaction;
 using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
@@ -9,19 +10,20 @@ namespace Level
 {
     public class Door : MonoBehaviour
     {
-        [SerializeField] private Light _light;
+        [SerializeField] internal Light _light;
         [SerializeField] private bool _locked = false;
 
-        [SerializeField] private Color _lockedColor;
-        [SerializeField] private Animation.Door _door;
+        [SerializeField] internal Color _lockedColor;
 
         [SerializeField] internal Animator _anim;
 
         [SerializeField] internal bool _open;
 
+        internal bool _animating = false;
+        
         private PlayerControl _player;
         private LockQuickTimeEvent _quickTime;
-        [SerializeField] private Color _unlockedColor;
+        [SerializeField] internal Color _unlockedColor;
 
         [SerializeField] private LockQuickTimeEvent _lockQuickTimeEvent;
 
@@ -51,13 +53,18 @@ namespace Level
                 _player = player;
                 _player.OnMoveCancel += PlayerOnOnMoveCancel;
             }
-            else //todo open door
+            else if (!_animating)
             {
-                _open = !_open;
-                if (_open)
+                if (!_open)
+                {
+                    _animating = true;
                     _anim.SetTrigger("Open");
+                }
                 else
+                {
+                    _animating = true;
                     _anim.SetTrigger("Close");
+                }
             }
         }
 
@@ -81,6 +88,18 @@ namespace Level
                 _player.OnMoveCancel -= PlayerOnOnMoveCancel;
                 _player = null;
             }
+        }
+
+        void SetOpen()
+        {
+            _animating = false;
+            _open = true;
+        }
+
+        void SetClose()
+        {
+            _animating = false;
+            _open = false;
         }
     }
 

@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 4719073594312663446}
   - component: {fileID: 4719073594311369142}
   - component: {fileID: 4719073594310370166}
-  m_Layer: 0
+  - component: {fileID: 3913592007622747697}
+  m_Layer: 10
   m_Name: MetalDoor
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,6 +78,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &3913592007622747697
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4719073594312310198}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.25, y: 2.3125, z: 0.0625}
+  m_Center: {x: -0.6249964, y: 1.1562605, z: 0.00023918692}
 --- !u!1 &6752121063215999725
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,9 +104,11 @@ GameObject:
   - component: {fileID: 6752121063214068781}
   - component: {fileID: 6922342209331421556}
   - component: {fileID: 4497519309631348263}
-  m_Layer: 0
+  - component: {fileID: 7213745997559826699}
+  - component: {fileID: 749088146404893485}
+  m_Layer: 10
   m_Name: concreteBrickDoorway
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -183,3 +199,42 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5882144, y: 4, z: 0.5}
   m_Center: {x: 1.7058928, y: 2, z: 0}
+--- !u!114 &7213745997559826699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6752121063215999725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c6fc016333bed4dbd1bcb0fa2bff8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _light: {fileID: 0}
+  _locked: 0
+  _lockedColor: {r: 0, g: 0, b: 0, a: 0}
+  _anim: {fileID: 749088146404893485}
+  _open: 0
+  _unlockedColor: {r: 0, g: 0, b: 0, a: 0}
+  _lockQuickTimeEvent: {fileID: 5161225311952668459, guid: b66ac9ce57d0dee48bed4a217e56cace,
+    type: 3}
+--- !u!95 &749088146404893485
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6752121063215999725}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3670c8f7ba731bf4cab77d975da74a91, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

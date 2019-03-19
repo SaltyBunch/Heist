@@ -178,6 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pickups:
   - {fileID: 1519479542422855983, guid: 99fad195904e4464dbdd1c68d26d8e62, type: 3}
+  _anim: {fileID: 4421386749191832150}
   _lockQuickTimeEvent: {fileID: 5161225311952668459, guid: b66ac9ce57d0dee48bed4a217e56cace,
     type: 3}
   _pickupSpawn: {x: 0, y: 0, z: 1}
@@ -256,6 +257,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4856049003309443166}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &4421386749191832150 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9097215196456610312, guid: c65f9453c4907c940959887062d1a406,
+    type: 3}
+  m_PrefabInstance: {fileID: 4856049003309443166}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8122336700174297997
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -263,11 +270,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3510903029168117144}
     m_Modifications:
-    - target: {fileID: 5192621543830759559, guid: fab2df8a6133f6147b78e467ff2b5dfd,
-        type: 3}
-      propertyPath: m_Name
-      value: Pick-up
-      objectReference: {fileID: 0}
     - target: {fileID: 5192621543830926503, guid: fab2df8a6133f6147b78e467ff2b5dfd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -322,6 +324,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5192621543830759559, guid: fab2df8a6133f6147b78e467ff2b5dfd,
+        type: 3}
+      propertyPath: m_Name
+      value: Pick-up
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fab2df8a6133f6147b78e467ff2b5dfd, type: 3}

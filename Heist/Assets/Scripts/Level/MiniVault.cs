@@ -19,6 +19,8 @@ namespace Level
 
         private bool _interacting;
 
+        [SerializeField] private Animator _anim;
+        
         private LockQuickTimeEvent _quickTime;
         [SerializeField] private LockQuickTimeEvent _lockQuickTimeEvent;
         [SerializeField] private Vector3 _pickupSpawn;
@@ -53,6 +55,7 @@ namespace Level
 
             if (e.Complete)
             {
+                _anim.SetTrigger("Open");
                 SpawnObjects();
                 CancelChannel(sender, e);
             }

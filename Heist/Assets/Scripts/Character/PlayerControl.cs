@@ -294,12 +294,12 @@ namespace Character
                 var hits = Physics.OverlapSphere(transform.position + transform.up, _interactDistance);
                 foreach (var hit in hits)
                 {
-                    //if (hit.transform.CompareTag("Door"))
-                    //{
-                    //   var door = hit.transform.GetComponentInChildren<Door>();
-                    //
-                    //                       door.Open(this);
-                    //                  }
+                    if (hit.transform.CompareTag("Door"))
+                    {
+                        var door = hit.transform.GetComponentInParent<Door>();
+                        door.Open(this);
+                    }
+
                     if (hit.transform.CompareTag("GoldPile"))
                     {
                         var gold = hit.transform.GetComponent<GoldPile>();

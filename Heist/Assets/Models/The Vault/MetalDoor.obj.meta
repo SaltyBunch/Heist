@@ -8,6 +8,7 @@ ModelImporter:
     400000: MetalDoor
     400002: //RootNode
     2100000: MetalDoorMat
+    2100002: MetalDoor_palette
     2300000: MetalDoor
     3300000: MetalDoor
     4300000: MetalDoor

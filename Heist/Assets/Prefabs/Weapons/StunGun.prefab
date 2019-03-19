@@ -147,7 +147,7 @@ MonoBehaviour:
   _hitSound: {fileID: 0}
   _outOfAmmoSound: {fileID: 0}
   _pickupSound: {fileID: 0}
-  Ammo: 5
+  Ammo: 20
   _projectile: {fileID: 2430004408962383017, guid: 094136b8cd01e9f458c64a263d57dfeb,
     type: 3}
   Barrel: {x: 0, y: 0.1641427, z: 0.26825884}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4905995193080702693}
   - component: {fileID: 7758230924534692108}
   - component: {fileID: 3346027104630955146}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2581784090001012986}
   - component: {fileID: 9097215196456610312}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pickup Safe 2.0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4713892991255151295}
   - component: {fileID: 4501151988371364879}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,6 +205,14 @@ PrefabInstance:
     - target: {fileID: 100002, guid: 0b00347968c0a2946a805b3fa79db919, type: 3}
       propertyPath: m_Name
       value: Safe_Pickup_Nick-1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 0b00347968c0a2946a805b3fa79db919, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 0b00347968c0a2946a805b3fa79db919, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 0b00347968c0a2946a805b3fa79db919, type: 3}
       propertyPath: m_LocalPosition.x
@@ -268,6 +276,14 @@ PrefabInstance:
     - target: {fileID: 100002, guid: c76c88e9309d04141ba9ab49820ae1d9, type: 3}
       propertyPath: m_Name
       value: Safe_Pickup_Nick-0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: c76c88e9309d04141ba9ab49820ae1d9, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c76c88e9309d04141ba9ab49820ae1d9, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c76c88e9309d04141ba9ab49820ae1d9, type: 3}
       propertyPath: m_LocalPosition.x

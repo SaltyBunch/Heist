@@ -67,6 +67,8 @@ namespace Level
             {
                 var pickupGO = Instantiate(pickup,_player.transform.position, Quaternion.identity);
             }
+
+            this.gameObject.tag = "Untagged";
         }
     }
 }

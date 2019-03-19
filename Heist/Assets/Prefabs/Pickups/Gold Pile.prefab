@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 600497582996424351}
   - component: {fileID: 7103649305242407056}
   - component: {fileID: 2643747835629129681}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4727,7 +4727,7 @@ GameObject:
   - component: {fileID: 5060721640919097323}
   - component: {fileID: 3140404336880011926}
   - component: {fileID: 769918358134302739}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Gold_Bar (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4807,7 +4807,7 @@ GameObject:
   - component: {fileID: 8169352821492420137}
   - component: {fileID: 8169352821492420133}
   - component: {fileID: 8169352821492420134}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: Gold Pile
   m_TagString: GoldPile
   m_Icon: {fileID: 0}
@@ -4890,6 +4890,7 @@ MonoBehaviour:
   _totalRemaining: 1000
   _barQuickTimeEvent: {fileID: 4827089374060158887, guid: 142f2a5c8a866734ebdbe83095e29df3,
     type: 3}
+  _goldPieces: []
 --- !u!65 &8169352821492420134
 BoxCollider:
   m_ObjectHideFlags: 0

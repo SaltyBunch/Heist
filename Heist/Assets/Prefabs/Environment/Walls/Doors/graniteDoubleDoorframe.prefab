@@ -146,7 +146,8 @@ MonoBehaviour:
   _anim: {fileID: 6898076823657601754}
   _open: 0
   _unlockedColor: {r: 0, g: 0, b: 0, a: 0}
-  _lockQuickTimeEvent: {fileID: 0}
+  _lockQuickTimeEvent: {fileID: 5161225311952668459, guid: b66ac9ce57d0dee48bed4a217e56cace,
+    type: 3}
 --- !u!1 &4974333078092951872
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,7 +160,7 @@ GameObject:
   - component: {fileID: 2053131267074370684}
   - component: {fileID: 2300242154475058126}
   - component: {fileID: 5077715366672063234}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: MetalDoorLeft
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -250,7 +251,7 @@ GameObject:
   - component: {fileID: 7816411847344283780}
   - component: {fileID: 3887476638086341607}
   - component: {fileID: 3599979900403138015}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: MetalDoorRight
   m_TagString: Door
   m_Icon: {fileID: 0}

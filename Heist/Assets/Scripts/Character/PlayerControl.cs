@@ -72,7 +72,7 @@ namespace Character
         [SerializeField] private AudioClip _taunt;
         [SerializeField] private AudioClip _victory;
 
-
+        
         public int PlayerNumber;
 
 
@@ -86,6 +86,8 @@ namespace Character
 
 
         private Tuple<GameObject, string> _interactObject;
+        [SerializeField] private LayerMask _interactMask;
+        private Collider[] _interactHits = new Collider[5];
 
         internal Control Control
         {
@@ -260,9 +262,10 @@ namespace Character
                 _anim.SetBool("Shoot", _baseCharacter.Inventory.SelectedItem is StunGun);
             }
 
-            var hits = Physics.OverlapSphere(transform.position + transform.up, _interactDistance);
-            foreach (var hit in hits)
+            var size = Physics.OverlapSphereNonAlloc(transform.position + transform.up, _interactDistance, _interactHits, _interactMask);
+            for (var i = 0; i < size; i++)
             {
+                var hit = _interactHits[i];
                 if (hit.transform.CompareTag("Door"))
                 {
                     _interactObject = new Tuple<GameObject, string>(hit.gameObject, "Door");

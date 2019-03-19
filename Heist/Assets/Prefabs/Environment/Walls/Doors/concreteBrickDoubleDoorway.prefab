@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1979652277124557746}
   - component: {fileID: 5131481083324483767}
   - component: {fileID: 8558602206724720209}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: MetalDoorRight
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 4920203248958405651}
   - component: {fileID: 8084789053326330343}
   - component: {fileID: 2580843828296316688}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: MetalDoorLeft
   m_TagString: Door
   m_Icon: {fileID: 0}

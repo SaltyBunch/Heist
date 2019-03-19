@@ -103,7 +103,12 @@ ModelImporter:
     13700000: body
     13700002: hair\
     13700004: Object003
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #29'
+    second: {fileID: 2100000, guid: 969ac717203097f4aba275e5f0f46892, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -222,7 +227,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   importAnimation: 1
-  copyAvatar: 0
+  copyAvatar: 1
   humanDescription:
     serializedVersion: 2
     human: []
@@ -238,7 +243,8 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: a6e16eb0fa7bfd74b9c031dbb5e2334c,
+    type: 3}
   animationType: 2
   humanoidOversampling: 1
   additionalBone: 0

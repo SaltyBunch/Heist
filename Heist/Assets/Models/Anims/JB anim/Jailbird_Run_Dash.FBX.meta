@@ -97,6 +97,7 @@ ModelImporter:
     400090: Object002
     2100000: No Name
     2100002: 'Material #29'
+    2100004: lambert1
     4300000: Object001
     4300002: Object002
     4300004: hair\
@@ -118,6 +119,11 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: No Name
+    second: {fileID: 2100000, guid: 969ac717203097f4aba275e5f0f46892, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
     second: {fileID: 2100000, guid: 969ac717203097f4aba275e5f0f46892, type: 2}
   materials:
     importMaterials: 1
@@ -149,15 +155,15 @@ ModelImporter:
     - serializedVersion: 16
       name: Run
       takeName: Take 001
-      firstFrame: 1
-      lastFrame: 16
+      firstFrame: 0
+      lastFrame: 13
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -177,8 +183,8 @@ ModelImporter:
     - serializedVersion: 16
       name: Dash
       takeName: Take 001
-      firstFrame: 16
-      lastFrame: 30
+      firstFrame: 14
+      lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

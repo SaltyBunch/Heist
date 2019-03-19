@@ -54,6 +54,8 @@ namespace UI
         [SerializeField] private SelectableMenu _currentMenu;
         private static Control _menuControl;
         [SerializeField] private Animator _menuAnimator;
+        [SerializeField] private Animator _vaultAnimator
+            ;
 
 
         [SerializeField] private SelectableMenu _mainMenu;
@@ -106,6 +108,8 @@ namespace UI
 
         public void GoToMainFromPlayerSelect()
         {
+            _vaultAnimator.SetTrigger("Close");
+
             _menuAnimator.SetTrigger("ToMainFromPlayerSelect");
             CurrentMenu = _mainMenu;
         }
@@ -118,6 +122,8 @@ namespace UI
 
         public void GoToCharSelect()
         {
+            _vaultAnimator.SetTrigger("Open");
+
             _menuAnimator.SetTrigger("GoToPlayerSelect");
             CurrentMenu = _playerSelect;
         }

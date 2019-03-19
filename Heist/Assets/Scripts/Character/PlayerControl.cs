@@ -49,8 +49,7 @@ namespace Character
         [SerializeField] private float _interactDistance;
         private bool _isReticuleNotNull;
 
-        [Header("Voice Lines")]
-        [SerializeField]
+        [Header("Voice Lines")] [SerializeField]
         private AudioClip _enterBank;
 
 
@@ -146,7 +145,7 @@ namespace Character
 
             _hitbox.layer = _hitboxLayer;
 
-            _reticule.layer = 5;
+            GameManager.SetLayerOnAll(_reticule, 5);
 
             _playerModel.SetMaterial(GameManager.Skins[PlayerNumber]);
             _playerModel.SetPlayer(PlayerNumber);
@@ -222,16 +221,23 @@ namespace Character
                 0.0f);
             transform.rotation = Quaternion.LookRotation(facing);
             /// Movement based on MoveVector
-            _rigid.AddForce(Control.MoveVector, ForceMode.VelocityChange);
-            if ((_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward).magnitude >
-                _baseCharacter.Stats.Speed)
-            {
-                var velocity = Vector3.Lerp(_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward,
-                    (_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward).normalized *
-                    _baseCharacter.Stats.Speed, .5f);
-                velocity += _rigid.velocity.y * Vector3.up;
-                _rigid.velocity = velocity;
-            }
+
+            var vel = _rigid.velocity;
+            vel = new Vector3(0, vel.y, 0);
+
+            _rigid.velocity = vel + Control.MoveVector * _baseCharacter.Stats.Speed * 2;
+
+            /*
+             _rigid.AddForce(Control.MoveVector, ForceMode.VelocityChange);
+             if ((_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward).magnitude >
+                 _baseCharacter.Stats.Speed)
+             {
+                 var velocity = Vector3.Lerp(_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward,
+                     (_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward).normalized *
+                     _baseCharacter.Stats.Speed, .5f);
+                 velocity += _rigid.velocity.y * Vector3.up;
+                 _rigid.velocity = velocity;
+             }*/
 
             /// Reticule
             if (_isReticuleNotNull)
@@ -239,7 +245,8 @@ namespace Character
                 if (_control.FaceVector.magnitude > 0)
                 {
                     RaycastHit hitInfo;
-                    if (Physics.Raycast(transform.position, _control.FaceVector, out hitInfo, _retMaxDist, _retLayerMask))
+                    if (Physics.Raycast(transform.position, _control.FaceVector, out hitInfo, _retMaxDist,
+                        _retLayerMask))
                         _reticule.transform.localPosition = transform.InverseTransformPoint(hitInfo.point);
                     else
                         _reticule.transform.localPosition = _retMaxDist / 2 * Vector3.forward + Vector3.up;

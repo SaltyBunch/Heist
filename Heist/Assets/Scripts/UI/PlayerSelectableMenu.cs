@@ -27,7 +27,7 @@ namespace UI
 
         public void Update()
         {
-            if (!_entered && selection.TrueForAll(s => s.ready || !s.gameObject.activeSelf) )
+            if (!_entered && selection.TrueForAll(s => s.ready || !s.gameObject.activeSelf))
             {
                 GameManager.GameManagerRef.EnterGame();
                 _entered = true;
@@ -57,8 +57,7 @@ namespace UI
         public override void Cancel()
         {
             CaptureInput = false;
-            if (!(selection.TrueForAll(s => !s.ready || s.gameObject.activeSelf)))
-                _cancel.Invoke();
+            _cancel.Invoke();
         }
 
         public override void Activate()

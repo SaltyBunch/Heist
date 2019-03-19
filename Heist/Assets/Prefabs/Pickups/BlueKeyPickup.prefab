@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 664778009309739771}
   - component: {fileID: 3628386381537150636}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 5430123928743076954}
   - component: {fileID: 7112950525385827869}
   - component: {fileID: 911694811856142051}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BlueKeyPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,6 +176,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pickupType: 3
+  _verticalSpeed: 0.02
+  _rotationSpeed: 1
   Key: 0
 --- !u!1 &7641173473659533045
 GameObject:
@@ -187,7 +189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 562462061944154740}
   - component: {fileID: 6111733454699140035}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: keycard 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

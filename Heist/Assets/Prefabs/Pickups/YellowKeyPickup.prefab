@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4690565184538675531}
   - component: {fileID: 1023122896734644561}
   - component: {fileID: 1519479542422855983}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: YellowKeyPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,6 +107,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pickupType: 3
+  _verticalSpeed: 0.02
+  _rotationSpeed: 1
   Key: 2
 --- !u!1 &5648540312760731948
 GameObject:
@@ -118,7 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3844753006570388834}
   - component: {fileID: 7396378351362394557}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5931643366142280377}
   - component: {fileID: 4212078358606491372}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: keycard 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

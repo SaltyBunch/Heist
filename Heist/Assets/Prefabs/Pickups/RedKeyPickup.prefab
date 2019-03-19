@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6200677086854024538}
   - component: {fileID: 6791976181664735757}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: keycard 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 1303579429499523043}
   - component: {fileID: 3072174871774166582}
   - component: {fileID: 7256023347557524968}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RedKeyPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,6 +186,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pickupType: 3
+  _verticalSpeed: 0.02
+  _rotationSpeed: 1
   Key: 1
 --- !u!1 &7161022037367539831
 GameObject:
@@ -197,7 +199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2709251408205136209}
   - component: {fileID: 6538528734248641773}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

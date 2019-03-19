@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Character;
 using Game;
 using UnityEngine;
@@ -13,11 +14,35 @@ namespace Level
         private PlayerControl _player;
 
         private bool _interacting;
-        
+
         private BarQuickTimeEvent _quickTime;
+        private int _intitialAmount;
         [SerializeField] private int _transferAmount;
         [SerializeField] private int _totalRemaining;
         [SerializeField] private BarQuickTimeEvent _barQuickTimeEvent;
+
+
+        [SerializeField] private List<GameObject> _goldPieces;
+
+        public int TotalRemaining
+        {
+            get { return _totalRemaining; }
+            set
+            {
+                _totalRemaining = value;
+                for (int i = 0; i < _goldPieces.Count; i++)
+                {
+                    if (i / _goldPieces.Count < _totalRemaining / _intitialAmount)
+                    {
+                        _goldPieces[i].SetActive(false);
+                    }
+                    else
+                    {
+                        _goldPieces[i].SetActive(true);
+                    }
+                }
+            }
+        }
 
         public void StartChanneling(PlayerControl player)
         {
@@ -47,10 +72,10 @@ namespace Level
             if (e.Result)
             {
                 _player.BaseCharacter.Inventory.GoldAmount += _transferAmount;
-                _totalRemaining -= _transferAmount;
+                TotalRemaining -= _transferAmount;
             }
 
-            if (e.Complete || _totalRemaining <= 0 || e.State == -1)
+            if (e.Complete || TotalRemaining <= 0 || e.State == -1)
             {
                 _quickTime.Events -= QuickTimeEventMonitor;
                 Destroy(_quickTime.gameObject, 0.2f);

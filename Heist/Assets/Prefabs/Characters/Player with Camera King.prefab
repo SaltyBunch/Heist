@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6134677146274945404
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 134848518284502401}
+  m_Layer: 0
+  m_Name: Hand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &134848518284502401
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6134677146274945404}
+  m_LocalRotation: {x: -0.55988723, y: 0.58454335, z: 0.21224208, w: 0.54752976}
+  m_LocalPosition: {x: -0.009910952, y: 0.12114354, z: 0.060623016}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7257108600982739612}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: -59.456, y: 127.63601, z: -56.166004}
 --- !u!1001 &1812356447851510622
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12,16 +42,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player with Camera King
       objectReference: {fileID: 0}
-    - target: {fileID: 575827870061007412, guid: 0c5c1b41037c2c8469125aee9f07c0d2,
-        type: 3}
-      propertyPath: _anim
-      value: 
-      objectReference: {fileID: 7257108600992363846}
-    - target: {fileID: 575827870061007412, guid: 0c5c1b41037c2c8469125aee9f07c0d2,
-        type: 3}
-      propertyPath: _playerModel
-      value: 
-      objectReference: {fileID: 1022090224561264545}
     - target: {fileID: 2925447053638423767, guid: 0c5c1b41037c2c8469125aee9f07c0d2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -267,6 +287,21 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 575827870061007412, guid: 0c5c1b41037c2c8469125aee9f07c0d2,
+        type: 3}
+      propertyPath: _anim
+      value: 
+      objectReference: {fileID: 7257108600992363846}
+    - target: {fileID: 575827870061007412, guid: 0c5c1b41037c2c8469125aee9f07c0d2,
+        type: 3}
+      propertyPath: _playerModel
+      value: 
+      objectReference: {fileID: 1022090224561264545}
+    - target: {fileID: 575827870061007412, guid: 0c5c1b41037c2c8469125aee9f07c0d2,
+        type: 3}
+      propertyPath: _hand
+      value: 
+      objectReference: {fileID: 134848518284502401}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c5c1b41037c2c8469125aee9f07c0d2, type: 3}
 --- !u!4 &7886938477706761159 stripped
@@ -362,3 +397,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebef33df7b8d4ae39b0c5c2dd2313793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &7257108600982739612 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3325007291819415615, guid: d8642a5604ff955478ade378d53aedb8,
+    type: 3}
+  m_PrefabInstance: {fileID: 5373534675920274083}
+  m_PrefabAsset: {fileID: 0}

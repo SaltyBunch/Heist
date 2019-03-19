@@ -6,6 +6,7 @@ using Level;
 using Rewired.Data.Mapping;
 using UI;
 using UnityEngine;
+using Weapon;
 
 namespace Character
 {
@@ -222,34 +223,24 @@ namespace Character
             transform.rotation = Quaternion.LookRotation(facing);
             /// Movement based on MoveVector
 
-            var vel = _rigid.velocity;
-            vel = new Vector3(0, vel.y, 0);
 
-            _rigid.velocity = vel + Control.MoveVector * _baseCharacter.Stats.Speed * 2;
-
-            /*
-             _rigid.AddForce(Control.MoveVector, ForceMode.VelocityChange);
-             if ((_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward).magnitude >
-                 _baseCharacter.Stats.Speed)
-             {
-                 var velocity = Vector3.Lerp(_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward,
-                     (_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward).normalized *
-                     _baseCharacter.Stats.Speed, .5f);
-                 velocity += _rigid.velocity.y * Vector3.up;
-                 _rigid.velocity = velocity;
-             }*/
+            _rigid.AddForce(Control.MoveVector, ForceMode.VelocityChange);
+            if ((_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward).magnitude >
+                _baseCharacter.Stats.Speed)
+            {
+                var velocity = Vector3.Lerp(_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward,
+                    (_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward).normalized *
+                    _baseCharacter.Stats.Speed, .5f);
+                velocity += _rigid.velocity.y * Vector3.up;
+                _rigid.velocity = velocity;
+            }
 
             /// Reticule
             if (_isReticuleNotNull)
             {
                 if (_control.FaceVector.magnitude > 0)
                 {
-                    RaycastHit hitInfo;
-                    if (Physics.Raycast(transform.position, _control.FaceVector, out hitInfo, _retMaxDist,
-                        _retLayerMask))
-                        _reticule.transform.localPosition = transform.InverseTransformPoint(hitInfo.point);
-                    else
-                        _reticule.transform.localPosition = _retMaxDist / 2 * Vector3.forward + Vector3.up;
+                    _reticule.transform.localPosition = _retMaxDist / 2 * Vector3.forward + Vector3.up;
 
                     _reticule.SetActive(true);
                 }
@@ -260,7 +251,11 @@ namespace Character
                 }
             }
 
-            if (_isAnimNotNull) _anim.SetFloat("Speed", Control.MoveVector.magnitude);
+            if (_isAnimNotNull)
+            {
+                _anim.SetFloat("Speed", Control.MoveVector.magnitude);
+                _anim.SetBool("Shoot", _baseCharacter.Inventory.SelectedItem is StunGun);
+            }
         }
 
         public event EventHandler OnMoveCancel;
@@ -277,6 +272,19 @@ namespace Character
 
         private void WeaponAttack()
         {
+            if (_isAnimNotNull)
+            {
+                if (_baseCharacter.Inventory.SelectedItem is StunGun)
+                {
+                    _anim.SetTrigger("Shot");
+                }
+                else if (_baseCharacter.Inventory.SelectedItem is Baton)
+                {
+                    _anim.SetTrigger("Baton");
+                    _anim.SetTrigger("Shot");
+                }
+            }
+
             if (_baseCharacter.Stunned) return;
             BaseCharacter.Inventory.Use();
             Debug.Log("Weapon Attack by Player " + (PlayerNumber + 1));

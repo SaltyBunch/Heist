@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 749088146404893485}
   m_Layer: 10
   m_Name: concreteBrickDoorway
-  m_TagString: Door
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -10,6 +10,9 @@ namespace Level
         public delegate void OpenDoor();
 
         [SerializeField] private Animator _anim;
+
+        [SerializeField] private Light _redLight;
+        [SerializeField] private Light _yellowLight;
         
         private bool _closed = true;
 
@@ -35,7 +38,21 @@ namespace Level
         {
             foreach (var key in (KeyType[]) Enum.GetValues(typeof(KeyType)))
                 if (keys[key] && key != KeyType.BlueKey)
+                {
                     _keys[key] = true;
+                    switch (key)
+                    {
+                        case KeyType.RedKey:
+                            _redLight.enabled = false;
+                            break;
+                        case KeyType.YellowKey:
+                            _yellowLight.enabled = false;
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+                }
+            
 
             OpenVault();
         }

@@ -134,6 +134,7 @@ namespace Drone
                 }
                 //shoot player
                 foreach (var v in players)
+                {
                     if (Vector3.Distance(transform.position, v.transform.position) < atkRange && canAtk)
                     {
                         gameObject.GetComponent<Weapon.StunGun>().Attack();
@@ -144,6 +145,7 @@ namespace Drone
                     {
                         fsm.MoveNext(Command.LosePlayer);
                     }
+                }
             }
 
             //BigPatrol State
@@ -173,6 +175,7 @@ namespace Drone
                 //Do Big Chase
                 //shoot player
                 foreach (var v in players)
+                {
                     if (Vector3.Distance(transform.position, v.transform.position) < atkRange && canAtk)
                     {
                         gameObject.GetComponent<Weapon.StunGun>().Attack();
@@ -183,6 +186,7 @@ namespace Drone
                     {
                         fsm.MoveNext(Command.LosePlayer);
                     }
+                }
             }
 
             //Dead State

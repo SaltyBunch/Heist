@@ -1,14 +1,30 @@
 using System;
+using System.Collections.Generic;
 using Character;
 using Game;
 using UnityEngine;
 using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 namespace Level
 {
+    public enum SpawnObjects
+    {
+        ElectricHazard,
+        LaserHazard,
+        StunGun,
+        Baton,
+        Gold,
+        BlueKey,
+        RedKey,
+        YellowKey,
+    }
+
     public class MiniVault : MonoBehaviour
     {
-        [SerializeField] private Pickup.Pickup[] _pickups;
+        [SerializeField] private List<SpawnObjects> _possibleSpawns;
+
+        [SerializeField] private List<Pickup.Pickup> _pickupPrefabs;
 
         private void Reset()
         {
@@ -20,10 +36,9 @@ namespace Level
         private bool _interacting;
 
         [SerializeField] private Animator _anim;
-        
+
         private LockQuickTimeEvent _quickTime;
         [SerializeField] private LockQuickTimeEvent _lockQuickTimeEvent;
-        [SerializeField] private Vector3 _pickupSpawn;
 
         public void StartChanneling(PlayerControl player)
         {
@@ -63,10 +78,9 @@ namespace Level
 
         private void SpawnObjects()
         {
-            foreach (var pickup in _pickups)
-            {
-                var pickupGO = Instantiate(pickup,_player.transform.position, Quaternion.identity);
-            }
+            var i = Random.Range(0, _possibleSpawns.Count);
+
+            Instantiate(_pickupPrefabs[(int) _possibleSpawns[i]], _player.transform.position, Quaternion.identity,null);
 
             this.gameObject.tag = "Untagged";
         }

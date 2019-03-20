@@ -106,12 +106,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22697fee91934160ba08bcc5abcce434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pickups:
+  _possibleSpawns: 
+  _pickupPrefabs:
+  - {fileID: 2439757593638407659, guid: 9e6f15a8db22a5d40bfd9b41cb0ecd90, type: 3}
+  - {fileID: 876418964750941255, guid: 378ba5f899dfbe141961fa6e86c41cd8, type: 3}
+  - {fileID: 3462340370699449171, guid: 553b8079c4b31a94e86165eb38bc240d, type: 3}
+  - {fileID: 4594123752195356385, guid: 19631ef386ff7904494863fc594ac8e7, type: 3}
+  - {fileID: 3190658458401625200, guid: fcc51227d82a7e54c90a08838889330b, type: 3}
+  - {fileID: 911694811856142051, guid: 097f4e9cefb3b7f4797cc79c7d18c9af, type: 3}
+  - {fileID: 7256023347557524968, guid: aaf2f30e0983647488dba86371fc757c, type: 3}
   - {fileID: 1519479542422855983, guid: 99fad195904e4464dbdd1c68d26d8e62, type: 3}
   _anim: {fileID: 4421386749191832150}
   _lockQuickTimeEvent: {fileID: 5161225311952668459, guid: b66ac9ce57d0dee48bed4a217e56cace,
     type: 3}
-  _pickupSpawn: {x: 0, y: 0, z: 1}
 --- !u!1001 &4856049003309443166
 PrefabInstance:
   m_ObjectHideFlags: 0

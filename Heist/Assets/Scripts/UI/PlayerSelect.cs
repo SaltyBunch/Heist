@@ -11,7 +11,7 @@ namespace UI
     public class PlayerSelect : MonoBehaviour
     {
         private bool _delay = true;
-        [SerializeField] private string[] charas = {"King", "Shadow", "Jailbird", "Racoon"};
+        private string[] _characterNames = {"King", "Jailbird", "Shadow", "Rocco"};
         [SerializeField] private TextMeshPro display;
         [SerializeField] private int player;
 
@@ -42,7 +42,8 @@ namespace UI
                 _playerSkinchoice = value;
                 GameManager.Skins[player] = CharacterSkins[GameManager.PlayerChoice[player]][_playerSkinchoice];
 
-                _playerModels[Selection].SetMaterial(CharacterSkins[GameManager.PlayerChoice[player]][_playerSkinchoice]);
+                _playerModels[Selection]
+                    .SetMaterial(CharacterSkins[GameManager.PlayerChoice[player]][_playerSkinchoice]);
             }
         }
 
@@ -59,6 +60,10 @@ namespace UI
                 }
 
                 selection = value;
+                
+                display.text = _characterNames[Selection];
+                GameManager.PlayerChoice[player] = (Characters) Selection;
+                PlayerSkinchoice %= CharacterSkins[GameManager.PlayerChoice[player]].Count;
             }
         }
 
@@ -96,30 +101,7 @@ namespace UI
 
                 if (_player.GetButtonDown("UIVerticalUp")) PlayerSkinchoice++;
                 if (_player.GetButtonDown("UIVerticalDown")) PlayerSkinchoice--;
-
-                switch (Selection)
-                {
-                    case 0:
-                        display.text = charas[0];
-                        GameManager.PlayerChoice[player] = Characters.King;
-                        PlayerSkinchoice %= CharacterSkins[GameManager.PlayerChoice[player]].Count;
-                        break;
-                    case 1:
-                        display.text = charas[1];
-                        GameManager.PlayerChoice[player] = Characters.Shadow;
-                        PlayerSkinchoice %= CharacterSkins[GameManager.PlayerChoice[player]].Count;
-                        break;
-                    case 2:
-                        display.text = charas[2];
-                        GameManager.PlayerChoice[player] = Characters.Jailbird;
-                        PlayerSkinchoice %= CharacterSkins[GameManager.PlayerChoice[player]].Count;
-                        break;
-                    case 3:
-                        display.text = charas[3];
-                        GameManager.PlayerChoice[player] = Characters.Raccoon;
-                        PlayerSkinchoice %= CharacterSkins[GameManager.PlayerChoice[player]].Count;
-                        break;
-                }
+                
             }
         }
     }

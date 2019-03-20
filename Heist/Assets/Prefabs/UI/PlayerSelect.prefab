@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0.046}
-  m_SizeDelta: {x: 2, y: 1}
+  m_SizeDelta: {x: 3, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &2042296087684061081
 MeshRenderer:
@@ -187,7 +187,7 @@ MonoBehaviour:
     spaceCount: 1
     wordCount: 2
     linkCount: 0
-    lineCount: 2
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -668,16 +668,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2042296089028308710}
     m_Modifications:
-    - target: {fileID: 419554082125560989, guid: 69c638418484b8842af7af56b25d86a6,
-        type: 3}
-      propertyPath: m_Name
-      value: Rocco_Textured_Idle_Run_Dash
-      objectReference: {fileID: 0}
-    - target: {fileID: 419554082125560989, guid: 69c638418484b8842af7af56b25d86a6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3241704151867055238, guid: 69c638418484b8842af7af56b25d86a6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -731,6 +721,16 @@ PrefabInstance:
     - target: {fileID: 3241704151867055238, guid: 69c638418484b8842af7af56b25d86a6,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 419554082125560989, guid: 69c638418484b8842af7af56b25d86a6,
+        type: 3}
+      propertyPath: m_Name
+      value: Rocco_Textured_Idle_Run_Dash
+      objectReference: {fileID: 0}
+    - target: {fileID: 419554082125560989, guid: 69c638418484b8842af7af56b25d86a6,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

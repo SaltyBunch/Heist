@@ -236,7 +236,7 @@ namespace Game
             {
                 if (i != 0 && i % playersPerDisplay == 0)
                     targetDisplay++;
-                _players[i] = Instantiate(_playerGo[(int)GameManager.PlayerChoice[i]]);
+                _players[i] = Instantiate(_playerGo[(int) GameManager.PlayerChoice[i]]);
                 //todo set appropriate player models
 
 
@@ -406,6 +406,14 @@ namespace Game
             {
                 Message = ""
             });
+        }
+
+        public void SetKeyPickedUp(KeyType keyPickupKey)
+        {
+            foreach (var player in _players)
+            {
+                player.PlayerUiManager.SetKeyPickedUp(keyPickupKey);
+            }
         }
     }
 }

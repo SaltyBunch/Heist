@@ -26,6 +26,11 @@ namespace UI
         [SerializeField] private Image _playerBorder;
         [SerializeField] private Image _itemBorder;
 
+        [SerializeField] private RectTransform _keyHolder;
+        [SerializeField] private Image _blueKey;
+        [SerializeField] private Image _redKey;
+        [SerializeField] private Image _yellowKey;
+
         [SerializeField] private TextMeshProUGUI _ammoText;
 
         [SerializeField] private Sprite[] _borders;
@@ -61,6 +66,14 @@ namespace UI
                     {
                         x = -1, y = 1, z = 1
                     };
+
+                    //keys
+                    
+                    
+                    _keyHolder.anchorMin = Vector2.up * 0.5f;
+                    _keyHolder.anchorMax = Vector2.up * 0.5f;
+
+                    _keyHolder.pivot = Vector2.right * 2 + Vector2.up * 0.5f;
                     break;
                 case Side.Left:
                     playerRect.pivot = Vector2.right * -0.5f + Vector2.up * 0.5f;
@@ -76,6 +89,12 @@ namespace UI
                     {
                         x = 1, y = 1, z = 1
                     };
+
+                    //keys
+                    _keyHolder.anchorMin = Vector2.right + Vector2.up * 0.5f;
+                    _keyHolder.anchorMax = Vector2.right + Vector2.up * 0.5f;
+
+                    _keyHolder.pivot = Vector2.left + Vector2.up * 0.5f;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(side), side, null);
@@ -122,6 +141,45 @@ namespace UI
                 case StunGun stunGun:
                     _itemPortrait.sprite = _items[1];
                     break;
+            }
+        }
+
+        public void SetKeyOwned(KeyType keyType)
+        {
+            switch (keyType)
+            {
+                case KeyType.BlueKey:
+                    _blueKey.gameObject.SetActive(true);
+                    _blueKey.color = Color.white;
+                    break;
+                case KeyType.RedKey:
+                    _redKey.gameObject.SetActive(true);
+                    _redKey.color = Color.white;
+                    break;
+                case KeyType.YellowKey:
+                    _yellowKey.gameObject.SetActive(true);
+                    _yellowKey.color = Color.white;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(keyType), keyType, null);
+            }
+        }
+
+        public void SetKeyPickedUp(KeyType keyType)
+        {
+            switch (keyType)
+            {
+                case KeyType.BlueKey:
+                    _blueKey.gameObject.SetActive(true);
+                    break;
+                case KeyType.RedKey:
+                    _redKey.gameObject.SetActive(true);
+                    break;
+                case KeyType.YellowKey:
+                    _yellowKey.gameObject.SetActive(true);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(keyType), keyType, null);
             }
         }
 

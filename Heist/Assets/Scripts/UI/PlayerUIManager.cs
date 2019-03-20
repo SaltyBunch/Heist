@@ -90,6 +90,9 @@ namespace UI
 
         public void UpdateAmmo(int amount) => _playerStatsManager.SetAmmo(amount);
 
+        public void SetKeyPickedUp(KeyType keyType) => _playerStatsManager.SetKeyPickedUp(keyType);
+        public void SetKeyOwned(KeyType keyType) => _playerStatsManager.SetKeyOwned(keyType);
+        
         public TextMeshProUGUI VaultTimer => _playerStatsManager.VaultTimer;
 
         public void ShowPickup(PickupType pickupType, bool overPickup)

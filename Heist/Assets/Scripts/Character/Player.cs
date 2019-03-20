@@ -68,7 +68,8 @@ namespace Character
                         _inventory.keys[keyPickup.Key] = true;
                         if (destroy)
                         {
-                            LevelManager.LevelManagerRef.NotifyPlayers("A player has picked up the " + keyPickup.Key);
+                            _playerUiManager.SetKeyOwned(keyPickup.Key);
+                            LevelManager.LevelManagerRef.SetKeyPickedUp(keyPickup.Key);
                             Destroy(pickup.gameObject);
                         }
                     }

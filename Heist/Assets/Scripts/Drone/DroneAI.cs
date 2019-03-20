@@ -95,12 +95,13 @@ namespace Drone
 
                 //Detect player
                 foreach (var v in players)
-                    if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange)
+                    if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange && !v.GetComponentInChildren<Character.Player>().Stunned)
                     {
                         Target = v.transform;
                         lastLoc = transform.position;
                         fsm.MoveNext(Command.SeePlayer);
                     }
+                    
             }
 
             //Investigate State
@@ -115,7 +116,7 @@ namespace Drone
 
                 //Detect player
                 foreach (var v in players)
-                    if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange)
+                    if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange && !v.GetComponentInChildren<Character.Player>().Stunned)
                     {
                         Target = v.transform;
                         lastLoc = transform.position;
@@ -139,6 +140,10 @@ namespace Drone
                         canAtk = false;
                         StartCoroutine(reload());
                     }
+                    if (v.GetComponentInChildren<Character.Player>().Stunned)
+                    {
+                        fsm.MoveNext(Command.LosePlayer);
+                    }
             }
 
             //BigPatrol State
@@ -154,7 +159,7 @@ namespace Drone
 
                 //Detect player
                 foreach (var v in players)
-                    if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange)
+                    if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange && !v.GetComponentInChildren<Character.Player>().Stunned)
                     {
                         Target = v.transform;
                         lastLoc = transform.position;
@@ -173,6 +178,10 @@ namespace Drone
                         gameObject.GetComponent<Weapon.StunGun>().Attack();
                         canAtk = false;
                         StartCoroutine(reload());
+                    }
+                    if (v.GetComponentInChildren<Character.Player>().Stunned)
+                    {
+                        fsm.MoveNext(Command.LosePlayer);
                     }
             }
 

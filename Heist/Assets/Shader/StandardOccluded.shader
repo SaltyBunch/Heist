@@ -13,7 +13,7 @@ Shader "Custom/StandardOccluded"
 
 		Pass
 	{
-		Tags{ "Queue" = "Geometry+1" }
+		Tags{ "RenderType" = "Transparent" "Queue" = "Geometry+1" }
 		ZTest Greater
 		ZWrite Off
 		Blend SrcAlpha OneMinusSrcAlpha

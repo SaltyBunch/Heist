@@ -80,6 +80,8 @@ namespace UI
 
         private void OnEnable()
         {
+            Selection = 0;
+        
             if (GameManager.NumPlayers <= player) gameObject.SetActive(false);
             else gameObject.SetActive(true);
 

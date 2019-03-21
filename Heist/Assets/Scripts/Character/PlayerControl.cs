@@ -265,6 +265,14 @@ namespace Character
             }
 
             var size = Physics.OverlapSphereNonAlloc(transform.position + transform.up, _interactDistance, _interactHits, _interactMask);
+            if (size == 0)
+            {
+                _interactObject = new Tuple<GameObject, string>(null, "");
+                if (!(_baseCharacter.OverWeaponPickup || _baseCharacter.OverTrapPickup))
+                {
+                    _playerUiManager.SetOpen("None");
+                }
+            }
             for (var i = 0; i < size; i++)
             {
                 var hit = _interactHits[i];

@@ -16,7 +16,7 @@ namespace Level
         private bool _interacting;
 
         private BarQuickTimeEvent _quickTime;
-        private int _intitialAmount;
+        private int _initialAmount;
         [SerializeField] private int _transferAmount;
         [SerializeField] private int _totalRemaining;
         [SerializeField] private BarQuickTimeEvent _barQuickTimeEvent;
@@ -32,9 +32,21 @@ namespace Level
                 _totalRemaining = value;
                 for (int i = 0; i < _goldPieces.Count; i++)
                 {
-                    if (i / _goldPieces.Count < _totalRemaining / _intitialAmount)
+                    if (i / _goldPieces.Count <= _totalRemaining / _initialAmount)
                     {
                         _goldPieces[i].SetActive(false);
+                        if (i == 0) // there are no gold left
+                        {
+                            if (_quickTime != null)
+                            {
+                                _quickTime.Events -= QuickTimeEventMonitor;
+                                Destroy(_quickTime.gameObject, 0.2f);
+                            }
+                            _quickTime = null;
+                            if (_player != null) _player.OnMoveCancel -= CancelChannel;
+                            _player = null;
+                            Destroy(gameObject, 0.2f);
+                        }
                     }
                     else
                     {
@@ -44,6 +56,11 @@ namespace Level
             }
         }
 
+        void Start()
+        {
+            _initialAmount = _totalRemaining;
+        }
+        
         public void StartChanneling(PlayerControl player)
         {
             if (_interacting) return;

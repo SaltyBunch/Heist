@@ -1,15 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
+
 namespace Character
 {
     public class PlayerModel : MonoBehaviour
     {
         [SerializeField] private List<SkinnedMeshRenderer> _characterSkinnedMeshRenderers;
 
-        [SerializeField] private int _playerNumber;
+        [SerializeField] private int _playerNumber = -1;
 
         public float hidey = 0;
-        private float modelAlpha = 6.0f;
+        private float _modelAlpha = 4;
 
         private static List<Color> _colors = new List<Color>()
         {
@@ -30,11 +31,16 @@ namespace Character
 
         private void Update()
         {
-            if (hidey > 0) modelAlpha = 6;
-            else modelAlpha -= Time.deltaTime;
-            var v = _colors[_playerNumber];
-            v.a = Mathf.Min(modelAlpha, 1);
-            _colors[_playerNumber] = v;
+            if (_playerNumber != -1)
+            {
+                if (hidey > 0) _modelAlpha = 4;
+                else _modelAlpha -= Time.deltaTime;
+                var v = _colors[_playerNumber];
+                _modelAlpha = Mathf.Clamp(_modelAlpha, 0, 1);
+                v.a = _modelAlpha;
+                _colors[_playerNumber] = v;
+                UpdateColor();
+            }
         }
 
         private void UpdateColor()

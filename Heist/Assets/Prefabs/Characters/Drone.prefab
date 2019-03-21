@@ -39,7 +39,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 392497562500751246}
-  - component: {fileID: 392497562500751245}
   - component: {fileID: 392497562500751242}
   - component: {fileID: 392497562500751248}
   - component: {fileID: 392497562500751249}
@@ -48,6 +47,8 @@ GameObject:
   - component: {fileID: 4664106523531736076}
   - component: {fileID: 8648747610965902307}
   - component: {fileID: 4548259701909515994}
+  - component: {fileID: 7775699949944083529}
+  - component: {fileID: 6376470768398464593}
   m_Layer: 11
   m_Name: Drone
   m_TagString: Drone
@@ -71,19 +72,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &392497562500751245
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 392497562500751243}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &392497562500751242
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -120,11 +108,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bigPatrolPath: []
   detectPlayerRange: 5
-  fsm: {fileID: 0}
+  fsm: {fileID: 7775699949944083529}
   investigateDuration: 5
   investigation: {fileID: 514177932}
   patrolPath: []
   patrolTetherRange: 10
+  players: []
   reviveTimer: 3
   reviving: 0
   Target: {fileID: 0}
@@ -133,6 +122,7 @@ MonoBehaviour:
   isShooter: 1
   control: {fileID: 4664106523531736076}
   drone: {fileID: 8087823521443717759}
+  _stunGun: {fileID: 4548259701909515994}
 --- !u!135 &392497562500751249
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -310,7 +300,33 @@ MonoBehaviour:
   Ammo: 2147483647
   _projectile: {fileID: 2430004408962383017, guid: 094136b8cd01e9f458c64a263d57dfeb,
     type: 3}
-  Barrel: {x: 0, y: 0.40000004, z: 0.44598517}
+  Barrel: {x: 0, y: 0.3936813, z: 0.5449331}
+--- !u!114 &7775699949944083529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392497562500751243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 111db8699b8acac458be52b1a2799b32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &6376470768398464593
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392497562500751243}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.28
+  m_Height: 1.2
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0.03}
 --- !u!1 &2844524244591079190
 GameObject:
   m_ObjectHideFlags: 0

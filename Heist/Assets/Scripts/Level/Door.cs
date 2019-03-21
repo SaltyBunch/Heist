@@ -19,8 +19,10 @@ namespace Level
 
         [SerializeField] internal bool _open;
 
+        public bool IsOpen => _animating ? !_open : _open;
+
         internal bool _animating = false;
-        
+
         private PlayerControl _player;
         private LockQuickTimeEvent _quickTime;
         [SerializeField] internal Color _unlockedColor;

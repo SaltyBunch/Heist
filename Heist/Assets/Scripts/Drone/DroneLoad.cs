@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Character;
+using Drone;
 using UnityEngine;
 
 namespace drone
@@ -19,24 +21,28 @@ namespace drone
 
         }
 
-        public void Begin()
+        public void Begin(List<Player> playerList)
         {
-            foreach (var v in droneWaves)
+            foreach (var wave in droneWaves)
             {
-                foreach (var w in v.drones)
+                foreach (var drone in wave.drones)
                 {
-                    w.gameObject.SetActive(false);
+                    drone.gameObject.SetActive(false);
+                    
+                    drone.SetPlayers(playerList);
                 }
             }
+            
+            activateDrones();
         }
 
 
         IEnumerator delaySpawn(Wave w)
         {
             yield return new WaitForSeconds(w.spawnDelay);
-            foreach(var v in w.drones)
+            foreach(var drone in w.drones)
             {
-                v.gameObject.SetActive(true);
+                drone.gameObject.SetActive(true);
             }
         }
 
@@ -46,7 +52,7 @@ namespace drone
     public class Wave
     {
         public float spawnDelay;
-        [SerializeField] public List<GameObject> drones;
+        [SerializeField] public List<DroneAI> drones;
 
     }
 }

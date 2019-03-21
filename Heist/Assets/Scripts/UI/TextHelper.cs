@@ -8,6 +8,7 @@ namespace UI
         public static string PickupWeapon => "Press <#0000FF>x <#FFFFFF>to pickup weapon"; //todo placeholder for now
         public static string PickupTrap => "Press <#0000FF>x <#FFFFFF>to pickup trap"; //todo placeholder for now
         public static string OpenDoor => "Press <#0000FF>x <#FFFFFF>to open door"; //todo placeholder for now
+        public static string CloseDoor => "Press <#0000FF>x <#FFFFFF>to close door"; //todo placeholder for now
         public static string OpenVault => "Press <#0000FF>x <#FFFFFF>to open vault"; //todo placeholder for now
         public static string OpenMiniVault => "Press <#0000FF>x <#FFFFFF>to open safe"; //todo placeholder for now
         public static string TakeGold => "Press <#0000FF>x <#FFFFFF>to take gold";

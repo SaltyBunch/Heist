@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Character;
 using Game;
 using UnityEngine;
 using UnityEngine.AI;
+using Weapon;
 
 namespace Drone
 {
@@ -21,7 +23,7 @@ namespace Drone
         private int patrol;
         [SerializeField] private List<Transform> patrolPath;
         [SerializeField] private float patrolTetherRange;
-        [SerializeField] private List<GameObject> players => LevelManager.LevelManagerRef.Players.Select(x => x.PlayerControl.gameObject).ToList();
+        [SerializeField] private List<Player> players;
         [SerializeField] private float reviveTimer;
         [SerializeField] private bool reviving;
         public Transform Target;
@@ -30,33 +32,36 @@ namespace Drone
         [SerializeField] private float atkSpeed;
         [SerializeField] private bool isShooter;
         private bool canAtk = true;
+
         [SerializeField] private AnimControl control;
         //[SerializeField] private ;
 
         [SerializeField] Character.Drone drone;
 
 
+        [SerializeField] private StunGun _stunGun;
+
         // Start is called before the first frame update
         private void Start()
         {
             if (bigPatrolPath.Count <= 0) bigPatrolPath = patrolPath;
             investigation.transform.parent = null;
-            foreach(var v in patrolPath)
+            foreach (var v in patrolPath)
             {
                 v.parent = null;
             }
+
             if (bigPatrolPath.Count > 0)
             {
                 foreach (var v in bigPatrolPath)
                 {
-                    if(v) v.parent = null;
+                    if (v) v.parent = null;
                 }
             }
 
             agent = GetComponent<NavMeshAgent>();
             obstacle = GetComponent<NavMeshObstacle>();
             drone = this.GetComponent<Character.Drone>();
-            fsm = new FSM();
             Target = patrolPath[0];
 
             LevelManager.LevelManagerRef.Notifty += LevelManagerRefOnNotifty;
@@ -78,6 +83,11 @@ namespace Drone
                 }
         }
 
+        public void SetPlayers(List<Player> playerList)
+        {
+            players = playerList;
+        }
+
         // Update is called once per frame
         private void Update()
         {
@@ -91,17 +101,16 @@ namespace Drone
             {
                 //chaing patrol dest
                 if (Vector3.Distance(transform.position, Target.position) < 1f)
-                    Target = patrolPath[patrol++ % patrolPath.Count];
+                    Target = patrolPath[++patrol % patrolPath.Count];
 
                 //Detect player
                 foreach (var v in players)
-                    if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange && !v.GetComponentInChildren<Character.Player>().Stunned)
+                    if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange && !v.Stunned)
                     {
                         Target = v.transform;
                         lastLoc = transform.position;
                         fsm.MoveNext(Command.SeePlayer);
                     }
-                    
             }
 
             //Investigate State
@@ -110,13 +119,13 @@ namespace Drone
                 //Arrive at investigate zone
                 if (Vector3.Distance(transform.position, investigation.transform.position) < 1f)
                 {
-                    Target = patrolPath[patrol];
+                    Target = patrolPath[patrol %= patrolPath.Count];
                     fsm.MoveNext(Command.LosePlayer);
                 }
 
                 //Detect player
                 foreach (var v in players)
-                    if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange && !v.GetComponentInChildren<Character.Player>().Stunned)
+                    if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange && !v.Stunned)
                     {
                         Target = v.transform;
                         lastLoc = transform.position;
@@ -132,16 +141,18 @@ namespace Drone
                     investg = true;
                     StartCoroutine(DoInvestigate());
                 }
+
                 //shoot player
                 foreach (var v in players)
                 {
                     if (Vector3.Distance(transform.position, v.transform.position) < atkRange && canAtk)
                     {
-                        gameObject.GetComponent<Weapon.StunGun>().Attack();
+                        _stunGun.Attack();
                         canAtk = false;
-                        StartCoroutine(reload());
+                        StartCoroutine(Reload());
                     }
-                    if (v.GetComponentInChildren<Character.Player>().Stunned)
+
+                    if (v.Stunned)
                     {
                         fsm.MoveNext(Command.LosePlayer);
                     }
@@ -161,7 +172,7 @@ namespace Drone
 
                 //Detect player
                 foreach (var v in players)
-                    if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange && !v.GetComponentInChildren<Character.Player>().Stunned)
+                    if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange && !v.Stunned)
                     {
                         Target = v.transform;
                         lastLoc = transform.position;
@@ -178,11 +189,12 @@ namespace Drone
                 {
                     if (Vector3.Distance(transform.position, v.transform.position) < atkRange && canAtk)
                     {
-                        gameObject.GetComponent<Weapon.StunGun>().Attack();
+                        _stunGun.Attack();
                         canAtk = false;
-                        StartCoroutine(reload());
+                        StartCoroutine(Reload());
                     }
-                    if (v.GetComponentInChildren<Character.Player>().Stunned)
+
+                    if (v.Stunned)
                     {
                         fsm.MoveNext(Command.LosePlayer);
                     }
@@ -197,7 +209,7 @@ namespace Drone
                 Target = null;
                 if (!drone.Stunned)
                 {
-                    Target = patrolPath[0];
+                    Target = patrolPath[patrol];
                     fsm.MoveNext(Command.Wake);
                     control.DoAlive();
                 }
@@ -218,7 +230,7 @@ namespace Drone
             investg = false;
         }
 
-        private IEnumerator reload()
+        private IEnumerator Reload()
         {
             yield return new WaitForSeconds(atkSpeed);
             canAtk = true;
@@ -226,12 +238,12 @@ namespace Drone
 
         private void OnTriggerEnter(Collider other)
         {
-           // if (other.tag == "Player") players.Add(other.gameObject);
+            // if (other.tag == "Player") players.Add(other.gameObject);
         }
 
         private void OnTriggerExit(Collider other)
         {
-          //  if (other.tag == "Player") players.Remove(other.gameObject);
+            //  if (other.tag == "Player") players.Remove(other.gameObject);
         }
     }
 }

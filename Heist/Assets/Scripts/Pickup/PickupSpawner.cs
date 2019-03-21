@@ -8,7 +8,7 @@ namespace Pickup
         [SerializeField] private List<Pickup> _pickups;
 
         // Start is called before the first frame update
-        void Start()
+        public void Spawn()
         {
             var i = Random.Range(0, _pickups.Count);
 

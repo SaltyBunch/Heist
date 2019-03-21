@@ -130,12 +130,12 @@ namespace UI
             return Instantiate(quickTimeEvent, _quickTimePosition);
         }
 
-        public void SetOpen(string type)
+        public void SetOpen(string type, bool open)
         {
             switch (type)
             {
                 case "Door":
-                    _playerHint.text = TextHelper.OpenDoor;
+                    _playerHint.text = open ? TextHelper.CloseDoor : TextHelper.OpenDoor;
                     break;
                 case "Vault":
                     _playerHint.text = TextHelper.OpenVault;

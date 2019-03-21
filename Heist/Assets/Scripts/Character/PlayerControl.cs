@@ -72,7 +72,7 @@ namespace Character
         [SerializeField] private AudioClip _taunt;
         [SerializeField] private AudioClip _victory;
 
-        
+
         public int PlayerNumber;
 
 
@@ -264,40 +264,45 @@ namespace Character
                 _anim.SetBool("Shoot", _baseCharacter.Inventory.SelectedItem is StunGun);
             }
 
-            var size = Physics.OverlapSphereNonAlloc(transform.position + transform.up, _interactDistance, _interactHits, _interactMask);
+            var size = Physics.OverlapSphereNonAlloc(transform.position + transform.up, _interactDistance,
+                _interactHits, _interactMask);
             if (size == 0)
             {
                 _interactObject = new Tuple<GameObject, string>(null, "");
                 if (!(_baseCharacter.OverWeaponPickup || _baseCharacter.OverTrapPickup))
                 {
-                    _playerUiManager.SetOpen("None");
+                    _playerUiManager.SetOpen("None", false);
                 }
             }
+
             for (var i = 0; i < size; i++)
             {
                 var hit = _interactHits[i];
+
+                if (hit.gameObject == _interactObject.Item1) break;
+
                 if (hit.transform.CompareTag("Door"))
                 {
                     _interactObject = new Tuple<GameObject, string>(hit.gameObject, "Door");
-                    _playerUiManager.SetOpen("Door");
+                    _playerUiManager.SetOpen("Door", hit.gameObject.GetComponentInParent<Door>().IsOpen);
                     break;
                 }
                 else if (hit.transform.CompareTag("GoldPile"))
                 {
                     _interactObject = new Tuple<GameObject, string>(hit.gameObject, "GoldPile");
-                    _playerUiManager.SetOpen("GoldPile");
+                    _playerUiManager.SetOpen("GoldPile", false);
                     break;
                 }
                 else if (hit.transform.CompareTag("MiniVault"))
                 {
                     _interactObject = new Tuple<GameObject, string>(hit.gameObject, "MiniVault");
-                    _playerUiManager.SetOpen("MiniVault");
+                    _playerUiManager.SetOpen("MiniVault", false);
                     break;
                 }
                 else if (hit.transform.CompareTag("Vault"))
                 {
                     _interactObject = new Tuple<GameObject, string>(hit.gameObject, "Vault");
-                    _playerUiManager.SetOpen("Vault");
+                    _playerUiManager.SetOpen("Vault", false);
                     break;
                 }
                 else
@@ -305,7 +310,7 @@ namespace Character
                     _interactObject = new Tuple<GameObject, string>(null, "");
                     if (!(_baseCharacter.OverWeaponPickup || _baseCharacter.OverTrapPickup))
                     {
-                        _playerUiManager.SetOpen("None");
+                        _playerUiManager.SetOpen("None", false);
                     }
                 }
             }
@@ -370,6 +375,8 @@ namespace Character
                         vault.UseKey(BaseCharacter.Inventory.keys);
                         break;
                 }
+
+                _interactObject = new Tuple<GameObject, string>(null, "None");
             }
         }
 

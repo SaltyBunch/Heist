@@ -5,6 +5,7 @@ using System.Linq;
 using Audio;
 using Character;
 using Level;
+using Pickup;
 using Rewired;
 using UI;
 using UnityEngine;
@@ -69,6 +70,8 @@ namespace Game
         [SerializeField] public GameObject FOG;
         [SerializeField] public drone.DroneLoad droneSpawner;
 
+        [SerializeField] private List<PickupSpawner> _pickupSpawners;
+        
         private float _time;
 
         private float _timeSinceVaultOpened;
@@ -214,14 +217,11 @@ namespace Game
 
             #region Level Setup
 
-            //todo place hazards
-
-            #endregion
-
-            #region Drone Setup
-
-            //todo drone setup
-            droneSpawner.Begin();
+            foreach (var pickupSpawner in _pickupSpawners)
+            {
+                //todo place hazards
+                pickupSpawner.Spawn();
+            }
 
             #endregion
 
@@ -299,6 +299,18 @@ namespace Game
 
             #endregion
 
+            #region Drone Setup
+
+            var players = new List<Player>();
+            foreach (var player in Players)
+            {
+                players.Add(player.Player);
+            }
+            //todo drone setup
+            droneSpawner.Begin(players);
+
+            #endregion
+            
             #region Audio
 
             _audioSource[_currentAudioSource].clip = _backgroundMusicGathering;

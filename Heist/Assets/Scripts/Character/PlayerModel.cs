@@ -8,6 +8,9 @@ namespace Character
 
         [SerializeField] private int _playerNumber;
 
+        public float hidey = 0;
+        private float modelAlpha = 6.0f;
+
         private static List<Color> _colors = new List<Color>()
         {
             Color.red, Color.blue, Color.green, Color.cyan
@@ -23,6 +26,15 @@ namespace Character
                 temp[0] = mat;
                 character.sharedMaterials = temp;
             }
+        }
+
+        private void Update()
+        {
+            if (hidey > 0) modelAlpha = 6;
+            else modelAlpha -= Time.deltaTime;
+            var v = _colors[_playerNumber];
+            v.a = Mathf.Min(modelAlpha, 1);
+            _colors[_playerNumber] = v;
         }
 
         private void UpdateColor()

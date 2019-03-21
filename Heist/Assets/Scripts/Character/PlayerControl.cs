@@ -204,6 +204,8 @@ namespace Character
 
         private void FixedUpdate()
         {
+            _playerModel.hidey = Control.MoveVector.magnitude;
+
             if (Math.Abs(Control.FaceVector.magnitude) < 0.001f)
             {
                 var control = Control;

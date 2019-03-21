@@ -197,7 +197,7 @@ namespace Drone
                 Target = null;
                 if (!drone.Stunned)
                 {
-                    Target = patrolPath[patrol];
+                    Target = patrolPath[0];
                     fsm.MoveNext(Command.Wake);
                     control.DoAlive();
                 }

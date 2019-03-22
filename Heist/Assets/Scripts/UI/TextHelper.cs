@@ -12,5 +12,6 @@ namespace UI
         public static string OpenVault => "Press <#0000FF>x <#FFFFFF>to open vault"; //todo placeholder for now
         public static string OpenMiniVault => "Press <#0000FF>x <#FFFFFF>to open safe"; //todo placeholder for now
         public static string TakeGold => "Press <#0000FF>x <#FFFFFF>to take gold";
+        public static string DisableHazard => "Press <#0000FF>x <#FFFFFF>to disable hazard";
     }
 }

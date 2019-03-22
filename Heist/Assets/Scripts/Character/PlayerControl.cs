@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Game;
+using Hazard;
 using JetBrains.Annotations;
 using Level;
 using Rewired.Data.Mapping;
@@ -287,6 +288,12 @@ namespace Character
                     _playerUiManager.SetOpen("Door", hit.gameObject.GetComponentInParent<Door>().IsOpen);
                     break;
                 }
+                else if (hit.transform.CompareTag("HazardDisabler"))
+                {
+                    _interactObject = new Tuple<GameObject, string>(hit.gameObject, "HazardDisabler");
+                    _playerUiManager.SetOpen("HazardDisabler", false);
+                    break;
+                }
                 else if (hit.transform.CompareTag("GoldPile"))
                 {
                     _interactObject = new Tuple<GameObject, string>(hit.gameObject, "GoldPile");
@@ -361,6 +368,10 @@ namespace Character
                     case "Door":
                         var door = _interactObject.Item1.GetComponentInParent<Door>();
                         door.Open(this);
+                        break;
+                    case "HazardDisabler":
+                        var hazardDisabler = _interactObject.Item1.GetComponent<HazardDisabler>();
+                        hazardDisabler.DisableHazard(this);
                         break;
                     case "GoldPile":
                         var gold = _interactObject.Item1.GetComponent<GoldPile>();

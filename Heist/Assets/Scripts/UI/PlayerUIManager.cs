@@ -92,7 +92,7 @@ namespace UI
 
         public void SetKeyPickedUp(KeyType keyType) => _playerStatsManager.SetKeyPickedUp(keyType);
         public void SetKeyOwned(KeyType keyType) => _playerStatsManager.SetKeyOwned(keyType);
-        
+
         public TextMeshProUGUI VaultTimer => _playerStatsManager.VaultTimer;
 
         public void ShowPickup(PickupType pickupType, bool overPickup)
@@ -136,6 +136,9 @@ namespace UI
             {
                 case "Door":
                     _playerHint.text = open ? TextHelper.CloseDoor : TextHelper.OpenDoor;
+                    break;
+                case "HazardDisabler":
+                    _playerHint.text = TextHelper.DisableHazard;
                     break;
                 case "Vault":
                     _playerHint.text = TextHelper.OpenVault;

@@ -50,8 +50,9 @@ namespace Level
             if (_locked)
             {
                 _quickTime = player.BaseCharacter.InitializeQuickTime(_lockQuickTimeEvent) as LockQuickTimeEvent;
-                _quickTime.QuickTimeType = QuickTimeEvent.Type.GoldPile;
+                _quickTime.QuickTimeType = QuickTimeEvent.Type.Door;
                 _quickTime.Events += QuickTimeEventMonitor;
+                _quickTime.Generate(player, transform.position);
                 _player = player;
                 _player.OnMoveCancel += PlayerOnOnMoveCancel;
             }
@@ -104,7 +105,4 @@ namespace Level
             _open = false;
         }
     }
-
-
-    //TODO Coroutine for close
 }

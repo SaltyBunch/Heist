@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 4548259701909515994}
   - component: {fileID: 7775699949944083529}
   - component: {fileID: 6376470768398464593}
+  - component: {fileID: 2259010359008453534}
   m_Layer: 11
   m_Name: Drone
   m_TagString: Drone
@@ -120,6 +121,7 @@ MonoBehaviour:
   atkRange: 4
   atkSpeed: 1
   isShooter: 1
+  inView: {fileID: 2259010359008453534}
   control: {fileID: 4664106523531736076}
   drone: {fileID: 8087823521443717759}
   _stunGun: {fileID: 4548259701909515994}
@@ -327,6 +329,31 @@ CapsuleCollider:
   m_Height: 1.2
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0.03}
+--- !u!114 &2259010359008453534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392497562500751243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3409a5caa191b41488512c76185c5389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 30
+  viewAngle: 120
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 4026531840
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  visibleTargets: []
+  meshResolution: 1
+  edgeResolveIterations: 4
+  edgeDstThreshold: 0.5
+  maskCutawayDst: 0.1
 --- !u!1 &2844524244591079190
 GameObject:
   m_ObjectHideFlags: 0
@@ -5061,6 +5088,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Drone
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 919d761cb060ca74c99786618f9467bf, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: 919d761cb060ca74c99786618f9467bf, type: 3}
       propertyPath: m_Layer
       value: 11
@@ -5068,6 +5099,10 @@ PrefabInstance:
     - target: {fileID: 100006, guid: 919d761cb060ca74c99786618f9467bf, type: 3}
       propertyPath: m_TagString
       value: Drone
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 919d761cb060ca74c99786618f9467bf, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 919d761cb060ca74c99786618f9467bf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5125,22 +5160,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.7723
       objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: 919d761cb060ca74c99786618f9467bf, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: e1a41067d76a7e746ad6b9020a1b2019, type: 2}
-    - target: {fileID: 100004, guid: 919d761cb060ca74c99786618f9467bf, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 100008, guid: 919d761cb060ca74c99786618f9467bf, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 919d761cb060ca74c99786618f9467bf, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: bcc130ba20afa704989bc68879bcdbfa, type: 2}
+    - target: {fileID: 9500000, guid: 919d761cb060ca74c99786618f9467bf, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e1a41067d76a7e746ad6b9020a1b2019, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 919d761cb060ca74c99786618f9467bf, type: 3}
 --- !u!4 &8833542847624073735 stripped

@@ -31,6 +31,7 @@ namespace Drone
         [SerializeField] private float atkRange;
         [SerializeField] private float atkSpeed;
         [SerializeField] private bool isShooter;
+        [SerializeField] FOV inView;
         private bool canAtk = true;
 
         [SerializeField] private AnimControl control;

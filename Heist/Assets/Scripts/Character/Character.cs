@@ -14,6 +14,8 @@ namespace Character
 
     public delegate void HealthUpdatedEventHandler(object sender, HealthChangedEventArgs e);
 
+    public delegate void StunnedEventHandler(object sender, EventArgs e);
+
     public class HealthChangedEventArgs
     {
         public int Health;
@@ -32,10 +34,18 @@ namespace Character
         private int _stacks;
         private bool _stun;
 
-        public bool Stunned => _stun;
-        
+        public bool Stunned
+        {
+            get { return _stun; }
+            set
+            {
+                if (value != _stun && value == true) CharacterStunned?.Invoke(this, EventArgs.Empty);
+                _stun = value;
+            }
+        }
+
         private bool _stunCooldown;
-        
+
         private float _timeSinceDamage;
         [SerializeField] public Stats Stats;
 
@@ -68,6 +78,7 @@ namespace Character
 
         public event HealthUpdatedEventHandler HealthChanged;
 
+        public event StunnedEventHandler CharacterStunned;
 
         public void Start()
         {

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Camera;
 using Game;
 using Hazard;
 using JetBrains.Annotations;
@@ -76,6 +77,7 @@ namespace Character
 
         public int PlayerNumber;
 
+        public CameraLogic CameraLogic;
 
         public Player BaseCharacter => _baseCharacter;
 
@@ -159,6 +161,12 @@ namespace Character
 
             BaseCharacter.HealthChanged += BaseCharacterOnHealthChanged;
             BaseCharacter.Inventory.SelectionChanged += InventoryOnSelectionChanged;
+            BaseCharacter.CharacterStunned += BaseCharacterOnCharacterStunned;
+        }
+
+        private void BaseCharacterOnCharacterStunned(object sender, EventArgs e)
+        {
+            _anim.SetTrigger("Stunned");
         }
 
         private void InventoryOnSelectionChanged(object sender, SelectionChangedEventArgs e)

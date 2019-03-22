@@ -21,6 +21,7 @@ namespace Game
             {
                 var player = other.GetComponentInParent<PlayerControl>();
                 player.transform.position = _exit.position;
+                player.CameraLogic.transform.position = _exit.position;
             }
         }
     }

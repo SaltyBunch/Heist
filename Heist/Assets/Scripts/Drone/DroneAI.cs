@@ -65,6 +65,8 @@ namespace Drone
             drone = this.GetComponent<Character.Drone>();
             Target = patrolPath[0];
 
+            agent.speed = drone.Stats.Speed;
+
             LevelManager.LevelManagerRef.Notifty += LevelManagerRefOnNotifty;
         }
 
@@ -106,7 +108,7 @@ namespace Drone
 
                 //Detect player
                 foreach (var v in players)
-                    if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange && !v.Stunned)
+                    if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange && !v.Stunned && FieldOFView(v, 60))
                     {
                         Target = v.transform;
                         lastLoc = transform.position;
@@ -126,7 +128,7 @@ namespace Drone
 
                 //Detect player
                 foreach (var v in players)
-                    if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange && !v.Stunned)
+                    if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange && !v.Stunned && FieldOFView(v, 60))
                     {
                         Target = v.transform;
                         lastLoc = transform.position;
@@ -146,7 +148,7 @@ namespace Drone
                 //shoot player
                 foreach (var v in players)
                 {
-                    if (Vector3.Distance(transform.position, v.transform.position) < atkRange && canAtk)
+                    if (Vector3.Distance(transform.position, v.transform.position) < atkRange && canAtk && FieldOFView(v, 10))
                     {
                         _stunGun.Attack();
                         canAtk = false;
@@ -173,7 +175,7 @@ namespace Drone
 
                 //Detect player
                 foreach (var v in players)
-                    if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange && !v.Stunned)
+                    if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange && !v.Stunned && FieldOFView(v, 60))
                     {
                         Target = v.transform;
                         lastLoc = transform.position;
@@ -188,7 +190,7 @@ namespace Drone
                 //shoot player
                 foreach (var v in players)
                 {
-                    if (Vector3.Distance(transform.position, v.transform.position) < atkRange && canAtk)
+                    if (Vector3.Distance(transform.position, v.transform.position) < atkRange && canAtk && FieldOFView(v, 10))
                     {
                         _stunGun.Attack();
                         canAtk = false;
@@ -245,6 +247,18 @@ namespace Drone
         private void OnTriggerExit(Collider other)
         {
             //  if (other.tag == "Player") players.Remove(other.gameObject);
+        }
+
+        bool FieldOFView(Player player, float angle)
+        {
+            var dir = player.transform.position - transform.position;
+            if (Mathf.Abs(Vector3.Angle(transform.forward, dir)) < angle)
+            {
+                RaycastHit hit;
+                Physics.Raycast(transform.position, dir, out hit, ~(1<<11));
+                return hit.transform.CompareTag("Player");
+            }
+            return false;
         }
     }
 }

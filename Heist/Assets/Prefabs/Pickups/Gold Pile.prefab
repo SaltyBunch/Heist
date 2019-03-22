@@ -4790,6 +4790,7 @@ MonoBehaviour:
   - {fileID: 4818537059852671540}
   - {fileID: 7302517778474442463}
   - {fileID: 8920043465444555072}
+  Percentage: 1
 --- !u!65 &8169352821492420134
 BoxCollider:
   m_ObjectHideFlags: 0

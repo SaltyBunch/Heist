@@ -139,13 +139,13 @@ namespace Game
             switch (dexterity)
             {
                 case 2:
-                    _range = 0.05f;
-                    break;
-                case 3:
                     _range = 0.1f;
                     break;
+                case 3:
+                    _range = 0.15f;
+                    break;
                 case 4:
-                    _range = 0.17f;
+                    _range = 0.2f;
                     break;
                 case 5:
                     _range = 0.25f;

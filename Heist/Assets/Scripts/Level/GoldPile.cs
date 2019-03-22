@@ -24,15 +24,17 @@ namespace Level
 
         [SerializeField] private List<GameObject> _goldPieces;
 
-        public int TotalRemaining
+        [SerializeField, Range(0, 1)] public float Percentage;
+
+        public float PercentageRemaining
         {
-            get { return _totalRemaining; }
+            get { return Percentage; }
             set
             {
-                _totalRemaining = value;
+                Percentage = value;
                 for (int i = 0; i < _goldPieces.Count; i++)
                 {
-                    if (i / _goldPieces.Count <= _totalRemaining / _initialAmount)
+                    if ((float)i / _goldPieces.Count >= Percentage)
                     {
                         _goldPieces[i].SetActive(false);
                         if (i == 0) // there are no gold left
@@ -42,6 +44,7 @@ namespace Level
                                 _quickTime.Events -= QuickTimeEventMonitor;
                                 Destroy(_quickTime.gameObject, 0.2f);
                             }
+
                             _quickTime = null;
                             if (_player != null) _player.OnMoveCancel -= CancelChannel;
                             _player = null;
@@ -60,7 +63,7 @@ namespace Level
         {
             _initialAmount = _totalRemaining;
         }
-        
+
         public void StartChanneling(PlayerControl player)
         {
             if (_interacting) return;
@@ -89,11 +92,13 @@ namespace Level
             if (e.Result)
             {
                 _player.BaseCharacter.Inventory.GoldAmount += _transferAmount;
-                TotalRemaining -= _transferAmount;
+                _totalRemaining -= _transferAmount;
             }
 
-            if (e.Complete || TotalRemaining <= 0 || e.State == -1)
+            PercentageRemaining = _totalRemaining / (float)_initialAmount;
+            if (e.Complete || _totalRemaining <= 0 || e.State == -1)
             {
+                _interacting = false;
                 _quickTime.Events -= QuickTimeEventMonitor;
                 Destroy(_quickTime.gameObject, 0.2f);
                 _quickTime = null;

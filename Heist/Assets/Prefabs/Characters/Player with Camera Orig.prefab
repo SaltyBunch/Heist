@@ -2940,6 +2940,7 @@ MonoBehaviour:
   _taunt: {fileID: 0}
   _victory: {fileID: 0}
   PlayerNumber: 0
+  CameraLogic: {fileID: 3440906442002706319}
   _anim: {fileID: 0}
   _hitbox: {fileID: 5963048592310755935}
   _hitboxLayer: 26

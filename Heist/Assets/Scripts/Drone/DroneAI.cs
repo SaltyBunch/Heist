@@ -41,6 +41,7 @@ namespace Drone
 
 
         [SerializeField] private StunGun _stunGun;
+        [SerializeField] private Hazard.ElectricField _eField;
 
         // Start is called before the first frame update
         private void Start()
@@ -148,11 +149,23 @@ namespace Drone
                 //shoot player
                 foreach (var v in players)
                 {
-                    if (Vector3.Distance(transform.position, v.transform.position) < atkRange && canAtk && FieldOFView(v, 10))
+                    if (isShooter)
                     {
-                        _stunGun.Attack();
-                        canAtk = false;
-                        StartCoroutine(Reload());
+                        if (Vector3.Distance(transform.position, v.transform.position) < atkRange && canAtk && FieldOFView(v, 10))
+                        {
+                            _stunGun.Attack();
+                            canAtk = false;
+                            StartCoroutine(Reload());
+                        }
+                    }
+                    else
+                    {
+                        if (Vector3.Distance(transform.position, v.transform.position) < atkRange && canAtk && FieldOFView(v, 180))
+                        {
+                            //TODO melee atk
+                            canAtk = false;
+                            StartCoroutine(Reload());
+                        }
                     }
 
                     if (v.Stunned)
@@ -192,7 +205,10 @@ namespace Drone
                 {
                     if (Vector3.Distance(transform.position, v.transform.position) < atkRange && canAtk && FieldOFView(v, 10))
                     {
-                        _stunGun.Attack();
+                        if (isShooter)
+                        {
+                            _stunGun.Attack();
+                        }
                         canAtk = false;
                         StartCoroutine(Reload());
                     }

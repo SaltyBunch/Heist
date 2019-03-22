@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7570511522866330130}
   - component: {fileID: 8501646490264629599}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 8367806847503875758}
   - component: {fileID: 4749442151483431866}
   - component: {fileID: 4594123752195356385}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Baton Weapon Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,10 +187,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3378029642818968833}
     m_Modifications:
-    - target: {fileID: 100000, guid: cc308accb7b9936449f7a6de6e42e594, type: 3}
-      propertyPath: m_Name
-      value: Steven_Baton
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cc308accb7b9936449f7a6de6e42e594, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.44135
@@ -246,6 +242,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: cc308accb7b9936449f7a6de6e42e594, type: 3}
       propertyPath: m_LocalScale.z
       value: 5.0625
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cc308accb7b9936449f7a6de6e42e594, type: 3}
+      propertyPath: m_Name
+      value: Steven_Baton
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cc308accb7b9936449f7a6de6e42e594, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc308accb7b9936449f7a6de6e42e594, type: 3}

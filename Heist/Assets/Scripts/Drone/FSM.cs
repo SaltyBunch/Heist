@@ -57,6 +57,8 @@ namespace Drone
                 //Lose player
                 {new StateTransition(State.Chase, Command.LosePlayer), State.Patrol},
                 {new StateTransition(State.Investigate, Command.LosePlayer), State.Patrol},
+                {new StateTransition(State.Patrol, Command.LosePlayer), State.Patrol},
+
                 //Lock Down 
                 {new StateTransition(State.Patrol, Command.LockDown), State.BigPatrol},
                 {new StateTransition(State.Investigate, Command.LockDown), State.BigPatrol},

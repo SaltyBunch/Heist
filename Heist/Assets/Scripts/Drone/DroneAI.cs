@@ -42,6 +42,7 @@ namespace Drone
 
         [SerializeField] private StunGun _stunGun;
         [SerializeField] private Hazard.ElectricField _eField;
+        [SerializeField] private LayerMask _layerMask;
 
         // Start is called before the first frame update
         private void Start()
@@ -151,7 +152,7 @@ namespace Drone
                 {
                     if (isShooter)
                     {
-                        if (Vector3.Distance(transform.position, v.transform.position) < atkRange && canAtk && FieldOFView(v, 10))
+                        if (Vector3.Distance(transform.position, v.transform.position) < atkRange && canAtk && FieldOFView(v, 20))
                         {
                             _stunGun.Attack();
                             canAtk = false;
@@ -203,7 +204,7 @@ namespace Drone
                 //shoot player
                 foreach (var v in players)
                 {
-                    if (Vector3.Distance(transform.position, v.transform.position) < atkRange && canAtk && FieldOFView(v, 10))
+                    if (Vector3.Distance(transform.position, v.transform.position) < atkRange && canAtk && FieldOFView(v, 20))
                     {
                         if (isShooter)
                         {
@@ -228,7 +229,7 @@ namespace Drone
                 Target = null;
                 if (!drone.Stunned)
                 {
-                    Target = patrolPath[patrol];
+                    Target = patrolPath[patrol %= patrolPath.Count];
                     fsm.MoveNext(Command.Wake);
                     control.DoAlive();
                 }
@@ -244,7 +245,7 @@ namespace Drone
         private IEnumerator DoInvestigate()
         {
             yield return new WaitForSeconds(investigateDuration);
-            Target = patrolPath[patrol];
+            Target = patrolPath[patrol %= patrolPath.Count];
             fsm.MoveNext(Command.LosePlayer);
             investg = false;
         }
@@ -267,11 +268,11 @@ namespace Drone
 
         bool FieldOFView(Player player, float angle)
         {
-            var dir = player.transform.position - transform.position;
+            var dir = (player.transform.position +Vector3.up) - transform.position;
             if (Mathf.Abs(Vector3.Angle(transform.forward, dir)) < angle)
             {
                 RaycastHit hit;
-                Physics.Raycast(transform.position, dir, out hit, ~(1<<11));
+                Physics.Raycast(transform.position, dir, out hit,  30, _layerMask);
                 return hit.transform.CompareTag("Player");
             }
             return false;

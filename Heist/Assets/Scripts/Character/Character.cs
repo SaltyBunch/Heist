@@ -113,10 +113,10 @@ namespace Character
 
         private IEnumerator Stun()
         {
-            _stun = true;
+            Stunned = true;
             timesStunned += 1;
             yield return new WaitForSeconds(5);
-            _stun = false;
+            Stunned = false;
             _stunCooldown = true;
             yield return new WaitForSeconds(3);
             _stunCooldown = false;

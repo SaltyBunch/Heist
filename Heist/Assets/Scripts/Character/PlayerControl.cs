@@ -166,7 +166,8 @@ namespace Character
 
         private void BaseCharacterOnCharacterStunned(object sender, EventArgs e)
         {
-            _anim.SetTrigger("Stunned");
+            if (_isAnimNotNull)
+                _anim.SetTrigger("Stunned");
         }
 
         private void InventoryOnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -345,6 +346,7 @@ namespace Character
 
         private void WeaponAttack()
         {
+            if (_baseCharacter.Stunned) return;
             if (_isAnimNotNull)
             {
                 if (_baseCharacter.Inventory.SelectedItem is StunGun)
@@ -358,7 +360,6 @@ namespace Character
                 }
             }
 
-            if (_baseCharacter.Stunned) return;
             BaseCharacter.Inventory.Use();
         }
 
@@ -436,6 +437,8 @@ namespace Character
         private void OnDestroy()
         {
             BaseCharacter.HealthChanged -= BaseCharacterOnHealthChanged;
+            BaseCharacter.Inventory.SelectionChanged -= InventoryOnSelectionChanged;
+            BaseCharacter.CharacterStunned -= BaseCharacterOnCharacterStunned;
         }
     }
 }

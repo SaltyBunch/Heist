@@ -61,9 +61,39 @@ MonoBehaviour:
   _stunMultiplier: 100
   FOG: {fileID: 0}
   droneSpawner: {fileID: 519317684289803402}
+  _pickupSpawners:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _endGameAtTime: 360
   _vaultTimer: 0
-  _gameEndArea: {fileID: 0}
+  _gameEndArea: {fileID: 2648981502361538502}
   EnvironmentLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -83,7 +113,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -177,7 +207,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4feb1f16400b44c92ea0bd8c8a32e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  droneWaves: []
+  droneWaves:
+  - spawnDelay: 0
+    drones:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - spawnDelay: 0
+    drones:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
 --- !u!65 &2648981502361538502
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -189,5 +231,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 25.568739, y: 4.971158, z: 3.295517}
+  m_Center: {x: 0.13589191, y: 1.1952405, z: 1.1477585}

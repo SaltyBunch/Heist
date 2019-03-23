@@ -7,7 +7,6 @@ using Character;
 using Level;
 using Pickup;
 using Rewired;
-using UI;
 using UnityEngine;
 using Player = Character.Player;
 using Random = UnityEngine.Random;
@@ -71,7 +70,7 @@ namespace Game
         [SerializeField] public drone.DroneLoad droneSpawner;
 
         [SerializeField] private List<PickupSpawner> _pickupSpawners;
-        
+
         private float _time;
 
         private float _timeSinceVaultOpened;
@@ -99,7 +98,7 @@ namespace Game
             set
             {
                 _playerLeaving = value;
-                if (_playerLeaving.Count(x => x == true) == _players.Length)
+                if (_playerLeaving.Count(x => x == true) == _playerLeaving.Length)
                 {
                     AllPlayersLeft(true);
                 }
@@ -109,7 +108,7 @@ namespace Game
         private void AllPlayersLeft(bool b)
         {
             CalculateScore();
-            //todo go to score screen
+            GameManager.GameManagerRef.EndGame();
         }
 
         public Dictionary<NotifyType, float> NotificationRamge = new Dictionary<NotifyType, float>
@@ -293,9 +292,10 @@ namespace Game
                 _players[i].fog.FogOfWarPlane = FOG.transform;
                 _players[i].fog.num = (i + 1);
 
-
                 NotifyMessage += _players[i].PlayerUiManager.NotifyMessage;
             }
+
+            _playerLeaving = new bool[numPlayers];
 
             #endregion
 
@@ -306,11 +306,12 @@ namespace Game
             {
                 players.Add(player.Player);
             }
+
             //todo drone setup
             droneSpawner.Begin(players);
 
             #endregion
-            
+
             #region Audio
 
             _audioSource[_currentAudioSource].clip = _backgroundMusicGathering;

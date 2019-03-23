@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1320086219260622751}
   - component: {fileID: 1320086219259819967}
   - component: {fileID: 1320086219258852735}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1320086219260783551}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 1, z: 0.125}
+  m_LocalPosition: {x: -1.25, y: 1, z: 0.125}
   m_LocalScale: {x: 1, y: 1, z: 3}
   m_Children: []
   m_Father: {fileID: 3907770790372904432}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 8530818776482624842}
   - component: {fileID: 7827346160806211901}
   - component: {fileID: 5919251643462801385}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449286785684102835}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 1, z: 0.125}
+  m_LocalPosition: {x: -1.25, y: 1, z: 0.063}
   m_LocalScale: {x: 1, y: 1, z: 3}
   m_Children: []
   m_Father: {fileID: 2827818147474830723}
@@ -165,7 +165,8 @@ GameObject:
   - component: {fileID: 3907770790372904432}
   - component: {fileID: 3907770790374231504}
   - component: {fileID: 3907770790375198480}
-  m_Layer: 0
+  - component: {fileID: 1812520864022999305}
+  m_Layer: 12
   m_Name: BigGlassDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +181,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3907770790373003728}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.75, y: 0, z: -0.25}
+  m_LocalPosition: {x: 1.5, y: 0, z: -0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1320086219260622751}
@@ -194,7 +195,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3907770790373003728}
-  m_Mesh: {fileID: 4300000, guid: 4fe9b9283daccd149a340e92c161e40e, type: 3}
+  m_Mesh: {fileID: 4300002, guid: 4fe9b9283daccd149a340e92c161e40e, type: 3}
 --- !u!23 &3907770790375198480
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -232,6 +233,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &1812520864022999305
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3907770790373003728}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 3, z: 0.0625}
+  m_Center: {x: -0.7512722, y: 1.5, z: -0.0014423132}
 --- !u!1 &5735952380022687858
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,9 +257,12 @@ GameObject:
   - component: {fileID: 5735952380022264914}
   - component: {fileID: 5735952380025689202}
   - component: {fileID: 5735952380024690354}
-  m_Layer: 0
+  - component: {fileID: 9125894593858769253}
+  - component: {fileID: 3027779717601185700}
+  - component: {fileID: 5243179128812743645}
+  m_Layer: 12
   m_Name: BigGlassEntrance
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -311,6 +328,59 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!95 &9125894593858769253
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5735952380022687858}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c40f6f62cc4acb443aef0874055e3bf4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3027779717601185700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5735952380022687858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c6fc016333bed4dbd1bcb0fa2bff8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _light: {fileID: 0}
+  _locked: 1
+  _lockedColor: {r: 0, g: 0, b: 0, a: 0}
+  _anim: {fileID: 9125894593858769253}
+  _open: 0
+  _unlockedColor: {r: 0, g: 0, b: 0, a: 0}
+  _lockQuickTimeEvent: {fileID: 5161225311952668459, guid: b66ac9ce57d0dee48bed4a217e56cace,
+    type: 3}
+--- !u!64 &5243179128812743645
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5735952380022687858}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: 2919cb0ea6789574181e23239c6ccb1a, type: 3}
 --- !u!1 &8703897875182931182
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,7 +392,8 @@ GameObject:
   - component: {fileID: 2827818147474830723}
   - component: {fileID: 4785901171130901085}
   - component: {fileID: 8639277630897331625}
-  m_Layer: 0
+  - component: {fileID: 1585125718914839051}
+  m_Layer: 12
   m_Name: BigGlassDoor (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +408,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8703897875182931182}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.00000058114523}
-  m_LocalPosition: {x: -0.75, y: 0, z: -0.1875}
+  m_LocalPosition: {x: -1.5, y: 0, z: -0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8530818776482624842}
@@ -351,7 +422,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8703897875182931182}
-  m_Mesh: {fileID: 4300000, guid: 4fe9b9283daccd149a340e92c161e40e, type: 3}
+  m_Mesh: {fileID: 4300002, guid: 4fe9b9283daccd149a340e92c161e40e, type: 3}
 --- !u!23 &8639277630897331625
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -389,3 +460,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &1585125718914839051
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8703897875182931182}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 3, z: 0.0625}
+  m_Center: {x: -0.7512722, y: 1.5, z: -0.0014423132}

@@ -28,6 +28,7 @@ namespace Level
         [SerializeField] internal Color _unlockedColor;
 
         [SerializeField] private LockQuickTimeEvent _lockQuickTimeEvent;
+        private bool _interacting;
 
         public bool Locked
         {
@@ -49,6 +50,8 @@ namespace Level
         {
             if (_locked)
             {
+                if (_interacting) return;
+                _interacting = true;
                 _quickTime = player.BaseCharacter.InitializeQuickTime(_lockQuickTimeEvent) as LockQuickTimeEvent;
                 _quickTime.QuickTimeType = QuickTimeEvent.Type.Door;
                 _quickTime.Events += QuickTimeEventMonitor;
@@ -73,6 +76,7 @@ namespace Level
 
         private void PlayerOnOnMoveCancel(object sender, EventArgs e)
         {
+            _interacting = false;
             _quickTime.Events -= QuickTimeEventMonitor;
             Destroy(_quickTime.gameObject, 0.2f);
             _quickTime = null;
@@ -84,6 +88,7 @@ namespace Level
         {
             if (e.Complete)
             {
+                _interacting = false;
                 _locked = false;
                 Open(_player);
                 _quickTime.Events -= QuickTimeEventMonitor;

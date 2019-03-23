@@ -39,6 +39,7 @@ namespace Hazard
         {
             if (e.Complete)
             {
+                _interacting = false;
                 _quickTime.Events -= QuickTimeEventMonitor;
                 _quickTime = null;
                 _player.OnMoveCancel -= PlayerOnOnMoveCancel;

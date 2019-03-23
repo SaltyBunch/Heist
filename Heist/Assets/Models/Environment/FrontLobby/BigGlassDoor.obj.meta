@@ -5,12 +5,18 @@ ModelImporter:
   fileIDToRecycleName:
     100000: BigGlassDoor
     100002: //RootNode
+    100004: BigGlassDoor:BigGlassDoor
     400000: BigGlassDoor
     400002: //RootNode
+    400004: BigGlassDoor:BigGlassDoor
     2100000: BigGlassDoorMat
+    2100002: initialShadingGroup
     2300000: BigGlassDoor
+    2300002: BigGlassDoor:BigGlassDoor
     3300000: BigGlassDoor
+    3300002: BigGlassDoor:BigGlassDoor
     4300000: BigGlassDoor
+    4300002: BigGlassDoor:BigGlassDoor
   externalObjects:
   - first:
       type: UnityEngine:Material

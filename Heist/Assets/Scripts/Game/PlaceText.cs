@@ -5,6 +5,6 @@ namespace Game
 {
     public class PlaceText : MonoBehaviour
     {
-        [SerializeField] public TextMeshProUGUI ScoreText;
+        [SerializeField] public TextMeshPro ScoreText;
     }
 }

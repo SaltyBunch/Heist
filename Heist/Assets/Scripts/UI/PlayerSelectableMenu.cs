@@ -56,16 +56,21 @@ namespace UI
 
         public override void Cancel()
         {
-            if (selection.TrueForAll(s => !s.ready))
-            {
-                CaptureInput = false;
-                _cancel.Invoke();
-            }
+
         }
 
         public override void Activate()
         {
             CaptureInput = true;
+        }
+
+        public void Exit()
+        {
+            if (selection.TrueForAll(s => !s.ready || !s.gameObject.activeSelf))
+            {
+                CaptureInput = false;
+                _cancel.Invoke();
+            }
         }
     }
 }

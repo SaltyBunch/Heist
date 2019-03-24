@@ -100,6 +100,7 @@ namespace UI
                 if (_player.GetButtonDown("UISubmit") && !ready) ready = true;
 
                 if (ready && _player.GetButtonDown("UICancel")) ready = false;
+                if (ready && _player.GetButtonDown("UICancel") && ready == false) _playerSelectManager.Exit();;
 
                 if (_player.GetButtonDown("UIVerticalUp")) PlayerSkinchoice++;
                 if (_player.GetButtonDown("UIVerticalDown")) PlayerSkinchoice--;

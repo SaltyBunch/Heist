@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 2428945193083673116}
   - component: {fileID: 2178995585783857364}
   m_Layer: 0
-  m_Name: Rocco_Textured_Idle_Run_Dash
+  m_Name: Rocco_PlayerModel
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +81,7 @@ Animator:
   m_GameObject: {fileID: 419554082125560989}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 4b4fc846d8813c54e93094993afd0be9, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5378bfa9fded9654686901d9a3594bed, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

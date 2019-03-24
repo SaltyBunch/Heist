@@ -911,6 +911,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1678145375}
   - component: {fileID: 1678145374}
+  - component: {fileID: 1678145376}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -930,10 +931,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7998ff3e13b418f8949e398022631b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scenes:
+  SceneNames:
     MainMenu: Main Menu
     GameScene: Bank 2.1
-    VictoryScreen: 
+    VictoryScreen: VictoryScene
     Persistent: Persistent
   _state: 0
   _loadingScreen: {fileID: 1163500337}
@@ -952,6 +953,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1678145376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678145373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ee26f9b587540809ac44f5e903d3fe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _vaultLocation: {fileID: 0}
+  _lobbyLocation: {fileID: 0}
 --- !u!1 &1710202161
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,7 +19,7 @@ namespace Game
     }
 
     [Serializable]
-    struct Scenes
+    public struct Scenes
     {
         [SerializeField] public string MainMenu;
         [SerializeField] public string GameScene;
@@ -47,7 +47,7 @@ namespace Game
 
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] private Scenes _scenes;
+        [SerializeField] public Scenes SceneNames;
 
         public static readonly Dictionary<Characters, Stats> CharacterStats = new Dictionary<Characters, Stats>
         {
@@ -124,9 +124,8 @@ namespace Game
 
         private void Start()
         {
-            StartCoroutine(LoadScene(_scenes.MainMenu));
+            StartCoroutine(LoadScene(SceneNames.MainMenu));
             NumPlayers = ReInput.controllers.joystickCount;
-
         }
 
         public static int GetPlayerMask(int playerNumber, bool bitShift)
@@ -144,11 +143,11 @@ namespace Game
 
         public void EnterGame()
         {
-            StartCoroutine(LoadScene(_scenes.GameScene));
+            StartCoroutine(LoadScene(SceneNames.GameScene));
             _state = State.Game;
 
             var activeScene = SceneManager.GetActiveScene().name;
-            if (activeScene != _scenes.Persistent)
+            if (activeScene != SceneNames.Persistent)
                 StartCoroutine(UnLoadScene(activeScene));
         }
 
@@ -177,7 +176,7 @@ namespace Game
 
         private void SetupScene(string sceneName)
         {
-            if (sceneName == _scenes.GameScene)
+            if (sceneName == SceneNames.GameScene)
             {
                 LevelManager.LevelManagerRef.InitGame(NumPlayers);
             }
@@ -185,11 +184,11 @@ namespace Game
 
         public void EndGame()
         {
-            StartCoroutine(LoadScene(_scenes.VictoryScreen));
+            StartCoroutine(LoadScene(SceneNames.VictoryScreen));
             _state = State.Victory;
 
             var activeScene = SceneManager.GetActiveScene().name;
-            if (activeScene != _scenes.Persistent)
+            if (activeScene != SceneNames.Persistent)
                 StartCoroutine(UnLoadScene(activeScene));
         }
 
@@ -205,11 +204,11 @@ namespace Game
 
         public void ToMain()
         {
-            StartCoroutine(LoadScene(_scenes.MainMenu));
+            StartCoroutine(LoadScene(SceneNames.MainMenu));
             _state = State.Game;
 
             var activeScene = SceneManager.GetActiveScene().name;
-            if (activeScene != _scenes.Persistent)
+            if (activeScene != SceneNames.Persistent)
                 StartCoroutine(UnLoadScene(activeScene));
         }
     }

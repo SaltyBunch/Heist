@@ -105,7 +105,7 @@ namespace Game
             }
         }
 
-        private void AllPlayersLeft(bool b)
+        public void AllPlayersLeft(bool b)
         {
             CalculateScore();
             GameManager.GameManagerRef.EndGame();
@@ -160,14 +160,28 @@ namespace Game
             foreach (var playerGO in _players)
             {
                 var player = playerGO.Player;
+                var playerNum = playerGO.PlayerControl.PlayerNumber;
 
-                GameManager.GameManagerRef.Scores.Add(
-                    new Score()
-                    {
-                        GoldAmount = player.Inventory.GoldAmount,
-                        TimesStunned = player.timesStunned,
-                        PlayerNumber = playerGO.PlayerControl.PlayerNumber,
-                    });
+                if (_playerLeaving[playerNum])
+                {
+                    GameManager.GameManagerRef.Scores.Add(
+                        new Score()
+                        {
+                            GoldAmount = player.Inventory.GoldAmount,
+                            TimesStunned = player.timesStunned,
+                            PlayerNumber = playerGO.PlayerControl.PlayerNumber,
+                        });
+                }
+                else
+                {
+                    GameManager.GameManagerRef.Scores.Add(
+                        new Score()
+                        {
+                            GoldAmount = 0,
+                            TimesStunned = player.timesStunned,
+                            PlayerNumber = playerGO.PlayerControl.PlayerNumber,
+                        });
+                }
             }
         }
 
@@ -221,6 +235,8 @@ namespace Game
                 //todo place hazards
                 pickupSpawner.Spawn();
             }
+
+            _gameEndArea.enabled = false;
 
             #endregion
 
@@ -359,6 +375,7 @@ namespace Game
 
             callVault();
             _vaultOpen = true;
+            _gameEndArea.enabled = true;
 
             var time = _vaultTimer;
             do
@@ -397,6 +414,15 @@ namespace Game
             {
                 var player = other.GetComponentInParent<PlayerControl>();
                 PlayerLeaving[player.PlayerNumber] = true;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                var player = other.GetComponentInParent<PlayerControl>();
+                PlayerLeaving[player.PlayerNumber] = false;
             }
         }
 

@@ -56,8 +56,11 @@ namespace UI
 
         public override void Cancel()
         {
-            CaptureInput = false;
-            _cancel.Invoke();
+            if (selection.TrueForAll(s => !s.ready))
+            {
+                CaptureInput = false;
+                _cancel.Invoke();
+            }
         }
 
         public override void Activate()

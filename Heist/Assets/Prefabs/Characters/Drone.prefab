@@ -49,7 +49,6 @@ GameObject:
   - component: {fileID: 4548259701909515994}
   - component: {fileID: 7775699949944083529}
   - component: {fileID: 6376470768398464593}
-  - component: {fileID: 2259010359008453534}
   - component: {fileID: 5014299462988642639}
   m_Layer: 11
   m_Name: Drone
@@ -123,7 +122,7 @@ MonoBehaviour:
   atkRange: 6
   atkSpeed: 1
   isShooter: 1
-  inView: {fileID: 2259010359008453534}
+  inView: {fileID: 0}
   control: {fileID: 4664106523531736076}
   drone: {fileID: 8087823521443717759}
   _stunGun: {fileID: 4548259701909515994}
@@ -358,31 +357,6 @@ CapsuleCollider:
   m_Height: 0.81
   m_Direction: 2
   m_Center: {x: 0, y: 0.06, z: 0.03}
---- !u!114 &2259010359008453534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 392497562500751243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3409a5caa191b41488512c76185c5389, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewRadius: 30
-  viewAngle: 120
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 4026531840
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  visibleTargets: []
-  meshResolution: 1
-  edgeResolveIterations: 4
-  edgeDstThreshold: 0.5
-  maskCutawayDst: 0.1
 --- !u!136 &5014299462988642639
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -493,15 +467,7 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: a1c74768ff887444ba796db6f82ed18c, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: a1c74768ff887444ba796db6f82ed18c, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 100008, guid: a1c74768ff887444ba796db6f82ed18c, type: 3}
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
@@ -564,6 +530,14 @@ PrefabInstance:
     - target: {fileID: 400012, guid: a1c74768ff887444ba796db6f82ed18c, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: a1c74768ff887444ba796db6f82ed18c, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: a1c74768ff887444ba796db6f82ed18c, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: a1c74768ff887444ba796db6f82ed18c, type: 3}
       propertyPath: m_Materials.Array.data[0]

@@ -29,7 +29,7 @@ namespace Character
             }
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (_playerNumber != -1)
             {

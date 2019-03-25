@@ -26,8 +26,9 @@ namespace Level
 
         [SerializeField] private List<Pickup.Pickup> _pickupPrefabs;
 
+        [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioClip _openClip;
-        
+
         private void Reset()
         {
             gameObject.tag = "MiniVault";
@@ -73,6 +74,12 @@ namespace Level
             if (e.Complete)
             {
                 _anim.SetTrigger("Open");
+                if (_openClip != null)
+                {
+                    _audioSource.clip = _openClip;
+                    _audioSource.Play();
+                }
+
                 SpawnObjects();
                 CancelChannel(sender, e);
             }
@@ -82,7 +89,8 @@ namespace Level
         {
             var i = Random.Range(0, _possibleSpawns.Count);
 
-            Instantiate(_pickupPrefabs[(int) _possibleSpawns[i]], _player.transform.position, Quaternion.identity,null);
+            Instantiate(_pickupPrefabs[(int) _possibleSpawns[i]], _player.transform.position, Quaternion.identity,
+                null);
 
             this.gameObject.tag = "Untagged";
         }

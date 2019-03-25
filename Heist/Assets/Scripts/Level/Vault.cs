@@ -14,8 +14,10 @@ namespace Level
         [SerializeField] private Light _redLight;
         [SerializeField] private Light _yellowLight;
 
+        [SerializeField] private AudioSource _audioSource;
+
         [SerializeField] private AudioClip _openClip;
-         
+
         private bool _closed = true;
 
         [SerializeField] private Dictionary<KeyType, bool> _keys = new Dictionary<KeyType, bool>
@@ -30,6 +32,8 @@ namespace Level
             if (_keys[KeyType.RedKey] && _keys[KeyType.YellowKey] && _closed)
             {
                 StartCoroutine(LevelManager.LevelManagerRef.OpenVault(OpenDoorMethod));
+                _audioSource.clip = _openClip;
+                _audioSource.Play();
                 _closed = false;
             }
 
@@ -54,7 +58,7 @@ namespace Level
                             throw new ArgumentOutOfRangeException();
                     }
                 }
-            
+
 
             OpenVault();
         }

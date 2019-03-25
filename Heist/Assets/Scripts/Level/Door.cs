@@ -19,9 +19,11 @@ namespace Level
 
         [SerializeField] internal bool _open;
 
+        [SerializeField] internal AudioSource _audioSource;
+
         [SerializeField] internal AudioClip _openClip;
         [SerializeField] internal AudioClip _closeClip;
-        
+
         public bool IsOpen => _animating ? !_open : _open;
 
         internal bool _animating = false;
@@ -68,11 +70,21 @@ namespace Level
                 {
                     _animating = true;
                     _anim.SetTrigger("Open");
+                    if (_openClip != null)
+                    {
+                        _audioSource.clip = _openClip;
+                        _audioSource.Play();
+                    }
                 }
                 else
                 {
                     _animating = true;
                     _anim.SetTrigger("Close");
+                    if (_closeClip != null)
+                    {
+                        _audioSource.clip = _closeClip;
+                        _audioSource.Play();
+                    }
                 }
             }
         }

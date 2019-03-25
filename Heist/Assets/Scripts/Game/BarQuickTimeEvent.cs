@@ -16,6 +16,8 @@ namespace Game
 
         [SerializeField] private Image _pointer;
 
+        [SerializeField] private AudioSource _audioSource;
+        
         [SerializeField] private AudioClip _sucess, _failure;
 
         private Input _controlInput;
@@ -54,6 +56,8 @@ namespace Game
                     State = (int)(_index * 100),
                     Type = QuickTimeType
                 });
+                _audioSource.clip = _sucess;
+                _audioSource.Play();
                 StartCoroutine(FlashColour(Color.green));
             }
             else
@@ -65,6 +69,8 @@ namespace Game
                     State = (int)(_index * 100),
                     Type = QuickTimeType
                 });
+                _audioSource.clip = _failure;
+                _audioSource.Play();
                 StartCoroutine(FlashColour(Color.red));
             }
         }

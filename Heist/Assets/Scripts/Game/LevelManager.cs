@@ -96,10 +96,13 @@ namespace Game
             set
             {
                 _playerLeaving = value;
-                if (_playerLeaving.Count(x => x == true) == _playerLeaving.Length)
+                for (var i = 0; i < _playerLeaving.Length; i++)
                 {
-                    AllPlayersLeft(true);
+                    var b = _playerLeaving[i];
+                    if (!b) break;
+                    if (i + 1 == _playerLeaving.Length) AllPlayersLeft(true);
                 }
+
             }
         }
 
@@ -420,6 +423,7 @@ namespace Game
             {
                 var player = other.GetComponentInParent<PlayerControl>();
                 PlayerLeaving[player.PlayerNumber] = true;
+                PlayerLeaving = PlayerLeaving;
             }
         }
 
@@ -429,6 +433,7 @@ namespace Game
             {
                 var player = other.GetComponentInParent<PlayerControl>();
                 PlayerLeaving[player.PlayerNumber] = false;
+                PlayerLeaving = PlayerLeaving;
             }
         }
 
@@ -485,7 +490,7 @@ namespace Game
                     var current = _voiceQue.First();
                     if (current != null)
                     {
-                        if (_time - current.Item2 < 5) // less then 5 secs since request
+                        if (_time - current.Item2 < 2) // less then 5 secs since request
                         {
                             PlayVoiceLine(current.Item1);
                             _voiceQue.RemoveAt(0);

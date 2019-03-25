@@ -49,11 +49,21 @@ namespace Level
                     {
                         _animating = true;
                         _anim.SetTrigger("Open");
+                        if (_openClip != null)
+                        {
+                            _audioSource.clip = _openClip;
+                            _audioSource.Play();
+                        }
                     }
                     else
                     {
                         _animating = true;
                         _anim.SetTrigger("Close");
+                        if (_closeClip != null)
+                        {
+                            _audioSource.clip = _closeClip;
+                            _audioSource.Play();
+                        }
                     }
                 }
             }

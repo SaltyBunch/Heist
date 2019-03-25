@@ -17,6 +17,8 @@ namespace Game
 
         [SerializeField] private Animator _animator;
 
+        [SerializeField] private AudioSource _audioSource;
+        
         [SerializeField] private AudioClip _success, _failure;
         
         private Button[] _buttons;
@@ -63,6 +65,9 @@ namespace Game
                     _animator.SetTrigger(Unlock);
                     Destroy(gameObject, 0.954918f);
                 }
+
+                _audioSource.clip = _success;
+                _audioSource.Play();
             }
             else
             {
@@ -73,6 +78,9 @@ namespace Game
                 });
                 LevelManager.LevelManagerRef.Notify(_position, NotifyType.TripTrap);
                 Generate();
+                
+                _audioSource.clip = _failure;
+                _audioSource.Play();
             }
         }
 

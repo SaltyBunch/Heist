@@ -19,21 +19,22 @@ namespace Hazard
             Collider = GetComponent<BoxCollider>();
         }
 
+        
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player")) StartCoroutine(Trigger(other.GetComponentInParent<PlayerControl>()));
-        }
-
-        private new IEnumerator Trigger(PlayerControl player)
-        {
-            if (PlacedByPlayer) Destroy(this.gameObject, 5);
-            float elapsed = 0;
-            do
+            if (other.CompareTag("Player"))
             {
+                var player = other.GetComponentInParent<PlayerControl>();
                 player.BaseCharacter.Stacks += 1;
-                yield return null;
-                elapsed += Time.deltaTime;
-            } while (elapsed < _cooldown);
+            }
+        }
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                var player = other.GetComponentInParent<PlayerControl>();
+                player.BaseCharacter.Stacks += 1;
+            }
         }
 
         public override bool Place(Vector3 position)

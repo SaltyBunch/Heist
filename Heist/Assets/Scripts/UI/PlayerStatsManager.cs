@@ -61,6 +61,10 @@ namespace UI
                     itemRect.anchorMax = Vector2.up * 0.5f;
                     itemRect.anchorMin = Vector2.up * 0.5f;
 
+                    _siren.rectTransform.anchorMax = Vector2.up;
+                    _siren.rectTransform.anchorMin = Vector2.up;
+
+                    _siren.rectTransform.pivot = Vector2.up * 1.5f + Vector2.left * 0.5f;
 
                     _playerBorder.gameObject.transform.localScale = new Vector3()
                     {
@@ -68,8 +72,8 @@ namespace UI
                     };
 
                     //keys
-                    
-                    
+
+
                     _keyHolder.anchorMin = Vector2.up * 0.5f;
                     _keyHolder.anchorMax = Vector2.up * 0.5f;
 
@@ -84,6 +88,12 @@ namespace UI
 
                     playerRect.anchorMax = Vector2.up * 0.5f;
                     playerRect.anchorMin = Vector2.up * 0.5f;
+
+                    _siren.rectTransform.pivot = Vector2.one * 1.5f;
+
+                    _siren.rectTransform.anchorMax = Vector2.one;
+                    _siren.rectTransform.anchorMin = Vector2.one;
+
 
                     _playerBorder.gameObject.transform.localScale = new Vector3()
                     {

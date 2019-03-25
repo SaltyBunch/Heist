@@ -23,7 +23,7 @@ namespace Game
                 {
                     var playerModel = Instantiate(playerModels[(int) GameManager.PlayerChoice[order[i].PlayerNumber]],
                         _places[i]);
-                    playerModel.SetMaterial(GameManager.Skins[order[i].PlayerNumber]);
+                    playerModel.SetMaterial(GameManager.GameManagerRef.Skins[order[i].PlayerNumber]);
                     _placeTexts[i].ScoreText.text = order[i].PlayerScore.ToString();
                 }
                 else

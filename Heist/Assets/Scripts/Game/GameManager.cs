@@ -109,7 +109,7 @@ namespace Game
         public List<Score> Scores;
         public static int NumPlayers { get; set; }
 
-        public static List<Material> Skins = new List<Material>()
+        public List<Material> Skins = new List<Material>()
         {
             null, null, null, null
         };

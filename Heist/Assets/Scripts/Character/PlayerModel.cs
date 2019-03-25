@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace Character
 {
@@ -10,7 +11,7 @@ namespace Character
         [SerializeField] private int _playerNumber = -1;
 
         public float hidey = 0;
-        private float _modelAlpha = 6;
+        private float _modelAlpha = 4;
 
         private static List<Color> _colors = new List<Color>()
         {
@@ -18,6 +19,11 @@ namespace Character
         };
 
         private MaterialPropertyBlock _prop;
+
+        private void Awake()
+        {
+            _prop = new MaterialPropertyBlock();
+        }
 
         public void SetMaterial(Material mat)
         {
@@ -29,37 +35,35 @@ namespace Character
             }
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             if (_playerNumber != -1)
             {
-                if (hidey > 0) _modelAlpha = 6;
+                if (hidey > 0) _modelAlpha = 4;
                 else _modelAlpha -= Time.deltaTime;
                 var v = _colors[_playerNumber];
-                v.a = Mathf.Clamp(_modelAlpha, 0, 1);;
-                _colors[_playerNumber] = v;
-                UpdateColor();
+                v.a = Mathf.Clamp(_modelAlpha, 0, 1);
+                UpdateColor(v);
+            }
+            else
+            {
+                UpdateColor(Color.clear);
             }
         }
 
-        private void UpdateColor()
+        private void UpdateColor(Color color)
         {
-            if (_playerNumber >= 0)
-            {
                 foreach (var character in _characterSkinnedMeshRenderers)
                 {
                     character.GetPropertyBlock(_prop);
-                    _prop.SetColor("_OccludedColor", _colors[_playerNumber]);
+                    _prop.SetColor("_OccludedColor", color);
                     character.SetPropertyBlock(_prop);
                 }
-            }
         }
 
         public void SetPlayer(int playerNumber)
         {
-            _prop = new MaterialPropertyBlock();
             _playerNumber = playerNumber;
-            UpdateColor();
         }
     }
 }

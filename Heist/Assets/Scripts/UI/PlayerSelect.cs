@@ -40,7 +40,7 @@ namespace UI
                          CharacterSkins[GameManager.PlayerChoice[player]].Count) %
                         CharacterSkins[GameManager.PlayerChoice[player]].Count;
                 _playerSkinchoice = value;
-                GameManager.Skins[player] = CharacterSkins[GameManager.PlayerChoice[player]][_playerSkinchoice];
+                GameManager.GameManagerRef.Skins[player] = CharacterSkins[GameManager.PlayerChoice[player]][_playerSkinchoice];
 
                 _playerModels[Selection]
                     .SetMaterial(CharacterSkins[GameManager.PlayerChoice[player]][_playerSkinchoice]);

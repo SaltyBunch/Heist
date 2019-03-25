@@ -157,7 +157,7 @@ namespace Character
 
             GameManager.SetLayerOnAll(_reticule, 5);
 
-            _playerModel.SetMaterial(GameManager.Skins[PlayerNumber]);
+            _playerModel.SetMaterial(GameManager.GameManagerRef.Skins[PlayerNumber]);
             _playerModel.SetPlayer(PlayerNumber);
 
             BaseCharacter.HealthChanged += BaseCharacterOnHealthChanged;

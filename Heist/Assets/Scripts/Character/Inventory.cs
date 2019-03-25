@@ -2,10 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Game;
 using Hazard;
-using Rewired;
 using UnityEngine;
-using UnityEngine.Networking;
-using UnityEngine.Serialization;
 using Weapon;
 
 namespace Character

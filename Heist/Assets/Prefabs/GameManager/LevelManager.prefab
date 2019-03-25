@@ -96,7 +96,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _endGameAtTime: 360
+  _endGameAtTime: 180
   _gameEndArea: {fileID: 2648981502361538502}
   EnvironmentLayer:
     serializedVersion: 2

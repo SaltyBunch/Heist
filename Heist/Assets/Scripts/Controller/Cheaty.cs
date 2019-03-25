@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using Game;
+using Level;
 using Rewired;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,8 +10,8 @@ namespace Controller
 {
     public class Cheaty : MonoBehaviour
     {
-        [SerializeField] private Transform _vaultLocation;
-        [SerializeField] private Transform _lobbyLocation;
+        private Vector3 _vaultLocation = new Vector3(-196.42f, 1.06f, -124.53f);
+        private Vector3 _lobbyLocation = new Vector3(-3.4f, 1.06f, -122.3f);
 
         //todo cheaty buttons
 
@@ -24,9 +27,46 @@ namespace Controller
                     {
                         EndGame();
                     }
+
+                    if (keyboard.GetKeyDown(keyCode: KeyCode.K))
+                    {
+                        OpenVault();
+                    }
+                    
+                    if (keyboard.GetKeyDown(keyCode: KeyCode.V))
+                    {
+                        TeleportPlayers(_vaultLocation);
+                    }
+                    if (keyboard.GetKeyDown(keyCode: KeyCode.L))
+                    {
+                        TeleportPlayers(_lobbyLocation);
+                    }
                 }
             }
         }
+
+        private void TeleportPlayers(Vector3 teleportLocation)
+        {
+            foreach (var player in LevelManager.LevelManagerRef.Players)
+            {
+                player.PlayerControl.transform.position = teleportLocation;
+                player.PlayerControl.CameraLogic.transform.position = teleportLocation;
+            }
+        }
+
+        private void OpenVault()
+        {
+            if (SceneManager.GetActiveScene().name == GameManager.GameManagerRef.SceneNames.GameScene)
+            {
+                var vault = (Vault) FindObjectOfType(typeof(Vault));
+                vault.UseKey(new Dictionary<KeyType, bool>()
+                {
+                    {KeyType.RedKey, true},
+                    {KeyType.YellowKey, true}
+                });
+            }
+        }
+
 
         private void EndGame()
         {

@@ -55,14 +55,14 @@ namespace Game
                 Characters.King, new Stats
                 {
                     Health = 5,
-                    Speed = 2,
+                    Speed = 3,
                     Dexterity = 2
                 }
             },
             {
                 Characters.Jailbird, new Stats
                 {
-                    Health = 4,
+                    Health = 3,
                     Speed = 5,
                     Dexterity = 3
                 }

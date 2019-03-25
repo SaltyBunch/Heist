@@ -27,7 +27,7 @@ namespace Level
 
         private static readonly int Open = Animator.StringToHash("Open");
 
-        public bool OpenVault()
+        public void OpenVault()
         {
             if (_keys[KeyType.RedKey] && _keys[KeyType.YellowKey] && _closed)
             {
@@ -36,14 +36,12 @@ namespace Level
                 _audioSource.Play();
                 _closed = false;
             }
-
-            return !_closed;
         }
 
         public void UseKey(Dictionary<KeyType, bool> keys)
         {
             foreach (var key in (KeyType[]) Enum.GetValues(typeof(KeyType)))
-                if (keys[key] && key != KeyType.BlueKey)
+                if (key != KeyType.BlueKey && keys[key])
                 {
                     _keys[key] = true;
                     switch (key)
@@ -66,6 +64,7 @@ namespace Level
         private void OpenDoorMethod()
         {
             _anim.SetTrigger(Open);
+            GameManager.SetLayerOnAll(gameObject, 10);
         }
     }
 }

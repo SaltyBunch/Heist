@@ -120,7 +120,7 @@ MonoBehaviour:
   reviveTimer: 3
   reviving: 0
   Target: {fileID: 0}
-  atkRange: 4
+  atkRange: 6
   atkSpeed: 1
   isShooter: 1
   inView: {fileID: 2259010359008453534}
@@ -131,6 +131,11 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 4026531840
+  _patrolClip: {fileID: 0}
+  _investigationClip: {fileID: 0}
+  _attackClip: {fileID: 0}
+  _damageClip: {fileID: 0}
+  _stunClip: {fileID: 0}
 --- !u!135 &392497562500751249
 SphereCollider:
   m_ObjectHideFlags: 0

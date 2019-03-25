@@ -341,6 +341,8 @@ namespace Game
             _musicAudioSource[_currentAudioSource].Play();
 
             #endregion
+            
+            NotifyPlayers("Infiltrate the vault");
         }
 
         private void ShuffleSpawns()
@@ -386,6 +388,8 @@ namespace Game
             _vaultOpen = true;
             _gameEndArea.enabled = true;
 
+            NotifyPlayers("Collect gold and escape the bank");
+            
             var time = _endGameAtTime;
             do
             {

@@ -61,7 +61,8 @@ namespace Character
         [SerializeField] private AudioClip _loseGold;
         [SerializeField] private AudioClip _exitBank;
 
-        [Header("Sounds")] [SerializeField] private AudioClip _meleeAttack;
+        [Header("Sounds")] [SerializeField] private AudioClip _footstep;
+        [SerializeField] private AudioClip _meleeAttack;
         [SerializeField] private AudioClip _pickupTrap;
         [SerializeField] private AudioClip _pickupWeapon;
 
@@ -166,6 +167,7 @@ namespace Character
 
         private void BaseCharacterOnCharacterStunned(object sender, EventArgs e)
         {
+            if (_loseGold != null) LevelManager.LevelManagerRef.PlayVoiceLine(_loseGold);
             if (_isAnimNotNull)
                 _anim.SetTrigger("Stunned");
         }
@@ -204,6 +206,8 @@ namespace Character
 
         private void BaseCharacterOnHealthChanged(object sender, HealthChangedEventArgs e)
         {
+            if (e.AmountChanged < 0 && _takeDamage != null)
+                LevelManager.LevelManagerRef.PlayVoiceLine(_takeDamage);
             _playerUiManager.SetHealth(e.Health);
         }
 
@@ -402,6 +406,8 @@ namespace Character
 
         private void PushAttack()
         {
+            _audioSource.clip = _meleeAttack;
+            _audioSource.Play();
             var objects = Physics.OverlapSphere(transform.position, 2);
             foreach (var o in objects)
             {
@@ -439,6 +445,24 @@ namespace Character
             BaseCharacter.HealthChanged -= BaseCharacterOnHealthChanged;
             BaseCharacter.Inventory.SelectionChanged -= InventoryOnSelectionChanged;
             BaseCharacter.CharacterStunned -= BaseCharacterOnCharacterStunned;
+        }
+
+        public void PickupGold()
+        {
+            _audioSource.clip = _collectGold;
+            _audioSource.Play();
+        }
+
+        public void PickupWeapon()
+        {
+            if (_pickupWeapon != null)
+                LevelManager.LevelManagerRef.PlayVoiceLine(_pickupWeapon);
+        }
+
+        public void PickupTrap()
+        {
+            if (_pickupTrap != null)
+                LevelManager.LevelManagerRef.PlayVoiceLine(_pickupTrap);
         }
     }
 }

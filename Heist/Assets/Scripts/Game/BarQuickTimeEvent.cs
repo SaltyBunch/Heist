@@ -16,6 +16,7 @@ namespace Game
 
         [SerializeField] private Image _pointer;
 
+        [SerializeField] private AudioClip _sucess, _failure;
 
         private Input _controlInput;
         private int _dir;

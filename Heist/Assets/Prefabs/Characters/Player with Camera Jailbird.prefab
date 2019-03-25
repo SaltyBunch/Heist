@@ -112,6 +112,56 @@ PrefabInstance:
       propertyPath: _hand
       value: 
       objectReference: {fileID: 8497049676628610427}
+    - target: {fileID: 575827870061007412, guid: 0c5c1b41037c2c8469125aee9f07c0d2,
+        type: 3}
+      propertyPath: _enterBank
+      value: 
+      objectReference: {fileID: 8300000, guid: 5ad22bb3454601044a50f22a4dd0c0c6, type: 3}
+    - target: {fileID: 575827870061007412, guid: 0c5c1b41037c2c8469125aee9f07c0d2,
+        type: 3}
+      propertyPath: _defeat
+      value: 
+      objectReference: {fileID: 8300000, guid: 7b9b4a4dd855a0341a5de1084787d1bf, type: 3}
+    - target: {fileID: 575827870061007412, guid: 0c5c1b41037c2c8469125aee9f07c0d2,
+        type: 3}
+      propertyPath: _joke
+      value: 
+      objectReference: {fileID: 8300000, guid: 83507fcb504eb55448ab3f3ca6f2edd4, type: 3}
+    - target: {fileID: 575827870061007412, guid: 0c5c1b41037c2c8469125aee9f07c0d2,
+        type: 3}
+      propertyPath: _loseGold
+      value: 
+      objectReference: {fileID: 8300000, guid: cc10f6e4f526d4f4892f73b2ad22746b, type: 3}
+    - target: {fileID: 575827870061007412, guid: 0c5c1b41037c2c8469125aee9f07c0d2,
+        type: 3}
+      propertyPath: _exitBank
+      value: 
+      objectReference: {fileID: 8300000, guid: 93a61ab3003a5ad4aa56f9d18d6dece3, type: 3}
+    - target: {fileID: 575827870061007412, guid: 0c5c1b41037c2c8469125aee9f07c0d2,
+        type: 3}
+      propertyPath: _spotSecurity
+      value: 
+      objectReference: {fileID: 8300000, guid: 2cfbde714b15102458eeb7ba2a7dc8c0, type: 3}
+    - target: {fileID: 575827870061007412, guid: 0c5c1b41037c2c8469125aee9f07c0d2,
+        type: 3}
+      propertyPath: _taunt
+      value: 
+      objectReference: {fileID: 8300000, guid: 9d3582966245ed94d9f66c3ff9583031, type: 3}
+    - target: {fileID: 575827870061007412, guid: 0c5c1b41037c2c8469125aee9f07c0d2,
+        type: 3}
+      propertyPath: _takeDamage
+      value: 
+      objectReference: {fileID: 8300000, guid: 70f53e4f99517264f99696f83bff5eaa, type: 3}
+    - target: {fileID: 575827870061007412, guid: 0c5c1b41037c2c8469125aee9f07c0d2,
+        type: 3}
+      propertyPath: _victory
+      value: 
+      objectReference: {fileID: 8300000, guid: 0f7b2f68a071b1343893a4ff8a4353f3, type: 3}
+    - target: {fileID: 575827870061007412, guid: 0c5c1b41037c2c8469125aee9f07c0d2,
+        type: 3}
+      propertyPath: _meleeAttack
+      value: 
+      objectReference: {fileID: 8300000, guid: 03a69cdcc320f6448aaeeff52f67dac2, type: 3}
     - target: {fileID: 4903669830783613958, guid: 0c5c1b41037c2c8469125aee9f07c0d2,
         type: 3}
       propertyPath: m_RootOrder

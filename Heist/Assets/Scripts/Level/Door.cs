@@ -19,6 +19,9 @@ namespace Level
 
         [SerializeField] internal bool _open;
 
+        [SerializeField] internal AudioClip _openClip;
+        [SerializeField] internal AudioClip _closeClip;
+        
         public bool IsOpen => _animating ? !_open : _open;
 
         internal bool _animating = false;

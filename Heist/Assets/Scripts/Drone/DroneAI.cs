@@ -44,6 +44,8 @@ namespace Drone
         [SerializeField] private Hazard.ElectricField _eField;
         [SerializeField] private LayerMask _layerMask;
 
+        [SerializeField] private AudioClip _patrolClip, _investigationClip, _attackClip, _damageClip, _stunClip;
+        
         // Start is called before the first frame update
         private void Start()
         {

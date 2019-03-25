@@ -19,6 +19,7 @@ namespace Character
     public class HealthChangedEventArgs
     {
         public int Health;
+        public int AmountChanged;
     }
 
     [RequireComponent(typeof(Rigidbody))]
@@ -56,6 +57,7 @@ namespace Character
             get => _stacks;
             set
             {
+                var changed = _stacks - value;
                 if (value > _stacks && !_invincible && !(_stun || _stunCooldown))
                 {
                     _firstDamage = true;
@@ -72,7 +74,8 @@ namespace Character
                         _stacks = 0;
                 }
 
-                HealthChanged?.Invoke(this, new HealthChangedEventArgs {Health = Stats.Health - _stacks});
+                HealthChanged?.Invoke(this,
+                    new HealthChangedEventArgs {Health = Stats.Health - _stacks, AmountChanged = changed});
             }
         }
 

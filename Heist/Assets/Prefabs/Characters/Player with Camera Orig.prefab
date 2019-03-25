@@ -518,7 +518,7 @@ RectTransform:
   m_GameObject: {fileID: 2811202094876273544}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.61379, y: 0.61379, z: 0.61379}
   m_Children:
   - {fileID: 6825455028703847555}
   m_Father: {fileID: 390696389765141223}
@@ -526,7 +526,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -11}
   m_SizeDelta: {x: 80, y: 24}
   m_Pivot: {x: 0.5, y: 1.5}
 --- !u!222 &5304355830706960132
@@ -557,7 +557,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 9c59bb2dc8fe31f4bb9609fa5fa4b243, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1f0c0f50f2b03a5439d86be2aff908c0, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1601,7 +1601,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &665138993220091105
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1765,8 +1765,9 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 100
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b843d3941b149124198ae4779d5d098b, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4cd80556989faed439af5745bed6688d, type: 2}
+  m_sharedMaterial: {fileID: 21259881420737426, guid: 4cd80556989faed439af5745bed6688d,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1791,7 +1792,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 28.6
+  m_fontSize: 30.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1840,13 +1841,13 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
   m_inputSource: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -2286,7 +2287,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1691388195581535490
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2303,7 +2304,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -71, y: -7.0000315}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8269653689927783179
@@ -2360,7 +2361,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4877126240509040710
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2377,7 +2378,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -71, y: -7}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3195520829195810477
@@ -2434,7 +2435,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8731306601210197670
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2451,7 +2452,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -71, y: -7.0000315}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3939342769254487530
@@ -2864,7 +2865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d648bbf78199436449dbe2d6cf9ba1dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _invFrames: 0.333
+  _invFrames: 0.5
   _knockbackForce: 5
   Stats:
     Health: 0
@@ -2872,6 +2873,7 @@ MonoBehaviour:
     Dexterity: 0
   _inventory: {fileID: 5575446447971451377}
   _playerUiManager: {fileID: 4698396342562292567}
+  _playerControl: {fileID: 575827870061007412}
 --- !u!114 &5575446447971451377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2902,7 +2904,7 @@ MonoBehaviour:
   _audioSource: {fileID: 894402190146973185}
   _baseCharacter: {fileID: 3076247185930184108}
   _playerUiManager: {fileID: 4698396342562292567}
-  _collectGold: {fileID: 0}
+  _collectGold: {fileID: 8300000, guid: 0dba6816bcc7e2a4298aa3a220460690, type: 3}
   _control:
     Dash: 0
     PushAttack: 0
@@ -2926,6 +2928,7 @@ MonoBehaviour:
   _joke: {fileID: 0}
   _loseGold: {fileID: 0}
   _exitBank: {fileID: 0}
+  _footstep: {fileID: 0}
   _meleeAttack: {fileID: 0}
   _pickupTrap: {fileID: 0}
   _pickupWeapon: {fileID: 0}

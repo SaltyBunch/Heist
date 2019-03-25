@@ -10,7 +10,7 @@ namespace Character
         [SerializeField] private int _playerNumber = -1;
 
         public float hidey = 0;
-        private float _modelAlpha = 4;
+        private float _modelAlpha = 6;
 
         private static List<Color> _colors = new List<Color>()
         {
@@ -33,11 +33,10 @@ namespace Character
         {
             if (_playerNumber != -1)
             {
-                if (hidey > 0) _modelAlpha = 4;
+                if (hidey > 0) _modelAlpha = 6;
                 else _modelAlpha -= Time.deltaTime;
                 var v = _colors[_playerNumber];
-                _modelAlpha = Mathf.Clamp(_modelAlpha, 0, 1);
-                v.a = _modelAlpha;
+                v.a = Mathf.Clamp(_modelAlpha, 0, 1);;
                 _colors[_playerNumber] = v;
                 UpdateColor();
             }

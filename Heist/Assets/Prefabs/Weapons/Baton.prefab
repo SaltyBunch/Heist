@@ -141,11 +141,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8afc06b2e19b41109c4a7d8343b8e4ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 0}
-  _fireSound: {fileID: 0}
-  _hitSound: {fileID: 0}
+  _audioSource: {fileID: 1188453641327853640}
+  _fireSound: {fileID: 8300000, guid: 70fba49335345274ba8e4c2796d5207a, type: 3}
+  _hitSound: {fileID: 8300000, guid: 1c3c193d8e211db4ab88181ad23b9b20, type: 3}
   _outOfAmmoSound: {fileID: 0}
-  _pickupSound: {fileID: 0}
+  _pickupSound: {fileID: 8300000, guid: 304bad6d053f2bb47944314bdc95203e, type: 3}
   Ammo: 0
 --- !u!1001 &4570642001027903246
 PrefabInstance:
@@ -154,6 +154,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1188453641327853643}
     m_Modifications:
+    - target: {fileID: 100000, guid: cc308accb7b9936449f7a6de6e42e594, type: 3}
+      propertyPath: m_Name
+      value: Steven_Baton
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cc308accb7b9936449f7a6de6e42e594, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cc308accb7b9936449f7a6de6e42e594, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -209,14 +217,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: cc308accb7b9936449f7a6de6e42e594, type: 3}
       propertyPath: m_LocalScale.z
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: cc308accb7b9936449f7a6de6e42e594, type: 3}
-      propertyPath: m_Name
-      value: Steven_Baton
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: cc308accb7b9936449f7a6de6e42e594, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc308accb7b9936449f7a6de6e42e594, type: 3}

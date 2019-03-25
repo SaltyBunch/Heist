@@ -34,7 +34,7 @@ namespace Level
                 Percentage = value;
                 for (int i = 0; i < _goldPieces.Count; i++)
                 {
-                    if ((float)i / _goldPieces.Count >= Percentage)
+                    if ((float) i / _goldPieces.Count >= Percentage)
                     {
                         _goldPieces[i].SetActive(false);
                         if (i == 0) // there are no gold left
@@ -95,14 +95,17 @@ namespace Level
                 _totalRemaining -= _transferAmount;
             }
 
-            PercentageRemaining = _totalRemaining / (float)_initialAmount;
+            PercentageRemaining = _totalRemaining / (float) _initialAmount;
             if (e.Complete || _totalRemaining <= 0 || e.State == -1)
             {
                 _interacting = false;
-                _quickTime.Events -= QuickTimeEventMonitor;
-                Destroy(_quickTime.gameObject, 0.2f);
+                if (_quickTime != null)
+                {
+                    _quickTime.Events -= QuickTimeEventMonitor;
+                    Destroy(_quickTime.gameObject, 0.2f);
+                }
                 _quickTime = null;
-                _player.OnMoveCancel -= CancelChannel;
+                if (_player != null) _player.OnMoveCancel -= CancelChannel;
                 _player = null;
             }
         }

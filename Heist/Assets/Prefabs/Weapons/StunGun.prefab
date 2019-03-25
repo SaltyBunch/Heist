@@ -144,9 +144,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 836799958461511945}
   _fireSound: {fileID: 8300000, guid: efe79a159925ca644b5267efbb380540, type: 3}
-  _hitSound: {fileID: 0}
-  _outOfAmmoSound: {fileID: 0}
-  _pickupSound: {fileID: 0}
+  _hitSound: {fileID: 8300000, guid: 35b0410492046904ba34a04aade3c2bf, type: 3}
+  _outOfAmmoSound: {fileID: 8300000, guid: f48559512fdc023419235cfe004fe350, type: 3}
+  _pickupSound: {fileID: 8300000, guid: f79ac08a9374fab4181329518b6f939c, type: 3}
   Ammo: 20
   _projectile: {fileID: 2430004408962383017, guid: 094136b8cd01e9f458c64a263d57dfeb,
     type: 3}
@@ -158,6 +158,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7037665723251684081}
     m_Modifications:
+    - target: {fileID: 100000, guid: 68c7fa97e1ed11c4e9100765dbcb26a0, type: 3}
+      propertyPath: m_Name
+      value: StunGun
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 68c7fa97e1ed11c4e9100765dbcb26a0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -213,10 +217,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 68c7fa97e1ed11c4e9100765dbcb26a0, type: 3}
       propertyPath: m_LocalScale.z
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 68c7fa97e1ed11c4e9100765dbcb26a0, type: 3}
-      propertyPath: m_Name
-      value: StunGun
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68c7fa97e1ed11c4e9100765dbcb26a0, type: 3}

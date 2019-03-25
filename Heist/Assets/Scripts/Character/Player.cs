@@ -16,6 +16,7 @@ namespace Character
         private bool _overWeaponPickup;
 
         [SerializeField] private PlayerUIManager _playerUiManager;
+        [SerializeField] private PlayerControl _playerControl;
 
         public Inventory Inventory => _inventory;
 
@@ -58,8 +59,8 @@ namespace Character
                     {
                         _inventory.GoldAmount += ((GoldPickup) pickup).AmountOfGold;
                         Destroy(pickup.gameObject);
+                        _playerControl.PickupGold();
                     }
-
                     break;
                 case PickupType.Key:
                     if (overPickup && pickup is KeyPickup keyPickup)
@@ -88,6 +89,7 @@ namespace Character
                 if (_inventory.Add(weapon)) Destroy(_currentlyOverPickup.gameObject);
                 OverWeaponPickup = false;
                 _playerUiManager.ClearHint();
+                _playerControl.PickupWeapon();
             }
             else if (OverTrapPickup)
             {
@@ -95,6 +97,7 @@ namespace Character
                 if (_inventory.Add(hazard)) Destroy(_currentlyOverPickup.gameObject);
                 OverTrapPickup = false;
                 _playerUiManager.ClearHint();
+                _playerControl.PickupTrap();
             }
         }
 

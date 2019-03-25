@@ -17,6 +17,8 @@ namespace Game
 
         [SerializeField] private Animator _animator;
 
+        [SerializeField] private AudioClip _success, _failure;
+        
         private Button[] _buttons;
 
         private Input _controlInput;

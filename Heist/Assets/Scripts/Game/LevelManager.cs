@@ -49,7 +49,7 @@ namespace Game
 
         public static LevelManager LevelManagerRef;
 
-        private AudioSource[] _audioSource;
+        [SerializeField] private AudioSource[] _musicAudioSource;
         [SerializeField] private AudioClip _backgroundMusicGathering;
 
         [SerializeField] private AudioClip _backgroundMusicInfiltration;
@@ -87,8 +87,6 @@ namespace Game
 
         [SerializeField] private float _endGameAtTime;
 
-        [SerializeField] private float _vaultTimer;
-
         [SerializeField] private Collider _gameEndArea;
         private bool[] _playerLeaving;
 
@@ -108,6 +106,7 @@ namespace Game
         public void AllPlayersLeft(bool b)
         {
             CalculateScore();
+            _gameOver = true;
             GameManager.GameManagerRef.EndGame();
         }
 
@@ -126,14 +125,15 @@ namespace Game
 
         [SerializeField] private GameObject[] playerModels;
         private bool _doorOpen;
+        [SerializeField] private AudioSource _voiceAudioSource;
+        [SerializeField] private bool _gameOver;
+        private List<Tuple<AudioClip, float>> _voiceQue = new List<Tuple<AudioClip, float>>();
 
         private void Awake()
         {
             if (LevelManagerRef == null) LevelManagerRef = this;
 
             _spawnpoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
-
-            if (_audioSource == null) _audioSource = GetComponents<AudioSource>();
 
             _time = 0;
         }
@@ -145,13 +145,17 @@ namespace Game
             //InitGame(4);
 
             StartCoroutine(LevelTimer());
+            StartCoroutine(VoiceLineMonitor());
         }
 
         private IEnumerator LevelTimer()
         {
-            yield return new WaitForSeconds(0.5f);
-            _time += 0.5f;
-            if (_vaultOpen) TimeSinceVaultOpened += 0.5f;
+            do
+            {
+                yield return new WaitForSeconds(0.5f);
+                _time += 0.5f;
+                if (_vaultOpen) TimeSinceVaultOpened += 0.5f;
+            } while (!_gameOver);
         }
 
         public void CalculateScore()
@@ -330,8 +334,8 @@ namespace Game
 
             #region Audio
 
-            _audioSource[_currentAudioSource].clip = _backgroundMusicGathering;
-            _audioSource[_currentAudioSource].Play();
+            _musicAudioSource[_currentAudioSource].clip = _backgroundMusicGathering;
+            _musicAudioSource[_currentAudioSource].Play();
 
             #endregion
         }
@@ -352,20 +356,22 @@ namespace Game
         {
             if (_doorOpen == false)
             {
-                if (_audioSource.Length > 1)
-                    StartCoroutine(AudioHelper.CrossFade(_audioSource[_currentAudioSource],
-                        _audioSource[(_currentAudioSource + 1) % _audioSource.Length], _backgroundMusicGathering, 5));
-                _currentAudioSource = (_currentAudioSource + 1) % _audioSource.Length;
+                if (_musicAudioSource.Length > 1)
+                    StartCoroutine(AudioHelper.CrossFade(_musicAudioSource[_currentAudioSource],
+                        _musicAudioSource[(_currentAudioSource + 1) % _musicAudioSource.Length],
+                        _backgroundMusicGathering, 5));
+                _currentAudioSource = (_currentAudioSource + 1) % _musicAudioSource.Length;
                 _doorOpen = true;
             }
         }
 
         public IEnumerator OpenVault(Vault.OpenDoor callVault)
         {
-            if (_audioSource.Length > 1)
-                StartCoroutine(AudioHelper.CrossFade(_audioSource[_currentAudioSource],
-                    _audioSource[(_currentAudioSource + 1) % _audioSource.Length], _backgroundMusicLockdown, 5));
-            _currentAudioSource = (_currentAudioSource + 1) % _audioSource.Length;
+            if (_musicAudioSource.Length > 1)
+                StartCoroutine(AudioHelper.CrossFade(_musicAudioSource[_currentAudioSource],
+                    _musicAudioSource[(_currentAudioSource + 1) % _musicAudioSource.Length], _backgroundMusicLockdown,
+                    5));
+            _currentAudioSource = (_currentAudioSource + 1) % _musicAudioSource.Length;
 
             foreach (var player in _players)
             {
@@ -377,7 +383,7 @@ namespace Game
             _vaultOpen = true;
             _gameEndArea.enabled = true;
 
-            var time = _vaultTimer;
+            var time = _endGameAtTime;
             do
             {
                 time -= 1;
@@ -453,6 +459,47 @@ namespace Game
             {
                 player.PlayerUiManager.SetKeyPickedUp(keyPickupKey);
             }
+        }
+
+        public void PlayVoiceLine(AudioClip voiceLine)
+        {
+            //if (voiceLine == null) return;
+            if (!_voiceAudioSource.isPlaying)
+            {
+                _voiceAudioSource.clip = voiceLine;
+                _voiceAudioSource.Play();
+            }
+            else
+            {
+                _voiceQue.Add(new Tuple<AudioClip, float>(voiceLine, _time));
+            }
+        }
+
+        private IEnumerator VoiceLineMonitor()
+        {
+            do
+            {
+                //
+                if (!_voiceAudioSource.isPlaying && _voiceQue.Count > 0)
+                {
+                    var current = _voiceQue.First();
+                    if (current != null)
+                    {
+                        if (_time - current.Item2 < 5) // less then 5 secs since request
+                        {
+                            PlayVoiceLine(current.Item1);
+                            _voiceQue.RemoveAt(0);
+                        }
+                        else
+                        {
+                            _voiceQue.RemoveAt(0);
+                        }
+                    }
+                }
+
+                //
+                yield return null;
+            } while (!_gameOver);
         }
     }
 }

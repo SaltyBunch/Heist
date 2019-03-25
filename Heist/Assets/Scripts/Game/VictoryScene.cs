@@ -17,11 +17,19 @@ namespace Game
         {
             var order = GameManager.GameManagerRef.Scores.OrderByDescending(x => x.PlayerScore).ToList();
             //get places from game manager
-            for (int i = 0; i < GameManager.NumPlayers; i++)
+            for (int i = 0; i < 4; i++)
             {
-                var playerModel = Instantiate(playerModels[(int) GameManager.PlayerChoice[order[i].PlayerNumber]],_places[i]);
-                playerModel.SetMaterial(GameManager.Skins[order[i].PlayerNumber]);
-                _placeTexts[i].ScoreText.text = order[i].PlayerScore.ToString();
+                if (i < GameManager.NumPlayers)
+                {
+                    var playerModel = Instantiate(playerModels[(int) GameManager.PlayerChoice[order[i].PlayerNumber]],
+                        _places[i]);
+                    playerModel.SetMaterial(GameManager.Skins[order[i].PlayerNumber]);
+                    _placeTexts[i].ScoreText.text = order[i].PlayerScore.ToString();
+                }
+                else
+                {
+                    _places[i].gameObject.SetActive(false);
+                }
             }
         }
     }

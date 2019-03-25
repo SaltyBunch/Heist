@@ -13,7 +13,9 @@ namespace Level
 
         [SerializeField] private Light _redLight;
         [SerializeField] private Light _yellowLight;
-        
+
+        [SerializeField] private AudioClip _openClip;
+         
         private bool _closed = true;
 
         [SerializeField] private Dictionary<KeyType, bool> _keys = new Dictionary<KeyType, bool>

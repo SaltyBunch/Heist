@@ -26,6 +26,8 @@ namespace Level
 
         [SerializeField] private List<Pickup.Pickup> _pickupPrefabs;
 
+        [SerializeField] private AudioClip _openClip;
+        
         private void Reset()
         {
             gameObject.tag = "MiniVault";

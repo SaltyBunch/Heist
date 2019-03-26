@@ -2868,9 +2868,9 @@ MonoBehaviour:
   _invFrames: 0.5
   _knockbackForce: 5
   Stats:
-    Health: 0
+    Health: 5
     Speed: 5
-    Dexterity: 0
+    Dexterity: 5
   _inventory: {fileID: 5575446447971451377}
   _playerUiManager: {fileID: 4698396342562292567}
   _playerControl: {fileID: 575827870061007412}

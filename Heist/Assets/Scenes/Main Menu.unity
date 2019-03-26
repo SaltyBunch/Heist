@@ -2223,11 +2223,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 109071409}
     m_Modifications:
-    - target: {fileID: 2277642755675545380, guid: a4ee9f29b8dbd9d4a9cfde771e93ac29,
-        type: 3}
-      propertyPath: m_Lightmapping
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5451102765465021279, guid: a4ee9f29b8dbd9d4a9cfde771e93ac29,
         type: 3}
       propertyPath: m_Name
@@ -2237,6 +2232,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2277642755675545380, guid: a4ee9f29b8dbd9d4a9cfde771e93ac29,
+        type: 3}
+      propertyPath: m_Lightmapping
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5451102765465384831, guid: a4ee9f29b8dbd9d4a9cfde771e93ac29,
         type: 3}
@@ -3156,6 +3156,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerSelect (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2042296089028308711, guid: b57ae98a3bb75b64e9195d4a375799f8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2042296089028308710, guid: b57ae98a3bb75b64e9195d4a375799f8,
         type: 3}
@@ -9549,6 +9554,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 2662ca894fe491140b9d039e332aae4b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2999aa3527949f9429e93af980057398, type: 2}
     - target: {fileID: 400002, guid: 2662ca894fe491140b9d039e332aae4b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.375001
@@ -9557,10 +9566,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.0000009536743
       objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: 2662ca894fe491140b9d039e332aae4b, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 2999aa3527949f9429e93af980057398, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2662ca894fe491140b9d039e332aae4b, type: 3}
 --- !u!4 &1151546728 stripped
@@ -12180,6 +12185,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerSelect (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2042296089028308711, guid: b57ae98a3bb75b64e9195d4a375799f8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2042296089028308710, guid: b57ae98a3bb75b64e9195d4a375799f8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12244,11 +12254,6 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2042296089028308709, guid: b57ae98a3bb75b64e9195d4a375799f8,
-        type: 3}
-      propertyPath: ready
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2042296087684061082, guid: b57ae98a3bb75b64e9195d4a375799f8,
         type: 3}
@@ -16715,6 +16720,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerSelect (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2042296089028308711, guid: b57ae98a3bb75b64e9195d4a375799f8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2042296089028308710, guid: b57ae98a3bb75b64e9195d4a375799f8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17828,6 +17838,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerSelect
+      objectReference: {fileID: 0}
+    - target: {fileID: 2042296089028308711, guid: b57ae98a3bb75b64e9195d4a375799f8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2042296089028308710, guid: b57ae98a3bb75b64e9195d4a375799f8,
         type: 3}

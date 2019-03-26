@@ -11,7 +11,7 @@ namespace UI
     public class PlayerSelect : MonoBehaviour
     {
         private bool _delay = true;
-        private string[] _characterNames = {"King", "Jailbird", "Shadow", "Rocco"};
+        private string[] _characterNames = { "King", "Jailbird", "Shadow", "Rocco" };
         [SerializeField] private TextMeshPro display;
         [SerializeField] private int player;
 
@@ -42,8 +42,7 @@ namespace UI
                 _playerSkinchoice = value;
                 GameManager.GameManagerRef.Skins[player] = CharacterSkins[GameManager.PlayerChoice[player]][_playerSkinchoice];
 
-                _playerModels[Selection]
-                    .SetMaterial(CharacterSkins[GameManager.PlayerChoice[player]][_playerSkinchoice]);
+                _playerModels[Selection].SetMaterial(CharacterSkins[GameManager.PlayerChoice[player]][_playerSkinchoice]);
             }
         }
 
@@ -60,9 +59,9 @@ namespace UI
                 }
 
                 selection = value;
-                
+
                 display.text = _characterNames[Selection];
-                GameManager.PlayerChoice[player] = (Characters) Selection;
+                GameManager.PlayerChoice[player] = (Characters)Selection;
                 PlayerSkinchoice %= CharacterSkins[GameManager.PlayerChoice[player]].Count;
             }
         }
@@ -76,16 +75,17 @@ namespace UI
                 {Characters.Shadow, _playerSelectManager.ShadowSkin},
                 {Characters.Raccoon, _playerSelectManager.RoccoSkin},
             };
-        }
 
-        private void OnEnable()
-        {
-            Selection = 0;
-        
+
             if (GameManager.NumPlayers <= player) gameObject.SetActive(false);
             else gameObject.SetActive(true);
 
-            _player = ReInput.players.GetPlayer(player);
+            if (player < GameManager.NumPlayers)
+            {
+                _player = ReInput.players.GetPlayer(player);
+
+                Selection = 0;
+            }
         }
 
         // Update is called once per frame
@@ -94,8 +94,8 @@ namespace UI
             readyFX.SetActive(ready);
             if (_playerSelectManager.CaptureInput)
             {
-                if (_player.GetButtonDown("UIHorizontalRight") && !ready) Selection++;
                 if (_player.GetButtonDown("UIHorizontalLeft") && !ready) Selection--;
+                if (_player.GetButtonDown("UIHorizontalRight") && !ready) Selection++;
 
                 if (_player.GetButtonDown("UISubmit") && !ready) ready = true;
 
@@ -104,7 +104,7 @@ namespace UI
 
                 if (_player.GetButtonDown("UIVerticalUp")) PlayerSkinchoice++;
                 if (_player.GetButtonDown("UIVerticalDown")) PlayerSkinchoice--;
-                
+
             }
         }
     }

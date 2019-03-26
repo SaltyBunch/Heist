@@ -52,7 +52,8 @@ namespace Character
         [SerializeField] private float _interactDistance;
         private bool _isReticuleNotNull;
 
-        [Header("Voice Lines")] [SerializeField]
+        [Header("Voice Lines")]
+        [SerializeField]
         private AudioClip _enterBank;
 
 
@@ -120,7 +121,7 @@ namespace Character
             }
         }
 
-        private void Start()
+        private void Awake()
         {
             _isAnimNotNull = _anim != null;
             if (_baseCharacter == null)
@@ -129,16 +130,6 @@ namespace Character
                 _rigid = GetComponent<Rigidbody>();
             if (_audioSource == null)
                 _audioSource = GetComponent<AudioSource>();
-
-            if (GameManager.CharacterStats.TryGetValue(GameManager.PlayerChoice[PlayerNumber],
-                out _baseCharacter.Stats))
-            {
-            }
-            else
-            {
-                Debug.LogError("Unexpected result when assigning stats for player " + (PlayerNumber + 1) +
-                               " with character choice " + GameManager.PlayerChoice[PlayerNumber]);
-            }
 
             if (_reticule != null) GameManager.SetLayerOnAll(_reticule, GameManager.GetPlayerMask(PlayerNumber, false));
             //if (_reticule != null) _reticule = Instantiate(_reticule, this.transform);
@@ -157,12 +148,16 @@ namespace Character
 
             GameManager.SetLayerOnAll(_reticule, 5);
 
-            _playerModel.SetMaterial(GameManager.GameManagerRef.Skins[PlayerNumber]);
-            _playerModel.SetPlayer(PlayerNumber);
-
             BaseCharacter.HealthChanged += BaseCharacterOnHealthChanged;
             BaseCharacter.Inventory.SelectionChanged += InventoryOnSelectionChanged;
             BaseCharacter.CharacterStunned += BaseCharacterOnCharacterStunned;
+
+        }
+
+        private void Start()
+        {
+            _playerModel.SetMaterial(GameManager.GameManagerRef.Skins[PlayerNumber]);
+            _playerModel.SetPlayer(PlayerNumber);
         }
 
         private void BaseCharacterOnCharacterStunned(object sender, EventArgs e)

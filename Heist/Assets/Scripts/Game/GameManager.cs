@@ -120,12 +120,12 @@ namespace Game
             if (GameManagerRef == null || GameManagerRef == this) GameManagerRef = this;
             else Destroy(gameObject);
             DontDestroyOnLoad(gameObject);
+            NumPlayers = Mathf.Max(1, ReInput.controllers.joystickCount);
         }
 
         private void Start()
         {
             StartCoroutine(LoadScene(SceneNames.MainMenu));
-            NumPlayers = ReInput.controllers.joystickCount;
         }
 
         public static int GetPlayerMask(int playerNumber, bool bitShift)
@@ -145,8 +145,8 @@ namespace Game
         {
             var activeScene = SceneManager.GetActiveScene().name;
             if (activeScene != SceneNames.Persistent)
-                StartCoroutine(UnLoadScene(activeScene));
-            StartCoroutine(LoadScene(SceneNames.GameScene));
+                StartCoroutine(UnLoadScene(activeScene, LoadScene(SceneNames.GameScene)));
+            else StartCoroutine(LoadScene(SceneNames.GameScene));
             _state = State.Game;
         }
 
@@ -183,15 +183,14 @@ namespace Game
 
         public void EndGame()
         {
-            StartCoroutine(LoadScene(SceneNames.VictoryScreen));
-            _state = State.Victory;
-
             var activeScene = SceneManager.GetActiveScene().name;
             if (activeScene != SceneNames.Persistent)
-                StartCoroutine(UnLoadScene(activeScene));
+                StartCoroutine(UnLoadScene(activeScene, LoadScene(SceneNames.VictoryScreen)));
+            else StartCoroutine(LoadScene(SceneNames.VictoryScreen));
+            _state = State.Victory;
         }
 
-        private IEnumerator UnLoadScene(string scene)
+        private IEnumerator UnLoadScene(string scene, IEnumerator loadscene)
         {
             yield return new WaitForEndOfFrame();
             var asyncOperation = SceneManager.UnloadSceneAsync(scene);
@@ -199,16 +198,16 @@ namespace Game
             {
                 yield return null;
             }
+            StartCoroutine(loadscene);
         }
 
         public void ToMain()
         {
-            StartCoroutine(LoadScene(SceneNames.MainMenu));
-            _state = State.Game;
-
             var activeScene = SceneManager.GetActiveScene().name;
             if (activeScene != SceneNames.Persistent)
-                StartCoroutine(UnLoadScene(activeScene));
+                StartCoroutine(UnLoadScene(activeScene, LoadScene(SceneNames.MainMenu)));
+            else StartCoroutine(LoadScene(SceneNames.MainMenu));
+            _state = State.Menu;
         }
     }
 }

@@ -29,13 +29,13 @@ namespace Controller
                     }
                     if (keyboard.GetKeyDown(keyCode: KeyCode.P))
                     {
-                        //GoToMain();
+                        GoToMain();
                     }
                     if (keyboard.GetKeyDown(keyCode: KeyCode.K))
                     {
                         OpenVault();
                     }
-                    
+
                     if (keyboard.GetKeyDown(keyCode: KeyCode.V))
                     {
                         TeleportPlayers(_vaultLocation);
@@ -66,7 +66,7 @@ namespace Controller
         {
             if (SceneManager.GetActiveScene().name == GameManager.GameManagerRef.SceneNames.GameScene)
             {
-                var vault = (Vault) FindObjectOfType(typeof(Vault));
+                var vault = (Vault)FindObjectOfType(typeof(Vault));
                 vault.UseKey(new Dictionary<KeyType, bool>()
                 {
                     {KeyType.RedKey, true},

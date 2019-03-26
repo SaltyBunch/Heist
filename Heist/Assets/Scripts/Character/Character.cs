@@ -87,6 +87,8 @@ namespace Character
         {
             if (_rgd == null)
                 _rgd = GetComponent<Rigidbody>();
+
+            HealthChanged?.Invoke(this, new HealthChangedEventArgs { Health = Stats.Health - _stacks, AmountChanged = 0 });
         }
 
         internal virtual void Update()

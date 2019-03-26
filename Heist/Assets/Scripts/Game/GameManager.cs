@@ -143,12 +143,11 @@ namespace Game
 
         public void EnterGame()
         {
-            StartCoroutine(LoadScene(SceneNames.GameScene));
-            _state = State.Game;
-
             var activeScene = SceneManager.GetActiveScene().name;
             if (activeScene != SceneNames.Persistent)
                 StartCoroutine(UnLoadScene(activeScene));
+            StartCoroutine(LoadScene(SceneNames.GameScene));
+            _state = State.Game;
         }
 
         private IEnumerator LoadScene(string sceneName)

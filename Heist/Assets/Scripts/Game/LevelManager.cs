@@ -129,7 +129,6 @@ namespace Game
 
         public event NotifyEventHandler Notifty;
 
-        [SerializeField] private GameObject[] playerModels;
         private bool _doorOpen;
         [SerializeField] private AudioSource _voiceAudioSource;
         [SerializeField] private bool _gameOver;
@@ -368,7 +367,7 @@ namespace Game
                 if (_musicAudioSource.Length > 1)
                     StartCoroutine(AudioHelper.CrossFade(_musicAudioSource[_currentAudioSource],
                         _musicAudioSource[(_currentAudioSource + 1) % _musicAudioSource.Length],
-                        _backgroundMusicGathering, 5));
+                        _backgroundMusicInfiltration, 5));
                 _currentAudioSource = (_currentAudioSource + 1) % _musicAudioSource.Length;
                 _doorOpen = true;
             }

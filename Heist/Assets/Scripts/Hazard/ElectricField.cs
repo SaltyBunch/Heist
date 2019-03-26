@@ -31,7 +31,6 @@ namespace Hazard
 
         private new IEnumerator Trigger(PlayerControl player)
         {
-            if (PlacedByPlayer) Destroy(this.gameObject, 5);
             var prevSpeed = player.BaseCharacter.Stats.Speed;
             _players[player.PlayerNumber] = true;
             player.BaseCharacter.Stats.Speed /= 2;

@@ -45,7 +45,7 @@ namespace Drone
         [SerializeField] private LayerMask _layerMask;
 
         [SerializeField] private AudioClip _patrolClip, _investigationClip, _attackClip, _damageClip, _stunClip;
-        
+
         // Start is called before the first frame update
         private void Start()
         {
@@ -70,6 +70,7 @@ namespace Drone
             Target = patrolPath[0];
 
             agent.speed = drone.Stats.Speed;
+            agent.Warp(transform.position);
 
             LevelManager.LevelManagerRef.Notifty += LevelManagerRefOnNotifty;
         }
@@ -112,7 +113,8 @@ namespace Drone
 
                 //Detect player
                 foreach (var v in players)
-                    if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange && !v.Stunned && FieldOFView(v, 60))
+                    if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange && !v.Stunned &&
+                        FieldOFView(v, 60))
                     {
                         Target = v.transform;
                         lastLoc = transform.position;
@@ -132,7 +134,8 @@ namespace Drone
 
                 //Detect player
                 foreach (var v in players)
-                    if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange && !v.Stunned && FieldOFView(v, 60))
+                    if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange && !v.Stunned &&
+                        FieldOFView(v, 60))
                     {
                         Target = v.transform;
                         lastLoc = transform.position;
@@ -154,7 +157,8 @@ namespace Drone
                 {
                     if (isShooter)
                     {
-                        if (Vector3.Distance(transform.position, v.transform.position) < atkRange && canAtk && FieldOFView(v, 20))
+                        if (Vector3.Distance(transform.position, v.transform.position) < atkRange && canAtk &&
+                            FieldOFView(v, 20))
                         {
                             _stunGun.Attack();
                             canAtk = false;
@@ -163,7 +167,8 @@ namespace Drone
                     }
                     else
                     {
-                        if (Vector3.Distance(transform.position, v.transform.position) < atkRange && canAtk && FieldOFView(v, 180))
+                        if (Vector3.Distance(transform.position, v.transform.position) < atkRange && canAtk &&
+                            FieldOFView(v, 180))
                         {
                             //TODO melee atk
                             canAtk = false;
@@ -191,7 +196,8 @@ namespace Drone
 
                 //Detect player
                 foreach (var v in players)
-                    if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange && !v.Stunned && FieldOFView(v, 60))
+                    if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange && !v.Stunned &&
+                        FieldOFView(v, 60))
                     {
                         Target = v.transform;
                         lastLoc = transform.position;
@@ -206,12 +212,14 @@ namespace Drone
                 //shoot player
                 foreach (var v in players)
                 {
-                    if (Vector3.Distance(transform.position, v.transform.position) < atkRange && canAtk && FieldOFView(v, 20))
+                    if (Vector3.Distance(transform.position, v.transform.position) < atkRange && canAtk &&
+                        FieldOFView(v, 20))
                     {
                         if (isShooter)
                         {
                             _stunGun.Attack();
                         }
+
                         canAtk = false;
                         StartCoroutine(Reload());
                     }
@@ -237,10 +245,10 @@ namespace Drone
                 }
             }
 
-            if (Target)
-                agent.destination = Target.position;
-            else
-                agent.destination = transform.position;
+            if (Target == null) agent.SetDestination(Target.position);
+            //agent.destination = Target.position;
+            else agent.SetDestination(transform.position);
+            //agent.destination = transform.position;
         }
 
 
@@ -258,25 +266,16 @@ namespace Drone
             canAtk = true;
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            // if (other.tag == "Player") players.Add(other.gameObject);
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            //  if (other.tag == "Player") players.Remove(other.gameObject);
-        }
-
         bool FieldOFView(Player player, float angle)
         {
-            var dir = (player.transform.position +Vector3.up) - transform.position;
+            var dir = (player.transform.position + Vector3.up) - transform.position;
             if (Mathf.Abs(Vector3.Angle(transform.forward, dir)) < angle)
             {
                 RaycastHit hit;
-                Physics.Raycast(transform.position, dir, out hit,  30, _layerMask);
+                Physics.Raycast(transform.position, dir, out hit, 30, _layerMask);
                 return hit.transform.CompareTag("Player");
             }
+
             return false;
         }
     }

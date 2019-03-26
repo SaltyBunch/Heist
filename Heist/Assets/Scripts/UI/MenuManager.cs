@@ -54,8 +54,7 @@ namespace UI
         [SerializeField] private SelectableMenu _currentMenu;
         private static Control _menuControl;
         [SerializeField] private Animator _menuAnimator;
-        [SerializeField] private Animator _vaultAnimator
-            ;
+        [SerializeField] private Animator _vaultAnimator;
 
 
         [SerializeField] private SelectableMenu _mainMenu;
@@ -126,6 +125,10 @@ namespace UI
 
             _menuAnimator.SetTrigger("GoToPlayerSelect");
             CurrentMenu = _playerSelect;
+        }
+
+        public void Empty()
+        {
         }
     }
 }

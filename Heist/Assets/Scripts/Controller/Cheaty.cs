@@ -27,7 +27,10 @@ namespace Controller
                     {
                         EndGame();
                     }
-
+                    if (keyboard.GetKeyDown(keyCode: KeyCode.P))
+                    {
+                        //GoToMain();
+                    }
                     if (keyboard.GetKeyDown(keyCode: KeyCode.K))
                     {
                         OpenVault();
@@ -43,6 +46,11 @@ namespace Controller
                     }
                 }
             }
+        }
+
+        private void GoToMain()
+        {
+            GameManager.GameManagerRef.ToMain();
         }
 
         private void TeleportPlayers(Vector3 teleportLocation)

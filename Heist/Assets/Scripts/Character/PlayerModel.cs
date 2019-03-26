@@ -42,7 +42,7 @@ namespace Character
                 if (hidey > 0) _modelAlpha = 4;
                 else _modelAlpha -= Time.deltaTime;
                 var v = _colors[_playerNumber];
-                v.a = Mathf.Clamp(_modelAlpha, 0, 1);
+                v.a = Mathf.Clamp(_modelAlpha, 0, 0.6f);
                 UpdateColor(v);
             }
             else

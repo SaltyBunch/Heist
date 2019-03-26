@@ -8,6 +8,8 @@ using Level;
 using Pickup;
 using Rewired;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using Player = Character.Player;
 using Random = UnityEngine.Random;
 
@@ -71,6 +73,7 @@ namespace Game
 
         [SerializeField] private List<PickupSpawner> _pickupSpawners;
 
+        
         private float _time;
 
         private float _timeSinceVaultOpened;
@@ -194,6 +197,7 @@ namespace Game
 
         public void InitGame(int numPlayers)
         {
+        
             var displays = 1;
             if (GameManager.GameManagerRef.UseMultiScreen)
             {

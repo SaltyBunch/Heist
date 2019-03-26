@@ -123,6 +123,7 @@ Transform:
   - {fileID: 1012962040}
   - {fileID: 1344646861}
   - {fileID: 8256505115851655260}
+  - {fileID: 3326236134894529258}
   m_Father: {fileID: 2045541014380934522}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -573,16 +574,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4826128160559464896}
     m_Modifications:
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Name
-      value: Lightning (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034137, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -638,7 +629,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320044793690381, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Name
+      value: Lightning (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_Layer
       value: 11
@@ -688,11 +684,6 @@ PrefabInstance:
       propertyPath: EmissionModule.m_Bursts.Array.data[0].time
       value: 0.6
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320045227595517, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: CollisionModule.enabled
@@ -738,6 +729,16 @@ PrefabInstance:
       propertyPath: CollisionModule.collidesWith.m_Bits
       value: 33554432
       objectReference: {fileID: 0}
+    - target: {fileID: 6157320044793690381, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157320045227595517, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f8cfec6c8cda484c9ff911855d6e5a4, type: 3}
 --- !u!198 &4826128159492012481 stripped
@@ -759,16 +760,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4826128160559464896}
     m_Modifications:
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Name
-      value: Lightning (10)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034137, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -824,7 +815,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320044793690381, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Name
+      value: Lightning (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_Layer
       value: 11
@@ -874,11 +870,6 @@ PrefabInstance:
       propertyPath: EmissionModule.m_Bursts.Array.data[0].time
       value: 0.9
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320045227595517, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: CollisionModule.enabled
@@ -924,6 +915,16 @@ PrefabInstance:
       propertyPath: CollisionModule.collidesWith.m_Bits
       value: 33554432
       objectReference: {fileID: 0}
+    - target: {fileID: 6157320044793690381, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157320045227595517, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f8cfec6c8cda484c9ff911855d6e5a4, type: 3}
 --- !u!198 &4826128160077510965 stripped
@@ -945,16 +946,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4826128160559464896}
     m_Modifications:
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Name
-      value: Lightning (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034137, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1010,7 +1001,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320044793690381, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Name
+      value: Lightning (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_Layer
       value: 11
@@ -1060,11 +1056,6 @@ PrefabInstance:
       propertyPath: EmissionModule.m_Bursts.Array.data[0].time
       value: 0.2
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320045227595517, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: CollisionModule.enabled
@@ -1110,6 +1101,16 @@ PrefabInstance:
       propertyPath: CollisionModule.collidesWith.m_Bits
       value: 33554432
       objectReference: {fileID: 0}
+    - target: {fileID: 6157320044793690381, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157320045227595517, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f8cfec6c8cda484c9ff911855d6e5a4, type: 3}
 --- !u!198 &4826128160620432433 stripped
@@ -1131,16 +1132,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4826128160559464896}
     m_Modifications:
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Name
-      value: Lightning (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034137, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1196,7 +1187,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320044793690381, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Name
+      value: Lightning (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_Layer
       value: 11
@@ -1246,11 +1242,6 @@ PrefabInstance:
       propertyPath: EmissionModule.m_Bursts.Array.data[0].time
       value: 0.4
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320045227595517, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: CollisionModule.enabled
@@ -1296,17 +1287,27 @@ PrefabInstance:
       propertyPath: CollisionModule.collidesWith.m_Bits
       value: 33554432
       objectReference: {fileID: 0}
+    - target: {fileID: 6157320044793690381, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157320045227595517, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f8cfec6c8cda484c9ff911855d6e5a4, type: 3}
---- !u!198 &4826128158766928729 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-    type: 3}
-  m_PrefabInstance: {fileID: 1696423333828094555}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &4826128160274726057 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 6157320045227595506, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1696423333828094555}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &4826128158766928729 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
     type: 3}
   m_PrefabInstance: {fileID: 1696423333828094555}
   m_PrefabAsset: {fileID: 0}
@@ -1317,16 +1318,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4826128160559464896}
     m_Modifications:
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Name
-      value: Lightning (8)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034137, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1382,7 +1373,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320044793690381, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Name
+      value: Lightning (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_Layer
       value: 11
@@ -1432,11 +1428,6 @@ PrefabInstance:
       propertyPath: EmissionModule.m_Bursts.Array.data[0].time
       value: 0.7
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320045227595517, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: CollisionModule.enabled
@@ -1482,6 +1473,16 @@ PrefabInstance:
       propertyPath: CollisionModule.collidesWith.m_Bits
       value: 33554432
       objectReference: {fileID: 0}
+    - target: {fileID: 6157320044793690381, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157320045227595517, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f8cfec6c8cda484c9ff911855d6e5a4, type: 3}
 --- !u!198 &4826128158878556073 stripped
@@ -1503,16 +1504,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6954365183085770246}
     m_Modifications:
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Name
-      value: Lightning
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034137, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1568,7 +1559,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320044793690381, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Name
+      value: Lightning
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_Layer
       value: 11
@@ -1613,11 +1609,6 @@ PrefabInstance:
       propertyPath: SubModule.subEmitters.Array.data[0].emitter
       value: 
       objectReference: {fileID: 4826128160193927323}
-    - target: {fileID: 6157320045227595517, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: CollisionModule.enabled
@@ -1663,6 +1654,16 @@ PrefabInstance:
       propertyPath: CollisionModule.collidesWith.m_Bits
       value: 33554432
       objectReference: {fileID: 0}
+    - target: {fileID: 6157320044793690381, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157320045227595517, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f8cfec6c8cda484c9ff911855d6e5a4, type: 3}
 --- !u!198 &4826128160193927323 stripped
@@ -1690,16 +1691,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4826128160559464896}
     m_Modifications:
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Name
-      value: Lightning (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034137, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1755,7 +1746,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320044793690381, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Name
+      value: Lightning (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_Layer
       value: 11
@@ -1805,11 +1801,6 @@ PrefabInstance:
       propertyPath: EmissionModule.m_Bursts.Array.data[0].time
       value: 0.1
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320045227595517, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: CollisionModule.enabled
@@ -1855,6 +1846,16 @@ PrefabInstance:
       propertyPath: CollisionModule.collidesWith.m_Bits
       value: 33554432
       objectReference: {fileID: 0}
+    - target: {fileID: 6157320044793690381, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157320045227595517, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f8cfec6c8cda484c9ff911855d6e5a4, type: 3}
 --- !u!198 &4826128158637129128 stripped
@@ -1876,16 +1877,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4826128160559464896}
     m_Modifications:
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Name
-      value: Lightning (12)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034137, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1941,7 +1932,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320044793690381, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Name
+      value: Lightning (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_Layer
       value: 11
@@ -1991,11 +1987,6 @@ PrefabInstance:
       propertyPath: EmissionModule.m_Bursts.Array.data[0].time
       value: 0.75
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320045227595517, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: CollisionModule.enabled
@@ -2041,6 +2032,16 @@ PrefabInstance:
       propertyPath: CollisionModule.collidesWith.m_Bits
       value: 33554432
       objectReference: {fileID: 0}
+    - target: {fileID: 6157320044793690381, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157320045227595517, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f8cfec6c8cda484c9ff911855d6e5a4, type: 3}
 --- !u!198 &4826128158671169542 stripped
@@ -2062,16 +2063,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4826128160559464896}
     m_Modifications:
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Name
-      value: Lightning (6)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034137, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2127,7 +2118,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320044793690381, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Name
+      value: Lightning (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_Layer
       value: 11
@@ -2177,11 +2173,6 @@ PrefabInstance:
       propertyPath: EmissionModule.m_Bursts.Array.data[0].time
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320045227595517, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: CollisionModule.enabled
@@ -2227,17 +2218,27 @@ PrefabInstance:
       propertyPath: CollisionModule.collidesWith.m_Bits
       value: 33554432
       objectReference: {fileID: 0}
+    - target: {fileID: 6157320044793690381, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157320045227595517, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f8cfec6c8cda484c9ff911855d6e5a4, type: 3}
---- !u!198 &4826128158741460836 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6157320045227595506, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-    type: 3}
-  m_PrefabInstance: {fileID: 1696423334446997910}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &4826128160249895060 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1696423334446997910}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &4826128158741460836 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6157320045227595506, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
     type: 3}
   m_PrefabInstance: {fileID: 1696423334446997910}
   m_PrefabAsset: {fileID: 0}
@@ -2248,16 +2249,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4826128160559464896}
     m_Modifications:
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Name
-      value: Lightning (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034137, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2313,7 +2304,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320044793690381, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Name
+      value: Lightning (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_Layer
       value: 11
@@ -2363,11 +2359,6 @@ PrefabInstance:
       propertyPath: EmissionModule.m_Bursts.Array.data[0].time
       value: 0.3
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320045227595517, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: CollisionModule.enabled
@@ -2413,6 +2404,16 @@ PrefabInstance:
       propertyPath: CollisionModule.collidesWith.m_Bits
       value: 33554432
       objectReference: {fileID: 0}
+    - target: {fileID: 6157320044793690381, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157320045227595517, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f8cfec6c8cda484c9ff911855d6e5a4, type: 3}
 --- !u!198 &4826128159096525130 stripped
@@ -2434,16 +2435,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4826128160559464896}
     m_Modifications:
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Name
-      value: Lightning (11)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034137, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2499,7 +2490,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320044793690381, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Name
+      value: Lightning (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_Layer
       value: 11
@@ -2549,11 +2545,6 @@ PrefabInstance:
       propertyPath: EmissionModule.m_Bursts.Array.data[0].time
       value: 0.25
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320045227595517, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: CollisionModule.enabled
@@ -2599,6 +2590,16 @@ PrefabInstance:
       propertyPath: CollisionModule.collidesWith.m_Bits
       value: 33554432
       objectReference: {fileID: 0}
+    - target: {fileID: 6157320044793690381, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157320045227595517, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f8cfec6c8cda484c9ff911855d6e5a4, type: 3}
 --- !u!198 &4826128159109040696 stripped
@@ -2620,16 +2621,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4826128160559464896}
     m_Modifications:
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Name
-      value: Lightning (9)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044556034137, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2685,7 +2676,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320044793690381, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Name
+      value: Lightning (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157320044556034138, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: m_Layer
       value: 11
@@ -2735,11 +2731,6 @@ PrefabInstance:
       propertyPath: EmissionModule.m_Bursts.Array.data[0].time
       value: 0.8
       objectReference: {fileID: 0}
-    - target: {fileID: 6157320045227595517, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
         type: 3}
       propertyPath: CollisionModule.enabled
@@ -2785,17 +2776,147 @@ PrefabInstance:
       propertyPath: CollisionModule.collidesWith.m_Bits
       value: 33554432
       objectReference: {fileID: 0}
+    - target: {fileID: 6157320044793690381, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157320045227595517, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f8cfec6c8cda484c9ff911855d6e5a4, type: 3}
+--- !u!198 &4826128159133684391 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6157320045227595506, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1696423334834766933}
+  m_PrefabAsset: {fileID: 0}
 --- !u!198 &4826128159639567703 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 6157320044793690370, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
     type: 3}
   m_PrefabInstance: {fileID: 1696423334834766933}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &4826128159133684391 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6157320045227595506, guid: 7f8cfec6c8cda484c9ff911855d6e5a4,
+--- !u!1001 &4685416545649589120
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1105273636}
+    m_Modifications:
+    - target: {fileID: 8011019326676701557, guid: cdf3e45ad8b3f81458148c34a6e9fffe,
+        type: 3}
+      propertyPath: m_Name
+      value: Particle System
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011019326676701557, guid: cdf3e45ad8b3f81458148c34a6e9fffe,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011019326676701546, guid: cdf3e45ad8b3f81458148c34a6e9fffe,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011019326676701546, guid: cdf3e45ad8b3f81458148c34a6e9fffe,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011019326676701546, guid: cdf3e45ad8b3f81458148c34a6e9fffe,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011019326676701546, guid: cdf3e45ad8b3f81458148c34a6e9fffe,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011019326676701546, guid: cdf3e45ad8b3f81458148c34a6e9fffe,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011019326676701546, guid: cdf3e45ad8b3f81458148c34a6e9fffe,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011019326676701546, guid: cdf3e45ad8b3f81458148c34a6e9fffe,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011019326676701546, guid: cdf3e45ad8b3f81458148c34a6e9fffe,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011019326676701546, guid: cdf3e45ad8b3f81458148c34a6e9fffe,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011019326676701546, guid: cdf3e45ad8b3f81458148c34a6e9fffe,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011019326676701546, guid: cdf3e45ad8b3f81458148c34a6e9fffe,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011019326676701546, guid: cdf3e45ad8b3f81458148c34a6e9fffe,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011019326676701546, guid: cdf3e45ad8b3f81458148c34a6e9fffe,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011019326676701546, guid: cdf3e45ad8b3f81458148c34a6e9fffe,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011019326676701544, guid: cdf3e45ad8b3f81458148c34a6e9fffe,
+        type: 3}
+      propertyPath: ShapeModule.m_Position.z
+      value: 1.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011019326676701544, guid: cdf3e45ad8b3f81458148c34a6e9fffe,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 2.2979002
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011019326676701544, guid: cdf3e45ad8b3f81458148c34a6e9fffe,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 1.7016058
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011019326676701544, guid: cdf3e45ad8b3f81458148c34a6e9fffe,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.z
+      value: 0.26018867
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011019326676701544, guid: cdf3e45ad8b3f81458148c34a6e9fffe,
+        type: 3}
+      propertyPath: ShapeModule.m_Position.y
+      value: 1.38
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cdf3e45ad8b3f81458148c34a6e9fffe, type: 3}
+--- !u!4 &3326236134894529258 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8011019326676701546, guid: cdf3e45ad8b3f81458148c34a6e9fffe,
     type: 3}
-  m_PrefabInstance: {fileID: 1696423334834766933}
+  m_PrefabInstance: {fileID: 4685416545649589120}
   m_PrefabAsset: {fileID: 0}

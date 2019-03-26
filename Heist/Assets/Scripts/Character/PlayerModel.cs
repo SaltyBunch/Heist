@@ -8,6 +8,10 @@ namespace Character
     {
         [SerializeField] private List<SkinnedMeshRenderer> _characterSkinnedMeshRenderers;
 
+        [SerializeField] private MeshRenderer _face;
+
+        [SerializeField] private List<Texture2D> _faces;
+
         [SerializeField] private int _playerNumber = -1;
 
         public float hidey = 0;

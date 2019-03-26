@@ -1339,7 +1339,7 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 4026598401
-  _offset: {x: 0, y: 17, z: -10}
+  _offset: {x: 0, y: 14, z: -8}
   _playerControl: {fileID: 575827870061007412}
   _seesPlayer: 0
   _smoothing: 0.1
@@ -2184,7 +2184,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 30
+  field of view: 35
   orthographic: 0
   orthographic size: 10
   m_Depth: -1

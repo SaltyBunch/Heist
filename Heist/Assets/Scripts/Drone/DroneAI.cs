@@ -38,7 +38,7 @@ namespace Drone
         //[SerializeField] private ;
 
         [SerializeField] Character.Drone drone;
-
+        private bool canMove = true;
 
         [SerializeField] private StunGun _stunGun;
         [SerializeField] private Hazard.ElectricField _eField;
@@ -69,7 +69,9 @@ namespace Drone
             drone = this.GetComponent<Character.Drone>();
             Target = patrolPath[0];
 
-            agent.speed = drone.Stats.Speed;
+            agent.speed = 3;
+            
+            //agent.speed = drone.Stats.Speed;
             agent.Warp(transform.position);
 
             LevelManager.LevelManagerRef.Notifty += LevelManagerRefOnNotifty;
@@ -104,6 +106,7 @@ namespace Drone
 
             if (!reviving && Input.GetKeyDown(KeyCode.Z) && Input.GetKeyDown(KeyCode.M)) fsm.MoveNext(Command.LockDown);
 
+            canMove = true;
             //Patrol State
             if (fsm.CurrentState.Equals(State.Patrol))
             {
@@ -236,7 +239,7 @@ namespace Drone
             {
                 control.DoStun();
                 reviving = true;
-                Target = null;
+                canMove = false;
                 if (!drone.Stunned)
                 {
                     Target = patrolPath[patrol %= patrolPath.Count];
@@ -245,7 +248,8 @@ namespace Drone
                 }
             }
 
-            if (Target == null) agent.SetDestination(Target.position);
+            if (canMove)
+                agent.SetDestination(Target.position);
             //agent.destination = Target.position;
             else agent.SetDestination(transform.position);
             //agent.destination = transform.position;

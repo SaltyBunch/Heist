@@ -64,7 +64,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 392497562500751243}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.35662556, y: 0.83581114, z: -0.22844028}
+  m_LocalPosition: {x: -0.35662556, y: 1, z: -0.22844028}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 514177933}
@@ -325,7 +325,7 @@ MonoBehaviour:
   Ammo: 2147483647
   _projectile: {fileID: 2430004408962383017, guid: 094136b8cd01e9f458c64a263d57dfeb,
     type: 3}
-  Barrel: {x: 0, y: 0.36380586, z: 0.39740714}
+  Barrel: {x: 0, y: 0.36380586, z: 0.37138662}
 --- !u!114 &7775699949944083529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,10 +362,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.21
-  m_Height: 0.81
+  m_Radius: 0.31
+  m_Height: 0.74
   m_Direction: 1
-  m_Center: {x: 0, y: 0.09, z: -0.03}
+  m_Center: {x: 0, y: 0.13, z: -0.12}
 --- !u!1 &5186717131650684840
 GameObject:
   m_ObjectHideFlags: 0

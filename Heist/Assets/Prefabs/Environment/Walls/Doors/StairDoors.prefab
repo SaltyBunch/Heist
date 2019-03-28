@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3937839641110482866}
   - component: {fileID: 4864432349192193532}
   - component: {fileID: 1319837258932415135}
+  - component: {fileID: 2195648789811844083}
   m_Layer: 12
   m_Name: MetalDoor
   m_TagString: Door
@@ -91,6 +92,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.25, y: 2.3125, z: 0.0625}
   m_Center: {x: -0.6249969, y: 1.1562605, z: 0.00023918692}
+--- !u!208 &2195648789811844083
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732265612915069455}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.625, y: 1.156, z: 0.031000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.625, y: 1.156, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &4834902695896922572
 GameObject:
   m_ObjectHideFlags: 0

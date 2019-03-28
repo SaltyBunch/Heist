@@ -46,6 +46,16 @@ namespace Drone
 
         [SerializeField] private AudioClip _patrolClip, _investigationClip, _attackClip, _damageClip, _stunClip;
 
+        [Header("Texture")] [SerializeField] private List<Texture2D> _textures;
+        [SerializeField] private List<MeshRenderer> _meshes;
+        private MaterialPropertyBlock _prop;
+        
+        private enum DroneState
+        {
+            Patrol, Caution, Attack
+        }
+
+        [SerializeField] private DroneState _droneState;
         // Start is called before the first frame update
         private void Start()
         {
@@ -70,10 +80,12 @@ namespace Drone
             Target = patrolPath[0];
 
             agent.speed = 3;
-            
+
             //agent.speed = drone.Stats.Speed;
             agent.Warp(transform.position);
 
+            _prop = new MaterialPropertyBlock();
+            
             LevelManager.LevelManagerRef.Notifty += LevelManagerRefOnNotifty;
         }
 
@@ -110,6 +122,7 @@ namespace Drone
             //Patrol State
             if (fsm.CurrentState.Equals(State.Patrol))
             {
+                _droneState = DroneState.Patrol;
                 //chaing patrol dest
                 if (Vector3.Distance(transform.position, Target.position) < 1f)
                     Target = patrolPath[++patrol % patrolPath.Count];
@@ -128,6 +141,7 @@ namespace Drone
             //Investigate State
             else if (fsm.CurrentState.Equals(State.Investigate))
             {
+                _droneState = DroneState.Caution;
                 //Arrive at investigate zone
                 if (Vector3.Distance(transform.position, investigation.transform.position) < 1f)
                 {
@@ -149,6 +163,8 @@ namespace Drone
             //Chase State
             else if (fsm.CurrentState.Equals(State.Chase))
             {
+                _droneState = DroneState.Attack;
+                
                 if (!investg && Vector3.Distance(transform.position, lastLoc) > patrolTetherRange)
                 {
                     investg = true;
@@ -189,6 +205,8 @@ namespace Drone
             //BigPatrol State
             else if (fsm.CurrentState.Equals(State.BigPatrol))
             {
+
+                _droneState = DroneState.Caution;
                 //chaing patrol dest
                 if (Vector3.Distance(transform.position, Target.position) < 0.2f)
                 {
@@ -211,6 +229,7 @@ namespace Drone
             //BigChase State
             else if (fsm.CurrentState.Equals(State.BigChase))
             {
+                _droneState = DroneState.Attack;
                 //Do Big Chase
                 //shoot player
                 foreach (var v in players)
@@ -237,6 +256,8 @@ namespace Drone
             //Dead State
             else if (fsm.CurrentState.Equals(State.Dead))
             {
+                _droneState = DroneState.Patrol;
+                
                 control.DoStun();
                 reviving = true;
                 canMove = false;
@@ -253,6 +274,13 @@ namespace Drone
             //agent.destination = Target.position;
             else agent.SetDestination(transform.position);
             //agent.destination = transform.position;
+            
+            foreach (var character in _meshes)
+            {
+                character.GetPropertyBlock(_prop);
+                _prop.SetTexture("_MainTex", _textures[(int) _droneState]);
+                character.SetPropertyBlock(_prop);
+            }
         }
 
 

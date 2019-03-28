@@ -478,7 +478,7 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: dccb88d6e3ace71459d1c85f163ae9f8, type: 3}
   m_Controller: {fileID: 9100000, guid: f90a0845a9ee47643beb77071af92214, type: 2}
   m_CullingMode: 1
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -510,6 +510,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 7f5de57b1b18aa044b97ca419b102f8a, type: 3}
   - {fileID: 2800000, guid: bb14e169ae9916743b5f5fa9b5164bad, type: 3}
   - {fileID: 2800000, guid: 9e29b0dc7733d6c40a5f6f6aec3d932c, type: 3}
+  _facesState: 2
   _playerNumber: -1
   hidey: 0
 --- !u!136 &4122435441488290923

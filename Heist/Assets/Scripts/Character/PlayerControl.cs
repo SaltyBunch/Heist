@@ -52,8 +52,7 @@ namespace Character
         [SerializeField] private float _interactDistance;
         private bool _isReticuleNotNull;
 
-        [Header("Voice Lines")]
-        [SerializeField]
+        [Header("Voice Lines")] [SerializeField]
         private AudioClip _enterBank;
 
 
@@ -151,7 +150,6 @@ namespace Character
             BaseCharacter.HealthChanged += BaseCharacterOnHealthChanged;
             BaseCharacter.Inventory.SelectionChanged += InventoryOnSelectionChanged;
             BaseCharacter.CharacterStunned += BaseCharacterOnCharacterStunned;
-
         }
 
         private void Start()
@@ -252,20 +250,7 @@ namespace Character
             }
 
             /// Reticule
-            if (_isReticuleNotNull)
-            {
-                if (_control.FaceVector.magnitude > 0)
-                {
-                    _reticule.transform.localPosition = _retMaxDist / 2 * Vector3.forward + Vector3.up;
 
-                    _reticule.SetActive(true);
-                }
-                else
-                {
-                    _reticule.transform.localPosition = Vector3.up;
-                    _reticule.SetActive(false);
-                }
-            }
 
             if (_isAnimNotNull)
             {
@@ -327,6 +312,24 @@ namespace Character
                     {
                         _playerUiManager.SetOpen("None", false);
                     }
+                }
+            }
+        }
+
+        private void Update()
+        {
+            if (_isReticuleNotNull)
+            {
+                if (_control.FaceVector.magnitude > 0)
+                {
+                    _reticule.transform.localPosition = _retMaxDist / 2 * Vector3.forward + Vector3.up;
+
+                    _reticule.SetActive(true);
+                }
+                else
+                {
+                    _reticule.transform.localPosition = Vector3.up;
+                    _reticule.SetActive(false);
                 }
             }
         }

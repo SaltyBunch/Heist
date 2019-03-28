@@ -88,7 +88,8 @@ namespace Character
             if (_rgd == null)
                 _rgd = GetComponent<Rigidbody>();
 
-            HealthChanged?.Invoke(this, new HealthChangedEventArgs { Health = Stats.Health - _stacks, AmountChanged = 0 });
+            HealthChanged?.Invoke(this,
+                new HealthChangedEventArgs {Health = Stats.Health - _stacks, AmountChanged = 0});
         }
 
         internal virtual void Update()
@@ -134,9 +135,11 @@ namespace Character
             _invincible = false;
         }
 
+
         public void Knockback(Transform source)
         {
-            _rgd.AddRelativeForce(source.position.normalized * _knockbackForce, ForceMode.Impulse);
+            _rgd.AddRelativeForce(Vector3.ProjectOnPlane((transform.position - source.position), Vector3.up).normalized * _knockbackForce,
+                ForceMode.Impulse);
         }
     }
 }

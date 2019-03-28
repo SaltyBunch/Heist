@@ -44,6 +44,7 @@ namespace Hazard
                 _quickTime = null;
                 _player.OnMoveCancel -= PlayerOnOnMoveCancel;
                 _player = null;
+                _hazard.Stop();
                 Destroy(_hazard.gameObject, 0.2f);
             }
         }

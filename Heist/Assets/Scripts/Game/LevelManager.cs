@@ -26,7 +26,8 @@ namespace Game
     {
         TripTrap,
         Dash,
-        Footstep
+        Footstep,
+        Attack
     }
 
     public class NotifyEventArgs : EventArgs
@@ -118,7 +119,7 @@ namespace Game
 
         public Dictionary<NotifyType, float> NotificationRamge = new Dictionary<NotifyType, float>
         {
-            {NotifyType.Dash, 10}, {NotifyType.Footstep, 5}, {NotifyType.TripTrap, 100}
+            {NotifyType.Dash, 10}, {NotifyType.Footstep, 5}, {NotifyType.TripTrap, 10}, {NotifyType.Attack, 10}
         };
 
         private bool _vaultOpen;

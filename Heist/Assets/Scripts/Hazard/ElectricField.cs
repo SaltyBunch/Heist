@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Character;
 using Game;
@@ -21,6 +22,7 @@ namespace Hazard
 
         private void OnTriggerEnter(Collider other)
         {
+            LevelManager.LevelManagerRef.Notify(other.transform.position, NotifyType.TripTrap);
             if (other.CompareTag("Player")) StartCoroutine(Trigger(other.GetComponentInParent<PlayerControl>()));
         }
 
@@ -37,7 +39,7 @@ namespace Hazard
             do
             {
                 player.BaseCharacter.Stacks += 1;
-                yield return new WaitForSeconds(1f);
+                yield return null;
             } while (_players[player.PlayerNumber]);
 
             player.BaseCharacter.Stats.Speed = prevSpeed;
@@ -107,7 +109,16 @@ namespace Hazard
                     y = 1.5f
                 };
             }
+
             return true;
+        }
+
+        public override void Stop()
+        {
+            for (var i = 0; i < _players.Length; i++)
+            {
+                _players[i] = false;
+            }
         }
     }
 }

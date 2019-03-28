@@ -24,6 +24,7 @@ namespace Hazard
         {
             if (other.CompareTag("Player"))
             {
+                LevelManager.LevelManagerRef.Notify(other.transform.position, NotifyType.TripTrap);
                 var player = other.GetComponentInParent<PlayerControl>();
                 player.BaseCharacter.Stacks += 1;
             }

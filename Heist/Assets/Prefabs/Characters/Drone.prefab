@@ -128,11 +128,11 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 4026531840
-  _patrolClip: {fileID: 0}
-  _investigationClip: {fileID: 0}
-  _attackClip: {fileID: 0}
-  _damageClip: {fileID: 0}
-  _stunClip: {fileID: 0}
+  _patrolClip: {fileID: 8300000, guid: 113445312795df2429157fe62f653bc1, type: 3}
+  _investigationClip: {fileID: 8300000, guid: 84a83c6613b59114a97661db995ce437, type: 3}
+  _attackClip: {fileID: 8300000, guid: c4fdd087027f41846b6853b36d9f7cc2, type: 3}
+  _damageClip: {fileID: 8300000, guid: 1bea211e617683e4395d7208ba8c4fe1, type: 3}
+  _stunClip: {fileID: 8300000, guid: f72376d2657509b499637e5ad58fcf61, type: 3}
   _textures:
   - {fileID: 2800000, guid: 4cd3afefb74d49f40adac9475b9da629, type: 3}
   - {fileID: 2800000, guid: 12ce500be7ee5714ab667300e6750caa, type: 3}

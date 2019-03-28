@@ -30,5 +30,9 @@ namespace Hazard
         {
             throw new NotImplementedException();
         }
+
+        public virtual void Stop()
+        {
+        }
     }
 }

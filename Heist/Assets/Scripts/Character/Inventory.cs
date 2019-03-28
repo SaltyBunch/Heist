@@ -243,6 +243,7 @@ namespace Character
                     break;
                 case StunGun stunGun:
                     stunGun.Attack();
+                    LevelManager.LevelManagerRef.Notify(transform.position, NotifyType.Attack);
                     _count = stunGun.Ammo;
                     if (_count == 0)
                     {

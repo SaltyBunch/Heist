@@ -49,13 +49,16 @@ namespace Drone
         [Header("Texture")] [SerializeField] private List<Texture2D> _textures;
         [SerializeField] private List<MeshRenderer> _meshes;
         private MaterialPropertyBlock _prop;
-        
+
         private enum DroneState
         {
-            Patrol, Caution, Attack
+            Patrol,
+            Caution,
+            Attack
         }
 
         [SerializeField] private DroneState _droneState;
+
         // Start is called before the first frame update
         private void Start()
         {
@@ -85,7 +88,7 @@ namespace Drone
             agent.Warp(transform.position);
 
             _prop = new MaterialPropertyBlock();
-            
+
             LevelManager.LevelManagerRef.Notifty += LevelManagerRefOnNotifty;
         }
 
@@ -137,6 +140,12 @@ namespace Drone
                         fsm.MoveNext(Command.SeePlayer);
                     }
             }
+            else if (fsm.CurrentState.Equals(State.ReturnToPatrol))
+            {
+                _droneState = DroneState.Patrol;
+                if (Vector3.Distance(transform.position, Target.position) < 1f)
+                    fsm.MoveNext(Command.AtPatrolPoint);
+            }
 
             //Investigate State
             else if (fsm.CurrentState.Equals(State.Investigate))
@@ -164,7 +173,7 @@ namespace Drone
             else if (fsm.CurrentState.Equals(State.Chase))
             {
                 _droneState = DroneState.Attack;
-                
+
                 if (!investg && Vector3.Distance(transform.position, lastLoc) > patrolTetherRange)
                 {
                     investg = true;
@@ -205,7 +214,6 @@ namespace Drone
             //BigPatrol State
             else if (fsm.CurrentState.Equals(State.BigPatrol))
             {
-
                 _droneState = DroneState.Caution;
                 //chaing patrol dest
                 if (Vector3.Distance(transform.position, Target.position) < 0.2f)
@@ -225,7 +233,12 @@ namespace Drone
                         fsm.MoveNext(Command.SeePlayer);
                     }
             }
-
+            else if (fsm.CurrentState.Equals(State.ReturnToBigPatrol))
+            {
+                _droneState = DroneState.Patrol;
+                if (Vector3.Distance(transform.position, Target.position) < 1f)
+                    fsm.MoveNext(Command.AtPatrolPoint);
+            }
             //BigChase State
             else if (fsm.CurrentState.Equals(State.BigChase))
             {
@@ -257,7 +270,7 @@ namespace Drone
             else if (fsm.CurrentState.Equals(State.Dead))
             {
                 _droneState = DroneState.Patrol;
-                
+
                 control.DoStun();
                 reviving = true;
                 canMove = false;
@@ -274,7 +287,7 @@ namespace Drone
             //agent.destination = Target.position;
             else agent.SetDestination(transform.position);
             //agent.destination = transform.position;
-            
+
             foreach (var character in _meshes)
             {
                 character.GetPropertyBlock(_prop);

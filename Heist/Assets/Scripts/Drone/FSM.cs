@@ -11,7 +11,9 @@ namespace Drone
         Investigate,
         Chase,
         BigPatrol,
-        BigChase
+        BigChase,
+        ReturnToPatrol, 
+        ReturnToBigPatrol, 
     }
 
     public enum Command
@@ -21,7 +23,8 @@ namespace Drone
         LosePlayer,
         SoundNotification,
         SeePlayer,
-        LockDown
+        LockDown,
+        AtPatrolPoint
     }
 
 
@@ -56,16 +59,17 @@ namespace Drone
                 {new StateTransition(State.Patrol, Command.SeePlayer), State.Chase},
                 {new StateTransition(State.Investigate, Command.SeePlayer), State.Chase},
                 //Lose player
-                {new StateTransition(State.Chase, Command.LosePlayer), State.Patrol},
-                {new StateTransition(State.Investigate, Command.LosePlayer), State.Patrol},
-                {new StateTransition(State.Patrol, Command.LosePlayer), State.Patrol},
-
+                {new StateTransition(State.Chase, Command.LosePlayer), State.ReturnToPatrol},
+                {new StateTransition(State.Investigate, Command.LosePlayer), State.ReturnToPatrol},
+                {new StateTransition(State.Patrol, Command.LosePlayer), State.ReturnToPatrol},
+                //Return to patrol
+                {new StateTransition(State.ReturnToPatrol, Command.AtPatrolPoint), State.Patrol},
+                {new StateTransition(State.ReturnToBigPatrol, Command.AtPatrolPoint), State.BigPatrol},
                 //Lock Down 
                 {new StateTransition(State.Patrol, Command.LockDown), State.BigPatrol},
-                {new StateTransition(State.Investigate, Command.LockDown), State.BigPatrol},
-                {new StateTransition(State.Chase, Command.SeePlayer), State.BigPatrol},
+                {new StateTransition(State.Investigate, Command.LockDown), State.ReturnToBigPatrol},
                 {new StateTransition(State.BigPatrol, Command.SeePlayer), State.BigChase},
-                {new StateTransition(State.BigChase, Command.LosePlayer), State.BigPatrol}
+                {new StateTransition(State.BigChase, Command.LosePlayer), State.ReturnToBigPatrol}
             };
         }
 

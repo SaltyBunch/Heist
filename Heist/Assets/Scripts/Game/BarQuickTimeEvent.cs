@@ -17,7 +17,7 @@ namespace Game
         [SerializeField] private Image _pointer;
 
         [SerializeField] private AudioSource _audioSource;
-        
+
         [SerializeField] private AudioClip _sucess, _failure;
 
         private Input _controlInput;
@@ -37,8 +37,16 @@ namespace Game
             set
             {
                 if (!Equals(value, _controlInput))
+                {
                     if (value.A && !_controlInput.A)
                         PressButton(Button.A);
+                    else if (value.A && !_controlInput.B)
+                        PressButton(Button.B);
+                    else if (value.A && !_controlInput.X)
+                        PressButton(Button.X);
+                    else if (value.A && !_controlInput.Y)
+                        PressButton(Button.Y);
+                }
 
                 _controlInput = value;
             }
@@ -47,13 +55,13 @@ namespace Game
         private void PressButton(Button button)
         {
             //_timer = 5;
-            if (button == Button.A && CheckIndex())
+            if ((button == Button.A || button == Button.B || button == Button.X || button == Button.Y) && CheckIndex())
             {
                 //success
                 Events?.Invoke(this, new QuickTimeEventArgs
                 {
                     Result = true,
-                    State = (int)(_index * 100),
+                    State = (int) (_index * 100),
                     Type = QuickTimeType
                 });
                 _audioSource.clip = _sucess;
@@ -66,7 +74,7 @@ namespace Game
                 Events?.Invoke(this, new QuickTimeEventArgs
                 {
                     Result = false,
-                    State = (int)(_index * 100),
+                    State = (int) (_index * 100),
                     Type = QuickTimeType
                 });
                 _audioSource.clip = _failure;
@@ -103,7 +111,7 @@ namespace Game
 
         private bool CheckIndex()
         {
-            var point = ((int)_greenArea.fillOrigin) - 2; //top == 0, bottom == -2, right == -1, left == 1
+            var point = ((int) _greenArea.fillOrigin) - 2; //top == 0, bottom == -2, right == -1, left == 1
 
             float startAngle = 0;
             switch (point)
@@ -166,7 +174,10 @@ namespace Game
             {
                 ControlInput = new Input
                 {
-                    A = _player.Control.QuickTimeA
+                    A = _player.Control.QuickTimeA,
+                    B = _player.Control.QuickTimeB,
+                    X = _player.Control.QuickTimeX,
+                    Y = _player.Control.QuickTimeY,
                 };
             }
 
@@ -190,6 +201,9 @@ namespace Game
         private struct Input
         {
             public bool A;
+            public bool B;
+            public bool X;
+            public bool Y;
         }
     }
 }

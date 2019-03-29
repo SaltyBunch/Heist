@@ -55,7 +55,8 @@ MonoBehaviour:
     type: 3}
   _backgroundMusicInfiltration: {fileID: 8300000, guid: b3cebf82f2d39734f8ef77a74ce6bfee,
     type: 3}
-  _backgroundMusicLockdown: {fileID: 0}
+  _backgroundMusicLockdown: {fileID: 8300000, guid: 123504c38b287ce4aa920bc32f0da526,
+    type: 3}
   _goldMultiplier: 10
   _playerGo:
   - {fileID: 4946971795689322956, guid: 613811141d73ca54eaab31152b8da794, type: 3}
@@ -96,12 +97,65 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _endGameAtTime: 180
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _endGameAtTime: 140
   _gameEndArea: {fileID: 2648981502361538502}
   EnvironmentLayer:
     serializedVersion: 2
     m_Bits: 1024
-  playerModels: []
   _voiceAudioSource: {fileID: 3303693143143905876}
   _gameOver: 0
 --- !u!82 &8199425501971676588

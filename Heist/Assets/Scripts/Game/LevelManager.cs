@@ -4,12 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Audio;
 using Character;
+using drone;
 using Level;
 using Pickup;
 using Rewired;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.SceneManagement;
 using Player = Character.Player;
 using Random = UnityEngine.Random;
 
@@ -45,43 +44,41 @@ namespace Game
     public class LevelManager : MonoBehaviour
     {
         public delegate void NotifyEventHandler(object sender, NotifyEventArgs e);
-
-
         public delegate void NotifyMessageHandler(object sender, NotifyMessageArgs e);
-
-
         public static LevelManager LevelManagerRef;
-
-        [SerializeField] private AudioSource[] _musicAudioSource;
+        public LayerMask EnvironmentLayer;
         [SerializeField] private AudioClip _backgroundMusicGathering;
-
         [SerializeField] private AudioClip _backgroundMusicInfiltration;
         [SerializeField] private AudioClip _backgroundMusicLockdown;
-        private int _currentAudioSource;
-
-        [SerializeField] private int _goldMultiplier = 10;
-
-        [SerializeField] private List<PlayerGameObject> _playerGo;
-
-        private PlayerGameObject[] _players;
-        public PlayerGameObject[] Players => _players;
-
-        [SerializeField] private GameObject[] _spawnpoints;
-        [SerializeField] private int _stunMultiplier = 100;
-
-        [SerializeField] public GameObject FOG;
-        [SerializeField] public drone.DroneLoad droneSpawner;
-
+        [SerializeField] private float _endGameAtTime;
+        [SerializeField] private Collider _gameEndArea;
+        [SerializeField] private bool _gameOver;
+        [SerializeField] private AudioSource[] _musicAudioSource;
         [SerializeField] private List<PickupSpawner> _pickupSpawners;
-
-        
+        [SerializeField] private List<PlayerGameObject> _playerGo;
+        [SerializeField] private GameObject[] _spawnpoints;
+        [SerializeField] private AudioSource _voiceAudioSource;
+        [SerializeField] public DroneLoad droneSpawner;
+        [SerializeField] public GameObject FOG;
+        private int _currentAudioSource;
+        private bool _doorOpen;
+        private bool[] _playerLeaving;
         private float _time;
-
         private float _timeSinceVaultOpened;
+        private bool _vaultOpen;
+
+        private readonly List<Tuple<AudioClip, float>> _voiceQue = new List<Tuple<AudioClip, float>>();
+
+        public Dictionary<NotifyType, float> NotificationRamge = new Dictionary<NotifyType, float>
+        {
+            {NotifyType.Dash, 10}, {NotifyType.Footstep, 5}, {NotifyType.TripTrap, 10}, {NotifyType.Attack, 10}
+        };
+
+        public PlayerGameObject[] Players { get; private set; }
 
         private float TimeSinceVaultOpened
         {
-            get { return _timeSinceVaultOpened; }
+            get => _timeSinceVaultOpened;
             set
             {
                 _timeSinceVaultOpened = value;
@@ -89,14 +86,9 @@ namespace Game
             }
         }
 
-        [SerializeField] private float _endGameAtTime;
-
-        [SerializeField] private Collider _gameEndArea;
-        private bool[] _playerLeaving;
-
         public bool[] PlayerLeaving
         {
-            get { return _playerLeaving; }
+            get => _playerLeaving;
             set
             {
                 _playerLeaving = value;
@@ -106,9 +98,10 @@ namespace Game
                     if (!b) break;
                     if (i + 1 == _playerLeaving.Length) AllPlayersLeft(true);
                 }
-
             }
         }
+
+        public static float Time => LevelManagerRef._time;
 
         public void AllPlayersLeft(bool b)
         {
@@ -117,23 +110,7 @@ namespace Game
             GameManager.GameManagerRef.EndGame();
         }
 
-        public Dictionary<NotifyType, float> NotificationRamge = new Dictionary<NotifyType, float>
-        {
-            {NotifyType.Dash, 10}, {NotifyType.Footstep, 5}, {NotifyType.TripTrap, 10}, {NotifyType.Attack, 10}
-        };
-
-        private bool _vaultOpen;
-
-        public static float Time => LevelManagerRef._time;
-
-        public LayerMask EnvironmentLayer;
-
         public event NotifyEventHandler Notifty;
-
-        private bool _doorOpen;
-        [SerializeField] private AudioSource _voiceAudioSource;
-        [SerializeField] private bool _gameOver;
-        private List<Tuple<AudioClip, float>> _voiceQue = new List<Tuple<AudioClip, float>>();
 
         private void Awake()
         {
@@ -167,37 +144,32 @@ namespace Game
         public void CalculateScore()
         {
             GameManager.GameManagerRef.Scores = new List<Score>();
-            foreach (var playerGO in _players)
+            foreach (var playerGO in Players)
             {
                 var player = playerGO.Player;
                 var playerNum = playerGO.PlayerControl.PlayerNumber;
 
                 if (_playerLeaving[playerNum])
-                {
                     GameManager.GameManagerRef.Scores.Add(
-                        new Score()
+                        new Score
                         {
                             GoldAmount = player.Inventory.GoldAmount,
                             TimesStunned = player.timesStunned,
-                            PlayerNumber = playerGO.PlayerControl.PlayerNumber,
+                            PlayerNumber = playerGO.PlayerControl.PlayerNumber
                         });
-                }
                 else
-                {
                     GameManager.GameManagerRef.Scores.Add(
-                        new Score()
+                        new Score
                         {
                             GoldAmount = 0,
                             TimesStunned = player.timesStunned,
-                            PlayerNumber = playerGO.PlayerControl.PlayerNumber,
+                            PlayerNumber = playerGO.PlayerControl.PlayerNumber
                         });
-                }
             }
         }
 
         public void InitGame(int numPlayers)
         {
-        
             var displays = 1;
             if (GameManager.GameManagerRef.UseMultiScreen)
             {
@@ -242,10 +214,8 @@ namespace Game
             #region Level Setup
 
             foreach (var pickupSpawner in _pickupSpawners)
-            {
                 //todo place hazards
                 pickupSpawner.Spawn();
-            }
 
             _gameEndArea.enabled = false;
 
@@ -253,7 +223,7 @@ namespace Game
 
             #region Player Setup
 
-            _players = new PlayerGameObject[numPlayers];
+            Players = new PlayerGameObject[numPlayers];
 
             ShuffleSpawns();
 
@@ -262,18 +232,18 @@ namespace Game
             {
                 if (i != 0 && i % playersPerDisplay == 0)
                     targetDisplay++;
-                _players[i] = Instantiate(_playerGo[(int) GameManager.PlayerChoice[i]]);
+                Players[i] = Instantiate(_playerGo[(int) GameManager.PlayerChoice[i]]);
                 //todo set appropriate player models
 
 
                 //put player on spawnpoint
-                _players[i].transform.position = _spawnpoints[i].transform.position;
+                Players[i].transform.position = _spawnpoints[i].transform.position;
 
                 //set screen region
                 switch (playersOnDisplay[targetDisplay])
                 {
                     case 1:
-                        _players[i].Camera.MainCamera.rect = new Rect
+                        Players[i].Camera.MainCamera.rect = new Rect
                         {
                             x = 0,
                             y = 0,
@@ -282,7 +252,7 @@ namespace Game
                         };
                         break;
                     case 2:
-                        _players[i].Camera.MainCamera.rect = new Rect
+                        Players[i].Camera.MainCamera.rect = new Rect
                         {
                             x = i % 2 * 0.5f,
                             y = 0,
@@ -292,7 +262,7 @@ namespace Game
                         break;
                     case 3:
                     case 4:
-                        _players[i].Camera.MainCamera.rect = new Rect
+                        Players[i].Camera.MainCamera.rect = new Rect
                         {
                             x = i % 2 * 0.5f,
                             y = Mathf.Abs(1 - i / 2) * 0.5f,
@@ -303,23 +273,23 @@ namespace Game
                 }
 
 
-                _players[i].Camera.UICamera.rect = _players[i].Camera.MainCamera.rect;
+                Players[i].Camera.UICamera.rect = Players[i].Camera.MainCamera.rect;
 
-                _players[i].Camera.MainCamera.targetDisplay = targetDisplay;
-                _players[i].Camera.UICamera.targetDisplay = targetDisplay;
+                Players[i].Camera.MainCamera.targetDisplay = targetDisplay;
+                Players[i].Camera.UICamera.targetDisplay = targetDisplay;
                 //assign player number
-                _players[i].PlayerControl.PlayerNumber = i;
+                Players[i].PlayerControl.PlayerNumber = i;
 
-                _players[i].PlayerController.Player = ReInput.players.GetPlayer(i);
+                Players[i].PlayerController.Player = ReInput.players.GetPlayer(i);
 
-                _players[i].PlayerUiManager.SetPosition(_players[i].Camera.MainCamera.rect, i);
+                Players[i].PlayerUiManager.SetPosition(Players[i].Camera.MainCamera.rect, i);
 
-                _players[i].PlayerUiManager.SetCharacter(GameManager.PlayerChoice[i]);
+                Players[i].PlayerUiManager.SetCharacter(GameManager.PlayerChoice[i]);
 
-                _players[i].fog.FogOfWarPlane = FOG.transform;
-                _players[i].fog.num = (i + 1);
+                Players[i].fog.FogOfWarPlane = FOG.transform;
+                Players[i].fog.num = i + 1;
 
-                NotifyMessage += _players[i].PlayerUiManager.NotifyMessage;
+                NotifyMessage += Players[i].PlayerUiManager.NotifyMessage;
             }
 
             _playerLeaving = new bool[numPlayers];
@@ -329,10 +299,7 @@ namespace Game
             #region Drone Setup
 
             var players = new List<Player>();
-            foreach (var player in Players)
-            {
-                players.Add(player.Player);
-            }
+            foreach (var player in Players) players.Add(player.Player);
 
             //todo drone setup
             droneSpawner.Begin(players);
@@ -345,7 +312,7 @@ namespace Game
             _musicAudioSource[_currentAudioSource].Play();
 
             #endregion
-            
+
             NotifyPlayers("Infiltrate the vault");
         }
 
@@ -382,10 +349,7 @@ namespace Game
                     5));
             _currentAudioSource = (_currentAudioSource + 1) % _musicAudioSource.Length;
 
-            foreach (var player in _players)
-            {
-                player.PlayerUiManager.Siren.SetActive(true);
-            }
+            foreach (var player in Players) player.PlayerUiManager.Siren.SetActive(true);
 
 
             callVault();
@@ -393,23 +357,17 @@ namespace Game
             _gameEndArea.enabled = true;
 
             NotifyPlayers("Collect gold and escape the bank");
-            
+
             var time = _endGameAtTime;
             do
             {
                 time -= 1;
-                foreach (var player in _players)
-                {
-                    player.PlayerUiManager.VaultTimer.text = time.ToString();
-                }
+                foreach (var player in Players) player.PlayerUiManager.VaultTimer.text = time.ToString();
 
                 yield return new WaitForSeconds(1);
             } while (time > 0);
 
-            foreach (var player in _players)
-            {
-                player.PlayerUiManager.VaultTimer.text = "";
-            }
+            foreach (var player in Players) player.PlayerUiManager.VaultTimer.text = "";
         }
 
         public void Notify(Vector3 position, NotifyType notifyType)
@@ -450,7 +408,7 @@ namespace Game
 
         public void NotifyPlayers(string message)
         {
-            NotifyMessage?.Invoke(this, new NotifyMessageArgs()
+            NotifyMessage?.Invoke(this, new NotifyMessageArgs
             {
                 Message = message
             });
@@ -460,7 +418,7 @@ namespace Game
         private IEnumerator Delay(int i)
         {
             yield return new WaitForSeconds(i);
-            NotifyMessage?.Invoke(this, new NotifyMessageArgs()
+            NotifyMessage?.Invoke(this, new NotifyMessageArgs
             {
                 Message = ""
             });
@@ -468,10 +426,7 @@ namespace Game
 
         public void SetKeyPickedUp(KeyType keyPickupKey)
         {
-            foreach (var player in _players)
-            {
-                player.PlayerUiManager.SetKeyPickedUp(keyPickupKey);
-            }
+            foreach (var player in Players) player.PlayerUiManager.SetKeyPickedUp(keyPickupKey);
         }
 
         public void PlayVoiceLine(AudioClip voiceLine)

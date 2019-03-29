@@ -5,6 +5,8 @@ Shader "Custom/StandardOccluded-Texture"
 	Properties{
 		_Color("Color", Color) = (1,1,1,1)
 		[PerRendererData]_MainTex("Albedo (RGB)", 2D) = "white" {}
+	_EmissionMap("Emission Map", 2D) = "black" {}
+	_EmissionColor("Emission Color", Color) = (0,0,0,1)
 	    _Glossiness("Smoothness", Range(0,1)) = 0.5
 		_Metallic("Metallic", Range(0,1)) = 0.0
 		_AlphaCutoff("Cutoff", Range(0,1)) = 0.5
@@ -53,15 +55,18 @@ Shader "Custom/StandardOccluded-Texture"
 #pragma target 3.0 addshadow
 
 		sampler2D _MainTex;
+	sampler2D _EmissionMap;
 
 	struct Input {
 		float2 uv_MainTex;
+		float2 uv_EmissionMap;
 	};
 
 	half _Glossiness;
 	half _Metallic;
 	half _AlphaCutoff;
 	fixed4 _Color;
+	fixed4 _EmissionColor;
 
 	void surf(Input IN, inout SurfaceOutputStandard o) {
 		// Albedo comes from a texture tinted by color
@@ -71,6 +76,7 @@ Shader "Custom/StandardOccluded-Texture"
 		o.Metallic = _Metallic;
 		o.Smoothness = _Glossiness;
 		o.Alpha = c.a;
+		o.Emission = tex2D(_EmissionMap, IN.uv_MainTex).rgb * _EmissionColor.rgb;
 		clip(c.a-_AlphaCutoff);
 	}
 	ENDCG

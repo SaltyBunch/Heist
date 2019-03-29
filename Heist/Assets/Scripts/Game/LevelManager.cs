@@ -44,7 +44,9 @@ namespace Game
     public class LevelManager : MonoBehaviour
     {
         public delegate void NotifyEventHandler(object sender, NotifyEventArgs e);
+
         public delegate void NotifyMessageHandler(object sender, NotifyMessageArgs e);
+
         public static LevelManager LevelManagerRef;
         public LayerMask EnvironmentLayer;
         [SerializeField] private AudioClip _backgroundMusicGathering;

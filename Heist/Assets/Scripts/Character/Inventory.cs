@@ -152,7 +152,7 @@ namespace Character
 
             if (item is Weapon.Weapon weapon)
             {
-                GameManager.SetLayerOnAll(item.gameObject, GameManager.GetPlayerMask(_player.PlayerNumber, false));
+                GameManager.SetLayerOnAll(item.gameObject, 11);
                 if (_weapon.Contains(weapon))
                 {
                     var temp = _weapon.Find(x => x.GetType() == weapon.GetType());
@@ -225,20 +225,14 @@ namespace Character
 
                     return;
                 case Baton baton:
-                    var objects = Physics.OverlapSphere(transform.position, 2);
-                    foreach (var o in objects)
+                    baton.Use();
+                    LevelManager.LevelManagerRef.Notify(transform.position, NotifyType.Attack);
+                    _count = baton.Ammo;
+                    if (_count == 0)
                     {
-                        if (o.CompareTag("Player") || o.CompareTag("Drone"))
-                        {
-                            var character = o.GetComponentInParent<Character>();
-                            if (character.gameObject.layer != this.gameObject.layer)
-                            {
-                                character.Stacks += 1;
-                                character.Knockback(transform);
-                            }
-                        }
+                        Remove(SelectedItem);
+                        return;
                     }
-
                     //todo play baton animation
                     break;
                 case StunGun stunGun:
@@ -250,7 +244,6 @@ namespace Character
                         Remove(SelectedItem);
                         return;
                     }
-
                     break;
             }
 

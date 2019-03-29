@@ -4,7 +4,7 @@ namespace Weapon
 {
     public class Baton : Weapon
     {
-        private void OnCollisionEnter(Collision other)
+        private void OnTriggerEnter(Collider other)
         {
             var character = other.transform.GetComponentInParent<Character.Character>();
             if (character != null)
@@ -12,8 +12,11 @@ namespace Weapon
                 character.Stacks += 1;
                 character.Knockback(transform);
             }
+        }
 
-            Destroy(gameObject);
+        public void Use()
+        {
+            Ammo--;
         }
     }
 }

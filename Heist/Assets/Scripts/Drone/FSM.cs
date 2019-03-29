@@ -64,6 +64,8 @@ namespace Drone
                 {new StateTransition(State.Patrol, Command.LosePlayer), State.ReturnToPatrol},
                 //Return to patrol
                 {new StateTransition(State.ReturnToPatrol, Command.AtPatrolPoint), State.Patrol},
+                {new StateTransition(State.ReturnToPatrol, Command.Die), State.Dead},
+                {new StateTransition(State.ReturnToBigPatrol, Command.Die), State.Dead},
                 {new StateTransition(State.ReturnToBigPatrol, Command.AtPatrolPoint), State.BigPatrol},
                 //Lock Down 
                 {new StateTransition(State.Patrol, Command.LockDown), State.BigPatrol},

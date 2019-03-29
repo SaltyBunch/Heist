@@ -220,7 +220,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: e0466ab7aad3f0f42b8032614f769a55, type: 3}
   - {fileID: 2800000, guid: 5f65d007a1ee8ed448b027ca85bb023b, type: 3}
   - {fileID: 2800000, guid: 3761f24d879a1de478a52c370a05670a, type: 3}
-  _facesState: 2
+  FaceState: 2
   _playerNumber: -1
   _anim: {fileID: 4054281346196241859}
   hidey: 0
@@ -451,8 +451,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 690408505485674587}
   m_AABB:
-    m_Center: {x: 0.000000007450581, y: 0.11064041, z: 1.0065279}
-    m_Extent: {x: 0.39677247, y: 0.47167516, z: 0.5846227}
+    m_Center: {x: 0.0058910325, y: 0.18646407, z: -0.043199494}
+    m_Extent: {x: 0.33815858, y: 0.63859653, z: 0.46269757}
   m_DirtyAABB: 0
 --- !u!183 &7131152078353998838
 Cloth:
@@ -473,7 +473,7 @@ Cloth:
   m_WorldAccelerationScale: 1
   m_Friction: 0.5
   m_CollisionMassScale: 0
-  m_UseContinuousCollision: 1
+  m_UseContinuousCollision: 0
   m_UseVirtualParticles: 1
   m_SolverFrequency: 120
   m_SleepThreshold: 0.1

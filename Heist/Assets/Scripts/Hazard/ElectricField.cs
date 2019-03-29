@@ -25,7 +25,7 @@ namespace Hazard
             {
                 var player = other.GetComponentInParent<PlayerControl>();
                 player.BaseCharacter.Stats.Speed -= 2;
-                player.BaseCharacter.Stacks += 1;
+                player.BaseCharacter.Stacks += 2;
             }
         }
 
@@ -34,7 +34,7 @@ namespace Hazard
             if (other.CompareTag("Player"))
             {
                 var player = other.GetComponentInParent<PlayerControl>();
-                player.BaseCharacter.Stacks += 1;
+                player.BaseCharacter.Stacks += 2;
             }
         }
 

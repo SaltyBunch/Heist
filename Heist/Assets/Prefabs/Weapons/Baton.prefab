@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &7501796658624607240
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959900296483614996}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.06471795, y: 0.06471804, z: 0.26641613}
+  m_Center: {x: 0.00000008195639, y: -0.0000008022376, z: 0.48862496}
 --- !u!1 &1188453641327853646
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,6 +24,7 @@ GameObject:
   - component: {fileID: 1188453641327853643}
   - component: {fileID: 1188453641327853640}
   - component: {fileID: 1188453641327853641}
+  - component: {fileID: 6635682339515372247}
   m_Layer: 0
   m_Name: Baton
   m_TagString: Untagged
@@ -146,7 +160,23 @@ MonoBehaviour:
   _hitSound: {fileID: 8300000, guid: 1c3c193d8e211db4ab88181ad23b9b20, type: 3}
   _outOfAmmoSound: {fileID: 0}
   _pickupSound: {fileID: 8300000, guid: 304bad6d053f2bb47944314bdc95203e, type: 3}
-  Ammo: 0
+  Ammo: 20
+--- !u!54 &6635682339515372247
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188453641327853646}
+  serializedVersion: 2
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 3
 --- !u!1001 &7398067872148843799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -154,11 +184,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1188453641327853643}
     m_Modifications:
-    - target: {fileID: 7780381444762491907, guid: eedf18759d481594ba201f325faaa5f2,
-        type: 3}
-      propertyPath: m_Name
-      value: Batton With Zap
-      objectReference: {fileID: 0}
     - target: {fileID: 7780381444762517539, guid: eedf18759d481594ba201f325faaa5f2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -229,6 +254,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7780381444762491907, guid: eedf18759d481594ba201f325faaa5f2,
+        type: 3}
+      propertyPath: m_Name
+      value: Batton With Zap
+      objectReference: {fileID: 0}
     - target: {fileID: 7780381444764418755, guid: eedf18759d481594ba201f325faaa5f2,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -236,6 +266,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 433356d921373f644804e610275be1f3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eedf18759d481594ba201f325faaa5f2, type: 3}
+--- !u!1 &959900296483614996 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7780381444762491907, guid: eedf18759d481594ba201f325faaa5f2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7398067872148843799}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &959900296483777844 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7780381444762517539, guid: eedf18759d481594ba201f325faaa5f2,

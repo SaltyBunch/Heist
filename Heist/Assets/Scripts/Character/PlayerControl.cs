@@ -84,8 +84,6 @@ namespace Character
 
         [Header("Animation")] [SerializeField] private Animator _anim;
         private bool _isAnimNotNull;
-        [SerializeField] private GameObject _hitbox;
-        [SerializeField] private int _hitboxLayer;
         [SerializeField] private PlayerModel _playerModel;
 
 
@@ -143,8 +141,6 @@ namespace Character
 
             GameManager.SetLayerOnAll(gameObject, gameObject.layer);
 
-            _hitbox.layer = _hitboxLayer;
-
             GameManager.SetLayerOnAll(_reticule, 5);
 
             BaseCharacter.HealthChanged += BaseCharacterOnHealthChanged;
@@ -161,6 +157,10 @@ namespace Character
         private void BaseCharacterOnCharacterStunned(object sender, EventArgs e)
         {
             if (_loseGold != null) LevelManager.LevelManagerRef.PlayVoiceLine(_loseGold);
+            //todo drop gold
+            _baseCharacter.Inventory.GoldAmount -= Mathf.Min(_baseCharacter.Inventory.GoldAmount, 100);
+
+            OnMoveCancel?.Invoke(this, new EventArgs());
             if (_isAnimNotNull)
                 _anim.SetTrigger("Stunned");
         }
@@ -178,8 +178,8 @@ namespace Character
                 }
 
                 e.Item.gameObject.transform.SetParent(_hand, false);
-                e.Item.gameObject.transform.position = _hand.position;
-                e.Item.gameObject.transform.rotation = _hand.rotation;
+                e.Item.gameObject.transform.localPosition = Vector3.zero;
+                e.Item.gameObject.transform.localRotation = Quaternion.identity;
                 e.Item.gameObject.SetActive(true);
             }
             else
@@ -358,7 +358,6 @@ namespace Character
                 else if (_baseCharacter.Inventory.SelectedItem is Baton)
                 {
                     _anim.SetTrigger("Baton");
-                    _anim.SetTrigger("Shot");
                 }
                 else if (_baseCharacter.Inventory.SelectedItem is Hazard.Hazard)
                 {
@@ -409,8 +408,7 @@ namespace Character
 
         private void PushAttack()
         {
-            _audioSource.clip = _meleeAttack;
-            _audioSource.Play();
+            _anim.SetTrigger("Baton");
             var objects = Physics.OverlapSphere(transform.position, 2);
             foreach (var o in objects)
             {
@@ -420,6 +418,9 @@ namespace Character
                     if (character.gameObject.layer != this.gameObject.layer)
                     {
                         character.Knockback(transform);
+                        _audioSource.clip = _meleeAttack;
+                        _audioSource.Play();
+                        break;
                     }
                 }
             }

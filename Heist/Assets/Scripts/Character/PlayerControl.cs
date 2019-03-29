@@ -360,6 +360,10 @@ namespace Character
                     _anim.SetTrigger("Baton");
                     _anim.SetTrigger("Shot");
                 }
+                else if (_baseCharacter.Inventory.SelectedItem is Hazard.Hazard)
+                {
+                    _anim.SetTrigger("Place");
+                }
             }
 
             BaseCharacter.Inventory.Use();
@@ -370,6 +374,7 @@ namespace Character
             if (_baseCharacter.Stunned) return;
             if (_baseCharacter.OverWeaponPickup || _baseCharacter.OverTrapPickup)
             {
+                _anim.SetTrigger("PickUp");
                 _baseCharacter.PickupPickup();
             }
             else

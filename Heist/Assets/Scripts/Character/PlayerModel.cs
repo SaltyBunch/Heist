@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -21,9 +22,11 @@ namespace Character
         [SerializeField] private MeshRenderer _face;
 
         [SerializeField] private List<Texture2D> _faces;
-        [SerializeField] private FacesState _facesState = FacesState.Idle;
+        [SerializeField] public FacesState FaceState = FacesState.Idle;
 
         [SerializeField] private int _playerNumber = -1;
+
+        [SerializeField] private Animator _anim;
 
         public float hidey = 0;
         private float _modelAlpha = 4;
@@ -68,11 +71,11 @@ namespace Character
             }
         }
 
-        private void UpdateFace(Color color)
+        public void UpdateFace(Color color)
         {
             _face.GetPropertyBlock(_prop);
             _prop.SetColor("_OccludedColor", color);
-            _prop.SetTexture("_MainTex", _faces[(int) _facesState]);
+            _prop.SetTexture("_MainTex", _faces[(int) FaceState]);
             _face.SetPropertyBlock(_prop);
         }
 
@@ -90,5 +93,33 @@ namespace Character
         {
             _playerNumber = playerNumber;
         }
+
+        public void SetAnimation(MenuAnim _menuAnim)
+        {
+            switch (_menuAnim)
+            {
+                case MenuAnim.Select:
+                    _anim.SetBool("Select", true);
+                    FaceState = FacesState.Idle;
+                    break;
+                case MenuAnim.Victory:
+                    _anim.SetBool("Victory", true);
+                    FaceState = FacesState.Smile;
+                    break;
+                case MenuAnim.Defeat:
+                    _anim.SetBool("Defeat", true);
+                    FaceState = FacesState.Defeat;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(_menuAnim), _menuAnim, null);
+            }
+        }
+    }
+
+    public enum MenuAnim
+    {
+        Select,
+        Victory,
+        Defeat
     }
 }

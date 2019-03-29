@@ -17,22 +17,5 @@ namespace Hazard
         }
 
         public virtual extern bool Place(Vector3 position);
-
-        public virtual void Trigger(PlayerControl player)
-        {
-        }
-
-        public virtual void Defuse()
-        {
-        }
-
-        public void Bind(GameObject player)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual void Stop()
-        {
-        }
     }
 }

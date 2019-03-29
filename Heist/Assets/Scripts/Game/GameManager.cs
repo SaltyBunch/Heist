@@ -192,6 +192,7 @@ namespace Game
 
         private IEnumerator UnLoadScene(string scene, IEnumerator loadscene)
         {
+            _loadingScreen.gameObject.SetActive(true);
             yield return new WaitForEndOfFrame();
             var asyncOperation = SceneManager.UnloadSceneAsync(scene);
             while (!asyncOperation.isDone)

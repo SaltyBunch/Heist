@@ -8,7 +8,6 @@ namespace Hazard
 {
     public class ElectricField : Hazard
     {
-        private bool[] _players;
 
         [SerializeField] public BoxCollider Collider;
         [SerializeField] public GameObject Electric1;
@@ -17,32 +16,35 @@ namespace Hazard
         private void Awake()
         {
             Collider = GetComponent<BoxCollider>();
-            _players = new bool[GameManager.PlayerChoice.Length];
         }
 
         private void OnTriggerEnter(Collider other)
         {
             LevelManager.LevelManagerRef.Notify(other.transform.position, NotifyType.TripTrap);
-            if (other.CompareTag("Player")) StartCoroutine(Trigger(other.GetComponentInParent<PlayerControl>()));
+            if (other.CompareTag("Player"))
+            {
+                var player = other.GetComponentInParent<PlayerControl>();
+                player.BaseCharacter.Stats.Speed -= 2;
+                player.BaseCharacter.Stacks += 1;
+            }
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                var player = other.GetComponentInParent<PlayerControl>();
+                player.BaseCharacter.Stacks += 1;
+            }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.CompareTag("Player")) _players[other.GetComponentInParent<PlayerControl>().PlayerNumber] = false;
-        }
-
-        private new IEnumerator Trigger(PlayerControl player)
-        {
-            var prevSpeed = player.BaseCharacter.Stats.Speed;
-            _players[player.PlayerNumber] = true;
-            player.BaseCharacter.Stats.Speed /= 2;
-            do
+            if (other.CompareTag("Player"))
             {
-                player.BaseCharacter.Stacks += 1;
-                yield return null;
-            } while (_players[player.PlayerNumber]);
-
-            player.BaseCharacter.Stats.Speed = prevSpeed;
+                var player = other.GetComponentInParent<PlayerControl>();
+                player.BaseCharacter.Stats.Speed += 2;
+            }
         }
 
         public override bool Place(Vector3 position)
@@ -111,14 +113,6 @@ namespace Hazard
             }
 
             return true;
-        }
-
-        public override void Stop()
-        {
-            for (var i = 0; i < _players.Length; i++)
-            {
-                _players[i] = false;
-            }
         }
     }
 }

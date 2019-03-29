@@ -130,6 +130,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 6a638c24d5145a54c979c4554e2bdb9f, type: 3}
   _facesState: 2
   _playerNumber: -1
+  _anim: {fileID: 2865212197392862049}
   hidey: 0
 --- !u!1 &858743633196922137
 GameObject:

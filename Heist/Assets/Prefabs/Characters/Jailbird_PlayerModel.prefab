@@ -222,6 +222,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 3761f24d879a1de478a52c370a05670a, type: 3}
   _facesState: 2
   _playerNumber: -1
+  _anim: {fileID: 4054281346196241859}
   hidey: 0
 --- !u!1 &690408505485972523
 GameObject:

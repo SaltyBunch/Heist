@@ -512,6 +512,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 9e29b0dc7733d6c40a5f6f6aec3d932c, type: 3}
   _facesState: 2
   _playerNumber: -1
+  _anim: {fileID: 3325007291826845669}
   hidey: 0
 --- !u!136 &4122435441488290923
 CapsuleCollider:

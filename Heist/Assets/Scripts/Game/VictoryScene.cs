@@ -24,6 +24,7 @@ namespace Game
                     var playerModel = Instantiate(playerModels[(int) GameManager.PlayerChoice[order[i].PlayerNumber]],
                         _places[i]);
                     playerModel.SetMaterial(GameManager.GameManagerRef.Skins[order[i].PlayerNumber]);
+                    playerModel.SetAnimation(i == 0 ? MenuAnim.Victory : MenuAnim.Defeat);
                     _placeTexts[i].ScoreText.text = order[i].PlayerScore.ToString();
                 }
                 else

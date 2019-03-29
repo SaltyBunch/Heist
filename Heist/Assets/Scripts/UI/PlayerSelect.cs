@@ -11,7 +11,7 @@ namespace UI
     public class PlayerSelect : MonoBehaviour
     {
         private bool _delay = true;
-        private string[] _characterNames = { "King", "Jailbird", "Shadow", "Rocco" };
+        private string[] _characterNames = {"King", "Jailbird", "Shadow", "Rocco"};
         [SerializeField] private TextMeshPro display;
         [SerializeField] private int player;
 
@@ -29,6 +29,8 @@ namespace UI
 
         [SerializeField] private PlayerSelectableMenu _playerSelectManager;
 
+        [SerializeField] private TextMeshPro _health, _speed, _dexterity;
+
         private Rewired.Player _player;
 
         public int PlayerSkinchoice
@@ -40,9 +42,11 @@ namespace UI
                          CharacterSkins[GameManager.PlayerChoice[player]].Count) %
                         CharacterSkins[GameManager.PlayerChoice[player]].Count;
                 _playerSkinchoice = value;
-                GameManager.GameManagerRef.Skins[player] = CharacterSkins[GameManager.PlayerChoice[player]][_playerSkinchoice];
+                GameManager.GameManagerRef.Skins[player] =
+                    CharacterSkins[GameManager.PlayerChoice[player]][_playerSkinchoice];
 
-                _playerModels[Selection].SetMaterial(CharacterSkins[GameManager.PlayerChoice[player]][_playerSkinchoice]);
+                _playerModels[Selection]
+                    .SetMaterial(CharacterSkins[GameManager.PlayerChoice[player]][_playerSkinchoice]);
             }
         }
 
@@ -56,12 +60,17 @@ namespace UI
                 {
                     _playerModels[selection].gameObject.SetActive(false);
                     _playerModels[value].gameObject.SetActive(true);
+                    _playerModels[value].SetAnimation(MenuAnim.Select);
+
                 }
 
                 selection = value;
 
                 display.text = _characterNames[Selection];
-                GameManager.PlayerChoice[player] = (Characters)Selection;
+                GameManager.PlayerChoice[player] = (Characters) Selection;
+                _speed.text = GameManager.CharacterStats[GameManager.PlayerChoice[player]].Speed.ToString();
+                _health.text = GameManager.CharacterStats[GameManager.PlayerChoice[player]].Health.ToString();
+                _dexterity.text = GameManager.CharacterStats[GameManager.PlayerChoice[player]].Dexterity.ToString();
                 PlayerSkinchoice %= CharacterSkins[GameManager.PlayerChoice[player]].Count;
             }
         }
@@ -104,7 +113,6 @@ namespace UI
 
                 if (_player.GetButtonDown("UIVerticalUp")) PlayerSkinchoice++;
                 if (_player.GetButtonDown("UIVerticalDown")) PlayerSkinchoice--;
-
             }
         }
     }

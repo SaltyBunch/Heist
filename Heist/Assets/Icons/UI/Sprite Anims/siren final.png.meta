@@ -106,7 +106,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 921aa6080226a0a43b700a462a1bfe28
+      spriteID: 36d4ec6a02144f9478d584cfb84f04a2
       vertices: []
       indices: 
       edges: []
@@ -126,7 +126,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4956aea0e504851418cead0b950be4bb
+      spriteID: f41c09c0527afce4595340c2c2acd33e
       vertices: []
       indices: 
       edges: []
@@ -146,7 +146,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 57a9c162717dbfd4fbc092f902955373
+      spriteID: f3657573bd2796647b5bb89b3e6706b7
       vertices: []
       indices: 
       edges: []
@@ -155,10 +155,10 @@ TextureImporter:
       name: siren final_3
       rect:
         serializedVersion: 2
-        x: 1050
-        y: 1095
-        width: 195
-        height: 186
+        x: 793
+        y: 1080
+        width: 720
+        height: 210
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,7 +166,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e43f909d8d09b0418f5f530d5d50e68
+      spriteID: d5c9d176c96317d4296c79079d698b1a
       vertices: []
       indices: 
       edges: []
@@ -186,7 +186,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee4731d5930e75b4eadf077ae77d45ae
+      spriteID: e027e2a1ebfb2bd46b5c5ba515269aef
       vertices: []
       indices: 
       edges: []
@@ -206,7 +206,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4bf0a5b52d8d0c47bb01d2baecd3106
+      spriteID: 10a505e6401e48e4e92da7b901ef59e1
       vertices: []
       indices: 
       edges: []
@@ -226,7 +226,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a16a482cd76ddd4ea5619174199a062
+      spriteID: aa01bccb544b46f4a84ec71379677aba
       vertices: []
       indices: 
       edges: []
@@ -235,10 +235,10 @@ TextureImporter:
       name: siren final_7
       rect:
         serializedVersion: 2
-        x: 1050
-        y: 231
-        width: 195
-        height: 186
+        x: 793
+        y: 209
+        width: 720
+        height: 210
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -246,7 +246,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7bc2d3fa52a17ba46b1fe5ba0bf4846f
+      spriteID: 721da7ef54fc23543a006b304f840909
       vertices: []
       indices: 
       edges: []

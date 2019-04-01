@@ -40,11 +40,11 @@ namespace Game
                 {
                     if (value.A && !_controlInput.A)
                         PressButton(Button.A);
-                    else if (value.A && !_controlInput.B)
+                    else if (value.B && !_controlInput.B)
                         PressButton(Button.B);
-                    else if (value.A && !_controlInput.X)
+                    else if (value.X && !_controlInput.X)
                         PressButton(Button.X);
-                    else if (value.A && !_controlInput.Y)
+                    else if (value.Y && !_controlInput.Y)
                         PressButton(Button.Y);
                 }
 
@@ -193,7 +193,7 @@ namespace Game
             _index += Time.deltaTime * _dir;
 
             if (_index > 1) _index %= 1;
-            _pointer.transform.rotation = Quaternion.Euler(0, 0, _index * 360);
+            _pointer.transform.localRotation = Quaternion.Euler(0, 0, _index * 360);
         }
 
         public event QuickTimeEventHandler Events;

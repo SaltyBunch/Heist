@@ -200,12 +200,15 @@ namespace Character
 
         public void Use()
         {
+            RaycastHit hit;
             switch (SelectedItem)
             {
                 case ElectricField electricField:
-                    if (electricField.Place(transform.position + transform.forward * 2))
+                    if (Physics.Raycast(transform.position, transform.forward, out hit, 2,
+                        LevelManager.LevelManagerRef.EnvironmentLayer)
+                        ? electricField.Place(hit.point)
+                        : electricField.Place(transform.position + transform.forward * 2))
                     {
-                        //todo wall check
                         electricField.transform.parent = null;
                         Remove(SelectedItem);
                         electricField.PlacedByPlayer = true;
@@ -214,15 +217,16 @@ namespace Character
 
                     return;
                 case LethalLaser lethalLaser:
-                    if (lethalLaser.Place(transform.position + transform.forward * 2))
+                    if (Physics.Raycast(transform.position, transform.forward, out hit, 2,
+                        LevelManager.LevelManagerRef.EnvironmentLayer)
+                        ? lethalLaser.Place(hit.point)
+                        : lethalLaser.Place(transform.position + transform.forward * 2))
                     {
-                        //todo wall check
                         lethalLaser.transform.parent = null;
                         Remove(SelectedItem);
                         lethalLaser.PlacedByPlayer = true;
                         lethalLaser.gameObject.SetActive(true);
                     }
-
                     return;
                 case Baton baton:
                     baton.Use();
@@ -233,7 +237,7 @@ namespace Character
                         Remove(SelectedItem);
                         return;
                     }
-                    //todo play baton animation
+
                     break;
                 case StunGun stunGun:
                     stunGun.Attack();
@@ -244,6 +248,7 @@ namespace Character
                         Remove(SelectedItem);
                         return;
                     }
+
                     break;
             }
 

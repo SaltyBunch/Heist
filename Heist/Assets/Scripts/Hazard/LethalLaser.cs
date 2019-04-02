@@ -13,6 +13,7 @@ namespace Hazard
         public BoxCollider Collider;
         public GameObject Laser1;
         public GameObject Laser2;
+        private RaycastHit[] _colliders = new RaycastHit[5];
 
         private void Awake()
         {
@@ -40,22 +41,56 @@ namespace Hazard
 
         public override bool Place(Vector3 position)
         {
-            LayerMask layers = (LevelManager.LevelManagerRef.EnvironmentLayer);
+            int layers = (LevelManager.LevelManagerRef.EnvironmentLayer);
 
             Vector3 fwd = Vector3.positiveInfinity,
                 rt = Vector3.positiveInfinity,
                 lt = Vector3.negativeInfinity,
                 bk = Vector3.negativeInfinity;
 
-            RaycastHit hit;
-            if (Physics.Raycast(position, Vector3.forward, out hit, _maxGap, layers)) fwd = hit.point;
+            //forward
+            var size = Physics.RaycastNonAlloc(position, Vector3.forward, _colliders, _maxGap, layers);
+            for (int i = 0; i < size; i++)
+            {
+                if (_colliders[i].transform.GetComponent<Rigidbody>() == null)
+                {
+                    fwd = _colliders[i].point;
+                    break;
+                }
+            }
 
-            if (Physics.Raycast(position, Vector3.right, out hit, _maxGap, layers)) rt = hit.point;
-
-            if (Physics.Raycast(position, Vector3.left, out hit, _maxGap, layers)) lt = hit.point;
-
-            if (Physics.Raycast(position, Vector3.back, out hit, _maxGap, layers)) bk = hit.point;
-
+            //right
+            size = Physics.RaycastNonAlloc(position, Vector3.forward, _colliders, _maxGap, layers);
+            for (int i = 0; i < size; i++)
+            {
+                if (_colliders[i].transform.GetComponent<Rigidbody>() == null)
+                {
+                    rt = _colliders[i].point;
+                    break;
+                }
+            }
+            
+            //left
+            size = Physics.RaycastNonAlloc(position, Vector3.right, _colliders, _maxGap, layers);
+            for (int i = 0; i < size; i++)
+            {
+                if (_colliders[i].transform.GetComponent<Rigidbody>() == null)
+                {
+                    lt = _colliders[i].point;
+                    break;
+                }
+            }
+            
+            //back
+            size = Physics.RaycastNonAlloc(position, Vector3.back, _colliders, _maxGap, layers);
+            for (int i = 0; i < size; i++)
+            {
+                if (_colliders[i].transform.GetComponent<Rigidbody>() == null)
+                {
+                    bk = _colliders[i].point;
+                    break;
+                }
+            }
             if (Vector3.Distance(fwd, bk) > _maxGap && Vector3.Distance(rt, lt) > _maxGap) return false;
             
             if (Vector3.Distance(fwd, bk) > Vector3.Distance(rt, lt))

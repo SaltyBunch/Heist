@@ -2821,6 +2821,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _invFrames: 0.5
   _knockbackForce: 5
+  _stunTime: 5
   Stats:
     Health: 5
     Speed: 5

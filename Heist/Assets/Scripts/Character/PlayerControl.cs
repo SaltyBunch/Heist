@@ -219,6 +219,7 @@ namespace Character
                 var control = Control;
                 control.FaceVector = Control.MoveVector;
                 Control = control;
+                if (_playerModel.FaceState != PlayerModel.FacesState.Idle) _playerModel.SetIdle();
             }
 
             if (_baseCharacter.Stunned)

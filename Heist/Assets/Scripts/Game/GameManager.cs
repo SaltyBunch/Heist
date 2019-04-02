@@ -41,8 +41,7 @@ namespace Game
 
         public int PlayerNumber;
 
-        public int PlayerScore =>
-            (int) (GoldAmount * GameManager.GoldMultiplier - TimesStunned * GameManager.StunnedMultiplier);
+        public int PlayerScore => GoldAmount;
     }
 
     public class GameManager : MonoBehaviour

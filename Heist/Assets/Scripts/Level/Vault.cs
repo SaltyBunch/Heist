@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Game;
+using Rewired;
 using UnityEngine;
 
 namespace Level
@@ -38,7 +39,7 @@ namespace Level
             }
         }
 
-        public void UseKey(Dictionary<KeyType, bool> keys)
+        public void UseKey(Dictionary<KeyType, bool> keys, Character.Player player)
         {
             foreach (var key in (KeyType[]) Enum.GetValues(typeof(KeyType)))
                 if (key != KeyType.BlueKey && keys[key])
@@ -57,7 +58,19 @@ namespace Level
                     }
                 }
 
-
+            if (!_keys[KeyType.YellowKey] && !_keys[KeyType.RedKey]) 
+            {
+                //has neither
+                player.PlayerUiManager.NeedsBothKeys();
+            }
+            else if (!_keys[KeyType.YellowKey])
+            {
+                player.PlayerUiManager.NeedKey(KeyType.YellowKey);
+            }
+            else if (!_keys[KeyType.RedKey])
+            {
+                player.PlayerUiManager.NeedKey(KeyType.RedKey);
+            }
             OpenVault();
         }
 

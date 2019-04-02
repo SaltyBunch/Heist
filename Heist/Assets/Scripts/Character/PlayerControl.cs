@@ -5,6 +5,7 @@ using Game;
 using Hazard;
 using JetBrains.Annotations;
 using Level;
+using Pickup;
 using Rewired.Data.Mapping;
 using UI;
 using UnityEngine;
@@ -38,6 +39,8 @@ namespace Character
     [RequireComponent(typeof(Player), typeof(Rigidbody), typeof(AudioSource))]
     public class PlayerControl : MonoBehaviour
     {
+        [SerializeField] private GoldPickup _goldPickup;
+        
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private Player _baseCharacter;
         [SerializeField] private PlayerUIManager _playerUiManager;
@@ -159,7 +162,13 @@ namespace Character
         {
             if (_loseGold != null) LevelManager.LevelManagerRef.PlayVoiceLine(_loseGold);
             //todo drop gold
-            _baseCharacter.Inventory.GoldAmount -= Mathf.Min(_baseCharacter.Inventory.GoldAmount, 100);
+            var goldAmount = Mathf.Min(_baseCharacter.Inventory.GoldAmount, 100);
+            _baseCharacter.Inventory.GoldAmount -= goldAmount;
+            if (goldAmount > 0)
+            {
+                var goldPickup = Instantiate(_goldPickup, transform.position + transform.up, Quaternion.identity);
+                goldPickup.SetDisableFor(PlayerNumber);
+            }
 
             OnMoveCancel?.Invoke(this, new EventArgs());
             if (_isAnimNotNull)
@@ -401,7 +410,7 @@ namespace Character
                         break;
                     case "Vault":
                         var vault = _interactObject.Item1.GetComponent<Vault>();
-                        vault.UseKey(BaseCharacter.Inventory.keys);
+                        vault.UseKey(BaseCharacter.Inventory.keys, BaseCharacter);
                         break;
                 }
 

@@ -8,6 +8,7 @@ using drone;
 using Level;
 using Pickup;
 using Rewired;
+using UI;
 using UnityEngine;
 using Player = Character.Player;
 using Random = UnityEngine.Random;
@@ -77,6 +78,8 @@ namespace Game
             {NotifyType.Dash, 10}, {NotifyType.Footstep, 5}, {NotifyType.TripTrap, 10}, {NotifyType.Attack, 10}
         };
 
+        private bool _notify;
+
         public PlayerGameObject[] Players { get; private set; }
 
         private float TimeSinceVaultOpened
@@ -140,6 +143,23 @@ namespace Game
             {
                 yield return new WaitForSeconds(0.5f);
                 _time += 0.5f;
+
+                if (!_vaultOpen && !_notify && _time > 240)
+                {
+                    _notify = true;
+                    NotifyPlayers(TextHelper.LockDownNotif);
+                }
+                else if (!_vaultOpen && _time > 360)
+                {
+                    var vault = (Vault) FindObjectOfType(typeof(Vault));
+                    vault.UseKey(new Dictionary<KeyType, bool>()
+                    {
+                        {KeyType.RedKey, true},
+                        {KeyType.YellowKey, true}
+                    }, null);
+                }
+
+
                 if (_vaultOpen) TimeSinceVaultOpened += 0.5f;
             } while (!_gameOver);
         }
@@ -316,7 +336,6 @@ namespace Game
 
             #endregion
 
-            StartCoroutine(DummyProof());
             NotifyPlayers("Infiltrate the vault");
         }
 
@@ -343,17 +362,6 @@ namespace Game
                 _currentAudioSource = (_currentAudioSource + 1) % _musicAudioSource.Length;
                 _doorOpen = true;
             }
-        }
-
-        public IEnumerator DummyProof()
-        {
-            yield return new WaitForSeconds(360f);
-            var vault = (Vault)FindObjectOfType(typeof(Vault));
-            vault.UseKey(new Dictionary<KeyType, bool>()
-                {
-                    {KeyType.RedKey, true},
-                    {KeyType.YellowKey, true}
-                });
         }
 
         public IEnumerator OpenVault(Vault.OpenDoor callVault)

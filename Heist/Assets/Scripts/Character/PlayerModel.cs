@@ -94,6 +94,26 @@ namespace Character
             _playerNumber = playerNumber;
         }
 
+        public void SetTalking()
+        {
+            FaceState = FacesState.Speak;
+        }
+        public void SetStunned()
+        {
+            FaceState = FacesState.Stun;
+        }
+
+        public void SetBlink()
+        {
+            FaceState = FacesState.Blink;
+        }
+
+        public void SetIdle()
+        {
+            FaceState = FacesState.Idle;
+        }
+
+
         public void SetAnimation(MenuAnim _menuAnim)
         {
             switch (_menuAnim)

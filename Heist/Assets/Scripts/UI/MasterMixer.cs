@@ -20,14 +20,33 @@ namespace UI
             masterMixer.SetFloat("MasterVolume", lvl);
         }
 
+        public float GetMasterVolume()
+        {
+            float lvl = 0;
+            masterMixer.GetFloat("MasterVolume", out lvl);
+            return lvl;
+        }
+
         public void UpdateMusicVolume(float lvl)
         {
             masterMixer.SetFloat("MusicVolume", lvl);
+        }
+        public float GetMusicVolume()
+        {
+            float lvl = 0;
+            masterMixer.GetFloat("MusicVolume", out lvl);
+            return lvl;
         }
 
         public void UpdateSFXVolume(float lvl)
         {
             masterMixer.SetFloat("SFXVolume", lvl);
+        }
+        public float GetSFXVolume()
+        {
+            float lvl = 0;
+            masterMixer.GetFloat("SFXVolume", out lvl);
+            return lvl;
         }
 
         public void Pause()

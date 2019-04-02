@@ -60,6 +60,9 @@ namespace UI
         [SerializeField] private SelectableMenu _mainMenu;
         [SerializeField] private SelectableMenu _optionsMenu;
         [SerializeField] private SelectableMenu _playerSelect;
+        [SerializeField] private SelectableMenu _credits;
+        [SerializeField] private SelectableMenu _controls;
+        [SerializeField] private SelectableMenu _sound;
         private bool _input = true;
 
         private void Start()
@@ -125,6 +128,48 @@ namespace UI
 
             _menuAnimator.SetTrigger("GoToPlayerSelect");
             CurrentMenu = _playerSelect;
+        }
+
+        public void GoToCredits()
+        {
+            _menuAnimator.SetTrigger("GoToCredits");
+            _credits.gameObject.SetActive(true);
+            CurrentMenu = _credits;
+        }
+
+        public void GoToOptionsFromCredits()
+        {
+            _menuAnimator.SetTrigger("GoFromCredits");
+            CurrentMenu = _optionsMenu;
+            _credits.gameObject.SetActive(false);
+        }
+        
+        public void GoToControls()
+        {
+            _menuAnimator.SetTrigger("GoToCredits");
+            _controls.gameObject.SetActive(true);
+            CurrentMenu = _controls;
+        }
+
+        public void GoToOptionsFromControls()
+        {
+            _menuAnimator.SetTrigger("GoFromCredits");
+            CurrentMenu = _optionsMenu;
+            _controls.gameObject.SetActive(false);
+        }
+        
+        public void GoToAudio()
+        {
+            _menuAnimator.SetTrigger("GoToCredits");
+            _sound.gameObject.SetActive(true);
+            CurrentMenu = _sound;
+        }
+
+        public void GoToOptionsFromAudio()
+        {
+            _menuAnimator.SetTrigger("GoFromCredits");
+            CurrentMenu = _optionsMenu;
+            _sound.gameObject.SetActive(false);
         }
 
         public void Empty()

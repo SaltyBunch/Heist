@@ -109,6 +109,8 @@ namespace Game
         public List<Score> Scores;
         public static int NumPlayers { get; set; }
 
+        public MasterMixer MasterMixer;
+        
         public List<Material> Skins = new List<Material>()
         {
             null, null, null, null
@@ -166,11 +168,9 @@ namespace Game
 
                 yield return null;
             }
-
             var scene = SceneManager.GetSceneByName(sceneName);
             SceneManager.SetActiveScene(scene);
             SetupScene(sceneName);
-            _loadingScreen.gameObject.SetActive(false);
         }
 
         private void SetupScene(string sceneName)
@@ -178,7 +178,23 @@ namespace Game
             if (sceneName == SceneNames.GameScene)
             {
                 LevelManager.LevelManagerRef.InitGame(NumPlayers);
+                _loadingScreen.gameObject.SetActive(false);
             }
+            else if (sceneName == SceneNames.GameScene)
+            {
+                _loadingScreen.Next();
+                StartCoroutine(DelayScene());
+            }
+            else
+            {
+                _loadingScreen.gameObject.SetActive(false);
+            }
+        }
+
+        private IEnumerator DelayScene()
+        {
+            yield return new WaitForSeconds(15f);
+            _loadingScreen.gameObject.SetActive(false);
         }
 
         public void EndGame()
@@ -199,6 +215,7 @@ namespace Game
             {
                 yield return null;
             }
+
             StartCoroutine(loadscene);
         }
 

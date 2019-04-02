@@ -30,7 +30,8 @@ namespace Character
         [SerializeField] [Range(0.01f, 1)] private float _invFrames = 0.333f;
         private bool _invincible;
         [SerializeField] private float _knockbackForce;
-
+        [SerializeField] private float _stunTime;
+        
         private Rigidbody _rgd;
         private int _stacks;
         private bool _stun;
@@ -121,7 +122,7 @@ namespace Character
         {
             Stunned = true;
             timesStunned += 1;
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(_stunTime);
             Stunned = false;
             _stunCooldown = true;
             yield return new WaitForSeconds(3);

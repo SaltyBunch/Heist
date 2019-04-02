@@ -67,6 +67,7 @@ namespace Game
         private bool[] _playerLeaving;
         private float _time;
         private float _timeSinceVaultOpened;
+        public bool vaultOpen => _vaultOpen;
         private bool _vaultOpen;
 
         private readonly List<Tuple<AudioClip, float>> _voiceQue = new List<Tuple<AudioClip, float>>();

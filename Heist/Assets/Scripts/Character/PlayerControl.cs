@@ -152,6 +152,7 @@ namespace Character
         {
             _playerModel.SetMaterial(GameManager.GameManagerRef.Skins[PlayerNumber]);
             _playerModel.SetPlayer(PlayerNumber);
+            StartCoroutine(Blink(5));
         }
 
         private void BaseCharacterOnCharacterStunned(object sender, EventArgs e)
@@ -226,6 +227,7 @@ namespace Character
                 control.MoveVector = Vector3.zero;
                 control.FaceVector = Vector3.zero;
                 Control = control;
+                if (_playerModel.FaceState != PlayerModel.FacesState.Stun) _playerModel.SetStunned();
             }
 
             if (Math.Abs(Control.MoveVector.magnitude) > 0.01f)
@@ -442,6 +444,19 @@ namespace Character
             _rigid.AddForce(Control.MoveVector * _dashForce * 3f, ForceMode.VelocityChange);
             yield return new WaitForSeconds(_dashTimer);
             _dashCooldown = true;
+        }
+
+        private IEnumerator Blink(int timer)
+        {
+
+            yield return new WaitForSeconds(timer);
+            if (_playerModel.FaceState == PlayerModel.FacesState.Idle)
+            {
+                _playerModel.SetBlink();
+                yield return new WaitForSeconds(0.5f);
+                _playerModel.SetIdle();
+            }
+            StartCoroutine(Blink(timer));
         }
 
         private void OnDestroy()

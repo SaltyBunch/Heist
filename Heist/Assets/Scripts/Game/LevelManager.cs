@@ -316,6 +316,7 @@ namespace Game
 
             #endregion
 
+            StartCoroutine(DummyProof());
             NotifyPlayers("Infiltrate the vault");
         }
 
@@ -342,6 +343,17 @@ namespace Game
                 _currentAudioSource = (_currentAudioSource + 1) % _musicAudioSource.Length;
                 _doorOpen = true;
             }
+        }
+
+        public IEnumerator DummyProof()
+        {
+            yield return new WaitForSeconds(360f);
+            var vault = (Vault)FindObjectOfType(typeof(Vault));
+            vault.UseKey(new Dictionary<KeyType, bool>()
+                {
+                    {KeyType.RedKey, true},
+                    {KeyType.YellowKey, true}
+                });
         }
 
         public IEnumerator OpenVault(Vault.OpenDoor callVault)

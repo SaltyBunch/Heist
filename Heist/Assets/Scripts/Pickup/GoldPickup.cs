@@ -11,5 +11,10 @@ namespace Pickup
         {
             _pickupType = PickupType.Gold;
         }
+
+        public void SetDisableFor(int playerNumber)
+        {
+            _ignorePlayer = playerNumber;
+        }
     }
 }

@@ -1,5 +1,6 @@
 using Character;
 using Game;
+using UI;
 
 namespace Level
 {
@@ -38,7 +39,12 @@ namespace Level
                 {
                     LevelManager.LevelManagerRef.OpenDoor();
                     Opened = true;
+                    LevelManager.LevelManagerRef.NotifyPlayers(TextHelper.StairUnlocked);
                 }
+            }
+            else if (!Opened)
+            {
+                player.BaseCharacter.PlayerUiManager.NeedKey(KeyType.BlueKey);
             }
 
             if (Opened)
@@ -68,7 +74,7 @@ namespace Level
                 }
             }
         }
-        
+
         void SetOpen()
         {
             _animating = false;

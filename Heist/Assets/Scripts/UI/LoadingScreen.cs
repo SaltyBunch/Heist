@@ -17,7 +17,15 @@ namespace UI
 
         private void OnEnable()
         {
-            _image.sprite = _loadingScreens[Random.Range(0, _loadingScreens.Count)];
+            _image.sprite = _loadingScreens[0];
+        }
+
+        public void Next()
+        {
+            if (_loadingScreens.Count > 1)
+            {
+                _image.sprite = _loadingScreens[1];
+            }
         }
     }
 }

@@ -41,8 +41,7 @@ namespace Game
 
         public int PlayerNumber;
 
-        public int PlayerScore =>
-            (int) (GoldAmount * GameManager.GoldMultiplier - TimesStunned * GameManager.StunnedMultiplier);
+        public int PlayerScore => GoldAmount;
     }
 
     public class GameManager : MonoBehaviour
@@ -109,6 +108,8 @@ namespace Game
         public List<Score> Scores;
         public static int NumPlayers { get; set; }
 
+        public MasterMixer MasterMixer;
+
         public List<Material> Skins = new List<Material>()
         {
             null, null, null, null
@@ -170,7 +171,6 @@ namespace Game
             var scene = SceneManager.GetSceneByName(sceneName);
             SceneManager.SetActiveScene(scene);
             SetupScene(sceneName);
-            _loadingScreen.gameObject.SetActive(false);
         }
 
         private void SetupScene(string sceneName)
@@ -178,7 +178,22 @@ namespace Game
             if (sceneName == SceneNames.GameScene)
             {
                 LevelManager.LevelManagerRef.InitGame(NumPlayers);
+                StartCoroutine(DelayScene());
             }
+            else
+            {
+                _loadingScreen.gameObject.SetActive(false);
+            }
+        }
+
+        private IEnumerator DelayScene()
+        {
+            Time.timeScale = 0;
+            yield return new WaitForSecondsRealtime(8f);
+            _loadingScreen.Next();
+            yield return new WaitForSecondsRealtime(7f);
+            _loadingScreen.gameObject.SetActive(false);
+            Time.timeScale = 1;
         }
 
         public void EndGame()
@@ -199,6 +214,7 @@ namespace Game
             {
                 yield return null;
             }
+
             StartCoroutine(loadscene);
         }
 

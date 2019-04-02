@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Game;
 using Pickup;
 using TMPro;
@@ -14,6 +15,7 @@ namespace UI
         [SerializeField] private Transform _quickTimePosition;
 
         [SerializeField] private TextMeshProUGUI _playerHint;
+        [SerializeField] private TextMeshProUGUI _playerInfo;
         public GameObject Siren => _playerStatsManager.Siren;
 
 
@@ -153,6 +155,65 @@ namespace UI
                     ClearHint();
                     break;
             }
+        }
+
+        public void ShowKeyPickup(KeyType keyPickupKey)
+        {
+            switch (keyPickupKey)
+            {
+                case KeyType.BlueKey:
+                    _playerInfo.text = TextHelper.BlueKeyPickUp;
+                    break;
+                case KeyType.RedKey:
+                    _playerInfo.text = TextHelper.RedKeyPickUp;
+                    break;
+                case KeyType.YellowKey:
+                    _playerInfo.text = TextHelper.YellowKeyPickUp;
+                    break;
+                default:
+                    ClearHint();
+                    break;
+            }
+
+            StartCoroutine(ClearHintIn(5));
+        }
+
+        private IEnumerator ClearHintIn(float time)
+        {
+            yield return new WaitForSeconds(time);
+            ClearInfo();
+        }
+
+        private void ClearInfo()
+        {
+            _playerInfo.text = "";
+        }
+
+        public void NeedKey(KeyType key)
+        {
+            switch (key)
+            {
+                case KeyType.BlueKey:
+                    _playerInfo.text = TextHelper.RequireBlueKey;
+                    break;
+                case KeyType.RedKey:
+                    _playerInfo.text = TextHelper.RequireRedKey;
+                    break;
+                case KeyType.YellowKey:
+                    _playerInfo.text = TextHelper.RequireYellowKey;
+                    break;
+                default:
+                    ClearHint();
+                    break;
+            }
+
+            StartCoroutine(ClearHintIn(5));
+        }
+
+        public void NeedsBothKeys()
+        {
+            _playerInfo.text = TextHelper.RequireBothKeys;
+            StartCoroutine(ClearHintIn(5));
         }
     }
 }

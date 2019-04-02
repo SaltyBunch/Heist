@@ -16,7 +16,6 @@ namespace UI
 
     public class PlayerStatsManager : MonoBehaviour
     {
-        [SerializeField] private Sprite[] _playerIcons;
 
         [SerializeField] private TextMeshProUGUI _gold;
         [SerializeField] private Image[] _health;

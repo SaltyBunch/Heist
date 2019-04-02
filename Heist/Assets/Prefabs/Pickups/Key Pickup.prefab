@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6137132783033162633}
   - component: {fileID: 1116284883328963423}
   - component: {fileID: 7790545349844506977}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Key Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,4 +105,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pickupType: 3
+  _verticalSpeed: 0.02
+  _rotationSpeed: 1
   Key: 0

@@ -3,6 +3,7 @@ using Game;
 using Pickup;
 using UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Character
 {
@@ -15,8 +16,9 @@ namespace Character
 
         private bool _overWeaponPickup;
 
+        public PlayerUIManager PlayerUiManager => _playerUiManager;
         [SerializeField] private PlayerUIManager _playerUiManager;
-        [SerializeField] private PlayerControl _playerControl;
+        [SerializeField] public PlayerControl PlayerControl;
 
         public Inventory Inventory => _inventory;
 
@@ -59,7 +61,7 @@ namespace Character
                     {
                         _inventory.GoldAmount += ((GoldPickup) pickup).AmountOfGold;
                         Destroy(pickup.gameObject);
-                        _playerControl.PickupGold();
+                        PlayerControl.PickupGold();
                     }
                     break;
                 case PickupType.Key:
@@ -69,6 +71,7 @@ namespace Character
                         _inventory.keys[keyPickup.Key] = true;
                         if (destroy)
                         {
+                            _playerUiManager.ShowKeyPickup(keyPickup.Key);
                             _playerUiManager.SetKeyOwned(keyPickup.Key);
                             LevelManager.LevelManagerRef.SetKeyPickedUp(keyPickup.Key);
                             Destroy(pickup.gameObject);
@@ -89,7 +92,7 @@ namespace Character
                 if (_inventory.Add(weapon)) Destroy(_currentlyOverPickup.gameObject);
                 OverWeaponPickup = false;
                 _playerUiManager.ClearHint();
-                _playerControl.PickupWeapon();
+                PlayerControl.PickupWeapon();
             }
             else if (OverTrapPickup)
             {
@@ -97,7 +100,7 @@ namespace Character
                 if (_inventory.Add(hazard)) Destroy(_currentlyOverPickup.gameObject);
                 OverTrapPickup = false;
                 _playerUiManager.ClearHint();
-                _playerControl.PickupTrap();
+                PlayerControl.PickupTrap();
             }
         }
 

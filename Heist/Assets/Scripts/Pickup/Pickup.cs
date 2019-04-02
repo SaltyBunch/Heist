@@ -21,6 +21,9 @@ namespace Pickup
         private int _direction = 1;
         private Coroutine _rotation;
 
+
+        internal int _ignorePlayer = -1;
+
         private void Start()
         {
             var collider = GetComponent<Collider>();
@@ -57,7 +60,8 @@ namespace Pickup
             if (other.CompareTag("Player"))
             {
                 var player = other.GetComponentInParent<Player>();
-                player.OverPickup(_pickupType, true, this);
+                if (player.PlayerControl.PlayerNumber != _ignorePlayer)
+                    player.OverPickup(_pickupType, true, this);
             }
         }
 
@@ -66,7 +70,8 @@ namespace Pickup
             if (other.CompareTag("Player"))
             {
                 var player = other.GetComponentInParent<Player>();
-                player.OverPickup(_pickupType, false, this);
+                if (player.PlayerControl.PlayerNumber != _ignorePlayer)
+                    player.OverPickup(_pickupType, false, this);
             }
         }
 

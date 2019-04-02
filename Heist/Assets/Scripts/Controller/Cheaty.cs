@@ -71,7 +71,7 @@ namespace Controller
                 {
                     {KeyType.RedKey, true},
                     {KeyType.YellowKey, true}
-                });
+                }, null);
             }
         }
 

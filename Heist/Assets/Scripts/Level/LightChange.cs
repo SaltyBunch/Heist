@@ -1,14 +1,15 @@
-﻿using Game;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LightChange : MonoBehaviour
 {
-    private bool f = true;
-    [SerializeField] private Light light;
+    [SerializeField] Light light;
+    bool f = true;
 
     private void Update()
     {
-        if (LevelManager.LevelManagerRef.vaultOpen && f)
+        if (Game.LevelManager.LevelManagerRef.vaultOpen && f)
         {
             ChangeLightToRed();
             f = false;

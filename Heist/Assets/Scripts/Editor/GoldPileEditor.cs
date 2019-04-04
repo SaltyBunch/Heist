@@ -11,7 +11,10 @@ namespace Editor
         {
             var goldPile = target as GoldPile;
             base.OnInspectorGUI();
-            if (GUILayout.Button("Update")) goldPile.PercentageRemaining = goldPile.Percentage;
+            if (GUILayout.Button("Update"))
+            {
+                goldPile.PercentageRemaining = goldPile.Percentage;
+            }
         }
     }
 }

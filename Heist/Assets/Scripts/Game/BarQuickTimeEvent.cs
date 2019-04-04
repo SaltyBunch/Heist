@@ -1,31 +1,35 @@
 using System;
 using System.Collections;
+using System.Linq;
 using Character;
+using Rewired;
 using UnityEngine;
 using UnityEngine.UI;
+using Player = Rewired.Player;
 using Random = UnityEngine.Random;
 
 namespace Game
 {
     public class BarQuickTimeEvent : QuickTimeEvent
     {
-        [SerializeField] private AudioSource _audioSource;
-
-        private Input _controlInput;
-        private int _dir;
         [SerializeField] private Image _greenArea;
-        private float _index;
-        private PlayerControl _player;
 
         [SerializeField] private Image _pointer;
 
-        private float _range;
-        private bool _started;
+        [SerializeField] private AudioSource _audioSource;
 
         [SerializeField] private AudioClip _sucess, _failure;
-        private float _timer = 5;
+
+        private Input _controlInput;
+        private int _dir;
+        private float _index;
+        private PlayerControl _player;
+
+        private float _range;
 
         public Type QuickTimeType;
+        private float _timer = 5;
+        private bool _started = false;
 
         private Input ControlInput
         {
@@ -107,7 +111,7 @@ namespace Game
 
         private bool CheckIndex()
         {
-            var point = _greenArea.fillOrigin - 2; //top == 0, bottom == -2, right == -1, left == 1
+            var point = ((int) _greenArea.fillOrigin) - 2; //top == 0, bottom == -2, right == -1, left == 1
 
             float startAngle = 0;
             switch (point)
@@ -129,11 +133,18 @@ namespace Game
             float origin;
 
             if (_greenArea.fillClockwise)
+            {
                 origin = (startAngle - _range / 2) % 1;
+            }
             else
+            {
                 origin = (startAngle + _range / 2) % 1;
+            }
 
-            if (Math.Abs(_index - origin) < _range || Math.Abs(1 - _index - origin) < _range) return true;
+            if (Math.Abs(_index - origin) < _range || Math.Abs((1 - _index) - origin) < _range)
+            {
+                return true;
+            }
 
             return false;
         }
@@ -160,13 +171,15 @@ namespace Game
         public void Update()
         {
             if (_player != null)
+            {
                 ControlInput = new Input
                 {
                     A = _player.Control.QuickTimeA,
                     B = _player.Control.QuickTimeB,
                     X = _player.Control.QuickTimeX,
-                    Y = _player.Control.QuickTimeY
+                    Y = _player.Control.QuickTimeY,
                 };
+            }
 
             if (_started) _timer -= Time.deltaTime;
             if (_started && _timer <= 0)

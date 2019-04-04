@@ -10,8 +10,7 @@ namespace Editor
             var camera = target as Hazard.Camera;
 
             EditorGUI.BeginChangeCheck();
-            var temp = camera.transform.InverseTransformPoint(FieldOfView.DrawFieldOfView(camera.localLensePos,
-                camera.fieldOfView, camera.range, camera.transform));
+            var temp = camera.transform.InverseTransformPoint(FieldOfView.DrawFieldOfView(camera.localLensePos, camera.fieldOfView, camera.range, camera.transform));
             if (EditorGUI.EndChangeCheck())
             {
                 Undo.RecordObject(camera, "Change lense position");

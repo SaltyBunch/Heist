@@ -1,3 +1,4 @@
+using Game;
 using UnityEngine;
 
 namespace Weapon
@@ -8,7 +9,7 @@ namespace Weapon
         [SerializeField] public Vector3 Barrel;
 
 
-        public void Attack()
+        public new void Attack()
         {
             _audioSource.clip = _fireSound;
             _audioSource.Play();

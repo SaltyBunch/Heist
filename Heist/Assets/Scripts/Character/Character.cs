@@ -18,8 +18,8 @@ namespace Character
 
     public class HealthChangedEventArgs
     {
-        public int AmountChanged;
         public int Health;
+        public int AmountChanged;
     }
 
     [RequireComponent(typeof(Rigidbody))]
@@ -30,28 +30,28 @@ namespace Character
         [SerializeField] [Range(0.01f, 1)] private float _invFrames = 0.333f;
         private bool _invincible;
         [SerializeField] private float _knockbackForce;
-
+        [SerializeField] private float _stunTime;
+        
         private Rigidbody _rgd;
         private int _stacks;
         private bool _stun;
 
+        public bool Stunned
+        {
+            get { return _stun; }
+            set
+            {
+                if (value != _stun && value == true) CharacterStunned?.Invoke(this, EventArgs.Empty);
+                _stun = value;
+            }
+        }
+
         private bool _stunCooldown;
-        [SerializeField] private float _stunTime;
 
         private float _timeSinceDamage;
         [SerializeField] public Stats Stats;
 
         internal int timesStunned;
-
-        public bool Stunned
-        {
-            get => _stun;
-            set
-            {
-                if (value != _stun && value) CharacterStunned?.Invoke(this, EventArgs.Empty);
-                _stun = value;
-            }
-        }
 
         public int Stacks
         {
@@ -139,8 +139,7 @@ namespace Character
 
         public void Knockback(Transform source)
         {
-            _rgd.AddRelativeForce(
-                Vector3.ProjectOnPlane(transform.position - source.position, Vector3.up).normalized * _knockbackForce,
+            _rgd.AddRelativeForce(Vector3.ProjectOnPlane((transform.position - source.position), Vector3.up).normalized * _knockbackForce,
                 ForceMode.Impulse);
         }
     }

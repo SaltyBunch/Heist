@@ -31,7 +31,6 @@ namespace UI
         {
             masterMixer.SetFloat("MusicVolume", lvl);
         }
-
         public float GetMusicVolume()
         {
             float lvl = 0;
@@ -43,7 +42,6 @@ namespace UI
         {
             masterMixer.SetFloat("SFXVolume", lvl);
         }
-
         public float GetSFXVolume()
         {
             float lvl = 0;

@@ -3,21 +3,24 @@ using Game;
 using Pickup;
 using UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Character
 {
     public class Player : Character
     {
         private Pickup.Pickup _currentlyOverPickup;
+        [SerializeField] private Inventory _inventory;
 
         private bool _overTrapPickup;
 
         private bool _overWeaponPickup;
+
+        public PlayerUIManager PlayerUiManager => _playerUiManager;
+        [SerializeField] private PlayerUIManager _playerUiManager;
         [SerializeField] public PlayerControl PlayerControl;
 
-        [field: SerializeField] public PlayerUIManager PlayerUiManager { get; }
-
-        [field: SerializeField] public Inventory Inventory { get; }
+        public Inventory Inventory => _inventory;
 
         public bool OverWeaponPickup
         {
@@ -40,7 +43,7 @@ namespace Character
 
         public void OverPickup(PickupType pickupType, bool overPickup, Pickup.Pickup pickup)
         {
-            PlayerUiManager.ShowPickup(pickupType, overPickup);
+            _playerUiManager.ShowPickup(pickupType, overPickup);
 
 
             switch (pickupType)
@@ -56,21 +59,20 @@ namespace Character
                 case PickupType.Gold:
                     if (overPickup)
                     {
-                        Inventory.GoldAmount += ((GoldPickup) pickup).AmountOfGold;
+                        _inventory.GoldAmount += ((GoldPickup) pickup).AmountOfGold;
                         Destroy(pickup.gameObject);
                         PlayerControl.PickupGold();
                     }
-
                     break;
                 case PickupType.Key:
                     if (overPickup && pickup is KeyPickup keyPickup)
                     {
-                        var destroy = !Inventory.keys[keyPickup.Key];
-                        Inventory.keys[keyPickup.Key] = true;
+                        var destroy = !_inventory.keys[keyPickup.Key];
+                        _inventory.keys[keyPickup.Key] = true;
                         if (destroy)
                         {
-                            PlayerUiManager.ShowKeyPickup(keyPickup.Key);
-                            PlayerUiManager.SetKeyOwned(keyPickup.Key);
+                            _playerUiManager.ShowKeyPickup(keyPickup.Key);
+                            _playerUiManager.SetKeyOwned(keyPickup.Key);
                             LevelManager.LevelManagerRef.SetKeyPickedUp(keyPickup.Key);
                             Destroy(pickup.gameObject);
                         }
@@ -87,29 +89,24 @@ namespace Character
             if (OverWeaponPickup)
             {
                 var weapon = (_currentlyOverPickup as WeaponPickup)?.WeaponGameObject;
-                if (Inventory.Add(weapon)) Destroy(_currentlyOverPickup.gameObject);
+                if (_inventory.Add(weapon)) Destroy(_currentlyOverPickup.gameObject);
                 OverWeaponPickup = false;
-                PlayerUiManager.ClearHint();
+                _playerUiManager.ClearHint();
                 PlayerControl.PickupWeapon();
             }
             else if (OverTrapPickup)
             {
                 var hazard = (_currentlyOverPickup as HazardPickup)?.HazardGameObject;
-                if (Inventory.Add(hazard)) Destroy(_currentlyOverPickup.gameObject);
+                if (_inventory.Add(hazard)) Destroy(_currentlyOverPickup.gameObject);
                 OverTrapPickup = false;
-                PlayerUiManager.ClearHint();
+                _playerUiManager.ClearHint();
                 PlayerControl.PickupTrap();
             }
         }
 
-        public void SetGold(int amount)
-        {
-            PlayerUiManager.SetGold(amount);
-        }
+        public void SetGold(int amount) => _playerUiManager.SetGold(amount);
 
-        public QuickTimeEvent InitializeQuickTime(QuickTimeEvent quickTimeEvent)
-        {
-            return PlayerUiManager.InitializeQuickTime(quickTimeEvent);
-        }
+        public QuickTimeEvent InitializeQuickTime(QuickTimeEvent quickTimeEvent) =>
+            _playerUiManager.InitializeQuickTime(quickTimeEvent);
     }
 }

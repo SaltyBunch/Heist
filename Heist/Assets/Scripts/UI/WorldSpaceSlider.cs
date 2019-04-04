@@ -13,25 +13,12 @@ namespace UI
             Music
         }
 
-        [SerializeField] private AudioSource _audioSource;
-
-        [SerializeField] private Transform _left;
-        private MasterMixer _masterMixer;
-        [SerializeField] private float _maxValue;
-
-        [SerializeField] private float _minValue;
-        [SerializeField] private Transform _right;
-
-        [SerializeField] private SpriteRenderer _slider;
-        private float _value;
-        public float Step;
-
         public float Value
         {
-            get => _value;
+            get { return _value; }
             set
             {
-                _value = Mathf.Clamp(value, _minValue, _maxValue);
+                _value =  Mathf.Clamp(value, _minValue, _maxValue);
                 switch (_audioSource)
                 {
                     case AudioSource.Master:
@@ -53,9 +40,21 @@ namespace UI
             }
         }
 
+        [SerializeField] private float _minValue;
+        [SerializeField] private float _maxValue;
+        public float Step;
+        private MasterMixer _masterMixer;
+        private float _value;
+        [SerializeField] private AudioSource _audioSource;
+
+        [SerializeField] private Transform _left;
+        [SerializeField] private Transform _right;
+
+        [SerializeField] private SpriteRenderer _slider;
+
         public bool Selected
         {
-            set => _slider.color = value ? new Color(0, 0.5f, 0.5f) : Color.white;
+            set { _slider.color = value ? new Color(0, 0.5f, 0.5f) : Color.white; }
         }
 
         private void Start()

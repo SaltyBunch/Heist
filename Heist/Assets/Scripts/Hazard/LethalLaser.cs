@@ -1,3 +1,4 @@
+using System.Collections;
 using Character;
 using Game;
 using UnityEngine;
@@ -6,20 +7,20 @@ namespace Hazard
 {
     public class LethalLaser : Hazard
     {
-        private readonly RaycastHit[] _colliders = new RaycastHit[5];
         [SerializeField] [Range(0.5f, 10)] private float _cooldown;
 
 
         public BoxCollider Collider;
         public GameObject Laser1;
         public GameObject Laser2;
+        private RaycastHit[] _colliders = new RaycastHit[5];
 
         private void Awake()
         {
             Collider = GetComponent<BoxCollider>();
         }
 
-
+        
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
@@ -29,7 +30,6 @@ namespace Hazard
                 player.BaseCharacter.Stacks += 2;
             }
         }
-
         private void OnTriggerStay(Collider other)
         {
             if (other.CompareTag("Player"))
@@ -41,7 +41,7 @@ namespace Hazard
 
         public override bool Place(Vector3 position)
         {
-            int layers = LevelManager.LevelManagerRef.EnvironmentLayer;
+            int layers = (LevelManager.LevelManagerRef.EnvironmentLayer);
 
             Vector3 fwd = Vector3.positiveInfinity,
                 rt = Vector3.positiveInfinity,
@@ -50,42 +50,49 @@ namespace Hazard
 
             //forward
             var size = Physics.RaycastNonAlloc(position, Vector3.forward, _colliders, _maxGap, layers);
-            for (var i = 0; i < size; i++)
+            for (int i = 0; i < size; i++)
+            {
                 if (_colliders[i].transform.GetComponent<Rigidbody>() == null)
                 {
                     fwd = _colliders[i].point;
                     break;
                 }
+            }
 
             //right
             size = Physics.RaycastNonAlloc(position, Vector3.right, _colliders, _maxGap, layers);
-            for (var i = 0; i < size; i++)
+            for (int i = 0; i < size; i++)
+            {
                 if (_colliders[i].transform.GetComponent<Rigidbody>() == null)
                 {
                     rt = _colliders[i].point;
                     break;
                 }
-
+            }
+            
             //left
             size = Physics.RaycastNonAlloc(position, Vector3.left, _colliders, _maxGap, layers);
-            for (var i = 0; i < size; i++)
+            for (int i = 0; i < size; i++)
+            {
                 if (_colliders[i].transform.GetComponent<Rigidbody>() == null)
                 {
                     lt = _colliders[i].point;
                     break;
                 }
-
+            }
+            
             //back
             size = Physics.RaycastNonAlloc(position, Vector3.back, _colliders, _maxGap, layers);
-            for (var i = 0; i < size; i++)
+            for (int i = 0; i < size; i++)
+            {
                 if (_colliders[i].transform.GetComponent<Rigidbody>() == null)
                 {
                     bk = _colliders[i].point;
                     break;
                 }
-
+            }
             if (Vector3.Distance(fwd, bk) > _maxGap && Vector3.Distance(rt, lt) > _maxGap) return false;
-
+            
             if (Vector3.Distance(fwd, bk) > Vector3.Distance(rt, lt))
             {
                 transform.position = (rt + lt) / 2;

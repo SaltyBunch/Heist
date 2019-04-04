@@ -17,30 +17,31 @@ namespace Level
         Gold,
         BlueKey,
         RedKey,
-        YellowKey
+        YellowKey,
     }
 
     public class MiniVault : MonoBehaviour
     {
-        [SerializeField] private Animator _anim;
-
-        [SerializeField] private AudioSource _audioSource;
-
-        private bool _interacting;
-        [SerializeField] private LockQuickTimeEvent _lockQuickTimeEvent;
-        [SerializeField] private AudioClip _openClip;
+        [SerializeField] private List<SpawnObjects> _possibleSpawns;
 
         [SerializeField] private List<Pickup.Pickup> _pickupPrefabs;
 
-        private PlayerControl _player;
-        [SerializeField] private List<SpawnObjects> _possibleSpawns;
-
-        private LockQuickTimeEvent _quickTime;
+        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private AudioClip _openClip;
 
         private void Reset()
         {
             gameObject.tag = "MiniVault";
         }
+
+        private PlayerControl _player;
+
+        private bool _interacting;
+
+        [SerializeField] private Animator _anim;
+
+        private LockQuickTimeEvent _quickTime;
+        [SerializeField] private LockQuickTimeEvent _lockQuickTimeEvent;
 
         public void StartChanneling(PlayerControl player)
         {
@@ -91,7 +92,7 @@ namespace Level
             Instantiate(_pickupPrefabs[(int) _possibleSpawns[i]], _player.transform.position, Quaternion.identity,
                 null);
 
-            gameObject.tag = "Untagged";
+            this.gameObject.tag = "Untagged";
         }
     }
 }

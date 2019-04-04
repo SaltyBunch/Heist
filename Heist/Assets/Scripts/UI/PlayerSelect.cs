@@ -1,44 +1,44 @@
-﻿using System.Collections.Generic;
-using Character;
-using Game;
+﻿using Game;
 using Rewired;
+using System.Collections.Generic;
+using Character;
 using TMPro;
 using UnityEngine;
-using Player = Rewired.Player;
+using UnityEngine.UI;
 
 namespace UI
 {
     public class PlayerSelect : MonoBehaviour
     {
-        private readonly string[] _characterNames = {"King", "Jailbird", "Shadow", "Rocco"};
         private bool _delay = true;
-
-        [SerializeField] private TextMeshPro _health, _speed, _dexterity;
-
-        private Player _player;
+        private string[] _characterNames = {"King", "Jailbird", "Shadow", "Rocco"};
+        [SerializeField] private TextMeshPro display;
+        [SerializeField] private int player;
 
         [SerializeField] private List<PlayerModel> _playerModels;
 
-        [SerializeField] private PlayerSelectableMenu _playerSelectManager;
+
+        private Dictionary<Characters, List<Material>> CharacterSkins;
 
 
         [SerializeField] private int _playerSkinchoice;
 
-
-        private Dictionary<Characters, List<Material>> CharacterSkins;
-        [SerializeField] private TextMeshPro display;
-        [SerializeField] private int player;
-
         public bool ready;
         [SerializeField] private GameObject readyFX;
         [SerializeField] private int selection;
+
+        [SerializeField] private PlayerSelectableMenu _playerSelectManager;
+
+        [SerializeField] private TextMeshPro _health, _speed, _dexterity;
+
+        private Rewired.Player _player;
 
         public int PlayerSkinchoice
         {
             get => _playerSkinchoice;
             set
             {
-                value = (value % CharacterSkins[GameManager.PlayerChoice[player]].Count +
+                value = ((value) % CharacterSkins[GameManager.PlayerChoice[player]].Count +
                          CharacterSkins[GameManager.PlayerChoice[player]].Count) %
                         CharacterSkins[GameManager.PlayerChoice[player]].Count;
                 _playerSkinchoice = value;
@@ -52,7 +52,7 @@ namespace UI
 
         public int Selection
         {
-            get => selection;
+            get { return selection; }
             set
             {
                 value = (value % 4 + 4) % 4;
@@ -61,6 +61,7 @@ namespace UI
                     _playerModels[selection].gameObject.SetActive(false);
                     _playerModels[value].gameObject.SetActive(true);
                     _playerModels[value].SetAnimation(MenuAnim.Select);
+
                 }
 
                 selection = value;
@@ -81,7 +82,7 @@ namespace UI
                 {Characters.King, _playerSelectManager.KingSkin},
                 {Characters.Jailbird, _playerSelectManager.JailbirdSkin},
                 {Characters.Shadow, _playerSelectManager.ShadowSkin},
-                {Characters.Raccoon, _playerSelectManager.RoccoSkin}
+                {Characters.Raccoon, _playerSelectManager.RoccoSkin},
             };
 
 

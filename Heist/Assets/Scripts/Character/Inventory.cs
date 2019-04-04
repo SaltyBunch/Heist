@@ -20,8 +20,12 @@ namespace Character
     public class Inventory : MonoBehaviour
     {
         private int _count;
-        private int _goldAmount;
         [SerializeField] private List<Hazard.Hazard> _hazard = new List<Hazard.Hazard>();
+
+        [SerializeField] public Dictionary<KeyType, bool> keys = new Dictionary<KeyType, bool>
+        {
+            {KeyType.BlueKey, false}, {KeyType.YellowKey, false}, {KeyType.RedKey, false}
+        };
 
         [SerializeField] private PlayerControl _player;
         private int _selectedHazard;
@@ -31,11 +35,7 @@ namespace Character
         private Item.Type _type;
 
         [SerializeField] private List<Weapon.Weapon> _weapon = new List<Weapon.Weapon>();
-
-        [SerializeField] public Dictionary<KeyType, bool> keys = new Dictionary<KeyType, bool>
-        {
-            {KeyType.BlueKey, false}, {KeyType.YellowKey, false}, {KeyType.RedKey, false}
-        };
+        private int _goldAmount;
 
         public int GoldAmount
         {
@@ -206,7 +206,7 @@ namespace Character
                 case ElectricField electricField:
                     if (Physics.Raycast(transform.position, transform.forward, out hit, 2,
                         LevelManager.LevelManagerRef.EnvironmentLayer)
-                        ? electricField.Place(hit.point - transform.forward / 2)
+                        ? electricField.Place(hit.point - transform.forward/2)
                         : electricField.Place(transform.position + transform.forward * 2))
                     {
                         electricField.transform.parent = null;
@@ -219,7 +219,7 @@ namespace Character
                 case LethalLaser lethalLaser:
                     if (Physics.Raycast(transform.position, transform.forward, out hit, 2,
                         LevelManager.LevelManagerRef.EnvironmentLayer)
-                        ? lethalLaser.Place(hit.point - transform.forward / 2)
+                        ? lethalLaser.Place(hit.point - transform.forward/2)
                         : lethalLaser.Place(transform.position + transform.forward * 2))
                     {
                         lethalLaser.transform.parent = null;
@@ -227,7 +227,6 @@ namespace Character
                         lethalLaser.PlacedByPlayer = true;
                         lethalLaser.gameObject.SetActive(true);
                     }
-
                     return;
                 case Baton baton:
                     baton.Use();
@@ -267,7 +266,8 @@ namespace Character
             //remove item from list
             if (selectedItem is Weapon.Weapon weapon)
             {
-                for (var i = 0; i < _weapon.Count; i++)
+                for (int i = 0; i < _weapon.Count; i++)
+                {
                     if (_weapon[i] == weapon)
                     {
                         var weap = _weapon[i];
@@ -275,21 +275,27 @@ namespace Character
                         Destroy(weap.gameObject);
                         break;
                     }
+                }
 
                 SelectedIndex = 0;
             }
             else if (selectedItem is Hazard.Hazard hazard)
             {
-                var index = 0;
-                for (var j = 0; j < _hazard.Count; j++)
+                int index = 0;
+                for (int j = 0; j < _hazard.Count; j++)
+                {
                     if (_hazard[j] == hazard)
                     {
                         index = j;
                         _hazard.RemoveAt(j);
-                        if (_hazard.Count(h => h == hazard) == 0) index = 0;
+                        if (_hazard.Count(h => h == hazard) == 0)
+                        {
+                            index = 0;
+                        }
 
                         break;
                     }
+                }
 
                 SelectedIndex = index;
             }

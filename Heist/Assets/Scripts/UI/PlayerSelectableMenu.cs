@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Game;
 using UnityEngine;
 
@@ -6,16 +7,17 @@ namespace UI
 {
     public class PlayerSelectableMenu : SelectableMenu
     {
-        private bool _entered;
-
-
-        [SerializeField] public bool CaptureInput;
-        [SerializeField] public List<Material> JailbirdSkin;
+        [SerializeField] private List<PlayerSelect> selection;
 
         [SerializeField] public List<Material> KingSkin;
-        [SerializeField] public List<Material> RoccoSkin;
-        [SerializeField] private List<PlayerSelect> selection;
+        [SerializeField] public List<Material> JailbirdSkin;
         [SerializeField] public List<Material> ShadowSkin;
+        [SerializeField] public List<Material> RoccoSkin;
+
+
+        [SerializeField] public bool CaptureInput = false;
+
+        private bool _entered;
 
 
         private void Start()
@@ -54,6 +56,7 @@ namespace UI
 
         public override void Cancel()
         {
+
         }
 
         public override void Activate()

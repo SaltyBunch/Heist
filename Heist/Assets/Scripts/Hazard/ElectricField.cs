@@ -69,7 +69,7 @@ namespace Hazard
             }
 
             //right
-            size = Physics.RaycastNonAlloc(position, Vector3.forward, _colliders, _maxGap, layers);
+            size = Physics.RaycastNonAlloc(position, Vector3.right, _colliders, _maxGap, layers);
             for (int i = 0; i < size; i++)
             {
                 if (_colliders[i].transform.GetComponent<Rigidbody>() == null)
@@ -80,7 +80,7 @@ namespace Hazard
             }
             
             //left
-            size = Physics.RaycastNonAlloc(position, Vector3.right, _colliders, _maxGap, layers);
+            size = Physics.RaycastNonAlloc(position, Vector3.left, _colliders, _maxGap, layers);
             for (int i = 0; i < size; i++)
             {
                 if (_colliders[i].transform.GetComponent<Rigidbody>() == null)

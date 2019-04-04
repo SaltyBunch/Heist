@@ -476,7 +476,7 @@ namespace Game
                     var current = _voiceQue.First();
                     if (current != null)
                     {
-                        if (_time - current.Item2 < 2) // less then 5 secs since request
+                        if (_time - current.Item2 < 0.33f) // less then 1/3 secs since request
                         {
                             PlayVoiceLine(current.Item1);
                             _voiceQue.RemoveAt(0);

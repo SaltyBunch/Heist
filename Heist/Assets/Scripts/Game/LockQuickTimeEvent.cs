@@ -1,9 +1,6 @@
-using System.Linq;
 using Character;
-using Rewired;
 using UnityEngine;
 using UnityEngine.UI;
-using Player = Rewired.Player;
 
 namespace Game
 {

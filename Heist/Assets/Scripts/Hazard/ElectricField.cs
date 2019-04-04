@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using Character;
 using Game;
 using UnityEngine;

@@ -2,8 +2,6 @@ using System;
 using Character;
 using Game;
 using UnityEngine;
-using UnityEngine.Experimental.XR.Interaction;
-using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 namespace Level

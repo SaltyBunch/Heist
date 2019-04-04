@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Game;
-using Rewired;
 using UnityEngine;
 
 namespace Level

@@ -3,7 +3,6 @@ using Game;
 using Pickup;
 using UI;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Character
 {

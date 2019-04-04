@@ -1,5 +1,4 @@
-﻿using Game;
-using Rewired;
+﻿using Rewired;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;

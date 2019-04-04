@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Character;
 using Game;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 namespace Level

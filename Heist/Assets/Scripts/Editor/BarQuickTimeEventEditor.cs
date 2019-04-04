@@ -13,7 +13,10 @@ namespace Editor
 
             var bar = target as BarQuickTimeEvent;
 
-            if (GUILayout.Button("Generate")) bar.Generate();
+            if (GUILayout.Button("Generate"))
+            {
+                bar.Generate();
+            }
         }
     }
 }

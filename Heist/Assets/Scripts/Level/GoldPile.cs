@@ -10,28 +10,29 @@ namespace Level
     [RequireComponent(typeof(Collider))]
     public class GoldPile : MonoBehaviour
     {
+        private PlayerControl _player;
+
+        private bool _interacting;
+
+        private BarQuickTimeEvent _quickTime;
+        private int _initialAmount;
+        [SerializeField] private int _transferAmount;
+        [SerializeField] private int _totalRemaining;
         [SerializeField] private BarQuickTimeEvent _barQuickTimeEvent;
 
 
         [SerializeField] private List<GameObject> _goldPieces;
-        private int _initialAmount;
 
-        private bool _interacting;
-        private PlayerControl _player;
-
-        private BarQuickTimeEvent _quickTime;
-        [SerializeField] private int _totalRemaining;
-        [SerializeField] private int _transferAmount;
-
-        [SerializeField] [Range(0, 1)] public float Percentage;
+        [SerializeField, Range(0, 1)] public float Percentage;
 
         public float PercentageRemaining
         {
-            get => Percentage;
+            get { return Percentage; }
             set
             {
                 Percentage = value;
-                for (var i = 0; i < _goldPieces.Count; i++)
+                for (int i = 0; i < _goldPieces.Count; i++)
+                {
                     if ((float) i / _goldPieces.Count >= Percentage)
                     {
                         _goldPieces[i].SetActive(false);
@@ -53,10 +54,11 @@ namespace Level
                     {
                         _goldPieces[i].SetActive(true);
                     }
+                }
             }
         }
 
-        private void Start()
+        void Start()
         {
             _initialAmount = _totalRemaining;
         }
@@ -101,7 +103,6 @@ namespace Level
                     _quickTime.Events -= QuickTimeEventMonitor;
                     Destroy(_quickTime.gameObject, 0.2f);
                 }
-
                 _quickTime = null;
                 if (_player != null) _player.OnMoveCancel -= CancelChannel;
                 _player = null;

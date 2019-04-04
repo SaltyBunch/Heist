@@ -16,26 +16,26 @@ namespace Character
             Stun
         }
 
-        private static readonly List<Color> _colors = new List<Color>
-        {
-            Color.red, Color.blue, Color.green, Color.cyan
-        };
-
-        [SerializeField] private Animator _anim;
-
         [SerializeField] private List<SkinnedMeshRenderer> _characterSkinnedMeshRenderers;
 
         [SerializeField] private MeshRenderer _face;
 
         [SerializeField] private List<Texture2D> _faces;
-        private float _modelAlpha = 4;
+        [SerializeField] public FacesState FaceState = FacesState.Idle;
 
         [SerializeField] private int _playerNumber = -1;
 
-        private MaterialPropertyBlock _prop;
-        [SerializeField] public FacesState FaceState = FacesState.Idle;
+        [SerializeField] private Animator _anim;
 
-        public float hidey;
+        public float hidey = 0;
+        private float _modelAlpha = 4;
+
+        private static List<Color> _colors = new List<Color>()
+        {
+            Color.red, Color.blue, Color.green, Color.cyan
+        };
+
+        private MaterialPropertyBlock _prop;
 
         private void Awake()
         {
@@ -97,7 +97,6 @@ namespace Character
         {
             FaceState = FacesState.Speak;
         }
-
         public void SetStunned()
         {
             FaceState = FacesState.Stun;

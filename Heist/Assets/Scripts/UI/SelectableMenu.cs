@@ -15,18 +15,18 @@ namespace UI
     public class SelectableMenu : MonoBehaviour
     {
         [SerializeField] private List<TextMeshPro> _buttons;
-        [SerializeField] internal UnityEvent _cancel;
-        [SerializeField] private int _selected;
 
 
         [SerializeField] internal SelectionDirection _selectionDirection;
+        [SerializeField] private int _selected;
 
 
         [SerializeField] private List<UnityEvent> _submit;
+        [SerializeField] internal UnityEvent _cancel;
 
         public int Selected
         {
-            get => _selected;
+            get { return _selected; }
             set
             {
                 if (_buttons != null && _buttons.Count > value)
@@ -50,25 +50,25 @@ namespace UI
         public virtual void Right()
         {
             if (_selectionDirection == SelectionDirection.Horizontal && _buttons.Count > 0)
-                Selected = ((Selected + 1) % _buttons.Count + _buttons.Count) % _buttons.Count;
+                Selected = (((Selected + 1) % _buttons.Count) + _buttons.Count) % _buttons.Count;
         }
 
         public virtual void Left()
         {
             if (_selectionDirection == SelectionDirection.Horizontal && _buttons.Count > 0)
-                Selected = ((Selected - 1) % _buttons.Count + _buttons.Count) % _buttons.Count;
+                Selected = (((Selected - 1) % _buttons.Count) + _buttons.Count) % _buttons.Count;
         }
 
         public virtual void Up()
         {
             if (_selectionDirection == SelectionDirection.Vertical && _buttons.Count > 0)
-                Selected = ((Selected - 1) % _buttons.Count + _buttons.Count) % _buttons.Count;
+                Selected = (((Selected - 1) % _buttons.Count) + _buttons.Count) % _buttons.Count;
         }
 
         public virtual void Down()
         {
             if (_selectionDirection == SelectionDirection.Vertical && _buttons.Count > 0)
-                Selected = ((Selected + 1) % _buttons.Count + _buttons.Count) % _buttons.Count;
+                Selected = (((Selected + 1) % _buttons.Count) + _buttons.Count) % _buttons.Count;
         }
 
         public virtual void Submit()

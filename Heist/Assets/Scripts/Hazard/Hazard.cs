@@ -7,8 +7,8 @@ namespace Hazard
     [RequireComponent(typeof(Collider))]
     public class Hazard : Item, IEquatable<Hazard>
     {
-        [SerializeField] [Range(1, 25)] internal float _maxGap;
         public bool PlacedByPlayer;
+        [SerializeField, Range(1, 25)] internal float _maxGap;
 
         public bool Equals(Hazard other)
         {

@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Character;
 using Game;
-using Hazard;
 using UnityEngine;
 using UnityEngine.AI;
 using Weapon;
@@ -11,36 +11,13 @@ namespace Drone
 {
     public class DroneAI : MonoBehaviour
     {
-        [SerializeField] private DroneState _droneState;
-        [SerializeField] private ElectricField _eField;
-        [SerializeField] private LayerMask _layerMask;
-        [SerializeField] private List<MeshRenderer> _meshes;
-
-        [SerializeField] private AudioClip _patrolClip, _investigationClip, _attackClip, _damageClip, _stunClip;
-        private MaterialPropertyBlock _prop;
-
-        [SerializeField] private StunGun _stunGun;
-
-        [Header("Texture")] [SerializeField] private List<Texture2D> _textures;
         private NavMeshAgent agent;
-
-        [SerializeField] private float atkRange;
-        [SerializeField] private float atkSpeed;
         [SerializeField] private List<Transform> bigPatrolPath;
-        private bool canAtk = true;
-        private bool canMove = true;
-
-        [SerializeField] private Animator control;
-
         [SerializeField] private float detectPlayerRange;
-        //[SerializeField] private ;
-
-        [SerializeField] private Character.Drone drone;
         public FSM fsm;
         private bool investg;
         [SerializeField] private float investigateDuration;
         [SerializeField] private GameObject investigation;
-        [SerializeField] private bool isShooter;
         private Vector3 lastLoc;
         private NavMeshObstacle obstacle;
         private int patrol;
@@ -51,21 +28,57 @@ namespace Drone
         [SerializeField] private bool reviving;
         public Transform Target;
 
+        [SerializeField] private float atkRange;
+        [SerializeField] private float atkSpeed;
+        [SerializeField] private bool isShooter;
+        private bool canAtk = true;
+
+        [SerializeField] private AnimControl control;
+        //[SerializeField] private ;
+
+        [SerializeField] Character.Drone drone;
+        private bool canMove = true;
+
+        [SerializeField] private StunGun _stunGun;
+        [SerializeField] private Hazard.ElectricField _eField;
+        [SerializeField] private LayerMask _layerMask;
+
+        [SerializeField] private AudioClip _patrolClip, _investigationClip, _attackClip, _damageClip, _stunClip;
+
+        [Header("Texture")] [SerializeField] private List<Texture2D> _textures;
+        [SerializeField] private List<MeshRenderer> _meshes;
+        private MaterialPropertyBlock _prop;
+
+        private enum DroneState
+        {
+            Patrol,
+            Caution,
+            Attack
+        }
+
+        [SerializeField] private DroneState _droneState;
+
         // Start is called before the first frame update
         private void Start()
         {
             if (bigPatrolPath.Count <= 0) bigPatrolPath = patrolPath;
             investigation.transform.parent = null;
-            foreach (var v in patrolPath) v.parent = null;
+            foreach (var v in patrolPath)
+            {
+                v.parent = null;
+            }
 
             if (bigPatrolPath.Count > 0)
+            {
                 foreach (var v in bigPatrolPath)
-                    if (v)
-                        v.parent = null;
+                {
+                    if (v) v.parent = null;
+                }
+            }
 
             agent = GetComponent<NavMeshAgent>();
             obstacle = GetComponent<NavMeshObstacle>();
-            drone = GetComponent<Character.Drone>();
+            drone = this.GetComponent<Character.Drone>();
             Target = patrolPath[0];
 
             agent.speed = 3;
@@ -237,8 +250,10 @@ namespace Drone
                     if (Vector3.Distance(transform.position, v.transform.position) < atkRange && canAtk &&
                         FieldOFView(v, 20))
                     {
-                        if (isShooter) _stunGun.Attack();
-                        control.SetTrigger("shoot");
+                        if (isShooter)
+                        {
+                            _stunGun.Attack();
+                        }
 
                         canAtk = false;
                         StartCoroutine(Reload());
@@ -257,14 +272,14 @@ namespace Drone
             {
                 _droneState = DroneState.Patrol;
 
-                control.SetTrigger("dead");
+                control.DoStun();
                 reviving = true;
                 canMove = false;
                 if (!drone.Stunned)
                 {
                     Target = patrolPath[patrol %= patrolPath.Count];
                     fsm.MoveNext(Command.Wake);
-                    control.SetTrigger("alive");
+                    control.DoAlive();
                 }
             }
 
@@ -297,9 +312,9 @@ namespace Drone
             canAtk = true;
         }
 
-        private bool FieldOFView(Player player, float angle)
+        bool FieldOFView(Player player, float angle)
         {
-            var dir = player.transform.position + Vector3.up - transform.position;
+            var dir = (player.transform.position + Vector3.up) - transform.position;
             if (Mathf.Abs(Vector3.Angle(transform.forward, dir)) < angle)
             {
                 RaycastHit hit;
@@ -308,13 +323,6 @@ namespace Drone
             }
 
             return false;
-        }
-
-        private enum DroneState
-        {
-            Patrol,
-            Caution,
-            Attack
         }
     }
 }

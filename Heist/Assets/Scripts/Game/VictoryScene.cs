@@ -7,16 +7,18 @@ namespace Game
 {
     public class VictoryScene : MonoBehaviour
     {
+        [SerializeField] private List<PlayerModel> playerModels;
+
         [SerializeField] private Transform[] _places;
 
         [SerializeField] private PlaceText[] _placeTexts;
-        [SerializeField] private List<PlayerModel> playerModels;
 
         private void Start()
         {
             var order = GameManager.GameManagerRef.Scores.OrderByDescending(x => x.PlayerScore).ToList();
             //get places from game manager
-            for (var i = 0; i < 4; i++)
+            for (int i = 0; i < 4; i++)
+            {
                 if (i < GameManager.NumPlayers)
                 {
                     var playerModel = Instantiate(playerModels[(int) GameManager.PlayerChoice[order[i].PlayerNumber]],
@@ -29,6 +31,7 @@ namespace Game
                 {
                     _places[i].gameObject.SetActive(false);
                 }
+            }
         }
     }
 }

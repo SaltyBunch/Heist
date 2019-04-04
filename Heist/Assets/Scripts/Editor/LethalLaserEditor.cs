@@ -1,4 +1,5 @@
 using System;
+using Game;
 using Hazard;
 using UnityEditor;
 using UnityEngine;
@@ -14,6 +15,7 @@ namespace Editor
 
             base.OnInspectorGUI();
             if (GUILayout.Button("Place")) laser.Place(laser.transform.position);
+
         }
 
         private void OnSceneGUI()

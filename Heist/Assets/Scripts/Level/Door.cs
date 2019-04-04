@@ -8,29 +8,30 @@ namespace Level
 {
     public class Door : MonoBehaviour
     {
-        [SerializeField] internal Animator _anim;
-
-        internal bool _animating;
-
-        [SerializeField] internal AudioSource _audioSource;
-        [SerializeField] internal AudioClip _closeClip;
-        private bool _interacting;
         [SerializeField] internal Light _light;
-        [SerializeField] private bool _locked;
+        [SerializeField] private bool _locked = false;
 
         [SerializeField] internal Color _lockedColor;
 
-        [SerializeField] private LockQuickTimeEvent _lockQuickTimeEvent;
+        [SerializeField] internal Animator _anim;
 
         [SerializeField] internal bool _open;
 
+        [SerializeField] internal AudioSource _audioSource;
+
         [SerializeField] internal AudioClip _openClip;
+        [SerializeField] internal AudioClip _closeClip;
+
+        public bool IsOpen => _animating ? !_open : _open;
+
+        internal bool _animating = false;
 
         private PlayerControl _player;
         private LockQuickTimeEvent _quickTime;
         [SerializeField] internal Color _unlockedColor;
 
-        public bool IsOpen => _animating ? !_open : _open;
+        [SerializeField] private LockQuickTimeEvent _lockQuickTimeEvent;
+        private bool _interacting;
 
         public bool Locked
         {
@@ -110,13 +111,13 @@ namespace Level
             }
         }
 
-        private void SetOpen()
+        void SetOpen()
         {
             _animating = false;
             _open = true;
         }
 
-        private void SetClose()
+        void SetClose()
         {
             _animating = false;
             _open = false;

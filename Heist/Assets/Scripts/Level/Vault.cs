@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Character;
 using Game;
 using UnityEngine;
 
@@ -10,11 +9,14 @@ namespace Level
     {
         public delegate void OpenDoor();
 
-        private static readonly int Open = Animator.StringToHash("Open");
-
         [SerializeField] private Animator _anim;
 
+        [SerializeField] private Light _redLight;
+        [SerializeField] private Light _yellowLight;
+
         [SerializeField] private AudioSource _audioSource;
+
+        [SerializeField] private AudioClip _openClip;
 
         private bool _closed = true;
 
@@ -23,10 +25,7 @@ namespace Level
             {KeyType.YellowKey, false}, {KeyType.RedKey, false}
         };
 
-        [SerializeField] private AudioClip _openClip;
-
-        [SerializeField] private Light _redLight;
-        [SerializeField] private Light _yellowLight;
+        private static readonly int Open = Animator.StringToHash("Open");
 
         public void OpenVault()
         {
@@ -39,7 +38,7 @@ namespace Level
             }
         }
 
-        public void UseKey(Dictionary<KeyType, bool> keys, Player player)
+        public void UseKey(Dictionary<KeyType, bool> keys, Character.Player player)
         {
             foreach (var key in (KeyType[]) Enum.GetValues(typeof(KeyType)))
                 if (key != KeyType.BlueKey && keys[key])
@@ -58,11 +57,19 @@ namespace Level
                     }
                 }
 
-            if (!_keys[KeyType.YellowKey] && !_keys[KeyType.RedKey])
+            if (!_keys[KeyType.YellowKey] && !_keys[KeyType.RedKey]) 
+            {
+                //has neither
                 player.PlayerUiManager.NeedsBothKeys();
+            }
             else if (!_keys[KeyType.YellowKey])
+            {
                 player.PlayerUiManager.NeedKey(KeyType.YellowKey);
-            else if (!_keys[KeyType.RedKey]) player.PlayerUiManager.NeedKey(KeyType.RedKey);
+            }
+            else if (!_keys[KeyType.RedKey])
+            {
+                player.PlayerUiManager.NeedKey(KeyType.RedKey);
+            }
             OpenVault();
         }
 

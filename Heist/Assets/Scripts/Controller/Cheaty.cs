@@ -9,8 +9,8 @@ namespace Controller
 {
     public class Cheaty : MonoBehaviour
     {
-        private readonly Vector3 _lobbyLocation = new Vector3(-3.4f, 1.06f, -122.3f);
-        private readonly Vector3 _vaultLocation = new Vector3(-196.42f, 1.06f, -124.53f);
+        private Vector3 _vaultLocation = new Vector3(-196.42f, 1.06f, -124.53f);
+        private Vector3 _lobbyLocation = new Vector3(-3.4f, 1.06f, -122.3f);
 
         //todo cheaty buttons
 
@@ -18,16 +18,33 @@ namespace Controller
         private void Update()
         {
             foreach (var player in ReInput.players.Players)
+            {
                 if (player.controllers.hasKeyboard)
                 {
                     var keyboard = player.controllers.Keyboard;
-                    if (keyboard.GetKeyDown(KeyCode.T)) EndGame();
-                    if (keyboard.GetKeyDown(KeyCode.P)) GoToMain();
-                    if (keyboard.GetKeyDown(KeyCode.K)) OpenVault();
+                    if (keyboard.GetKeyDown(keyCode: KeyCode.T))
+                    {
+                        EndGame();
+                    }
+                    if (keyboard.GetKeyDown(keyCode: KeyCode.P))
+                    {
+                        GoToMain();
+                    }
+                    if (keyboard.GetKeyDown(keyCode: KeyCode.K))
+                    {
+                        OpenVault();
+                    }
 
-                    if (keyboard.GetKeyDown(KeyCode.V)) TeleportPlayers(_vaultLocation);
-                    if (keyboard.GetKeyDown(KeyCode.L)) TeleportPlayers(_lobbyLocation);
+                    if (keyboard.GetKeyDown(keyCode: KeyCode.V))
+                    {
+                        TeleportPlayers(_vaultLocation);
+                    }
+                    if (keyboard.GetKeyDown(keyCode: KeyCode.L))
+                    {
+                        TeleportPlayers(_lobbyLocation);
+                    }
                 }
+            }
         }
 
         private void GoToMain()
@@ -48,8 +65,8 @@ namespace Controller
         {
             if (SceneManager.GetActiveScene().name == GameManager.GameManagerRef.SceneNames.GameScene)
             {
-                var vault = (Vault) FindObjectOfType(typeof(Vault));
-                vault.UseKey(new Dictionary<KeyType, bool>
+                var vault = (Vault)FindObjectOfType(typeof(Vault));
+                vault.UseKey(new Dictionary<KeyType, bool>()
                 {
                     {KeyType.RedKey, true},
                     {KeyType.YellowKey, true}
@@ -61,7 +78,9 @@ namespace Controller
         private void EndGame()
         {
             if (SceneManager.GetActiveScene().name == GameManager.GameManagerRef.SceneNames.GameScene)
+            {
                 LevelManager.LevelManagerRef.AllPlayersLeft(false);
+            }
         }
     }
 }

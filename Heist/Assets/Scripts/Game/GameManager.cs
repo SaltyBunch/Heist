@@ -27,7 +27,7 @@ namespace Game
         [SerializeField] public string Persistent;
     }
 
-    internal enum State
+    enum State
     {
         Menu,
         Game,
@@ -46,6 +46,8 @@ namespace Game
 
     public class GameManager : MonoBehaviour
     {
+        [SerializeField] public Scenes SceneNames;
+
         public static readonly Dictionary<Characters, Stats> CharacterStats = new Dictionary<Characters, Stats>
         {
             {
@@ -92,27 +94,26 @@ namespace Game
 
         public static GameManager GameManagerRef;
 
+        [SerializeField] private State _state;
+        [SerializeField] private LoadingScreen _loadingScreen;
+
+        public bool UseMultiScreen = true;
+
         //store the players character choice here
         public static Characters[] PlayerChoice =
             {Characters.Raccoon, Characters.Jailbird, Characters.Shadow, Characters.King};
 
         public static float GoldMultiplier = 10;
         public static float StunnedMultiplier = 100;
-        [SerializeField] private LoadingScreen _loadingScreen;
-
-        [SerializeField] private State _state;
+        public List<Score> Scores;
+        public static int NumPlayers { get; set; }
 
         public MasterMixer MasterMixer;
-        [SerializeField] public Scenes SceneNames;
-        public List<Score> Scores;
 
-        public List<Material> Skins = new List<Material>
+        public List<Material> Skins = new List<Material>()
         {
             null, null, null, null
         };
-
-        public bool UseMultiScreen = true;
-        public static int NumPlayers { get; set; }
 
 
         private void Awake()
@@ -135,7 +136,10 @@ namespace Game
 
         public static void SetLayerOnAll(GameObject obj, int layer)
         {
-            foreach (var trans in obj.GetComponentsInChildren<Transform>(true)) trans.gameObject.layer = layer;
+            foreach (Transform trans in obj.GetComponentsInChildren<Transform>(true))
+            {
+                trans.gameObject.layer = layer;
+            }
         }
 
         public void EnterGame()
@@ -156,7 +160,10 @@ namespace Game
             while (!asyncOperation.isDone)
             {
                 _loadingScreen.Progress = asyncOperation.progress;
-                if (asyncOperation.progress >= 0.9f) asyncOperation.allowSceneActivation = true;
+                if (asyncOperation.progress >= 0.9f)
+                {
+                    asyncOperation.allowSceneActivation = true;
+                }
 
                 yield return null;
             }
@@ -203,7 +210,10 @@ namespace Game
             _loadingScreen.gameObject.SetActive(true);
             yield return new WaitForEndOfFrame();
             var asyncOperation = SceneManager.UnloadSceneAsync(scene);
-            while (!asyncOperation.isDone) yield return null;
+            while (!asyncOperation.isDone)
+            {
+                yield return null;
+            }
 
             StartCoroutine(loadscene);
         }

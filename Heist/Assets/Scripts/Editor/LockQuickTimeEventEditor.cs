@@ -13,9 +13,15 @@ namespace Editor
 
             var quicktime = target as LockQuickTimeEvent;
 
-            if (GUILayout.Button("Generate")) quicktime.Generate();
+            if (GUILayout.Button("Generate"))
+            {
+                quicktime.Generate();
+            }
 
-            if (GUILayout.Button("Clear")) quicktime.Clear();
+            if (GUILayout.Button("Clear"))
+            {
+                quicktime.Clear();
+            }
         }
     }
 }

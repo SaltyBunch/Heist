@@ -43,7 +43,7 @@ Light:
   m_Type: 2
   m_Color: {r: 0.5613208, g: 0.85377353, b: 1, a: 1}
   m_Intensity: 1
-  m_Range: 10
+  m_Range: 7
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -187,16 +187,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3378029642818968833}
     m_Modifications:
-    - target: {fileID: 7780381444762491907, guid: eedf18759d481594ba201f325faaa5f2,
-        type: 3}
-      propertyPath: m_Name
-      value: Batton With Zap
-      objectReference: {fileID: 0}
-    - target: {fileID: 7780381444762491907, guid: eedf18759d481594ba201f325faaa5f2,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 7780381444762517539, guid: eedf18759d481594ba201f325faaa5f2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -251,6 +241,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7780381444762491907, guid: eedf18759d481594ba201f325faaa5f2,
+        type: 3}
+      propertyPath: m_Name
+      value: Batton With Zap
+      objectReference: {fileID: 0}
+    - target: {fileID: 7780381444762491907, guid: eedf18759d481594ba201f325faaa5f2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7780381445093322740, guid: eedf18759d481594ba201f325faaa5f2,
         type: 3}

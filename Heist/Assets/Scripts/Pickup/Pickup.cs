@@ -15,14 +15,14 @@ namespace Pickup
     [RequireComponent(typeof(Collider))]
     public class Pickup : MonoBehaviour
     {
-        [SerializeField] internal PickupType _pickupType;
-
-        [SerializeField] private float _verticalSpeed = 0.02f, _rotationSpeed = 1;
         private int _direction = 1;
-        private Coroutine _rotation;
 
 
         internal int _ignorePlayer = -1;
+        [SerializeField] internal PickupType _pickupType;
+        private Coroutine _rotation;
+
+        [SerializeField] private float _verticalSpeed = 0.02f, _rotationSpeed = 1;
 
         private void Start()
         {

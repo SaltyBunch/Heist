@@ -12,8 +12,8 @@ namespace Drone
         Chase,
         BigPatrol,
         BigChase,
-        ReturnToPatrol, 
-        ReturnToBigPatrol, 
+        ReturnToPatrol,
+        ReturnToBigPatrol
     }
 
     public enum Command

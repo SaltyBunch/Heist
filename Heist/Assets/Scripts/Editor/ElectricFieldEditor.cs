@@ -1,5 +1,4 @@
 using System;
-using Game;
 using Hazard;
 using UnityEditor;
 using UnityEngine;

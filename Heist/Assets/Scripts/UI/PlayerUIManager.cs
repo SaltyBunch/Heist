@@ -4,26 +4,26 @@ using Game;
 using Pickup;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace UI
 {
     public class PlayerUIManager : MonoBehaviour
     {
+        [SerializeField] private TextMeshProUGUI _playerHint;
+        [SerializeField] private TextMeshProUGUI _playerInfo;
         [SerializeField] private PlayerStatsManager _playerStatsManager;
 
         [SerializeField] private Transform _quickTimePosition;
-
-        [SerializeField] private TextMeshProUGUI _playerHint;
-        [SerializeField] private TextMeshProUGUI _playerInfo;
         public GameObject Siren => _playerStatsManager.Siren;
+
+        public TextMeshProUGUI VaultTimer => _playerStatsManager.VaultTimer;
 
 
         public void SetPosition(Rect rect, int playerNumber)
         {
             var uiLocation = _playerStatsManager.GetComponent<RectTransform>();
 
-            var pos = new Rect()
+            var pos = new Rect
             {
                 x = 0, y = 0
             };
@@ -79,23 +79,45 @@ namespace UI
             }
         }
 
-        public void SetHealth(int amount) => _playerStatsManager.SetHealth(amount);
+        public void SetHealth(int amount)
+        {
+            _playerStatsManager.SetHealth(amount);
+        }
 
-        public void NotifyMessage(object sender, NotifyMessageArgs notifyMessageArgs) =>
+        public void NotifyMessage(object sender, NotifyMessageArgs notifyMessageArgs)
+        {
             _playerStatsManager.NotifyAll(notifyMessageArgs.Message);
+        }
 
-        public void SetGold(int amount) => _playerStatsManager.SetGold(amount);
+        public void SetGold(int amount)
+        {
+            _playerStatsManager.SetGold(amount);
+        }
 
-        public void SetCharacter(Game.Characters character) => _playerStatsManager.SetCharacter(character);
+        public void SetCharacter(Characters character)
+        {
+            _playerStatsManager.SetCharacter(character);
+        }
 
-        public void SetItem(Item item) => _playerStatsManager.SetItem(item);
+        public void SetItem(Item item)
+        {
+            _playerStatsManager.SetItem(item);
+        }
 
-        public void UpdateAmmo(int amount) => _playerStatsManager.SetAmmo(amount);
+        public void UpdateAmmo(int amount)
+        {
+            _playerStatsManager.SetAmmo(amount);
+        }
 
-        public void SetKeyPickedUp(KeyType keyType) => _playerStatsManager.SetKeyPickedUp(keyType);
-        public void SetKeyOwned(KeyType keyType) => _playerStatsManager.SetKeyOwned(keyType);
+        public void SetKeyPickedUp(KeyType keyType)
+        {
+            _playerStatsManager.SetKeyPickedUp(keyType);
+        }
 
-        public TextMeshProUGUI VaultTimer => _playerStatsManager.VaultTimer;
+        public void SetKeyOwned(KeyType keyType)
+        {
+            _playerStatsManager.SetKeyOwned(keyType);
+        }
 
         public void ShowPickup(PickupType pickupType, bool overPickup)
         {

@@ -10,17 +10,13 @@ namespace Level
 
         public bool Opened
         {
-            get { return _opened; }
+            get => _opened;
             set
             {
                 if (value)
-                {
                     _light.color = _unlockedColor;
-                }
                 else
-                {
                     _light.color = _lockedColor;
-                }
 
                 _opened = value;
             }
@@ -48,7 +44,6 @@ namespace Level
             }
 
             if (Opened)
-            {
                 if (!_animating)
                 {
                     if (!_open)
@@ -72,16 +67,15 @@ namespace Level
                         }
                     }
                 }
-            }
         }
 
-        void SetOpen()
+        private void SetOpen()
         {
             _animating = false;
             _open = true;
         }
 
-        void SetClose()
+        private void SetClose()
         {
             _animating = false;
             _open = false;

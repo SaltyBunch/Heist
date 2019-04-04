@@ -6,14 +6,15 @@ namespace UI
 {
     public class LoadingScreen : MonoBehaviour
     {
-        public float Progress
-        {
-            set => _slider.value = value/0.9f;
-        }
-
-        [SerializeField] private Slider _slider;
         [SerializeField] private Image _image;
         [SerializeField] private List<Sprite> _loadingScreens;
+
+        [SerializeField] private Slider _slider;
+
+        public float Progress
+        {
+            set => _slider.value = value / 0.9f;
+        }
 
         private void OnEnable()
         {
@@ -22,10 +23,7 @@ namespace UI
 
         public void Next()
         {
-            if (_loadingScreens.Count > 1)
-            {
-                _image.sprite = _loadingScreens[1];
-            }
+            if (_loadingScreens.Count > 1) _image.sprite = _loadingScreens[1];
         }
     }
 }

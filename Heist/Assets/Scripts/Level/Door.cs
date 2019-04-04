@@ -2,38 +2,35 @@ using System;
 using Character;
 using Game;
 using UnityEngine;
-using UnityEngine.Experimental.XR.Interaction;
-using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 namespace Level
 {
     public class Door : MonoBehaviour
     {
+        [SerializeField] internal Animator _anim;
+
+        internal bool _animating;
+
+        [SerializeField] internal AudioSource _audioSource;
+        [SerializeField] internal AudioClip _closeClip;
+        private bool _interacting;
         [SerializeField] internal Light _light;
-        [SerializeField] private bool _locked = false;
+        [SerializeField] private bool _locked;
 
         [SerializeField] internal Color _lockedColor;
 
-        [SerializeField] internal Animator _anim;
+        [SerializeField] private LockQuickTimeEvent _lockQuickTimeEvent;
 
         [SerializeField] internal bool _open;
 
-        [SerializeField] internal AudioSource _audioSource;
-
         [SerializeField] internal AudioClip _openClip;
-        [SerializeField] internal AudioClip _closeClip;
-
-        public bool IsOpen => _animating ? !_open : _open;
-
-        internal bool _animating = false;
 
         private PlayerControl _player;
         private LockQuickTimeEvent _quickTime;
         [SerializeField] internal Color _unlockedColor;
 
-        [SerializeField] private LockQuickTimeEvent _lockQuickTimeEvent;
-        private bool _interacting;
+        public bool IsOpen => _animating ? !_open : _open;
 
         public bool Locked
         {
@@ -113,13 +110,13 @@ namespace Level
             }
         }
 
-        void SetOpen()
+        private void SetOpen()
         {
             _animating = false;
             _open = true;
         }
 
-        void SetClose()
+        private void SetClose()
         {
             _animating = false;
             _open = false;

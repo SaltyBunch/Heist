@@ -16,32 +16,34 @@ namespace UI
 
     public class PlayerStatsManager : MonoBehaviour
     {
+        [SerializeField] private TextMeshProUGUI _ammoText;
+        [SerializeField] private Image _blueKey;
+
+        [SerializeField] private Sprite[] _borders;
+
+        [SerializeField] private Sprite[] _characters;
 
         [SerializeField] private TextMeshProUGUI _gold;
         [SerializeField] private Image[] _health;
-        [SerializeField] private Image _playerPortrait;
-        [SerializeField] private Image _itemPortrait;
-
-        [SerializeField] private Image _playerBorder;
         [SerializeField] private Image _itemBorder;
+        [SerializeField] private Sprite[] _itemBorders;
+        [SerializeField] private Image _itemPortrait;
+        [SerializeField] private Sprite[] _items;
 
         [SerializeField] private RectTransform _keyHolder;
-        [SerializeField] private Image _blueKey;
-        [SerializeField] private Image _redKey;
-        [SerializeField] private Image _yellowKey;
-
-        [SerializeField] private TextMeshProUGUI _ammoText;
-
-        [SerializeField] private Sprite[] _borders;
-        [SerializeField] private Sprite[] _itemBorders;
-
-        [SerializeField] private Sprite[] _characters;
-        [SerializeField] private Sprite[] _items;
 
         [SerializeField] private TextMeshProUGUI _notifyMessage;
 
+        [SerializeField] private Image _playerBorder;
+        [SerializeField] private Image _playerPortrait;
+        [SerializeField] private Image _redKey;
+
         [SerializeField] private Image _siren;
-        [SerializeField] private TextMeshProUGUI _vaultTimer;
+        [SerializeField] private Image _yellowKey;
+
+        public GameObject Siren => _siren.gameObject;
+
+        [field: SerializeField] public TextMeshProUGUI VaultTimer { get; }
 
         public void SwitchSides(Side side, int playerNum)
         {
@@ -65,7 +67,7 @@ namespace UI
 
                     _siren.rectTransform.pivot = Vector2.up * 1.5f + Vector2.left * 0.5f;
 
-                    _playerBorder.gameObject.transform.localScale = new Vector3()
+                    _playerBorder.gameObject.transform.localScale = new Vector3
                     {
                         x = -1, y = 1, z = 1
                     };
@@ -94,7 +96,7 @@ namespace UI
                     _siren.rectTransform.anchorMin = Vector2.one;
 
 
-                    _playerBorder.gameObject.transform.localScale = new Vector3()
+                    _playerBorder.gameObject.transform.localScale = new Vector3
                     {
                         x = 1, y = 1, z = 1
                     };
@@ -115,7 +117,7 @@ namespace UI
 
         public void SetHealth(int num)
         {
-            for (int i = 0; i < _health.Length; i++)
+            for (var i = 0; i < _health.Length; i++)
                 _health[i].gameObject.SetActive(i < num);
         }
 
@@ -124,17 +126,14 @@ namespace UI
             _gold.SetText("$" + amount);
         }
 
-        public void SetCharacter(Game.Characters character)
+        public void SetCharacter(Characters character)
         {
             _playerPortrait.sprite = _characters[(int) character];
         }
 
         public void SetItem(Item item)
         {
-            if (item == null)
-            {
-                _itemPortrait.sprite = _items[4];
-            }
+            if (item == null) _itemPortrait.sprite = _items[4];
 
             switch (item)
             {
@@ -201,9 +200,5 @@ namespace UI
         {
             _notifyMessage.text = message;
         }
-
-        public GameObject Siren => _siren.gameObject;
-
-        public TextMeshProUGUI VaultTimer => _vaultTimer;
     }
 }

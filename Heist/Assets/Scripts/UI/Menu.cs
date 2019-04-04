@@ -1,5 +1,4 @@
-﻿using Game;
-using Rewired;
+﻿using Rewired;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -35,7 +34,7 @@ namespace UI
         //[SerializeField] GameObject SelectionMenuButton;
         [SerializeField] private GameObject optionsMenu;
         [SerializeField] private GameObject SelectionMenu;
-        
+
 
         // Start is called before the first frame update
         public void Begin()

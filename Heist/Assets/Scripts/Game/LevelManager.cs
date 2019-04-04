@@ -49,36 +49,36 @@ namespace Game
         public delegate void NotifyMessageHandler(object sender, NotifyMessageArgs e);
 
         public static LevelManager LevelManagerRef;
-        public LayerMask EnvironmentLayer;
+
+        private readonly List<Tuple<AudioClip, float>> _voiceQue = new List<Tuple<AudioClip, float>>();
         [SerializeField] private AudioClip _backgroundMusicGathering;
         [SerializeField] private AudioClip _backgroundMusicInfiltration;
         [SerializeField] private AudioClip _backgroundMusicLockdown;
+        private int _currentAudioSource;
+        private bool _doorOpen;
         [SerializeField] private float _endGameAtTime;
         [SerializeField] private Collider _gameEndArea;
         [SerializeField] private bool _gameOver;
         [SerializeField] private AudioSource[] _musicAudioSource;
+
+        private bool _notify;
         [SerializeField] private List<PickupSpawner> _pickupSpawners;
         [SerializeField] private List<PlayerGameObject> _playerGo;
-        [SerializeField] private GameObject[] _spawnpoints;
-        [SerializeField] private AudioSource _voiceAudioSource;
-        [SerializeField] public DroneLoad droneSpawner;
-        [SerializeField] public GameObject FOG;
-        private int _currentAudioSource;
-        private bool _doorOpen;
         private bool[] _playerLeaving;
+        [SerializeField] private GameObject[] _spawnpoints;
         private float _time;
         private float _timeSinceVaultOpened;
-        public bool vaultOpen => _vaultOpen;
-        private bool _vaultOpen;
-
-        private readonly List<Tuple<AudioClip, float>> _voiceQue = new List<Tuple<AudioClip, float>>();
+        [SerializeField] private AudioSource _voiceAudioSource;
+        [SerializeField] public DroneLoad droneSpawner;
+        public LayerMask EnvironmentLayer;
+        [SerializeField] public GameObject FOG;
 
         public Dictionary<NotifyType, float> NotificationRamge = new Dictionary<NotifyType, float>
         {
             {NotifyType.Dash, 10}, {NotifyType.Footstep, 5}, {NotifyType.TripTrap, 10}, {NotifyType.Attack, 10}
         };
 
-        private bool _notify;
+        public bool vaultOpen { get; private set; }
 
         public PlayerGameObject[] Players { get; private set; }
 
@@ -144,15 +144,15 @@ namespace Game
                 yield return new WaitForSeconds(0.5f);
                 _time += 0.5f;
 
-                if (!_vaultOpen && !_notify && _time > 240)
+                if (!vaultOpen && !_notify && _time > 240)
                 {
                     _notify = true;
                     NotifyPlayers(TextHelper.LockDownNotif);
                 }
-                else if (!_vaultOpen && _time > 360)
+                else if (!vaultOpen && _time > 360)
                 {
                     var vault = (Vault) FindObjectOfType(typeof(Vault));
-                    vault.UseKey(new Dictionary<KeyType, bool>()
+                    vault.UseKey(new Dictionary<KeyType, bool>
                     {
                         {KeyType.RedKey, true},
                         {KeyType.YellowKey, true}
@@ -160,7 +160,7 @@ namespace Game
                 }
 
 
-                if (_vaultOpen) TimeSinceVaultOpened += 0.5f;
+                if (vaultOpen) TimeSinceVaultOpened += 0.5f;
             } while (!_gameOver);
         }
 
@@ -376,7 +376,7 @@ namespace Game
 
 
             callVault();
-            _vaultOpen = true;
+            vaultOpen = true;
             _gameEndArea.enabled = true;
 
             NotifyPlayers("Collect gold and escape the bank");

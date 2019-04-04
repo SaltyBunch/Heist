@@ -3,10 +3,8 @@ using System.Collections;
 using Camera;
 using Game;
 using Hazard;
-using JetBrains.Annotations;
 using Level;
 using Pickup;
-using Rewired.Data.Mapping;
 using UI;
 using UnityEngine;
 using Weapon;
@@ -39,11 +37,9 @@ namespace Character
     [RequireComponent(typeof(Player), typeof(Rigidbody), typeof(AudioSource))]
     public class PlayerControl : MonoBehaviour
     {
-        [SerializeField] private GoldPickup _goldPickup;
-        
+        [Header("Animation")] [SerializeField] private Animator _anim;
+
         [SerializeField] private AudioSource _audioSource;
-        [SerializeField] private Player _baseCharacter;
-        [SerializeField] private PlayerUIManager _playerUiManager;
         [SerializeField] private AudioClip _collectGold;
         [SerializeField] private Control _control;
         private bool _dashCooldown = true;
@@ -51,23 +47,33 @@ namespace Character
         [SerializeField] [Range(10, 30)] private float _dashForce;
         [SerializeField] private float _dashTimer = 0.5f;
 
-        [SerializeField] private Transform _hand;
-        [SerializeField] private float _interactDistance;
-        private bool _isReticuleNotNull;
+
+        [SerializeField] private AudioClip _defeat;
 
         [Header("Voice Lines")] [SerializeField]
         private AudioClip _enterBank;
 
-
-        [SerializeField] private AudioClip _defeat;
-        [SerializeField] private AudioClip _joke;
-        [SerializeField] private AudioClip _loseGold;
         [SerializeField] private AudioClip _exitBank;
 
         [Header("Sounds")] [SerializeField] private AudioClip _footstep;
+        [SerializeField] private GoldPickup _goldPickup;
+
+        [SerializeField] private Transform _hand;
+        [SerializeField] private float _interactDistance;
+        private readonly Collider[] _interactHits = new Collider[5];
+        [SerializeField] private LayerMask _interactMask;
+
+
+        private Tuple<GameObject, string> _interactObject;
+        private bool _isAnimNotNull;
+        private bool _isReticuleNotNull;
+        [SerializeField] private AudioClip _joke;
+        [SerializeField] private AudioClip _loseGold;
         [SerializeField] private AudioClip _meleeAttack;
         [SerializeField] private AudioClip _pickupTrap;
         [SerializeField] private AudioClip _pickupWeapon;
+        [SerializeField] private PlayerModel _playerModel;
+        [SerializeField] private PlayerUIManager _playerUiManager;
 
         [Space(24)] [SerializeField] private GameObject _reticule;
         [SerializeField] private LayerMask _retLayerMask;
@@ -78,21 +84,12 @@ namespace Character
         [SerializeField] private AudioClip _taunt;
         [SerializeField] private AudioClip _victory;
 
+        public CameraLogic CameraLogic;
+
 
         public int PlayerNumber;
 
-        public CameraLogic CameraLogic;
-
-        public Player BaseCharacter => _baseCharacter;
-
-        [Header("Animation")] [SerializeField] private Animator _anim;
-        private bool _isAnimNotNull;
-        [SerializeField] private PlayerModel _playerModel;
-
-
-        private Tuple<GameObject, string> _interactObject;
-        [SerializeField] private LayerMask _interactMask;
-        private Collider[] _interactHits = new Collider[5];
+        [field: SerializeField] public Player BaseCharacter { get; private set; }
 
         internal Control Control
         {
@@ -124,8 +121,8 @@ namespace Character
         private void Awake()
         {
             _isAnimNotNull = _anim != null;
-            if (_baseCharacter == null)
-                _baseCharacter = GetComponent<Player>();
+            if (BaseCharacter == null)
+                BaseCharacter = GetComponent<Player>();
             if (_rigid == null)
                 _rigid = GetComponent<Rigidbody>();
             if (_audioSource == null)
@@ -162,8 +159,8 @@ namespace Character
         {
             if (_loseGold != null) LevelManager.LevelManagerRef.PlayVoiceLine(_loseGold);
             //todo drop gold
-            var goldAmount = Mathf.Min(_baseCharacter.Inventory.GoldAmount, 100);
-            _baseCharacter.Inventory.GoldAmount -= goldAmount;
+            var goldAmount = Mathf.Min(BaseCharacter.Inventory.GoldAmount, 100);
+            BaseCharacter.Inventory.GoldAmount -= goldAmount;
             if (goldAmount > 0)
             {
                 var goldPickup = Instantiate(_goldPickup, transform.position + transform.up, Quaternion.identity);
@@ -231,7 +228,7 @@ namespace Character
                 if (_playerModel.FaceState != PlayerModel.FacesState.Idle) _playerModel.SetIdle();
             }
 
-            if (_baseCharacter.Stunned)
+            if (BaseCharacter.Stunned)
             {
                 var control = Control;
                 control.MoveVector = Vector3.zero;
@@ -252,11 +249,11 @@ namespace Character
 
             _rigid.AddForce(Control.MoveVector, ForceMode.VelocityChange);
             if ((_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward).magnitude >
-                _baseCharacter.Stats.Speed)
+                BaseCharacter.Stats.Speed)
             {
                 var velocity = Vector3.Lerp(_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward,
                     (_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward).normalized *
-                    _baseCharacter.Stats.Speed, .5f);
+                    BaseCharacter.Stats.Speed, .5f);
                 velocity += _rigid.velocity.y * Vector3.up;
                 _rigid.velocity = velocity;
             }
@@ -267,7 +264,7 @@ namespace Character
             if (_isAnimNotNull)
             {
                 _anim.SetFloat("Speed", Control.MoveVector.magnitude);
-                _anim.SetBool("Shoot", _baseCharacter.Inventory.SelectedItem is StunGun && !_baseCharacter.Stunned);
+                _anim.SetBool("Shoot", BaseCharacter.Inventory.SelectedItem is StunGun && !BaseCharacter.Stunned);
             }
 
             var size = Physics.OverlapSphereNonAlloc(transform.position + transform.up, _interactDistance,
@@ -275,10 +272,8 @@ namespace Character
             if (size == 0)
             {
                 _interactObject = new Tuple<GameObject, string>(null, "");
-                if (!(_baseCharacter.OverWeaponPickup || _baseCharacter.OverTrapPickup))
-                {
+                if (!(BaseCharacter.OverWeaponPickup || BaseCharacter.OverTrapPickup))
                     _playerUiManager.SetOpen("None", false);
-                }
             }
 
             for (var i = 0; i < size; i++)
@@ -293,38 +288,38 @@ namespace Character
                     _playerUiManager.SetOpen("Door", hit.gameObject.GetComponentInParent<Door>().IsOpen);
                     break;
                 }
-                else if (hit.transform.CompareTag("HazardDisabler"))
+
+                if (hit.transform.CompareTag("HazardDisabler"))
                 {
                     _interactObject = new Tuple<GameObject, string>(hit.gameObject, "HazardDisabler");
                     _playerUiManager.SetOpen("HazardDisabler", false);
                     break;
                 }
-                else if (hit.transform.CompareTag("GoldPile"))
+
+                if (hit.transform.CompareTag("GoldPile"))
                 {
                     _interactObject = new Tuple<GameObject, string>(hit.gameObject, "GoldPile");
                     _playerUiManager.SetOpen("GoldPile", false);
                     break;
                 }
-                else if (hit.transform.CompareTag("MiniVault"))
+
+                if (hit.transform.CompareTag("MiniVault"))
                 {
                     _interactObject = new Tuple<GameObject, string>(hit.gameObject, "MiniVault");
                     _playerUiManager.SetOpen("MiniVault", false);
                     break;
                 }
-                else if (hit.transform.CompareTag("Vault"))
+
+                if (hit.transform.CompareTag("Vault"))
                 {
                     _interactObject = new Tuple<GameObject, string>(hit.gameObject, "Vault");
                     _playerUiManager.SetOpen("Vault", false);
                     break;
                 }
-                else
-                {
-                    _interactObject = new Tuple<GameObject, string>(null, "");
-                    if (!(_baseCharacter.OverWeaponPickup || _baseCharacter.OverTrapPickup))
-                    {
-                        _playerUiManager.SetOpen("None", false);
-                    }
-                }
+
+                _interactObject = new Tuple<GameObject, string>(null, "");
+                if (!(BaseCharacter.OverWeaponPickup || BaseCharacter.OverTrapPickup))
+                    _playerUiManager.SetOpen("None", false);
             }
         }
 
@@ -360,21 +355,14 @@ namespace Character
 
         private void WeaponAttack()
         {
-            if (_baseCharacter.Stunned) return;
+            if (BaseCharacter.Stunned) return;
             if (_isAnimNotNull)
             {
-                if (_baseCharacter.Inventory.SelectedItem is StunGun)
-                {
+                if (BaseCharacter.Inventory.SelectedItem is StunGun)
                     _anim.SetTrigger("Shot");
-                }
-                else if (_baseCharacter.Inventory.SelectedItem is Baton)
-                {
+                else if (BaseCharacter.Inventory.SelectedItem is Baton)
                     _anim.SetTrigger("Baton");
-                }
-                else if (_baseCharacter.Inventory.SelectedItem is Hazard.Hazard)
-                {
-                    _anim.SetTrigger("Place");
-                }
+                else if (BaseCharacter.Inventory.SelectedItem is Hazard.Hazard) _anim.SetTrigger("Place");
             }
 
             BaseCharacter.Inventory.Use();
@@ -382,11 +370,11 @@ namespace Character
 
         private void Interact()
         {
-            if (_baseCharacter.Stunned) return;
-            if (_baseCharacter.OverWeaponPickup || _baseCharacter.OverTrapPickup)
+            if (BaseCharacter.Stunned) return;
+            if (BaseCharacter.OverWeaponPickup || BaseCharacter.OverTrapPickup)
             {
                 _anim.SetTrigger("PickUp");
-                _baseCharacter.PickupPickup();
+                BaseCharacter.PickupPickup();
             }
             else
             {
@@ -423,11 +411,10 @@ namespace Character
             _anim.SetTrigger("Baton");
             var objects = Physics.OverlapSphere(transform.position, 2);
             foreach (var o in objects)
-            {
                 if (o.CompareTag("Player") || o.CompareTag("Drone"))
                 {
                     var character = o.GetComponentInParent<Character>();
-                    if (character.gameObject.layer != this.gameObject.layer)
+                    if (character.gameObject.layer != gameObject.layer)
                     {
                         character.Knockback(transform);
                         _audioSource.clip = _meleeAttack;
@@ -435,7 +422,6 @@ namespace Character
                         break;
                     }
                 }
-            }
         }
 
         private void Dash()
@@ -458,7 +444,6 @@ namespace Character
 
         private IEnumerator Blink(int timer)
         {
-
             yield return new WaitForSeconds(timer);
             if (_playerModel.FaceState == PlayerModel.FacesState.Idle)
             {
@@ -466,6 +451,7 @@ namespace Character
                 yield return new WaitForSeconds(0.5f);
                 _playerModel.SetIdle();
             }
+
             StartCoroutine(Blink(timer));
         }
 

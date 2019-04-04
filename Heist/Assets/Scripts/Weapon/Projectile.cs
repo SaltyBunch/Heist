@@ -1,4 +1,3 @@
-using Game;
 using UnityEngine;
 
 namespace Weapon
@@ -18,7 +17,7 @@ namespace Weapon
 
             transform.position = position.Value;
             transform.rotation = rotation.Value;
-            
+
             _rgd.AddForce(_shootForce * transform.forward);
         }
 

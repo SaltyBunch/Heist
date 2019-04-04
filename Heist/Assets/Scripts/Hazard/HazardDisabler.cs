@@ -8,12 +8,11 @@ namespace Hazard
 {
     public class HazardDisabler : MonoBehaviour
     {
-        private PlayerControl _player;
-        private LockQuickTimeEvent _quickTime;
-        [SerializeField] private LockQuickTimeEvent _lockQuickTimeEvent;
-
         [SerializeField] private Hazard _hazard;
         private bool _interacting;
+        [SerializeField] private LockQuickTimeEvent _lockQuickTimeEvent;
+        private PlayerControl _player;
+        private LockQuickTimeEvent _quickTime;
 
         public void DisableHazard(PlayerControl player)
         {
@@ -26,6 +25,7 @@ namespace Hazard
             _player = player;
             _player.OnMoveCancel += PlayerOnOnMoveCancel;
         }
+
         private void PlayerOnOnMoveCancel(object sender, EventArgs e)
         {
             _interacting = false;
@@ -35,6 +35,7 @@ namespace Hazard
             _player.OnMoveCancel -= PlayerOnOnMoveCancel;
             _player = null;
         }
+
         private void QuickTimeEventMonitor(Object sender, QuickTimeEvent.QuickTimeEventArgs e)
         {
             if (e.Complete)

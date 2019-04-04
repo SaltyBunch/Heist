@@ -6,12 +6,12 @@ namespace UI
 {
     public class PlayerSelectManager : MonoBehaviour
     {
-        [SerializeField] private List<PlayerSelect> selection;
+        [SerializeField] public List<Material> JailbirdSkin;
 
         [SerializeField] public List<Material> KingSkin;
-        [SerializeField] public List<Material> JailbirdSkin;
-        [SerializeField] public List<Material> ShadowSkin;
         [SerializeField] public List<Material> RoccoSkin;
+        [SerializeField] private List<PlayerSelect> selection;
+        [SerializeField] public List<Material> ShadowSkin;
 
         private void OnEnable()
         {
@@ -23,7 +23,7 @@ namespace UI
             if (selection.TrueForAll(s => s.ready || !s.gameObject.activeSelf))
             {
                 GameManager.GameManagerRef.EnterGame();
-                this.gameObject.SetActive(false);
+                gameObject.SetActive(false);
             }
         }
     }

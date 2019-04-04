@@ -1,35 +1,32 @@
-using System.Linq;
 using Character;
-using Rewired;
 using UnityEngine;
 using UnityEngine.UI;
-using Player = Rewired.Player;
 
 namespace Game
 {
-    public class     LockQuickTimeEvent : QuickTimeEvent
+    public class LockQuickTimeEvent : QuickTimeEvent
     {
-        [SerializeField] private Sprite[] _spriteButtons;
-        [SerializeField] private Sprite[] _spriteStatus;
-
-        [SerializeField] private Image[] _buttonRenderer;
-        [SerializeField] private Image[] _statusRenderer;
+        private static readonly int Unlock = Animator.StringToHash("Unlock");
 
         [SerializeField] private Animator _animator;
 
         [SerializeField] private AudioSource _audioSource;
-        
-        [SerializeField] private AudioClip _success, _failure;
-        
+
+        [SerializeField] private Image[] _buttonRenderer;
+
         private Button[] _buttons;
 
         private Input _controlInput;
         private int _index;
         private PlayerControl _player;
         private Vector3 _position;
+        [SerializeField] private Sprite[] _spriteButtons;
+        [SerializeField] private Sprite[] _spriteStatus;
+        [SerializeField] private Image[] _statusRenderer;
+
+        [SerializeField] private AudioClip _success, _failure;
 
         public Type QuickTimeType;
-        private static readonly int Unlock = Animator.StringToHash("Unlock");
 
         private Input ControlInput
         {
@@ -78,7 +75,7 @@ namespace Game
                 });
                 LevelManager.LevelManagerRef.Notify(_position, NotifyType.TripTrap);
                 Generate();
-                
+
                 _audioSource.clip = _failure;
                 _audioSource.Play();
             }
@@ -97,7 +94,7 @@ namespace Game
             for (var i = 0; i < _buttons.Length; i++) _buttons[i] = (Button) Random.Range(0, 4);
 
             //put buttons on sprite
-            for (int i = 0; i < _buttons.Length; i++)
+            for (var i = 0; i < _buttons.Length; i++)
             {
                 _buttonRenderer[i].sprite = _spriteButtons[(int) _buttons[i]];
                 _statusRenderer[i].sprite = _spriteStatus[1];
@@ -110,18 +107,25 @@ namespace Game
         public void Update()
         {
             if (_player != null)
-            {
                 ControlInput = new Input
                 {
                     A = _player.Control.QuickTimeA,
                     B = _player.Control.QuickTimeB,
                     X = _player.Control.QuickTimeX,
-                    Y = _player.Control.QuickTimeY,
+                    Y = _player.Control.QuickTimeY
                 };
-            }
         }
 
         public event QuickTimeEventHandler Events;
+
+        public void Clear()
+        {
+            for (var i = 0; i < _buttons.Length; i++)
+            {
+                _buttonRenderer[i].sprite = null;
+                _statusRenderer[i].sprite = null;
+            }
+        }
 
         private struct Input
         {
@@ -129,15 +133,6 @@ namespace Game
             public bool B;
             public bool X;
             public bool Y;
-        }
-
-        public void Clear()
-        {
-            for (int i = 0; i < _buttons.Length; i++)
-            {
-                _buttonRenderer[i].sprite = null;
-                _statusRenderer[i].sprite = null;
-            }
         }
     }
 }

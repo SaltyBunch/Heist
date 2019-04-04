@@ -22,6 +22,7 @@ namespace Editor
                 GUILayout.Label(inv.keys[key].ToString());
                 GUILayout.EndHorizontal();
             }
+
             GUILayout.EndVertical();
             GUILayout.Space(8);
             GUILayout.BeginHorizontal();
@@ -36,6 +37,7 @@ namespace Editor
                 EditorGUILayout.ObjectField(inv.SelectedItem, typeof(Item), true);
                 GUILayout.EndHorizontal();
             }
+
             GUILayout.EndVertical();
         }
     }

@@ -14,7 +14,7 @@ namespace Pickup
 
             Instantiate(_pickups[i], transform.position, transform.rotation, null);
 
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }

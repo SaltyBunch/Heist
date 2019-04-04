@@ -1,26 +1,30 @@
 using Rewired;
+using UnityEditor;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace UI
 {
     public class MenuManager : MonoBehaviour
     {
-        public struct Control
-        {
-            public bool Right;
-            public bool Left;
-            public bool Up;
-            public bool Down;
-            public bool Submit;
-            public bool Cancel;
-        }
-
         public static MenuManager MenuManagerRef;
+        private static Control _menuControl;
+        [SerializeField] private SelectableMenu _controls;
+        [SerializeField] private SelectableMenu _credits;
+
+        [SerializeField] private SelectableMenu _currentMenu;
+        private bool _input = true;
+
+
+        [SerializeField] private SelectableMenu _mainMenu;
+        [SerializeField] private Animator _menuAnimator;
+        [SerializeField] private SelectableMenu _optionsMenu;
+        [SerializeField] private SelectableMenu _playerSelect;
+        [SerializeField] private SelectableMenu _sound;
+        [SerializeField] private Animator _vaultAnimator;
 
         public static Control MenuControl
         {
-            get { return _menuControl; }
+            get => _menuControl;
             set
             {
                 if (!Equals(value, _menuControl))
@@ -43,27 +47,13 @@ namespace UI
 
         public SelectableMenu CurrentMenu
         {
-            get { return _currentMenu; }
+            get => _currentMenu;
             set
             {
                 _currentMenu = value;
                 _currentMenu.Activate();
             }
         }
-
-        [SerializeField] private SelectableMenu _currentMenu;
-        private static Control _menuControl;
-        [SerializeField] private Animator _menuAnimator;
-        [SerializeField] private Animator _vaultAnimator;
-
-
-        [SerializeField] private SelectableMenu _mainMenu;
-        [SerializeField] private SelectableMenu _optionsMenu;
-        [SerializeField] private SelectableMenu _playerSelect;
-        [SerializeField] private SelectableMenu _credits;
-        [SerializeField] private SelectableMenu _controls;
-        [SerializeField] private SelectableMenu _sound;
-        private bool _input = true;
 
         private void Start()
         {
@@ -96,7 +86,7 @@ namespace UI
         public void ExitGame()
         {
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
+            EditorApplication.isPlaying = false;
 #else
             Application.Quit();
 #endif
@@ -143,7 +133,7 @@ namespace UI
             CurrentMenu = _optionsMenu;
             _credits.gameObject.SetActive(false);
         }
-        
+
         public void GoToControls()
         {
             _menuAnimator.SetTrigger("GoToCredits");
@@ -157,7 +147,7 @@ namespace UI
             CurrentMenu = _optionsMenu;
             _controls.gameObject.SetActive(false);
         }
-        
+
         public void GoToAudio()
         {
             _menuAnimator.SetTrigger("GoToCredits");
@@ -174,6 +164,16 @@ namespace UI
 
         public void Empty()
         {
+        }
+
+        public struct Control
+        {
+            public bool Right;
+            public bool Left;
+            public bool Up;
+            public bool Down;
+            public bool Submit;
+            public bool Cancel;
         }
     }
 }

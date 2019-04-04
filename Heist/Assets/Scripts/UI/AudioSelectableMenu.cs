@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,9 +6,8 @@ namespace UI
 {
     public class AudioSelectableMenu : SelectableMenu
     {
-        [SerializeField] private List<WorldSpaceSlider> _sliders;
-
         [SerializeField] private UnityAction _actions;
+        [SerializeField] private List<WorldSpaceSlider> _sliders;
 
         public override void Right()
         {
@@ -26,7 +24,7 @@ namespace UI
             if (_sliders.Count > 0)
             {
                 _sliders[Selected].Selected = false;
-                Selected = (((Selected - 1) % _sliders.Count) + _sliders.Count) % _sliders.Count;
+                Selected = ((Selected - 1) % _sliders.Count + _sliders.Count) % _sliders.Count;
                 _sliders[Selected].Selected = true;
             }
         }
@@ -36,7 +34,7 @@ namespace UI
             if (_sliders.Count > 0)
             {
                 _sliders[Selected].Selected = false;
-                Selected = (((Selected + 1) % _sliders.Count) + _sliders.Count) % _sliders.Count;
+                Selected = ((Selected + 1) % _sliders.Count + _sliders.Count) % _sliders.Count;
                 _sliders[Selected].Selected = true;
             }
         }

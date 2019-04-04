@@ -20,7 +20,10 @@ namespace UI
         public static string RequireRedKey => "You require the <#FF1100>Red <#FFFFFF>Key";
         public static string RequireYellowKey => "You require the <#FFCC21>Yellow <#FFFFFF>Key";
         public static string RequireBlueKey => "You require the <#395BFF>Blue <#FFFFFF>Key";
-        public static string RequireBothKeys => "You require the <#FF1100>Red <#FFFFFF>and <#FFCC21>Yellow <#FFFFFF>Key";
+
+        public static string RequireBothKeys =>
+            "You require the <#FF1100>Red <#FFFFFF>and <#FFCC21>Yellow <#FFFFFF>Key";
+
         public static string LockDownNotif => "<#FF1100>Lock Down Will Initiate in 2 Minutes"; //Shown for everyone pls
     }
 }

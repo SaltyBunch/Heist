@@ -50,7 +50,7 @@
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
             o.Alpha = c.a;
-            o.Emission = _Emission;
+            o.Emission = _Emission * c.a            ;
         }
         ENDCG
     }

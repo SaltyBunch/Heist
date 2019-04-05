@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5508421840106758422
+--- !u!1 &8898125353333466306
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,43 +8,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6282670955255881529}
-  - component: {fileID: 2504117243778725250}
+  - component: {fileID: 208670859113708998}
+  - component: {fileID: 7527965239164890617}
   m_Layer: 12
-  m_Name: Point Light
+  m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6282670955255881529
+--- !u!4 &208670859113708998
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5508421840106758422}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 8898125353333466306}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.125, y: 1.265, z: 0.06475139}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 8641425255969325597}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!108 &2504117243778725250
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!108 &7527965239164890617
 Light:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5508421840106758422}
+  m_GameObject: {fileID: 8898125353333466306}
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 1, g: 0.99998116, b: 0.1462264, a: 1}
-  m_Intensity: 1
-  m_Range: 4
-  m_SpotAngle: 30
+  m_Color: {r: 1, g: 0.86071515, b: 0.3066038, a: 1}
+  m_Intensity: 1.2
+  m_Range: 7
+  m_SpotAngle: 35
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -100,7 +100,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 8267092222581690833}
-  - {fileID: 6282670955255881529}
+  - {fileID: 208670859113708998}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -240,17 +240,17 @@ PrefabInstance:
     - target: {fileID: 761696259965160120, guid: 4881fa88c51657a4da8f4ca786773643,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.75
+      value: 1.4375
       objectReference: {fileID: 0}
     - target: {fileID: 761696259965160120, guid: 4881fa88c51657a4da8f4ca786773643,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 1.9375
       objectReference: {fileID: 0}
     - target: {fileID: 761696259965160120, guid: 4881fa88c51657a4da8f4ca786773643,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 1.9375
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4881fa88c51657a4da8f4ca786773643, type: 3}

@@ -8,27 +8,36 @@ ModelImporter:
     100004: Gun
     100006: Gun_Base
     100008: Gun_Base_Bolt
+    100010: Body
+    100012: ElectricPods
     400000: //RootNode
     400002: Eye
     400004: Gun
     400006: Gun_Base
     400008: Gun_Base_Bolt
+    400010: Body
+    400012: ElectricPods
     2100000: No Name
     2300000: //RootNode
     2300002: Eye
     2300004: Gun
     2300006: Gun_Base
     2300008: Gun_Base_Bolt
+    2300010: Body
+    2300012: ElectricPods
     3300000: //RootNode
     3300002: Eye
     3300004: Gun
     3300006: Gun_Base
     3300008: Gun_Base_Bolt
+    3300010: Body
+    3300012: ElectricPods
     4300000: Body
     4300002: Gun_Base
     4300004: Gun_Base_Bolt
     4300006: Gun
     4300008: Eye
+    4300010: ElectricPods
     7400000: Hover
     7400002: Stunned
     7400004: Attack

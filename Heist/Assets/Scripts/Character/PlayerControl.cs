@@ -214,7 +214,11 @@ namespace Character
         private void BaseCharacterOnHealthChanged(object sender, HealthChangedEventArgs e)
         {
             if (e.AmountChanged < 0 && _takeDamage != null)
+            {
+                _playerModel.TakeDamage();
                 LevelManager.LevelManagerRef.PlayVoiceLine(_takeDamage);
+            }
+
             _playerUiManager.SetHealth(e.Health);
         }
 

@@ -27,6 +27,8 @@ namespace Character
 
         [SerializeField] private Animator _anim;
 
+        private float _damageTimer;
+
         public float hidey = 0;
         private float _modelAlpha = 4;
 
@@ -62,6 +64,8 @@ namespace Character
                 v.a = Mathf.Clamp(_modelAlpha, 0, 0.6f);
                 UpdateColor(v);
                 UpdateFace(v);
+                if (_damageTimer > 0)
+                    _damageTimer -= Time.deltaTime;
             }
             else
             {
@@ -80,10 +84,17 @@ namespace Character
 
         private void UpdateColor(Color color)
         {
+            var playerColor = Color.white;
+            if (_damageTimer > 0)
+            {
+                playerColor = Color.red * 3;
+            }
+
             foreach (var character in _characterSkinnedMeshRenderers)
             {
                 character.GetPropertyBlock(_prop);
                 _prop.SetColor("_OccludedColor", color);
+                _prop.SetColor("_Color", playerColor);
                 character.SetPropertyBlock(_prop);
             }
         }
@@ -93,10 +104,16 @@ namespace Character
             _playerNumber = playerNumber;
         }
 
+        public void TakeDamage()
+        {
+            _damageTimer = 0.2f;
+        }
+
         public void SetTalking()
         {
             FaceState = FacesState.Speak;
         }
+
         public void SetStunned()
         {
             FaceState = FacesState.Stun;

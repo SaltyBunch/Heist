@@ -120,7 +120,7 @@ MonoBehaviour:
   atkRange: 6
   atkSpeed: 1
   isShooter: 1
-  control: {fileID: 0}
+  control: {fileID: 1492188137074004495}
   drone: {fileID: 8087823521443717759}
   _stunGun: {fileID: 4548259701909515994}
   _eField: {fileID: 0}
@@ -9931,6 +9931,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Drone_Shooter_Hover_Stunned_Attack
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 919d761cb060ca74c99786618f9467bf, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 919d761cb060ca74c99786618f9467bf, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 919d761cb060ca74c99786618f9467bf, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 919d761cb060ca74c99786618f9467bf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -9975,23 +9987,51 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 919d761cb060ca74c99786618f9467bf, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 919d761cb060ca74c99786618f9467bf, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: 919d761cb060ca74c99786618f9467bf, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: 919d761cb060ca74c99786618f9467bf, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 919d761cb060ca74c99786618f9467bf, type: 3}
+--- !u!23 &1492188137083567877 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2300010, guid: 919d761cb060ca74c99786618f9467bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1492188137081399151}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1492188137074004495 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: 919d761cb060ca74c99786618f9467bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1492188137081399151}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1492188137081798127 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 919d761cb060ca74c99786618f9467bf,
     type: 3}
   m_PrefabInstance: {fileID: 1492188137081399151}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &1492188137083567875 stripped
+--- !u!23 &1492188137083567879 stripped
 MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 2300012, guid: 919d761cb060ca74c99786618f9467bf,
+  m_CorrespondingSourceObject: {fileID: 2300008, guid: 919d761cb060ca74c99786618f9467bf,
     type: 3}
   m_PrefabInstance: {fileID: 1492188137081399151}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &1492188137083567883 stripped
+--- !u!23 &1492188137083567875 stripped
 MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 2300004, guid: 919d761cb060ca74c99786618f9467bf,
+  m_CorrespondingSourceObject: {fileID: 2300012, guid: 919d761cb060ca74c99786618f9467bf,
     type: 3}
   m_PrefabInstance: {fileID: 1492188137081399151}
   m_PrefabAsset: {fileID: 0}
@@ -10007,15 +10047,9 @@ MeshRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 1492188137081399151}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &1492188137083567877 stripped
+--- !u!23 &1492188137083567883 stripped
 MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 2300010, guid: 919d761cb060ca74c99786618f9467bf,
-    type: 3}
-  m_PrefabInstance: {fileID: 1492188137081399151}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &1492188137083567879 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 2300008, guid: 919d761cb060ca74c99786618f9467bf,
+  m_CorrespondingSourceObject: {fileID: 2300004, guid: 919d761cb060ca74c99786618f9467bf,
     type: 3}
   m_PrefabInstance: {fileID: 1492188137081399151}
   m_PrefabAsset: {fileID: 0}

@@ -206,7 +206,7 @@ namespace Character
                 }
             }
 
-
+            _playerUiManager.SetControlHint(e.Type);
             _playerUiManager.SetItem(e.Item);
             _playerUiManager.UpdateAmmo(e.Count);
         }
@@ -479,6 +479,7 @@ namespace Character
             BaseCharacter.HealthChanged -= BaseCharacterOnHealthChanged;
             BaseCharacter.Inventory.SelectionChanged -= InventoryOnSelectionChanged;
             BaseCharacter.CharacterStunned -= BaseCharacterOnCharacterStunned;
+            BaseCharacter.Inventory.GoldAmountChanged -= InventoryOnGoldAmountChanged;
         }
 
         public void PickupGold()

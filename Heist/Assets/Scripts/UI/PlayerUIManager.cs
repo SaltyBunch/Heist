@@ -17,6 +17,7 @@ namespace UI
         [SerializeField] private TextMeshProUGUI _playerHint;
         [SerializeField] private TextMeshProUGUI _playerInfo;
         [SerializeField] private TextMeshProUGUI _serviceAnnouncement;
+        [SerializeField] private TextMeshProUGUI _controlHint;
         public GameObject Siren => _playerStatsManager.Siren;
 
 
@@ -218,6 +219,26 @@ namespace UI
             }
 
             StartCoroutine(ClearHintIn(2, _playerInfo));
+        }
+
+        public void SetControlHint(Item.Type type)
+        {
+            switch (type)
+            {
+                case Item.Type.None:
+                    _controlHint.text = "";
+                    break;
+                case Item.Type.Weapon:
+                    _controlHint.text = "Press RT to use weapon";
+
+                    break;
+                case Item.Type.Hazard:
+                    _controlHint.text = "Press RT to use trap";
+
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+            }
         }
 
         public void NeedsBothKeys()

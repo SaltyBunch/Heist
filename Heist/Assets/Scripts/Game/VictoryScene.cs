@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Character;
+using Rewired;
+using UI;
 using UnityEngine;
 
 namespace Game
@@ -12,6 +14,26 @@ namespace Game
         [SerializeField] private Transform[] _places;
 
         [SerializeField] private PlaceText[] _placeTexts;
+        private static MenuManager.Control _victoryControl;
+        private static bool _exiting;
+
+        public static MenuManager.Control VictoryControl
+        {
+            get { return _victoryControl; }
+            set
+            {
+                if (!Equals(value, _victoryControl))
+                {
+                    if (value.Start && !_victoryControl.Start && !_exiting)
+                    {
+                        _exiting = true;
+                        GameManager.GameManagerRef.ToMain();
+                    }
+                }
+
+                _victoryControl = value;
+            }
+        }
 
         private void Start()
         {
@@ -32,6 +54,18 @@ namespace Game
                     _places[i].gameObject.SetActive(false);
                 }
             }
+        }
+
+        private void Update()
+        {
+            var control = VictoryControl;
+
+            foreach (var player in ReInput.players.Players)
+            {
+                control.Start = control.Start || player.GetButtonDown("Pause");
+            }
+
+            VictoryControl = control;
         }
     }
 }

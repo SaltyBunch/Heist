@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Game
 {
-    public class     LockQuickTimeEvent : QuickTimeEvent
+    public class LockQuickTimeEvent : QuickTimeEvent
     {
         [SerializeField] private Sprite[] _spriteButtons;
         [SerializeField] private Sprite[] _spriteStatus;
@@ -15,9 +15,9 @@ namespace Game
         [SerializeField] private Animator _animator;
 
         [SerializeField] private AudioSource _audioSource;
-        
+
         [SerializeField] private AudioClip _success, _failure;
-        
+
         private Button[] _buttons;
 
         private Input _controlInput;
@@ -75,7 +75,7 @@ namespace Game
                 });
                 LevelManager.LevelManagerRef.Notify(_position, NotifyType.TripTrap);
                 Generate();
-                
+
                 _audioSource.clip = _failure;
                 _audioSource.Play();
             }
@@ -85,6 +85,7 @@ namespace Game
         public void Generate(PlayerControl player, Vector3 position)
         {
             _player = player;
+            transform.localScale = 1.2f * Vector3.one;
             Generate();
         }
 

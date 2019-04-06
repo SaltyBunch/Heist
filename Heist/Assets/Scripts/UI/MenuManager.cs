@@ -14,6 +14,7 @@ namespace UI
             public bool Down;
             public bool Submit;
             public bool Cancel;
+            public bool Start;
         }
 
         public static MenuManager MenuManagerRef;
@@ -143,7 +144,7 @@ namespace UI
             CurrentMenu = _optionsMenu;
             _credits.gameObject.SetActive(false);
         }
-        
+
         public void GoToControls()
         {
             _menuAnimator.SetTrigger("GoToCredits");
@@ -157,7 +158,7 @@ namespace UI
             CurrentMenu = _optionsMenu;
             _controls.gameObject.SetActive(false);
         }
-        
+
         public void GoToAudio()
         {
             _menuAnimator.SetTrigger("GoToCredits");

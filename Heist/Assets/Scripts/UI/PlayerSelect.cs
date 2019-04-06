@@ -93,7 +93,7 @@ namespace UI
             {
                 _player = ReInput.players.GetPlayer(player);
 
-                Selection = 0;
+                Selection = player;
             }
         }
 

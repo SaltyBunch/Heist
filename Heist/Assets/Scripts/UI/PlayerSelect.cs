@@ -94,6 +94,7 @@ namespace UI
                 _player = ReInput.players.GetPlayer(player);
 
                 Selection = player;
+                PlayerSkinchoice = 0;
             }
         }
 

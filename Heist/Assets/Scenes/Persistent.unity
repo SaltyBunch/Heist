@@ -1240,7 +1240,7 @@ MonoBehaviour:
     Persistent: Persistent
   _state: 0
   _loadingScreen: {fileID: 1163500337}
-  UseMultiScreen: 1
+  UseMultiScreen: 0
   MasterMixer: {fileID: 522888668}
   Skins:
   - {fileID: 0}

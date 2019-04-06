@@ -33,8 +33,7 @@ namespace Drone
         [SerializeField] private bool isShooter;
         private bool canAtk = true;
 
-        [SerializeField] private AnimControl control;
-        //[SerializeField] private ;
+        [SerializeField] private Animator control;
 
         [SerializeField] Character.Drone drone;
         private bool canMove = true;
@@ -188,6 +187,7 @@ namespace Drone
                             FieldOFView(v, 20))
                         {
                             _stunGun.Attack();
+                            control.SetTrigger("shoot");
                             canAtk = false;
                             StartCoroutine(Reload());
                         }
@@ -253,6 +253,7 @@ namespace Drone
                         if (isShooter)
                         {
                             _stunGun.Attack();
+                            control.SetTrigger("shoot");
                         }
 
                         canAtk = false;
@@ -272,14 +273,14 @@ namespace Drone
             {
                 _droneState = DroneState.Patrol;
 
-                control.DoStun();
+                control.SetTrigger("dead");
                 reviving = true;
                 canMove = false;
                 if (!drone.Stunned)
                 {
                     Target = patrolPath[patrol %= patrolPath.Count];
                     fsm.MoveNext(Command.Wake);
-                    control.DoAlive();
+                    control.SetTrigger("alive");
                 }
             }
 

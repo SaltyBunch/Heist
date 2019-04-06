@@ -44,7 +44,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    motionNodeName: 
+    motionNodeName: <Root Transform>
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
@@ -120,7 +120,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Attack
       takeName: Take 001
-      firstFrame: 112
+      firstFrame: 115
       lastFrame: 128
       wrapMode: 0
       orientationOffsetY: 0

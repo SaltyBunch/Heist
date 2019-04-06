@@ -156,9 +156,8 @@ namespace Character
                 if (_weapon.Contains(weapon))
                 {
                     var temp = _weapon.Find(x => x.GetType() == weapon.GetType());
-                    _weapon.Remove(temp);
-                    Destroy(temp.gameObject);
-                    _weapon.Add(weapon);
+                    temp.Ammo += weapon.Ammo;
+                    Destroy(weapon.gameObject);
                 }
                 else
                 {

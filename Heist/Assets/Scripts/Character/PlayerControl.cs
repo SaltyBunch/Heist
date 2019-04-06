@@ -38,7 +38,7 @@ namespace Character
     public class PlayerControl : MonoBehaviour
     {
         [SerializeField] private GoldPickup _goldPickup;
-        
+
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private Player _baseCharacter;
         [SerializeField] private PlayerUIManager _playerUiManager;
@@ -324,10 +324,7 @@ namespace Character
                     }
                 }
             }
-        }
 
-        private void Update()
-        {
             if (_isReticuleNotNull)
             {
                 if (_control.FaceVector.magnitude > 0)
@@ -456,7 +453,6 @@ namespace Character
 
         private IEnumerator Blink(int timer)
         {
-
             yield return new WaitForSeconds(timer);
             if (_playerModel.FaceState == PlayerModel.FacesState.Idle)
             {
@@ -464,6 +460,7 @@ namespace Character
                 yield return new WaitForSeconds(0.5f);
                 _playerModel.SetIdle();
             }
+
             StartCoroutine(Blink(timer));
         }
 

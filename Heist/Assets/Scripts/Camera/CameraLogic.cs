@@ -17,13 +17,11 @@ namespace Camera
         [SerializeField] [Range(0, 1)] private float _smoothing = 0.2f;
 
         [SerializeField] public UnityEngine.Camera MainCamera;
-        [SerializeField] public UnityEngine.Camera UICamera;
 
         private void Start()
         {
             MainCamera.transform.localPosition = _offset;
             MainCamera.transform.LookAt(_playerControl.transform.position);
-            MainCamera.cullingMask = MainCamera.cullingMask;
         }
 
         private void FixedUpdate()

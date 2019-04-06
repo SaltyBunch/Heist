@@ -295,11 +295,7 @@ namespace Game
                         break;
                 }
 
-
-                Players[i].Camera.UICamera.rect = Players[i].Camera.MainCamera.rect;
-
                 Players[i].Camera.MainCamera.targetDisplay = targetDisplay;
-                Players[i].Camera.UICamera.targetDisplay = targetDisplay;
                 //assign player number
                 Players[i].PlayerControl.PlayerNumber = i;
 

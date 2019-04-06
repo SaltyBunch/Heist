@@ -147,6 +147,12 @@ namespace Character
             BaseCharacter.HealthChanged += BaseCharacterOnHealthChanged;
             BaseCharacter.Inventory.SelectionChanged += InventoryOnSelectionChanged;
             BaseCharacter.CharacterStunned += BaseCharacterOnCharacterStunned;
+            BaseCharacter.Inventory.GoldAmountChanged += InventoryOnGoldAmountChanged;
+        }
+
+        private void InventoryOnGoldAmountChanged(object sender, GoldAmountChangedEvent e)
+        {
+            BaseCharacter.PlayerUiManager.GetGold(e.Amount);
         }
 
         private void Start()

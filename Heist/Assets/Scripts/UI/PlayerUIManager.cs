@@ -16,6 +16,7 @@ namespace UI
 
         [SerializeField] private TextMeshProUGUI _playerHint;
         [SerializeField] private TextMeshProUGUI _playerInfo;
+        [SerializeField] private TextMeshProUGUI _serviceAnnouncement;
         public GameObject Siren => _playerStatsManager.Siren;
 
 
@@ -122,9 +123,23 @@ namespace UI
             }
         }
 
-        public void ClearHint()
+        public void GetGold(int amount)
         {
-            _playerHint.text = "";
+            if (amount > 0)
+            {
+                _serviceAnnouncement.text = "<#38db32>+" + amount;
+            }
+            else if (amount < 0)
+            {
+                _serviceAnnouncement.text = "<#f92a2a>" + amount;
+            }
+
+            StartCoroutine(ClearHintIn(1, _serviceAnnouncement));
+        }
+
+        public void ClearHint(TextMeshProUGUI textBox)
+        {
+            textBox.text = "";
         }
 
         public QuickTimeEvent InitializeQuickTime(QuickTimeEvent quickTimeEvent)
@@ -152,7 +167,7 @@ namespace UI
                     _playerHint.text = TextHelper.TakeGold;
                     break;
                 default:
-                    ClearHint();
+                    ClearHint(_playerHint);
                     break;
             }
         }
@@ -171,22 +186,17 @@ namespace UI
                     _playerInfo.text = TextHelper.YellowKeyPickUp;
                     break;
                 default:
-                    ClearHint();
+                    ClearHint(_playerInfo);
                     break;
             }
 
-            StartCoroutine(ClearHintIn(5));
+            StartCoroutine(ClearHintIn(5, _playerInfo));
         }
 
-        private IEnumerator ClearHintIn(float time)
+        private IEnumerator ClearHintIn(float time, TextMeshProUGUI textBox)
         {
             yield return new WaitForSeconds(time);
-            ClearInfo();
-        }
-
-        private void ClearInfo()
-        {
-            _playerInfo.text = "";
+            ClearHint(textBox);
         }
 
         public void NeedKey(KeyType key)
@@ -203,17 +213,19 @@ namespace UI
                     _playerInfo.text = TextHelper.RequireYellowKey;
                     break;
                 default:
-                    ClearHint();
+                    ClearHint(_playerInfo);
                     break;
             }
 
-            StartCoroutine(ClearHintIn(5));
+            StartCoroutine(ClearHintIn(2, _playerInfo));
         }
 
         public void NeedsBothKeys()
         {
             _playerInfo.text = TextHelper.RequireBothKeys;
-            StartCoroutine(ClearHintIn(5));
+            StartCoroutine(ClearHintIn(2, _playerInfo));
         }
+
+        public void ClearPlayerInfo() => ClearHint(_playerInfo);
     }
 }

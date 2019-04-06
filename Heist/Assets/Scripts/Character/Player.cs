@@ -90,7 +90,7 @@ namespace Character
                 var weapon = (_currentlyOverPickup as WeaponPickup)?.WeaponGameObject;
                 if (_inventory.Add(weapon)) Destroy(_currentlyOverPickup.gameObject);
                 OverWeaponPickup = false;
-                _playerUiManager.ClearHint();
+                _playerUiManager.ClearPlayerInfo();
                 PlayerControl.PickupWeapon();
             }
             else if (OverTrapPickup)
@@ -98,7 +98,7 @@ namespace Character
                 var hazard = (_currentlyOverPickup as HazardPickup)?.HazardGameObject;
                 if (_inventory.Add(hazard)) Destroy(_currentlyOverPickup.gameObject);
                 OverTrapPickup = false;
-                _playerUiManager.ClearHint();
+                _playerUiManager.ClearPlayerInfo();
                 PlayerControl.PickupTrap();
             }
         }

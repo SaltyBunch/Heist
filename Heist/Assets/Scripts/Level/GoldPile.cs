@@ -91,6 +91,7 @@ namespace Level
             if (e.Result)
             {
                 _player.BaseCharacter.Inventory.GoldAmount += _transferAmount;
+                _player.PickupGold();
                 _totalRemaining -= _transferAmount;
             }
 

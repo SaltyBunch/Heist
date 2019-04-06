@@ -10010,6 +10010,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: a1c74768ff887444ba796db6f82ed18c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: a1c74768ff887444ba796db6f82ed18c, type: 3}
       propertyPath: m_Layer
       value: 11
@@ -10134,6 +10138,14 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: e1a41067d76a7e746ad6b9020a1b2019, type: 2}
+    - target: {fileID: 9500000, guid: a1c74768ff887444ba796db6f82ed18c, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 919d761cb060ca74c99786618f9467bf, type: 3}
+    - target: {fileID: 9500000, guid: a1c74768ff887444ba796db6f82ed18c, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1c74768ff887444ba796db6f82ed18c, type: 3}
 --- !u!4 &2110897098130088210 stripped

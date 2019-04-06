@@ -239,6 +239,8 @@ namespace UI
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
+
+            StartCoroutine(ClearHintIn(2, _controlHint));
         }
 
         public void NeedsBothKeys()

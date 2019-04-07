@@ -64,12 +64,12 @@ namespace Game
             //get places from game manager
             for (int i = 0; i < GameManager.NumPlayers; i++)
             {
+                _places[i].gameObject.SetActive(true);
                 var playerModel = Instantiate(playerModels[(int) GameManager.PlayerChoice[order[i].PlayerNumber]],
                     _places[i]);
                 playerModel.SetMaterial(GameManager.GameManagerRef.Skins[order[i].PlayerNumber]);
                 playerModel.SetAnimation(i == 0 ? MenuAnim.Victory : MenuAnim.Defeat);
                 _placeTexts[i].ScoreText.text = order[i].PlayerScore.ToString();
-                _places[i].gameObject.SetActive(true);
                 _audioSource.clip = i == 0
                     ? _victory[(int) GameManager.PlayerChoice[order[i].PlayerNumber]]
                     : _defeat[(int) GameManager.PlayerChoice[order[i].PlayerNumber]];

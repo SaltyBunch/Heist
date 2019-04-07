@@ -39,7 +39,7 @@ namespace UI
                 {
                     //top right
                     uiLocation.anchorMax = Vector2.one;
-                    uiLocation.anchorMin = Vector2.zero;
+                    uiLocation.anchorMin = Vector2.one;
 
                     uiLocation.pivot = Vector2.one;
 
@@ -48,8 +48,8 @@ namespace UI
                 else //left
                 {
                     //top left
-                    uiLocation.anchorMax = Vector2.one;
-                    uiLocation.anchorMin = Vector2.zero;
+                    uiLocation.anchorMax = Vector2.up;
+                    uiLocation.anchorMin = Vector2.up;
 
                     uiLocation.pivot = Vector2.up;
 
@@ -61,8 +61,8 @@ namespace UI
                 if (Math.Abs(rect.x) > 0.01f) //put right
                 {
                     //bottom right
-                    uiLocation.anchorMax = Vector2.one;
-                    uiLocation.anchorMin = Vector2.zero;
+                    uiLocation.anchorMax = Vector2.right;
+                    uiLocation.anchorMin = Vector2.right;
 
                     uiLocation.pivot = Vector2.right;
 
@@ -71,7 +71,7 @@ namespace UI
                 else
                 {
                     //bottom left
-                    uiLocation.anchorMax = Vector2.one;
+                    uiLocation.anchorMax = Vector2.zero;
                     uiLocation.anchorMin = Vector2.zero;
 
                     uiLocation.pivot = Vector2.zero;

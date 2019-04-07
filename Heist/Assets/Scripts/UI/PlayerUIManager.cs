@@ -128,11 +128,11 @@ namespace UI
         {
             if (amount > 0)
             {
-                _serviceAnnouncement.text = "<#38db32>+" + amount;
+                _serviceAnnouncement.text = "<#38db32>+$" + amount;
             }
             else if (amount < 0)
             {
-                _serviceAnnouncement.text = "<#f92a2a>" + amount;
+                _serviceAnnouncement.text = "<#f92a2a>-$" + Mathf.Abs(amount);
             }
 
             StartCoroutine(ClearHintIn(1, _serviceAnnouncement));

@@ -602,11 +602,6 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 1709492062615161962}
-    - target: {fileID: 8884004260613018986, guid: 0c5c1b41037c2c8469125aee9f07c0d2,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1918538348256155052, guid: 0c5c1b41037c2c8469125aee9f07c0d2,
         type: 3}
       propertyPath: volumeTrigger

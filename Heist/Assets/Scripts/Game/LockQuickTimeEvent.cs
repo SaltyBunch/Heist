@@ -85,7 +85,7 @@ namespace Game
         public void Generate(PlayerControl player, Vector3 position)
         {
             _player = player;
-            transform.localScale = 1.2f * Vector3.one;
+            transform.localScale = 1.5f * Vector3.one;
             Generate();
         }
 

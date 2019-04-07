@@ -79,6 +79,7 @@ namespace Game
         };
 
         private bool _notify;
+        private bool _escapeText;
 
         public PlayerGameObject[] Players { get; private set; }
 
@@ -160,7 +161,15 @@ namespace Game
                 }
 
 
-                if (_vaultOpen) TimeSinceVaultOpened += 0.5f;
+                if (_vaultOpen)
+                {
+                    TimeSinceVaultOpened += 0.5f;
+                    if (!_escapeText && TimeSinceVaultOpened + 60 > _endGameAtTime)
+                    {
+                        NotifyPlayers("60 Seconds Left To Escape");
+                        _escapeText = true;
+                    }
+                }
             } while (!_gameOver);
         }
 

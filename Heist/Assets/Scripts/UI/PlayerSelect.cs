@@ -61,13 +61,12 @@ namespace UI
                     _playerModels[selection].gameObject.SetActive(false);
                     _playerModels[value].gameObject.SetActive(true);
                     _playerModels[value].SetAnimation(MenuAnim.Select);
-
                 }
 
                 selection = value;
 
-                display.text = _characterNames[Selection];
-                GameManager.PlayerChoice[player] = (Characters) Selection;
+                display.text = _characterNames[selection];
+                GameManager.PlayerChoice[player] = (Characters) selection;
                 _speed.text = GameManager.CharacterStats[GameManager.PlayerChoice[player]].Speed.ToString();
                 _health.text = GameManager.CharacterStats[GameManager.PlayerChoice[player]].Health.ToString();
                 _dexterity.text = GameManager.CharacterStats[GameManager.PlayerChoice[player]].Dexterity.ToString();
@@ -92,18 +91,16 @@ namespace UI
             if (player < GameManager.NumPlayers)
             {
                 _player = ReInput.players.GetPlayer(player);
-
-                Selection = player;
-                PlayerSkinchoice = 0;
             }
         }
+
 
         // Update is called once per frame
         private void Update()
         {
-            readyFX.SetActive(ready);
             if (_playerSelectManager.CaptureInput)
             {
+                readyFX.SetActive(ready);
                 if (_player.GetButtonDown("UIHorizontalLeft") && !ready) Selection--;
                 if (_player.GetButtonDown("UIHorizontalRight") && !ready) Selection++;
 
@@ -114,6 +111,10 @@ namespace UI
 
                 if (_player.GetButtonDown("UIVerticalUp")) PlayerSkinchoice++;
                 if (_player.GetButtonDown("UIVerticalDown")) PlayerSkinchoice--;
+            }
+            else
+            {
+                Selection = player;
             }
         }
     }

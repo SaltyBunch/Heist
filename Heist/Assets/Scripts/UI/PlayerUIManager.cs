@@ -230,11 +230,9 @@ namespace UI
                     break;
                 case Item.Type.Weapon:
                     _controlHint.text = "Press RT to use weapon";
-
                     break;
                 case Item.Type.Hazard:
                     _controlHint.text = "Press RT to use trap";
-
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);

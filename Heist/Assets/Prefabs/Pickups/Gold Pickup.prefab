@@ -169,7 +169,7 @@ MonoBehaviour:
   _pickupType: 2
   _verticalSpeed: 0.02
   _rotationSpeed: 1
-  AmountOfGold: 100
+  AmountOfGold: 1000
 --- !u!1001 &8658322175903128425
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -177,11 +177,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8641425255969325597}
     m_Modifications:
-    - target: {fileID: 761696259964671640, guid: 4881fa88c51657a4da8f4ca786773643,
-        type: 3}
-      propertyPath: m_Name
-      value: goldBar
-      objectReference: {fileID: 0}
     - target: {fileID: 761696259965160120, guid: 4881fa88c51657a4da8f4ca786773643,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -251,6 +246,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.9375
+      objectReference: {fileID: 0}
+    - target: {fileID: 761696259964671640, guid: 4881fa88c51657a4da8f4ca786773643,
+        type: 3}
+      propertyPath: m_Name
+      value: goldBar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4881fa88c51657a4da8f4ca786773643, type: 3}

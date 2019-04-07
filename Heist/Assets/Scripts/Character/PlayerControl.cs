@@ -166,7 +166,7 @@ namespace Character
         {
             if (_loseGold != null) LevelManager.LevelManagerRef.PlayVoiceLine(_loseGold);
             //todo drop gold
-            var goldAmount = Mathf.Min(_baseCharacter.Inventory.GoldAmount, 100);
+            var goldAmount = Mathf.Min(_baseCharacter.Inventory.GoldAmount, 1000);
             _baseCharacter.Inventory.GoldAmount -= goldAmount;
             if (goldAmount > 0)
             {

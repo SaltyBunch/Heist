@@ -56,13 +56,13 @@ namespace UI
             _skipTotal.text = GameManager.NumPlayers.ToString();
             _skip = true;
             Time.timeScale = 0;
-            yield return new WaitForSecondsRealtime(8f);
+            yield return new WaitForSecondsRealtime(10f);
             if (_loadingScreens.Count > 1)
             {
                 _image.sprite = _loadingScreens[1];
             }
 
-            yield return new WaitForSecondsRealtime(7f);
+            yield return new WaitForSecondsRealtime(10f);
             EndLoading();
         }
 

@@ -265,8 +265,6 @@ namespace Game
                 if (i != 0 && i % playersPerDisplay == 0)
                     targetDisplay++;
                 Players[i] = Instantiate(_playerGo[(int) GameManager.PlayerChoice[i]]);
-                //todo set appropriate player models
-
 
                 //put player on spawnpoint
                 Players[i].transform.position = _spawnpoints[i].transform.position;
@@ -293,6 +291,27 @@ namespace Game
                         };
                         break;
                     case 3:
+                        if (i == 1)
+                        {
+                            Players[i].Camera.MainCamera.rect = new Rect
+                            {
+                                x = i % 2 * 0.5f,
+                                y = 0,
+                                width = 0.5f,
+                                height = 1
+                            };
+                        }
+                        else
+                        {
+                            Players[i].Camera.MainCamera.rect = new Rect
+                            {
+                                x = i % 2 * 0.5f,
+                                y = Mathf.Abs(1 - i / 2) * 0.5f,
+                                width = 0.5f,
+                                height = 0.5f
+                            };
+                        }
+                        break;
                     case 4:
                         Players[i].Camera.MainCamera.rect = new Rect
                         {

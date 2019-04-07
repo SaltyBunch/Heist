@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Character;
@@ -16,6 +17,10 @@ namespace Game
         [SerializeField] private PlaceText[] _placeTexts;
         private static MenuManager.Control _victoryControl;
         private static bool _exiting;
+
+        [SerializeField] private List<AudioClip> _victory;
+        [SerializeField] private List<AudioClip> _defeat;
+        [SerializeField] private AudioSource _audioSource;
 
         public static MenuManager.Control VictoryControl
         {
@@ -37,23 +42,7 @@ namespace Game
 
         private void Start()
         {
-            var order = GameManager.GameManagerRef.Scores.OrderByDescending(x => x.PlayerScore).ToList();
-            //get places from game manager
-            for (int i = 0; i < 4; i++)
-            {
-                if (i < GameManager.NumPlayers)
-                {
-                    var playerModel = Instantiate(playerModels[(int) GameManager.PlayerChoice[order[i].PlayerNumber]],
-                        _places[i]);
-                    playerModel.SetMaterial(GameManager.GameManagerRef.Skins[order[i].PlayerNumber]);
-                    playerModel.SetAnimation(i == 0 ? MenuAnim.Victory : MenuAnim.Defeat);
-                    _placeTexts[i].ScoreText.text = order[i].PlayerScore.ToString();
-                }
-                else
-                {
-                    _places[i].gameObject.SetActive(false);
-                }
-            }
+            StartCoroutine(PlaceCharacters());
         }
 
         private void Update()
@@ -66,6 +55,30 @@ namespace Game
             }
 
             VictoryControl = control;
+        }
+
+
+        IEnumerator PlaceCharacters()
+        {
+            var order = GameManager.GameManagerRef.Scores.OrderByDescending(x => x.PlayerScore).ToList();
+            //get places from game manager
+            for (int i = 0; i < GameManager.NumPlayers; i++)
+            {
+                var playerModel = Instantiate(playerModels[(int) GameManager.PlayerChoice[order[i].PlayerNumber]],
+                    _places[i]);
+                playerModel.SetMaterial(GameManager.GameManagerRef.Skins[order[i].PlayerNumber]);
+                playerModel.SetAnimation(i == 0 ? MenuAnim.Victory : MenuAnim.Defeat);
+                _placeTexts[i].ScoreText.text = order[i].PlayerScore.ToString();
+                _audioSource.clip = i == 0
+                    ? _victory[(int) GameManager.PlayerChoice[order[i].PlayerNumber]]
+                    : _defeat[(int) GameManager.PlayerChoice[order[i].PlayerNumber]];
+                _audioSource.Play();
+                do
+                {
+                    yield return null;
+                } while (_audioSource.isPlaying);
+                yield return new WaitForSeconds(0.5f);
+            }
         }
     }
 }

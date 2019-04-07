@@ -69,6 +69,7 @@ namespace Game
                 playerModel.SetMaterial(GameManager.GameManagerRef.Skins[order[i].PlayerNumber]);
                 playerModel.SetAnimation(i == 0 ? MenuAnim.Victory : MenuAnim.Defeat);
                 _placeTexts[i].ScoreText.text = order[i].PlayerScore.ToString();
+                _places[i].gameObject.SetActive(true);
                 _audioSource.clip = i == 0
                     ? _victory[(int) GameManager.PlayerChoice[order[i].PlayerNumber]]
                     : _defeat[(int) GameManager.PlayerChoice[order[i].PlayerNumber]];
@@ -77,6 +78,7 @@ namespace Game
                 {
                     yield return null;
                 } while (_audioSource.isPlaying);
+
                 yield return new WaitForSeconds(0.5f);
             }
         }

@@ -178,22 +178,12 @@ namespace Game
             if (sceneName == SceneNames.GameScene)
             {
                 LevelManager.LevelManagerRef.InitGame(NumPlayers);
-                StartCoroutine(DelayScene());
+                StartCoroutine(_loadingScreen.Next());
             }
             else
             {
                 _loadingScreen.gameObject.SetActive(false);
             }
-        }
-
-        private IEnumerator DelayScene()
-        {
-            Time.timeScale = 0;
-            yield return new WaitForSecondsRealtime(8f);
-            _loadingScreen.Next();
-            yield return new WaitForSecondsRealtime(7f);
-            _loadingScreen.gameObject.SetActive(false);
-            Time.timeScale = 1;
         }
 
         public void EndGame()

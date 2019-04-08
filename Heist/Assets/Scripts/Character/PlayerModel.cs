@@ -32,7 +32,7 @@ namespace Character
         public float hidey = 0;
         private float _modelAlpha = 4;
 
-        private static List<Color> _colors = new List<Color>()
+        public static List<Color> Colors = new List<Color>()
         {
             Color.red, Color.blue, Color.green, Color.cyan
         };
@@ -60,7 +60,7 @@ namespace Character
             {
                 if (hidey > 0) _modelAlpha = 4;
                 else _modelAlpha -= Time.deltaTime;
-                var v = _colors[_playerNumber];
+                var v = Colors[_playerNumber];
                 v.a = Mathf.Clamp(_modelAlpha, 0, 0.6f);
                 UpdateColor(v);
                 UpdateFace(v);

@@ -91,6 +91,7 @@ namespace Character
         private Tuple<GameObject, string> _interactObject;
         [SerializeField] private LayerMask _interactMask;
         private Collider[] _interactHits = new Collider[5];
+        [SerializeField] private MeshRenderer _reticuleMesh;
 
         internal Control Control
         {
@@ -129,10 +130,17 @@ namespace Character
             if (_audioSource == null)
                 _audioSource = GetComponent<AudioSource>();
 
-            if (_reticule != null) GameManager.SetLayerOnAll(_reticule, GameManager.GetPlayerMask(PlayerNumber, false));
+            _isReticuleNotNull = _reticule != null;
+            if (_isReticuleNotNull)
+            {
+                GameManager.SetLayerOnAll(_reticule, GameManager.GetPlayerMask(PlayerNumber, false));
+                MaterialPropertyBlock prop = new MaterialPropertyBlock();
+                _reticuleMesh.GetPropertyBlock(prop);
+                prop.SetColor("_Color", PlayerModel.Colors[PlayerNumber]);
+                _reticuleMesh.SetPropertyBlock(prop);
+            }
             //if (_reticule != null) _reticule = Instantiate(_reticule, this.transform);
 
-            _isReticuleNotNull = _reticule != null;
 
             ///////////////////////////////////////////////////
             /////////    Set Layer For Cameras    /////////////

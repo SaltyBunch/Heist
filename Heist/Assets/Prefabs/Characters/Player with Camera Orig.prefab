@@ -3677,6 +3677,7 @@ MonoBehaviour:
   _interactMask:
     serializedVersion: 2
     m_Bits: 4096
+  _reticuleMesh: {fileID: 5793670076462096825}
 --- !u!114 &3081516943516742322
 MonoBehaviour:
   m_ObjectHideFlags: 0

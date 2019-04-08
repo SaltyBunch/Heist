@@ -203,7 +203,8 @@ namespace Drone
                             control.SetTrigger("shoot");
                             canAtk = false;
                             StartCoroutine(Reload());
-                            LevelManager.LevelManagerRef.PlayVoiceLine(_attackClip);
+                            if (Random.Range(0, 4) == 0)
+                                LevelManager.LevelManagerRef.PlayVoiceLine(_attackClip);
                         }
                     }
                     else
@@ -214,7 +215,8 @@ namespace Drone
                             //TODO melee atk
                             canAtk = false;
                             StartCoroutine(Reload());
-                            LevelManager.LevelManagerRef.PlayVoiceLine(_attackClip);
+                            if (Random.Range(0, 4) == 0)
+                                LevelManager.LevelManagerRef.PlayVoiceLine(_attackClip);
                         }
                     }
 

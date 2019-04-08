@@ -148,6 +148,7 @@ namespace UI
                     _itemPortrait.sprite = _items[0];
                     break;
                 case StunGun stunGun:
+                case Shotgun shotgun:
                     _itemPortrait.sprite = _items[1];
                     break;
             }

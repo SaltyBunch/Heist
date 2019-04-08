@@ -264,6 +264,17 @@ namespace Character
                     }
 
                     break;
+                case Shotgun shotgun:
+                    shotgun.Attack();
+                    LevelManager.LevelManagerRef.Notify(transform.position, NotifyType.Attack);
+                    _count = shotgun.Ammo;
+                    if (_count == 0)
+                    {
+                        Remove(SelectedItem);
+                        return;
+                    }
+
+                    break;
             }
 
             SelectionChanged?.Invoke(this,

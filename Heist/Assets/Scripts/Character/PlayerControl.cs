@@ -286,6 +286,7 @@ namespace Character
             {
                 _anim.SetFloat("Speed", Control.MoveVector.magnitude);
                 _anim.SetBool("Shoot", _baseCharacter.Inventory.SelectedItem is StunGun && !_baseCharacter.Stunned);
+                _anim.SetBool("Shotgun", _baseCharacter.Inventory.SelectedItem is Shotgun && !_baseCharacter.Stunned);
             }
 
             var size = Physics.OverlapSphereNonAlloc(transform.position + transform.up, _interactDistance,

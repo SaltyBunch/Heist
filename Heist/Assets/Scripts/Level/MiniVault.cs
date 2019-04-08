@@ -13,6 +13,7 @@ namespace Level
         ElectricHazard,
         LaserHazard,
         StunGun,
+        Shotgun,
         Baton,
         Gold,
         BlueKey,

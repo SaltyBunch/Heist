@@ -112,6 +112,7 @@ MonoBehaviour:
   - {fileID: 2439757593638407659, guid: 9e6f15a8db22a5d40bfd9b41cb0ecd90, type: 3}
   - {fileID: 876418964750941255, guid: 378ba5f899dfbe141961fa6e86c41cd8, type: 3}
   - {fileID: 3462340370699449171, guid: 553b8079c4b31a94e86165eb38bc240d, type: 3}
+  - {fileID: 3462340370699449171, guid: 869f0348177251947bedfabd5cf446e2, type: 3}
   - {fileID: 4594123752195356385, guid: 19631ef386ff7904494863fc594ac8e7, type: 3}
   - {fileID: 3190658458401625200, guid: fcc51227d82a7e54c90a08838889330b, type: 3}
   - {fileID: 911694811856142051, guid: 097f4e9cefb3b7f4797cc79c7d18c9af, type: 3}
@@ -308,6 +309,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3510903029168117144}
     m_Modifications:
+    - target: {fileID: 5192621543830759559, guid: fab2df8a6133f6147b78e467ff2b5dfd,
+        type: 3}
+      propertyPath: m_Name
+      value: Pick-up
+      objectReference: {fileID: 0}
     - target: {fileID: 5192621543830926503, guid: fab2df8a6133f6147b78e467ff2b5dfd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -362,11 +368,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5192621543830759559, guid: fab2df8a6133f6147b78e467ff2b5dfd,
-        type: 3}
-      propertyPath: m_Name
-      value: Pick-up
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fab2df8a6133f6147b78e467ff2b5dfd, type: 3}

@@ -42,7 +42,8 @@ namespace Drone
         [SerializeField] private Hazard.ElectricField _eField;
         [SerializeField] private LayerMask _layerMask;
 
-        [SerializeField] private AudioClip _patrolClip, _investigationClip, _attackClip, _damageClip, _stunClip;
+        [SerializeField]
+        private AudioClip _patrolClip, _investigationClip, _attackClip, _damageClip, _stunClip, _losePlayerClip;
 
         [Header("Texture")] [SerializeField] private List<Texture2D> _textures;
         [SerializeField] private List<MeshRenderer> _meshes;
@@ -88,7 +89,7 @@ namespace Drone
 
             _prop = new MaterialPropertyBlock();
 
-            drone.HealthChanged+= DroneOnHealthChanged;
+            drone.HealthChanged += DroneOnHealthChanged;
             LevelManager.LevelManagerRef.Notifty += LevelManagerRefOnNotifty;
         }
 
@@ -165,6 +166,7 @@ namespace Drone
                 {
                     Target = patrolPath[patrol %= patrolPath.Count];
                     fsm.MoveNext(Command.LosePlayer);
+                    LevelManager.LevelManagerRef.PlayVoiceLine(_losePlayerClip);
                 }
 
                 //Detect player
@@ -201,6 +203,7 @@ namespace Drone
                             control.SetTrigger("shoot");
                             canAtk = false;
                             StartCoroutine(Reload());
+                            LevelManager.LevelManagerRef.PlayVoiceLine(_attackClip);
                         }
                     }
                     else
@@ -211,6 +214,7 @@ namespace Drone
                             //TODO melee atk
                             canAtk = false;
                             StartCoroutine(Reload());
+                            LevelManager.LevelManagerRef.PlayVoiceLine(_attackClip);
                         }
                     }
 
@@ -218,6 +222,7 @@ namespace Drone
                     {
                         Target = patrolPath[patrol %= patrolPath.Count];
                         fsm.MoveNext(Command.LosePlayer);
+                        LevelManager.LevelManagerRef.PlayVoiceLine(_stunClip);
                     }
                 }
             }
@@ -275,6 +280,7 @@ namespace Drone
                     {
                         Target = patrolPath[patrol %= patrolPath.Count];
                         fsm.MoveNext(Command.LosePlayer);
+                        LevelManager.LevelManagerRef.PlayVoiceLine(_stunClip);
                     }
                 }
             }
@@ -304,7 +310,7 @@ namespace Drone
             var color = Color.white;
             if (_damage > 0)
             {
-                color = Color.red*3;
+                color = Color.red * 3;
                 _damage -= Time.deltaTime;
             }
 
@@ -320,6 +326,7 @@ namespace Drone
 
         private IEnumerator DoInvestigate()
         {
+            LevelManager.LevelManagerRef.PlayVoiceLine(_investigationClip);
             yield return new WaitForSeconds(investigateDuration);
             Target = patrolPath[patrol %= patrolPath.Count];
             fsm.MoveNext(Command.LosePlayer);

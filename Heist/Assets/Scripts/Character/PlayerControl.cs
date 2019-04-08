@@ -399,7 +399,7 @@ namespace Character
                 }
             }
 
-            if (BaseCharacter.Inventory.Use() && Random.Range(0, 10) == 0)
+            if (BaseCharacter.Inventory.Use() && Random.Range(0, 8) == 0)
             {
                 LevelManager.LevelManagerRef.PlayVoiceLine(_taunt);
             }
@@ -479,22 +479,23 @@ namespace Character
         private IEnumerator DashCooldown()
         {
             _dashCooldown = false;
-            _rigid.AddForce(Control.MoveVector * _dashForce * 3f, ForceMode.VelocityChange);
+            _rigid.AddForce(_dashForce * 3f * Control.MoveVector, ForceMode.VelocityChange);
             yield return new WaitForSeconds(_dashTimer);
             _dashCooldown = true;
         }
 
         private IEnumerator Blink(int timer)
         {
-            yield return new WaitForSeconds(timer);
-            if (_playerModel.FaceState == PlayerModel.FacesState.Idle)
+            do
             {
-                _playerModel.SetBlink();
-                yield return new WaitForSeconds(0.5f);
-                _playerModel.SetIdle();
-            }
-
-            StartCoroutine(Blink(timer));
+                yield return new WaitForSeconds(timer);
+                if (_playerModel.FaceState == PlayerModel.FacesState.Idle)
+                {
+                    _playerModel.SetBlink();
+                    yield return new WaitForSeconds(0.5f);
+                    _playerModel.SetIdle();
+                }
+            } while (true);
         }
 
         private void OnDestroy()
@@ -513,13 +514,13 @@ namespace Character
 
         public void PickupWeapon()
         {
-            if (_pickupWeapon != null && Random.Range(0, 4) == 0)
+            if (_pickupWeapon != null && Random.Range(0, 2) == 0)
                 LevelManager.LevelManagerRef.PlayVoiceLine(_pickupWeapon);
         }
 
         public void PickupTrap()
         {
-            if (_pickupTrap != null && Random.Range(0, 4) == 0)
+            if (_pickupTrap != null && Random.Range(0, 2) == 0)
                 LevelManager.LevelManagerRef.PlayVoiceLine(_pickupTrap);
         }
     }

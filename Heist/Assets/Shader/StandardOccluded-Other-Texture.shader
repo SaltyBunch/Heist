@@ -3,7 +3,7 @@
 Shader "Custom/StandardOccluded-Other-Texture"
 {
 	Properties{
-		_Color("Color", Color) = (1,1,1,1)
+		[PerRendererData][HDR]_Color("Color", Color) = (1,1,1,1)
 		[PerRendererData]_MainTex("Albedo (RGB)", 2D) = "white" {}
 	    _EmissionMask("Emission Map", 2D) = "black" {}
 	    _Glossiness("Smoothness", Range(0,1)) = 0.5

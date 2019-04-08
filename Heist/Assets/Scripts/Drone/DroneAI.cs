@@ -56,6 +56,7 @@ namespace Drone
         }
 
         [SerializeField] private DroneState _droneState;
+        private float _damage;
 
         // Start is called before the first frame update
         private void Start()
@@ -87,7 +88,17 @@ namespace Drone
 
             _prop = new MaterialPropertyBlock();
 
+            drone.HealthChanged+= DroneOnHealthChanged;
             LevelManager.LevelManagerRef.Notifty += LevelManagerRefOnNotifty;
+        }
+
+        private void DroneOnHealthChanged(object sender, HealthChangedEventArgs e)
+        {
+            if (e.AmountChanged < 0)
+            {
+                _damage = 0.5f;
+                LevelManager.LevelManagerRef.PlayVoiceLine(_damageClip);
+            }
         }
 
         private void LevelManagerRefOnNotifty(object sender, NotifyEventArgs e)
@@ -290,10 +301,18 @@ namespace Drone
             else agent.SetDestination(transform.position);
             //agent.destination = transform.position;
 
+            var color = Color.white;
+            if (_damage > 0)
+            {
+                color = Color.red*3;
+                _damage -= Time.deltaTime;
+            }
+
             foreach (var character in _meshes)
             {
                 character.GetPropertyBlock(_prop);
                 _prop.SetTexture("_MainTex", _textures[(int) _droneState]);
+                _prop.SetColor("_Color", color);
                 character.SetPropertyBlock(_prop);
             }
         }

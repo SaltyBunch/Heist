@@ -31,7 +31,7 @@ namespace Character
         private bool _invincible;
         [SerializeField] private float _knockbackForce;
         [SerializeField] private float _stunTime;
-        
+
         private Rigidbody _rgd;
         private int _stacks;
         private bool _stun;
@@ -58,7 +58,7 @@ namespace Character
             get => _stacks;
             set
             {
-                var changed = _stacks - value;
+                var changed = _stacks - Mathf.Clamp(value, 0, Stats.Health);
                 if (value > _stacks && !_invincible && !(_stun || _stunCooldown))
                 {
                     _firstDamage = true;
@@ -139,7 +139,8 @@ namespace Character
 
         public void Knockback(Transform source)
         {
-            _rgd.AddRelativeForce(Vector3.ProjectOnPlane((transform.position - source.position), Vector3.up).normalized * _knockbackForce,
+            _rgd.AddRelativeForce(
+                Vector3.ProjectOnPlane((transform.position - source.position), Vector3.up).normalized * _knockbackForce,
                 ForceMode.Impulse);
         }
     }

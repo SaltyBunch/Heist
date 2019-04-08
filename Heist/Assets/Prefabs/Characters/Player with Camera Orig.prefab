@@ -3520,6 +3520,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1629a6962d61ca0408d16dfcdc01a885, type: 3}
   - {fileID: 21300000, guid: 27fe613abcc038f43b806fc23f50b181, type: 3}
   - {fileID: 21300000, guid: ed5bc50875f9b4b49adb7657a81d641e, type: 3}
+  - {fileID: 21300000, guid: 404b1129afb14424a910e19c5bfb40f4, type: 3}
   _notifyMessage: {fileID: 8681272248903715989}
   _siren: {fileID: 4189273879762270305}
   _vaultTimer: {fileID: 1825322519980706276}

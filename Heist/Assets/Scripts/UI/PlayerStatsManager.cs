@@ -16,7 +16,6 @@ namespace UI
 
     public class PlayerStatsManager : MonoBehaviour
     {
-
         [SerializeField] private TextMeshProUGUI _gold;
         [SerializeField] private Image[] _health;
         [SerializeField] private Image _playerPortrait;
@@ -148,8 +147,10 @@ namespace UI
                     _itemPortrait.sprite = _items[0];
                     break;
                 case StunGun stunGun:
-                case Shotgun shotgun:
                     _itemPortrait.sprite = _items[1];
+                    break;
+                case Shotgun shotgun:
+                    _itemPortrait.sprite = _items[5];
                     break;
             }
         }

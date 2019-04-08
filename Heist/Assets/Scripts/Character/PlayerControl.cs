@@ -464,9 +464,12 @@ namespace Character
         {
             if (_dashCooldown)
             {
-                if (_isAnimNotNull) _anim.SetTrigger("Dash");
-                LevelManager.LevelManagerRef.Notify(transform.position, NotifyType.Dash);
-                StartCoroutine(DashCooldown());
+                if (_isAnimNotNull && Control.MoveVector.magnitude > 0.01f)
+                {
+                    _anim.SetTrigger("Dash");
+                    LevelManager.LevelManagerRef.Notify(transform.position, NotifyType.Dash);
+                    StartCoroutine(DashCooldown());
+                }
             }
         }
 

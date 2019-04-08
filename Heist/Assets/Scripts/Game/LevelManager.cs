@@ -193,7 +193,7 @@ namespace Game
                     GameManager.GameManagerRef.Scores.Add(
                         new Score
                         {
-                            GoldAmount = 0,
+                            GoldAmount = -5000,
                             TimesStunned = player.timesStunned,
                             PlayerNumber = playerGO.PlayerControl.PlayerNumber
                         });

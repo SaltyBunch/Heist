@@ -399,7 +399,10 @@ namespace Character
                 }
             }
 
-            BaseCharacter.Inventory.Use();
+            if (BaseCharacter.Inventory.Use() && Random.Range(0, 10) == 0)
+            {
+                LevelManager.LevelManagerRef.PlayVoiceLine(_taunt);
+            }
         }
 
         private void Interact()
@@ -510,13 +513,13 @@ namespace Character
 
         public void PickupWeapon()
         {
-            if (_pickupWeapon != null)
+            if (_pickupWeapon != null && Random.Range(0, 4) == 0)
                 LevelManager.LevelManagerRef.PlayVoiceLine(_pickupWeapon);
         }
 
         public void PickupTrap()
         {
-            if (_pickupTrap != null)
+            if (_pickupTrap != null && Random.Range(0, 4) == 0)
                 LevelManager.LevelManagerRef.PlayVoiceLine(_pickupTrap);
         }
     }

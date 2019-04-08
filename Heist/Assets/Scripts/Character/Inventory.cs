@@ -211,7 +211,7 @@ namespace Character
             return false;
         }
 
-        public void Use()
+        public bool Use()
         {
             RaycastHit hit;
             switch (SelectedItem)
@@ -226,9 +226,10 @@ namespace Character
                         Remove(SelectedItem);
                         electricField.PlacedByPlayer = true;
                         electricField.gameObject.SetActive(true);
+                        return true;
                     }
 
-                    return;
+                    return false;
                 case LethalLaser lethalLaser:
                     if (Physics.Raycast(transform.position, transform.forward, out hit, 2,
                         LevelManager.LevelManagerRef.EnvironmentLayer)
@@ -239,9 +240,10 @@ namespace Character
                         Remove(SelectedItem);
                         lethalLaser.PlacedByPlayer = true;
                         lethalLaser.gameObject.SetActive(true);
+                        return true;
                     }
 
-                    return;
+                    return false;
                 case Baton baton:
                     baton.Use();
                     LevelManager.LevelManagerRef.Notify(transform.position, NotifyType.Attack);
@@ -249,7 +251,7 @@ namespace Character
                     if (_count == 0)
                     {
                         Remove(SelectedItem);
-                        return;
+                        return true;
                     }
 
                     break;
@@ -260,7 +262,7 @@ namespace Character
                     if (_count == 0)
                     {
                         Remove(SelectedItem);
-                        return;
+                        return true;
                     }
 
                     break;
@@ -271,7 +273,7 @@ namespace Character
                     if (_count == 0)
                     {
                         Remove(SelectedItem);
-                        return;
+                        return true;
                     }
 
                     break;
@@ -284,6 +286,7 @@ namespace Character
                     Type = _type,
                     Count = _count
                 });
+            return true;
         }
 
         private void Remove(Item selectedItem)

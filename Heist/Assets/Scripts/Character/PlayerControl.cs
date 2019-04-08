@@ -95,6 +95,8 @@ namespace Character
         private Collider[] _interactHits = new Collider[5];
         [SerializeField] private MeshRenderer _reticuleMesh;
 
+        private MaterialPropertyBlock _prop;
+
         internal Control Control
         {
             get => _control;
@@ -136,10 +138,6 @@ namespace Character
             if (_isReticuleNotNull)
             {
                 GameManager.SetLayerOnAll(_reticule, GameManager.GetPlayerMask(PlayerNumber, false));
-                MaterialPropertyBlock prop = new MaterialPropertyBlock();
-                _reticuleMesh.GetPropertyBlock(prop);
-                prop.SetColor("_Color", PlayerModel.Colors[PlayerNumber]);
-                _reticuleMesh.SetPropertyBlock(prop);
             }
             //if (_reticule != null) _reticule = Instantiate(_reticule, this.transform);
 
@@ -170,6 +168,14 @@ namespace Character
             _playerModel.SetMaterial(GameManager.GameManagerRef.Skins[PlayerNumber]);
             _playerModel.SetPlayer(PlayerNumber);
             StartCoroutine(Blink(5));
+
+            if (_isReticuleNotNull)
+            {
+                _prop = new MaterialPropertyBlock();
+                _reticuleMesh.GetPropertyBlock(_prop);
+                _prop.SetColor("_Color", PlayerModel.Colors[PlayerNumber]);
+                _reticuleMesh.SetPropertyBlock(_prop);
+            }
         }
 
         private void BaseCharacterOnCharacterStunned(object sender, EventArgs e)

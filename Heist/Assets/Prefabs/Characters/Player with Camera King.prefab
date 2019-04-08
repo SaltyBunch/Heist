@@ -194,6 +194,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 575827870061007412, guid: 0c5c1b41037c2c8469125aee9f07c0d2,
         type: 3}
+      propertyPath: _takeDamage.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 575827870061007412, guid: 0c5c1b41037c2c8469125aee9f07c0d2,
+        type: 3}
       propertyPath: _anim
       value: 
       objectReference: {fileID: 7257108600992363846}
@@ -241,7 +246,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _takeDamage
       value: 
-      objectReference: {fileID: 8300000, guid: 3c2fc32567627184488729ffe109c70f, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 575827870061007412, guid: 0c5c1b41037c2c8469125aee9f07c0d2,
         type: 3}
       propertyPath: _taunt
@@ -307,6 +312,16 @@ PrefabInstance:
       propertyPath: _hitbox
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 575827870061007412, guid: 0c5c1b41037c2c8469125aee9f07c0d2,
+        type: 3}
+      propertyPath: _takeDamage.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3c2fc32567627184488729ffe109c70f, type: 3}
+    - target: {fileID: 575827870061007412, guid: 0c5c1b41037c2c8469125aee9f07c0d2,
+        type: 3}
+      propertyPath: _takeDamage.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1a13888c614be1544be9aa5391c3a1c9, type: 3}
     - target: {fileID: 3081516943516742322, guid: 0c5c1b41037c2c8469125aee9f07c0d2,
         type: 3}
       propertyPath: _camera
@@ -970,6 +985,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7886938477706761159}
     m_Modifications:
+    - target: {fileID: 4953274549554074882, guid: d8642a5604ff955478ade378d53aedb8,
+        type: 3}
+      propertyPath: _characterSkinnedMeshRenderers.Array.data[0]
+      value: 
+      objectReference: {fileID: 7257108600996563846}
+    - target: {fileID: 4953274549554074882, guid: d8642a5604ff955478ade378d53aedb8,
+        type: 3}
+      propertyPath: _characterSkinnedMeshRenderers.Array.data[1]
+      value: 
+      objectReference: {fileID: 7257108600996563844}
+    - target: {fileID: 4953274549554074882, guid: d8642a5604ff955478ade378d53aedb8,
+        type: 3}
+      propertyPath: _characterSkinnedMeshRenderers.Array.data[2]
+      value: 
+      objectReference: {fileID: 7257108600996563842}
+    - target: {fileID: 4953274549554074882, guid: d8642a5604ff955478ade378d53aedb8,
+        type: 3}
+      propertyPath: _characterSkinnedMeshRenderers.Array.data[3]
+      value: 
+      objectReference: {fileID: 7257108600996563840}
     - target: {fileID: 3325007291819574317, guid: d8642a5604ff955478ade378d53aedb8,
         type: 3}
       propertyPath: m_Name
@@ -1030,26 +1065,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4953274549554074882, guid: d8642a5604ff955478ade378d53aedb8,
-        type: 3}
-      propertyPath: _characterSkinnedMeshRenderers.Array.data[0]
-      value: 
-      objectReference: {fileID: 7257108600996563846}
-    - target: {fileID: 4953274549554074882, guid: d8642a5604ff955478ade378d53aedb8,
-        type: 3}
-      propertyPath: _characterSkinnedMeshRenderers.Array.data[1]
-      value: 
-      objectReference: {fileID: 7257108600996563844}
-    - target: {fileID: 4953274549554074882, guid: d8642a5604ff955478ade378d53aedb8,
-        type: 3}
-      propertyPath: _characterSkinnedMeshRenderers.Array.data[2]
-      value: 
-      objectReference: {fileID: 7257108600996563842}
-    - target: {fileID: 4953274549554074882, guid: d8642a5604ff955478ade378d53aedb8,
-        type: 3}
-      propertyPath: _characterSkinnedMeshRenderers.Array.data[3]
-      value: 
-      objectReference: {fileID: 7257108600996563840}
     - target: {fileID: 3325007291822754085, guid: d8642a5604ff955478ade378d53aedb8,
         type: 3}
       propertyPath: m_Bones.Array.data[0]

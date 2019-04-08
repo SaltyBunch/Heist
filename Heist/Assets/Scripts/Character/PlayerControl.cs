@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Camera;
 using Game;
 using Hazard;
@@ -8,6 +9,7 @@ using Pickup;
 using UI;
 using UnityEngine;
 using Weapon;
+using Random = UnityEngine.Random;
 
 namespace Character
 {
@@ -72,7 +74,7 @@ namespace Character
         [SerializeField] private float _retMaxDist;
         [SerializeField] private Rigidbody _rigid;
         [SerializeField] private AudioClip _spotSecurity;
-        [SerializeField] private AudioClip _takeDamage;
+        [SerializeField] private List<AudioClip> _takeDamage;
         [SerializeField] private AudioClip _taunt;
         [SerializeField] private AudioClip _victory;
 
@@ -224,7 +226,7 @@ namespace Character
             if (e.AmountChanged < 0 && _takeDamage != null)
             {
                 _playerModel.TakeDamage();
-                LevelManager.LevelManagerRef.PlayVoiceLine(_takeDamage);
+                LevelManager.LevelManagerRef.PlayVoiceLine(_takeDamage[Random.Range(0, _takeDamage.Count)]);
             }
 
             _playerUiManager.SetHealth(e.Health);

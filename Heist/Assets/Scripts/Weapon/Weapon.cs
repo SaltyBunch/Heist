@@ -19,12 +19,8 @@ namespace Weapon
 
         public bool Equals(Weapon other)
         {
-            return this is Baton && other is Baton || this is StunGun && other is StunGun;
-        }
-
-        public void Bind(GameObject player)
-        {
-            throw new NotImplementedException();
+            return this is Baton && other is Baton || this is StunGun && other is StunGun ||
+                   this is Shotgun && other is Shotgun;
         }
 
         public void Attack(int playerNum)

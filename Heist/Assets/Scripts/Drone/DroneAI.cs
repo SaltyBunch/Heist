@@ -49,6 +49,8 @@ namespace Drone
         [SerializeField] private List<MeshRenderer> _meshes;
         private MaterialPropertyBlock _prop;
 
+        [SerializeField] private DroneHealth _droneHealth;
+
         private enum DroneState
         {
             Patrol,
@@ -58,6 +60,7 @@ namespace Drone
 
         [SerializeField] private DroneState _droneState;
         private float _damage;
+        [SerializeField] private Rigidbody _rgd;
 
         // Start is called before the first frame update
         private void Start()
@@ -100,11 +103,13 @@ namespace Drone
                 _damage = 0.5f;
                 LevelManager.LevelManagerRef.PlayVoiceLine(_damageClip);
             }
+
+            //todo update drone health thing
+            _droneHealth.SetHealth(e.Health);
         }
 
         private void LevelManagerRefOnNotifty(object sender, NotifyEventArgs e)
         {
-            //todo use notify type
             // e.NotifyType
             if (Vector3.Distance(transform.position, e.Position) <=
                 LevelManager.LevelManagerRef.NotificationRamge[e.NotifyType])
@@ -123,7 +128,6 @@ namespace Drone
             players = playerList;
         }
 
-        // Update is called once per frame
         private void Update()
         {
             //cheats
@@ -323,6 +327,8 @@ namespace Drone
                 _prop.SetColor("_Color", color);
                 character.SetPropertyBlock(_prop);
             }
+
+            _rgd.position = transform.position;
         }
 
 

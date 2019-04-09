@@ -6,6 +6,7 @@ using Rewired;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 namespace UI
 {
@@ -34,20 +35,27 @@ namespace UI
 
         [SerializeField] private Slider _slider;
         [SerializeField] private Image _image;
+        [SerializeField] private RawImage _rawImage;
         [SerializeField] private List<Sprite> _loadingScreens;
+        [SerializeField] private List<Sprite> _loadingBackdrops;
+        private bool _atVideo = false;
         private bool _skip;
         private bool[] _skippers;
         private int _numSkip;
         [SerializeField] private TextMeshProUGUI _skipText;
         [SerializeField] private TextMeshProUGUI _skipTotal;
 
+        [SerializeField] private VideoPlayer _videoPlayer;
+        private int _index = 0;
+        private bool _played;
+
         private void OnEnable()
         {
-            _image.sprite = _loadingScreens[0];
+            _image.sprite = _loadingBackdrops[Random.Range(0, _loadingBackdrops.Count)];
             _slider.gameObject.SetActive(true);
         }
 
-        public IEnumerator Next()
+        public void Next()
         {
             _slider.gameObject.SetActive(false);
             _skipText.gameObject.SetActive(true);
@@ -56,14 +64,8 @@ namespace UI
             _skipTotal.text = GameManager.NumPlayers.ToString();
             _skip = true;
             Time.timeScale = 0;
-            yield return new WaitForSecondsRealtime(10f);
-            if (_loadingScreens.Count > 1)
-            {
-                _image.sprite = _loadingScreens[1];
-            }
-
-            yield return new WaitForSecondsRealtime(10f);
-            EndLoading();
+            _videoPlayer.gameObject.SetActive(true);
+            _atVideo = true;
         }
 
         private void EndLoading()
@@ -71,12 +73,31 @@ namespace UI
             Time.timeScale = 1;
             _skip = false;
             gameObject.SetActive(false);
+            _played = false;
+            _atVideo = false;
         }
 
         private void Update()
         {
             if (_skip)
             {
+                if (!_videoPlayer.isPlaying && _atVideo)
+                {
+                    if (_played)
+                    {
+                        Skippers = new bool[GameManager.NumPlayers];
+                    }
+                    else
+                    {
+                        _videoPlayer.Play();
+                        _played = true;
+                    }
+                }
+                else if (_videoPlayer.isPlaying && !_atVideo)
+                {
+                    _videoPlayer.Stop();
+                }
+
                 for (var i = 0; i < ReInput.players.Players.Count; i++)
                 {
                     var player = ReInput.players.Players[i];
@@ -87,7 +108,23 @@ namespace UI
                 }
 
                 NumSkip = _skippers.Count(x => x);
-                if (NumSkip == _skippers.Length) EndLoading();
+                if (NumSkip == _skippers.Length)
+                {
+                    if (_atVideo)
+                    {
+                        _videoPlayer.gameObject.SetActive(false);
+                        _image.sprite = _loadingScreens[_index];
+                        _atVideo = false;
+                        Skippers = new bool[GameManager.NumPlayers];
+                    }
+                    else
+                    {
+                        Skippers = new bool[GameManager.NumPlayers];
+                        _index++;
+                        if (_index == _loadingScreens.Count)
+                            EndLoading();
+                    }
+                }
             }
         }
     }

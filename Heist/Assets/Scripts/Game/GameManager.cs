@@ -178,7 +178,7 @@ namespace Game
             if (sceneName == SceneNames.GameScene)
             {
                 LevelManager.LevelManagerRef.InitGame(NumPlayers);
-                StartCoroutine(_loadingScreen.Next());
+                _loadingScreen.Next();
             }
             else
             {

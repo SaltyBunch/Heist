@@ -55,8 +55,7 @@ namespace Character
         [SerializeField] private float _interactDistance;
         private bool _isReticuleNotNull;
 
-        [Header("Voice Lines")]
-        [SerializeField]
+        [Header("Voice Lines")] [SerializeField]
         private AudioClip _enterBank;
 
 
@@ -362,6 +361,7 @@ namespace Character
 
             if (_stunParticleExists)
             {
+                _stunParticle.gameObject.transform.position = _playerModel.Head.position;
                 if (BaseCharacter.Stunned && !_stunParticle.isPlaying)
                 {
                     _stunParticle.Play();

@@ -23,6 +23,8 @@ namespace Character
         [SerializeField] private List<Texture2D> _faces;
         [SerializeField] public FacesState FaceState = FacesState.Idle;
 
+        public Transform Head => _face.transform.parent;
+
         [SerializeField] private int _playerNumber = -1;
 
         [SerializeField] private Animator _anim;

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 997896534784726943}
   - component: {fileID: 997896534783399871}
   - component: {fileID: 997896534782301567}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: metalDoorFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 7766061393300509146}
   - component: {fileID: 1615335989794317658}
   - component: {fileID: 4775403390811759500}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: BlendedDoorwayThin
   m_TagString: Untagged
   m_Icon: {fileID: 0}

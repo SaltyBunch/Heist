@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 3335810100262775151}
   - component: {fileID: 2998778746978832995}
   - component: {fileID: 7385129216697553422}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: concreteBrickDoubleDoorway
   m_TagString: Untagged
   m_Icon: {fileID: 0}

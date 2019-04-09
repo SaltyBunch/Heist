@@ -55,7 +55,8 @@ namespace Character
         [SerializeField] private float _interactDistance;
         private bool _isReticuleNotNull;
 
-        [Header("Voice Lines")] [SerializeField]
+        [Header("Voice Lines")]
+        [SerializeField]
         private AudioClip _enterBank;
 
 
@@ -96,6 +97,8 @@ namespace Character
         [SerializeField] private MeshRenderer _reticuleMesh;
 
         private MaterialPropertyBlock _prop;
+        private bool _stunParticleExists;
+        [SerializeField] private ParticleSystem _stunParticle;
 
         internal Control Control
         {
@@ -152,6 +155,8 @@ namespace Character
 
             GameManager.SetLayerOnAll(_reticule, 5);
 
+            _stunParticleExists = _stunParticle != null;
+
             BaseCharacter.HealthChanged += BaseCharacterOnHealthChanged;
             BaseCharacter.Inventory.SelectionChanged += InventoryOnSelectionChanged;
             BaseCharacter.CharacterStunned += BaseCharacterOnCharacterStunned;
@@ -193,6 +198,9 @@ namespace Character
             OnMoveCancel?.Invoke(this, new EventArgs());
             if (_isAnimNotNull)
                 _anim.SetTrigger("Stunned");
+
+            if (_stunParticleExists)
+                _stunParticle.Play();
         }
 
         private void InventoryOnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -349,6 +357,18 @@ namespace Character
                     {
                         _playerUiManager.SetOpen("None", false);
                     }
+                }
+            }
+
+            if (_stunParticleExists)
+            {
+                if (BaseCharacter.Stunned && !_stunParticle.isPlaying)
+                {
+                    _stunParticle.Play();
+                }
+                else if (!BaseCharacter.Stunned && _stunParticle.isPlaying)
+                {
+                    _stunParticle.Stop();
                 }
             }
 

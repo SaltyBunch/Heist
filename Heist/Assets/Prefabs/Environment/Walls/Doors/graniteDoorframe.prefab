@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8496683378818771310}
   - component: {fileID: 4253117591605929053}
   - component: {fileID: 1686170862376687380}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: graniteDoorframe
   m_TagString: Untagged
   m_Icon: {fileID: 0}

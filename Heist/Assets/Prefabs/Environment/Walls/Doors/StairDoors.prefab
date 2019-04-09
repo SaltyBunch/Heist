@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 3559100591845532888}
   - component: {fileID: 1499886917587239358}
   - component: {fileID: 4651378240986764048}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: StairDoors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -372,7 +372,7 @@ PrefabInstance:
     - target: {fileID: 5451102765465021279, guid: a4ee9f29b8dbd9d4a9cfde771e93ac29,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5451102765465384831, guid: a4ee9f29b8dbd9d4a9cfde771e93ac29,
         type: 3}
@@ -432,12 +432,12 @@ PrefabInstance:
     - target: {fileID: 6786039483975259891, guid: a4ee9f29b8dbd9d4a9cfde771e93ac29,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 9204614477907775752, guid: a4ee9f29b8dbd9d4a9cfde771e93ac29,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4ee9f29b8dbd9d4a9cfde771e93ac29, type: 3}

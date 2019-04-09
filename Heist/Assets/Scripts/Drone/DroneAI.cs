@@ -133,9 +133,6 @@ namespace Drone
             //cheats
             if (!reviving && drone.Stunned) fsm.MoveNext(Command.Die);
 
-            if (!reviving && Input.GetKeyDown(KeyCode.Z) && Input.GetKeyDown(KeyCode.M)) fsm.MoveNext(Command.LockDown);
-
-            canMove = true;
             //Patrol State
             if (fsm.CurrentState.Equals(State.Patrol))
             {
@@ -294,24 +291,26 @@ namespace Drone
             //Dead State
             else if (fsm.CurrentState.Equals(State.Dead))
             {
-                _droneState = DroneState.Patrol;
+                if (drone.Stunned && !reviving)
+                {
+                    _droneState = DroneState.Patrol;
+                    control.SetTrigger("dead");
+                    reviving = true;
+                    canMove = false;
+                }
 
-                control.SetTrigger("dead");
-                reviving = true;
-                canMove = false;
                 if (!drone.Stunned)
                 {
+                    control.SetTrigger("alive");
+                    canMove = true;
+                    reviving = false;
                     Target = patrolPath[patrol %= patrolPath.Count];
                     fsm.MoveNext(Command.Wake);
-                    control.SetTrigger("alive");
                 }
             }
 
-            if (canMove)
-                agent.SetDestination(Target.position);
-            //agent.destination = Target.position;
+            if (canMove) agent.SetDestination(Target.position);
             else agent.SetDestination(transform.position);
-            //agent.destination = transform.position;
 
             var color = Color.white;
             if (_damage > 0)

@@ -16,6 +16,7 @@ ModelImporter:
     400008: Gun_Base
     400010: Gun_Base_Bolt
     2100000: lambert1
+    2100002: lambert2
     2300000: Body
     2300002: Eye
     2300004: Gun
@@ -40,6 +41,11 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: lambert1
+    second: {fileID: 2100000, guid: bcfa92a2f8b6a57408c89faa2ab82dc0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert2
     second: {fileID: 2100000, guid: bcfa92a2f8b6a57408c89faa2ab82dc0, type: 2}
   materials:
     importMaterials: 1

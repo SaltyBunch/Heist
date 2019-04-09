@@ -193,7 +193,7 @@ namespace Game
                     GameManager.GameManagerRef.Scores.Add(
                         new Score
                         {
-                            GoldAmount = -5000,
+                            GoldAmount = player.Inventory.GoldAmount - 5000,
                             TimesStunned = player.timesStunned,
                             PlayerNumber = playerGO.PlayerControl.PlayerNumber
                         });
@@ -311,6 +311,7 @@ namespace Game
                                 height = 0.5f
                             };
                         }
+
                         break;
                     case 4:
                         Players[i].Camera.MainCamera.rect = new Rect

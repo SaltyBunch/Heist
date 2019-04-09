@@ -26,7 +26,7 @@ namespace Hazard
             {
                 LevelManager.LevelManagerRef.Notify(other.transform.position, NotifyType.TripTrap);
                 var player = other.GetComponentInParent<PlayerControl>();
-                player.BaseCharacter.Stacks += 2;
+                player.BaseCharacter.Stacks += Damage;
             }
         }
         private void OnTriggerStay(Collider other)
@@ -34,7 +34,7 @@ namespace Hazard
             if (other.CompareTag("Player"))
             {
                 var player = other.GetComponentInParent<PlayerControl>();
-                player.BaseCharacter.Stacks += 2;
+                player.BaseCharacter.Stacks += Damage;
             }
         }
 

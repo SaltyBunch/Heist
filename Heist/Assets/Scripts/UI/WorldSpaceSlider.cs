@@ -10,7 +10,7 @@ namespace UI
         {
             Master,
             SFX,
-            Music
+            Music, Voice
         }
 
         public float Value
@@ -29,6 +29,9 @@ namespace UI
                         break;
                     case AudioSource.Music:
                         _masterMixer.UpdateMusicVolume(_value);
+                        break;
+                    case AudioSource.Voice:
+                        _masterMixer.UpdateVoiceVolume(_value);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -70,6 +73,9 @@ namespace UI
                     break;
                 case AudioSource.Music:
                     Value = _masterMixer.GetMusicVolume();
+                    break;
+                case AudioSource.Voice:
+                    Value = _masterMixer.GetVoiceVolume();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

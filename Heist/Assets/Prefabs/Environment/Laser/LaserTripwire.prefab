@@ -9695,6 +9695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlacedByPlayer: 0
   _maxGap: 10
+  Damage: 3
   _cooldown: 1
   Collider: {fileID: 5317978364337773795}
   Laser1: {fileID: 6231209157539245461}

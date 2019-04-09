@@ -74,7 +74,10 @@ namespace UI
             _skip = false;
             gameObject.SetActive(false);
             _played = false;
+            _index = 0;
             _atVideo = false;
+            _skipText.gameObject.SetActive(false);
+            _slider.gameObject.SetActive(true);
         }
 
         private void Update()
@@ -85,17 +88,23 @@ namespace UI
                 {
                     if (_played)
                     {
+                        _videoPlayer.gameObject.SetActive(false);
+                        _image.sprite = _loadingScreens[_index];
+                        _atVideo = false;
                         Skippers = new bool[GameManager.NumPlayers];
                     }
                     else
                     {
                         _videoPlayer.Play();
-                        _played = true;
                     }
                 }
                 else if (_videoPlayer.isPlaying && !_atVideo)
                 {
                     _videoPlayer.Stop();
+                }
+                else if (_videoPlayer.isPlaying)
+                {
+                    _played = true;
                 }
 
                 for (var i = 0; i < ReInput.players.Players.Count; i++)

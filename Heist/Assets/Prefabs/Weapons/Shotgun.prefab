@@ -45,7 +45,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 243647517469062824, guid: eededdd2fbad3964ebf78bd68215a874,
     type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
   _hitSound: {fileID: 8300000, guid: db7106379b6de6f4cb65e67c235e365c, type: 3}
   _outOfAmmoSound: {fileID: 8300000, guid: f48559512fdc023419235cfe004fe350, type: 3}
   _pickupSound: {fileID: 8300000, guid: 4ba58f9991f7e1d42a526514bf0c82b8, type: 3}
-  Ammo: 12
+  Ammo: 10
   _projectile: {fileID: 2430004408962383017, guid: 094136b8cd01e9f458c64a263d57dfeb,
     type: 3}
   Barrel: {x: 0, y: 0.1641427, z: 0.6695275}

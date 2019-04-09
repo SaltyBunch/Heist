@@ -48,6 +48,17 @@ namespace UI
             masterMixer.GetFloat("SFXVolume", out lvl);
             return lvl;
         }
+        
+        public void UpdateVoiceVolume(float lvl)
+        {
+            masterMixer.SetFloat("VoiceVolume", lvl);
+        }
+        public float GetVoiceVolume()
+        {
+            float lvl = 0;
+            masterMixer.GetFloat("VoiceVolume", out lvl);
+            return lvl;
+        }
 
         public void Pause()
         {

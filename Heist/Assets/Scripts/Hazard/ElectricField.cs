@@ -23,7 +23,7 @@ namespace Hazard
             {
                 var player = other.GetComponentInParent<PlayerControl>();
                 player.BaseCharacter.Stats.Speed -= 2;
-                player.BaseCharacter.Stacks += 2;
+                player.BaseCharacter.Stacks += Damage;
             }
         }
 
@@ -32,7 +32,7 @@ namespace Hazard
             if (other.CompareTag("Player"))
             {
                 var player = other.GetComponentInParent<PlayerControl>();
-                player.BaseCharacter.Stacks += 2;
+                player.BaseCharacter.Stacks += Damage;
             }
         }
 
@@ -41,7 +41,7 @@ namespace Hazard
             if (other.CompareTag("Player"))
             {
                 var player = other.GetComponentInParent<PlayerControl>();
-                player.BaseCharacter.Stats.Speed += 2;
+                player.BaseCharacter.Stats.Speed += Damage;
             }
         }
 
@@ -139,9 +139,9 @@ namespace Hazard
 
                 Collider.size = new Vector3
                 {
-                    x = Electric1.transform.localPosition.x * 2 + 0.1f,
-                    z = Electric1.transform.localPosition.z * 2,
-                    y = 1.5f
+                    x = 2,
+                    z = Electric1.transform.localPosition.z * 2 + 4,
+                    y = 2.5f
                 };
             }
 

@@ -20,7 +20,10 @@ namespace Game
 
         [SerializeField] private List<AudioClip> _victory;
         [SerializeField] private List<AudioClip> _defeat;
-        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private AudioSource _musicAudio;
+        [SerializeField] private AudioSource _voiceAudio;
+        [SerializeField] private AudioClip _victoryClip;
+        [SerializeField] private AudioClip _defeatClip;
 
         public static MenuManager.Control VictoryControl
         {
@@ -68,16 +71,21 @@ namespace Game
                 var playerModel = Instantiate(playerModels[(int) GameManager.PlayerChoice[order[i].PlayerNumber]],
                     _places[i]);
                 playerModel.SetMaterial(GameManager.GameManagerRef.Skins[order[i].PlayerNumber]);
-                playerModel.SetAnimation(i == 0 ? MenuAnim.Victory : MenuAnim.Defeat);
+                var victory = i == 0 && order[i].PlayerScore > 0;
+                playerModel.SetAnimation(victory ? MenuAnim.Victory : MenuAnim.Defeat);
                 _placeTexts[i].ScoreText.text = order[i].PlayerScore.ToString();
-                _audioSource.clip = i == 0
+                
+                _musicAudio.clip = victory ? _victoryClip : _defeatClip;
+                _musicAudio.Play();
+
+                _voiceAudio.clip = i == 0
                     ? _victory[(int) GameManager.PlayerChoice[order[i].PlayerNumber]]
                     : _defeat[(int) GameManager.PlayerChoice[order[i].PlayerNumber]];
-                _audioSource.Play();
+                _voiceAudio.Play();
                 do
                 {
                     yield return null;
-                } while (_audioSource.isPlaying);
+                } while (_voiceAudio.isPlaying);
 
                 yield return new WaitForSeconds(0.5f);
             }

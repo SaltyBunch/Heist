@@ -361,7 +361,7 @@ namespace Character
 
             if (_stunParticleExists)
             {
-                _stunParticle.gameObject.transform.position = _playerModel.Head.position;
+                _stunParticle.gameObject.transform.position = _playerModel.Head.position + Vector3.up*0.7f;
                 if (BaseCharacter.Stunned && !_stunParticle.isPlaying)
                 {
                     _stunParticle.Play();

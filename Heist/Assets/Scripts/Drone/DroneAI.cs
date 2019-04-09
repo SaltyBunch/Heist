@@ -55,7 +55,7 @@ namespace Drone
         {
             Patrol,
             Caution,
-            Attack
+            Attack, Dead
         }
 
         [SerializeField] private DroneState _droneState;
@@ -293,7 +293,7 @@ namespace Drone
             {
                 if (drone.Stunned && !reviving)
                 {
-                    _droneState = DroneState.Patrol;
+                    _droneState = DroneState.Dead;
                     control.SetTrigger("dead");
                     reviving = true;
                     canMove = false;

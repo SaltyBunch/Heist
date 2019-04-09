@@ -12,11 +12,14 @@ namespace Weapon
         public void Attack()
         {
             _audioSource.clip = _fireSound;
+            _audioSource.volume = 1;
             _audioSource.Play();
             var proj = Instantiate(_projectile, transform.TransformPoint(Barrel),
                 Quaternion.LookRotation(Vector3.ProjectOnPlane(transform.forward, Vector3.up), Vector3.up));
             proj.Shoot();
             Ammo--;
         }
+
+        
     }
 }

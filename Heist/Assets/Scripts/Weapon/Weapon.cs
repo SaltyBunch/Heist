@@ -26,5 +26,6 @@ namespace Weapon
         public void Attack(int playerNum)
         {
         }
+
     }
 }

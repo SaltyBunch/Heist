@@ -55,7 +55,8 @@ namespace Drone
         {
             Patrol,
             Caution,
-            Attack, Dead
+            Attack,
+            Dead
         }
 
         [SerializeField] private DroneState _droneState;
@@ -144,7 +145,7 @@ namespace Drone
                 //Detect player
                 foreach (var v in players)
                     if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange && !v.Stunned &&
-                        FieldOFView(v, 60))
+                        FieldOFView(v, 180))
                     {
                         Target = v.transform;
                         lastLoc = transform.position;
@@ -173,7 +174,7 @@ namespace Drone
                 //Detect player
                 foreach (var v in players)
                     if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange && !v.Stunned &&
-                        FieldOFView(v, 60))
+                        FieldOFView(v, 270))
                     {
                         Target = v.transform;
                         lastLoc = transform.position;
@@ -245,7 +246,7 @@ namespace Drone
                 //Detect player
                 foreach (var v in players)
                     if (Vector3.Distance(transform.position, v.transform.position) < detectPlayerRange && !v.Stunned &&
-                        FieldOFView(v, 60))
+                        FieldOFView(v, 200))
                     {
                         Target = v.transform;
                         lastLoc = transform.position;
@@ -327,7 +328,7 @@ namespace Drone
                 character.SetPropertyBlock(_prop);
             }
 
-            _rgd.position = transform.position;
+             _rgd.position= agent.nextPosition;
         }
 
 

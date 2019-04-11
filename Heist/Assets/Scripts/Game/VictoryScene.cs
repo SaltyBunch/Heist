@@ -73,8 +73,9 @@ namespace Game
                 playerModel.SetMaterial(GameManager.GameManagerRef.Skins[order[i].PlayerNumber]);
                 var victory = i == 0 && order[i].PlayerScore > 0;
                 playerModel.SetAnimation(victory ? MenuAnim.Victory : MenuAnim.Defeat);
-                _placeTexts[i].ScoreText.text = order[i].PlayerScore.ToString();
-                
+                _placeTexts[i].ScoreText.text =
+                    order[i].PlayerScore == -1337 ? "Busted" : order[i].PlayerScore.ToString();
+
                 _musicAudio.clip = victory ? _victoryClip : _defeatClip;
                 _musicAudio.Play();
 

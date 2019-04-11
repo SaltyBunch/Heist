@@ -46,7 +46,7 @@ namespace Drone
             {
                 //Wake up from death
                 {new StateTransition(State.Dead, Command.Wake), State.Patrol},
-                {new StateTransition(State.Dead, Command.LosePlayer), State.Patrol},
+                {new StateTransition(State.Dead, Command.LosePlayer), State.Dead},
                 //Die
                 {new StateTransition(State.BigChase, Command.Die), State.Dead},
                 {new StateTransition(State.BigPatrol, Command.Die), State.Dead},

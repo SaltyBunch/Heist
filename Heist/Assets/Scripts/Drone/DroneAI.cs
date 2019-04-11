@@ -328,7 +328,7 @@ namespace Drone
                 character.SetPropertyBlock(_prop);
             }
 
-             _rgd.position= agent.nextPosition;
+             _rgd.position = agent.nextPosition;
         }
 
 

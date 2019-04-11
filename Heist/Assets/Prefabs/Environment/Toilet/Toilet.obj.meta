@@ -12,6 +12,7 @@ ModelImporter:
     2300000: Toilet
     3300000: Toilet
     4300000: Toilet
+    6400000: Toilet
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -50,7 +51,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 0.0625
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1

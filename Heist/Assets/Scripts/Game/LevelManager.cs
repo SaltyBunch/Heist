@@ -429,9 +429,9 @@ namespace Game
             Func<int> time = () => (int)( _endGameAtTime - TimeSinceVaultOpened);
             do
             {                
-                foreach (var player in Players) player.PlayerUiManager.VaultTimer.text = time().ToString();
+                foreach (var player in Players) player.PlayerUiManager.VaultTimer.text = time.Invoke().ToString();
                 yield return new WaitForSeconds(1);
-            } while (time() > 0);
+            } while (time.Invoke() > 0);
 
 
 

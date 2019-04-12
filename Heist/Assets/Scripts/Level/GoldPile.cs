@@ -33,7 +33,7 @@ namespace Level
                 Percentage = value;
                 for (int i = 0; i < _goldPieces.Count; i++)
                 {
-                    if ((float) i / _goldPieces.Count >= Percentage)
+                    if ((float)i / _goldPieces.Count >= Percentage)
                     {
                         _goldPieces[i].SetActive(false);
                         if (i == 0) // there are no gold left
@@ -45,7 +45,11 @@ namespace Level
                             }
 
                             _quickTime = null;
-                            if (_player != null) _player.OnMoveCancel -= CancelChannel;
+                            if (_player != null)
+                            {
+                                _player.OnMoveCancel -= CancelChannel;
+                                _player.QTEInteracting = false;
+                            }
                             _player = null;
                             Destroy(gameObject, 0.2f);
                         }
@@ -73,6 +77,7 @@ namespace Level
             _quickTime.SetDexterity(player.BaseCharacter.Stats.Dexterity);
             _quickTime.Generate(player);
             _player = player;
+            _player.QTEInteracting = true;
             _player.OnMoveCancel += CancelChannel;
         }
 
@@ -83,6 +88,7 @@ namespace Level
             Destroy(_quickTime.gameObject, 0.2f);
             _quickTime = null;
             _player.OnMoveCancel -= CancelChannel;
+            _player.QTEInteracting = false;
             _player = null;
         }
 
@@ -95,7 +101,7 @@ namespace Level
                 _totalRemaining -= _transferAmount;
             }
 
-            PercentageRemaining = _totalRemaining / (float) _initialAmount;
+            PercentageRemaining = _totalRemaining / (float)_initialAmount;
             if (e.Complete || _totalRemaining <= 0 || e.State == -1)
             {
                 _interacting = false;
@@ -105,7 +111,11 @@ namespace Level
                     Destroy(_quickTime.gameObject, 0.2f);
                 }
                 _quickTime = null;
-                if (_player != null) _player.OnMoveCancel -= CancelChannel;
+                if (_player != null)
+                {
+                    _player.OnMoveCancel -= CancelChannel;
+                    _player.QTEInteracting = false;
+                }
                 _player = null;
             }
         }

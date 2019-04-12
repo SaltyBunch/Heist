@@ -99,6 +99,8 @@ namespace Character
         private bool _stunParticleExists;
         [SerializeField] private ParticleSystem _stunParticle;
 
+        public bool QTEInteracting;
+
         internal Control Control
         {
             get => _control;
@@ -408,7 +410,7 @@ namespace Character
 
         private void WeaponAttack()
         {
-            if (_baseCharacter.Stunned) return;
+            if (_baseCharacter.Stunned || QTEInteracting) return;
             if (_isAnimNotNull)
             {
                 if (_baseCharacter.Inventory.SelectedItem is StunGun)
@@ -433,7 +435,7 @@ namespace Character
 
         private void Interact()
         {
-            if (_baseCharacter.Stunned) return;
+            if (_baseCharacter.Stunned || QTEInteracting) return;
             if (_baseCharacter.OverWeaponPickup || _baseCharacter.OverTrapPickup)
             {
                 _anim.SetTrigger("PickUp");
@@ -471,6 +473,7 @@ namespace Character
 
         private void PushAttack()
         {
+            if (_baseCharacter.Stunned || QTEInteracting) return;
             _anim.SetTrigger("Baton");
             var objects = Physics.OverlapSphere(transform.position, 2);
             foreach (var o in objects)
@@ -491,7 +494,7 @@ namespace Character
 
         private void Dash()
         {
-            if (_dashCooldown)
+            if (_dashCooldown && !(_baseCharacter.Stunned || QTEInteracting))
             {
                 if (_isAnimNotNull && Control.MoveVector.magnitude > 0.01f)
                 {

@@ -53,6 +53,7 @@ namespace Level
             _quickTime.Events += QuickTimeEventMonitor;
             _quickTime.Generate(player, transform.position);
             _player = player;
+            _player.QTEInteracting = true;
             _player.OnMoveCancel += CancelChannel;
         }
 
@@ -63,6 +64,7 @@ namespace Level
             Destroy(_quickTime.gameObject, 0.2f);
             _quickTime = null;
             _player.OnMoveCancel -= CancelChannel;
+            _player.QTEInteracting = false;
             _player = null;
         }
 

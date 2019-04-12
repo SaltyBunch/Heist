@@ -19,11 +19,11 @@ namespace Hazard
             Collider = GetComponent<BoxCollider>();
         }
 
-        
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
-            {               
+            {
                 var player = other.GetComponentInParent<Character.Character>();
                 if (_placedBy != player)
                 {
@@ -38,7 +38,9 @@ namespace Hazard
             {
                 var player = other.GetComponentInParent<Character.Character>();
                 if (_placedBy != player)
-                player.Stacks += Damage;
+                {
+                    player.Stacks += Damage;
+                }
             }
         }
 
@@ -72,7 +74,7 @@ namespace Hazard
                     break;
                 }
             }
-            
+
             //left
             size = Physics.RaycastNonAlloc(position, Vector3.left, _colliders, _maxGap, layers);
             for (int i = 0; i < size; i++)
@@ -83,7 +85,7 @@ namespace Hazard
                     break;
                 }
             }
-            
+
             //back
             size = Physics.RaycastNonAlloc(position, Vector3.back, _colliders, _maxGap, layers);
             for (int i = 0; i < size; i++)
@@ -95,7 +97,7 @@ namespace Hazard
                 }
             }
             if (Vector3.Distance(fwd, bk) > _maxGap && Vector3.Distance(rt, lt) > _maxGap) return false;
-            
+
             if (Vector3.Distance(fwd, bk) > Vector3.Distance(rt, lt))
             {
                 transform.position = (rt + lt) / 2;
@@ -113,7 +115,8 @@ namespace Hazard
                 Collider.size = new Vector3
                 {
                     x = Laser1.transform.localPosition.x * 2 + 0.1f,
-                    z = Laser1.transform.localPosition.z * 2, y = 1.5f
+                    z = Laser1.transform.localPosition.z * 2,
+                    y = 1.5f
                 };
             }
             else
@@ -134,7 +137,8 @@ namespace Hazard
                 Collider.size = new Vector3
                 {
                     x = Laser1.transform.localPosition.x * 2 + 0.1f,
-                    z = Laser1.transform.localPosition.z * 2, y = 1.5f
+                    z = Laser1.transform.localPosition.z * 2,
+                    y = 1.5f
                 };
             }
 

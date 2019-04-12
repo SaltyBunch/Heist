@@ -19,7 +19,7 @@ namespace UI
         [SerializeField] private TextMeshProUGUI _serviceAnnouncement;
         [SerializeField] private TextMeshProUGUI _controlHint;
         public GameObject Siren => _playerStatsManager.Siren;
-
+        private GameObject _crown;
 
         public void SetPosition(Rect rect, int playerNumber)
         {
@@ -171,6 +171,11 @@ namespace UI
                     ClearHint(_playerHint);
                     break;
             }
+        }
+
+        internal void SetCrown(bool v)
+        {
+            _crown.gameObject.SetActive(v);
         }
 
         public void ShowKeyPickup(KeyType keyPickupKey)

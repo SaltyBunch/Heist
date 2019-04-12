@@ -70,6 +70,7 @@ namespace Game
         private float _timeSinceVaultOpened;
         public bool vaultOpen => _vaultOpen;
         private bool _vaultOpen;
+        private Player _most;
 
         private readonly List<Tuple<AudioClip, float>> _voiceQue = new List<Tuple<AudioClip, float>>();
 
@@ -170,6 +171,23 @@ namespace Game
                         _escapeText = true;
                     }
                 }
+
+                //place crown
+
+                _most.PlayerUiManager.SetCrown(false);
+
+
+                foreach (var player in _playerGo)
+                {
+                    if (_most == null || player.Player.Inventory.GoldAmount > _most.Inventory.GoldAmount)
+                    {
+                        _most = player.Player;
+                    }
+                }
+
+                _most.PlayerUiManager.SetCrown(true);
+
+
             } while (!_gameOver);
         }
 
@@ -397,6 +415,8 @@ namespace Game
                     5));
             _currentAudioSource = (_currentAudioSource + 1) % _musicAudioSource.Length;
 
+            _musicAudioSource[_currentAudioSource].loop = false;
+
             foreach (var player in Players) player.PlayerUiManager.Siren.SetActive(true);
 
 
@@ -406,14 +426,14 @@ namespace Game
 
             NotifyPlayers("Collect gold and escape the bank");
 
-            var time = _endGameAtTime;
+            Func<int> time = () => (int)( _endGameAtTime - TimeSinceVaultOpened);
             do
-            {
-                time -= 1;
-                foreach (var player in Players) player.PlayerUiManager.VaultTimer.text = time.ToString();
-
+            {                
+                foreach (var player in Players) player.PlayerUiManager.VaultTimer.text = time().ToString();
                 yield return new WaitForSeconds(1);
-            } while (time > 0);
+            } while (time() > 0);
+
+
 
             foreach (var player in Players) player.PlayerUiManager.VaultTimer.text = "";
         }

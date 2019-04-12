@@ -192,6 +192,7 @@ namespace Character
             {
                 var goldPickup = Instantiate(_goldPickup, transform.position + transform.up, Quaternion.identity);
                 goldPickup.SetDisableFor(PlayerNumber);
+                UnlockGold(5, goldPickup);
             }
 
             OnMoveCancel?.Invoke(this, new EventArgs());
@@ -200,6 +201,11 @@ namespace Character
 
             if (_stunParticleExists)
                 _stunParticle.Play();
+        }
+        IEnumerator UnlockGold(float wait, GoldPickup goldPickUp)
+        {
+            yield return new WaitForSeconds(wait);
+            goldPickUp.SetEnableAll();
         }
 
         private void InventoryOnSelectionChanged(object sender, SelectionChangedEventArgs e)

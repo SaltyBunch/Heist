@@ -80,6 +80,8 @@ namespace Character
             }
         }
 
+        public bool InElectric = false;
+
         public event HealthUpdatedEventHandler HealthChanged;
 
         public event StunnedEventHandler CharacterStunned;

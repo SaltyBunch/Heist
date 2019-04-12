@@ -289,11 +289,11 @@ namespace Character
 
             _rigid.AddForce(Control.MoveVector, ForceMode.VelocityChange);
             if ((_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward).magnitude >
-                _baseCharacter.Stats.Speed)
+                (_baseCharacter.InElectric ?  _baseCharacter.Stats.Speed : _baseCharacter.Stats.Speed - 2))
             {
                 var velocity = Vector3.Lerp(_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward,
                     (_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward).normalized *
-                    _baseCharacter.Stats.Speed, .5f);
+                    (_baseCharacter.InElectric ? _baseCharacter.Stats.Speed : _baseCharacter.Stats.Speed - 2), .5f);
                 velocity += _rigid.velocity.y * Vector3.up;
                 _rigid.velocity = velocity;
             }
@@ -303,7 +303,7 @@ namespace Character
 
             if (_isAnimNotNull)
             {
-                _anim.SetFloat("Speed", Control.MoveVector.magnitude);
+                _anim.SetFloat("Speed", Control.MoveVector.magnitude); //todo use a blendtree for better anims
                 _anim.SetBool("Shoot", _baseCharacter.Inventory.SelectedItem is StunGun && !_baseCharacter.Stunned);
                 _anim.SetBool("Shotgun", _baseCharacter.Inventory.SelectedItem is Shotgun && !_baseCharacter.Stunned);
             }

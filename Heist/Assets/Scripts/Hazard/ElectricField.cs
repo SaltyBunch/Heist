@@ -1,3 +1,4 @@
+using System;
 using Character;
 using Game;
 using UnityEngine;
@@ -11,6 +12,8 @@ namespace Hazard
         [SerializeField] public GameObject Electric2;
         private RaycastHit[] _colliders = new RaycastHit[5];
 
+
+
         private void Awake()
         {
             Collider = GetComponent<BoxCollider>();
@@ -21,9 +24,12 @@ namespace Hazard
             LevelManager.LevelManagerRef.Notify(other.transform.position, NotifyType.TripTrap);
             if (other.CompareTag("Player"))
             {
-                var player = other.GetComponentInParent<PlayerControl>();
-                player.BaseCharacter.Stats.Speed -= 2;
-                player.BaseCharacter.Stacks += Damage;
+                var player = other.GetComponentInParent<Character.Character>();
+                if (_placedBy != player)
+                {
+                    player.InElectric = true;
+                    player.Stacks += Damage;
+                }
             }
         }
 
@@ -31,8 +37,11 @@ namespace Hazard
         {
             if (other.CompareTag("Player"))
             {
-                var player = other.GetComponentInParent<PlayerControl>();
-                player.BaseCharacter.Stacks += Damage;
+                var player = other.GetComponentInParent<Character.Character>();
+                if (_placedBy != player)
+                {
+                    player.Stacks += Damage;
+                }
             }
         }
 
@@ -40,12 +49,15 @@ namespace Hazard
         {
             if (other.CompareTag("Player"))
             {
-                var player = other.GetComponentInParent<PlayerControl>();
-                player.BaseCharacter.Stats.Speed += Damage;
+                var player = other.GetComponentInParent<Character.Character>();
+                if (_placedBy != player)
+                {
+                    player.InElectric = false;
+                }
             }
         }
 
-        public override bool Place(Vector3 position)
+        public override bool Place(Vector3 position, Character.Character player)
         {
             var dis = 1.24f;
             int layers = (LevelManager.LevelManagerRef.EnvironmentLayer);
@@ -76,7 +88,7 @@ namespace Hazard
                     break;
                 }
             }
-            
+
             //left
             size = Physics.RaycastNonAlloc(position, Vector3.left, _colliders, _maxGap, layers);
             for (int i = 0; i < size; i++)
@@ -87,7 +99,7 @@ namespace Hazard
                     break;
                 }
             }
-            
+
             //back
             size = Physics.RaycastNonAlloc(position, Vector3.back, _colliders, _maxGap, layers);
             for (int i = 0; i < size; i++)
@@ -98,7 +110,7 @@ namespace Hazard
                     break;
                 }
             }
-            
+
             if (Vector3.Distance(fwd, bk) > _maxGap && Vector3.Distance(rt, lt) > _maxGap) return false;
 
             if (Vector3.Distance(fwd, bk) > Vector3.Distance(rt, lt))
@@ -145,7 +157,13 @@ namespace Hazard
                 };
             }
 
+            _placedBy = player;
+
+            StartCoroutine(RemovePlayer());
+
             return true;
         }
+
+        
     }
 }

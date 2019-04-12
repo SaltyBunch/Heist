@@ -23,22 +23,26 @@ namespace Hazard
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
-            {
-                LevelManager.LevelManagerRef.Notify(other.transform.position, NotifyType.TripTrap);
-                var player = other.GetComponentInParent<PlayerControl>();
-                player.BaseCharacter.Stacks += Damage;
+            {               
+                var player = other.GetComponentInParent<Character.Character>();
+                if (_placedBy != player)
+                {
+                    player.Stacks += Damage;
+                    LevelManager.LevelManagerRef.Notify(other.transform.position, NotifyType.TripTrap);
+                }
             }
         }
         private void OnTriggerStay(Collider other)
         {
             if (other.CompareTag("Player"))
             {
-                var player = other.GetComponentInParent<PlayerControl>();
-                player.BaseCharacter.Stacks += Damage;
+                var player = other.GetComponentInParent<Character.Character>();
+                if (_placedBy != player)
+                player.Stacks += Damage;
             }
         }
 
-        public override bool Place(Vector3 position)
+        public override bool Place(Vector3 position, Character.Character player)
         {
             int layers = (LevelManager.LevelManagerRef.EnvironmentLayer);
 
@@ -133,6 +137,10 @@ namespace Hazard
                     z = Laser1.transform.localPosition.z * 2, y = 1.5f
                 };
             }
+
+            _placedBy = player;
+
+            StartCoroutine(RemovePlayer());
 
             return true;
         }

@@ -291,11 +291,11 @@ namespace Character
 
             _rigid.AddForce(Control.MoveVector, ForceMode.VelocityChange);
             if ((_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward).magnitude >
-                (_baseCharacter.InElectric ?  _baseCharacter.Stats.Speed : _baseCharacter.Stats.Speed - 2))
+                (!_baseCharacter.InElectric ?  _baseCharacter.Stats.Speed : _baseCharacter.Stats.Speed - 2))
             {
                 var velocity = Vector3.Lerp(_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward,
                     (_rigid.velocity.x * Vector3.right + _rigid.velocity.z * Vector3.forward).normalized *
-                    (_baseCharacter.InElectric ? _baseCharacter.Stats.Speed : _baseCharacter.Stats.Speed - 2), .5f);
+                    (!_baseCharacter.InElectric ? _baseCharacter.Stats.Speed : _baseCharacter.Stats.Speed - 2), .5f);
                 velocity += _rigid.velocity.y * Vector3.up;
                 _rigid.velocity = velocity;
             }

@@ -192,7 +192,7 @@ namespace Character
             {
                 var goldPickup = Instantiate(_goldPickup, transform.position + transform.up, Quaternion.identity);
                 goldPickup.SetDisableFor(PlayerNumber);
-                UnlockGold(5, goldPickup);
+                StartCoroutine(UnlockGold(5, goldPickup));
             }
 
             OnMoveCancel?.Invoke(this, new EventArgs());

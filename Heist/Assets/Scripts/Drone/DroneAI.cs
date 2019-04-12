@@ -12,6 +12,7 @@ namespace Drone
     public class DroneAI : MonoBehaviour
     {
         private NavMeshAgent agent;
+        [SerializeField] private GameObject Lazor;
         [SerializeField] private List<Transform> bigPatrolPath;
         [SerializeField] private float detectPlayerRange;
         public FSM fsm;
@@ -298,6 +299,7 @@ namespace Drone
                     control.SetTrigger("dead");
                     reviving = true;
                     canMove = false;
+                    Lazor.SetActive(false);
                 }
 
                 if (!drone.Stunned)
@@ -307,6 +309,7 @@ namespace Drone
                     reviving = false;
                     Target = patrolPath[patrol %= patrolPath.Count];
                     fsm.MoveNext(Command.Wake);
+                    Lazor.SetActive(true);
                 }
             }
 

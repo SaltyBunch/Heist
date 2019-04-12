@@ -16,5 +16,10 @@ namespace Pickup
         {
             _ignorePlayer = playerNumber;
         }
+
+        public void SetEnableAll()
+        {
+            _ignorePlayer = -1;
+        }
     }
 }

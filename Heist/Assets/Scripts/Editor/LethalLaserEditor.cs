@@ -14,7 +14,7 @@ namespace Editor
             var laser = target as LethalLaser;
 
             base.OnInspectorGUI();
-            if (GUILayout.Button("Place")) laser.Place(laser.transform.position);
+            if (GUILayout.Button("Place")) laser.Place(laser.transform.position, null);
 
         }
 

@@ -14,7 +14,7 @@ namespace Editor
             var electric = target as ElectricField;
 
             base.OnInspectorGUI();
-            if (GUILayout.Button("Place")) electric.Place(electric.transform.position);
+            if (GUILayout.Button("Place")) electric.Place(electric.transform.position, null);
         }
 
         private void OnSceneGUI()

@@ -219,8 +219,8 @@ namespace Character
                 case ElectricField electricField:
                     if (Physics.Raycast(transform.position, transform.forward, out hit, 2,
                         LevelManager.LevelManagerRef.EnvironmentLayer)
-                        ? electricField.Place(hit.point - transform.forward / 2)
-                        : electricField.Place(transform.position + transform.forward * 2))
+                        ? electricField.Place(hit.point - transform.forward / 2, null)
+                        : electricField.Place(transform.position + transform.forward * 2, null))
                     {
                         electricField.transform.parent = null;
                         Remove(SelectedItem);
@@ -233,8 +233,8 @@ namespace Character
                 case LethalLaser lethalLaser:
                     if (Physics.Raycast(transform.position, transform.forward, out hit, 2,
                         LevelManager.LevelManagerRef.EnvironmentLayer)
-                        ? lethalLaser.Place(hit.point - transform.forward / 2)
-                        : lethalLaser.Place(transform.position + transform.forward * 2))
+                        ? lethalLaser.Place(hit.point - transform.forward / 2, null)
+                        : lethalLaser.Place(transform.position + transform.forward * 2, null))
                     {
                         lethalLaser.transform.parent = null;
                         Remove(SelectedItem);

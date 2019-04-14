@@ -159,7 +159,7 @@ namespace Hazard
 
             _placedBy = player;
 
-            StartCoroutine(RemovePlayer());
+
 
             return true;
         }

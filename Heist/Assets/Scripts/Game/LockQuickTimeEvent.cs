@@ -47,7 +47,7 @@ namespace Game
 
         private void PressButton(Button button)
         {
-            if (button == _buttons[_index])
+            if (_index < _buttons.Length && button == _buttons[_index])
             {
                 //success
                 Events?.Invoke(this, new QuickTimeEventArgs

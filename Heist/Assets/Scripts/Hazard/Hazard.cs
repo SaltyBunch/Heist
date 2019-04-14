@@ -26,5 +26,10 @@ namespace Hazard
             yield return new WaitForSeconds(1);
             _placedBy = null;
         }
+
+        private void OnEnable()
+        {
+            StartCoroutine(RemovePlayer());
+        }
     }
 }

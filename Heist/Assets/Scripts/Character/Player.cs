@@ -18,6 +18,7 @@ namespace Character
         public PlayerUIManager PlayerUiManager => _playerUiManager;
         [SerializeField] private PlayerUIManager _playerUiManager;
         [SerializeField] public PlayerControl PlayerControl;
+        [SerializeField] private GameObject _crown;
 
         public Inventory Inventory => _inventory;
 
@@ -107,5 +108,10 @@ namespace Character
 
         public QuickTimeEvent InitializeQuickTime(QuickTimeEvent quickTimeEvent) =>
             _playerUiManager.InitializeQuickTime(quickTimeEvent);
+
+        public void SetCrown(bool b)
+        {
+            _crown.SetActive(b);
+        }
     }
 }

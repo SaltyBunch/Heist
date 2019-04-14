@@ -173,8 +173,8 @@ namespace Game
                 }
 
                 //place crown
-
-                _most.PlayerUiManager.SetCrown(false);
+                if (_most != null)
+                    _most.SetCrown(false);
 
 
                 foreach (var player in _playerGo)
@@ -185,9 +185,7 @@ namespace Game
                     }
                 }
 
-                _most.PlayerUiManager.SetCrown(true);
-
-
+                _most.SetCrown(true);
             } while (!_gameOver);
         }
 
@@ -426,13 +424,12 @@ namespace Game
 
             NotifyPlayers("Collect gold and escape the bank");
 
-            Func<int> time = () => (int)( _endGameAtTime - TimeSinceVaultOpened);
+            Func<int> time = () => (int) (_endGameAtTime - TimeSinceVaultOpened);
             do
-            {                
+            {
                 foreach (var player in Players) player.PlayerUiManager.VaultTimer.text = time.Invoke().ToString();
                 yield return new WaitForSeconds(1);
             } while (time.Invoke() > 0);
-
 
 
             foreach (var player in Players) player.PlayerUiManager.VaultTimer.text = "";

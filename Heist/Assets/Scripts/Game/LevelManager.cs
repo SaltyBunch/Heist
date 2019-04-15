@@ -174,18 +174,28 @@ namespace Game
 
                 //place crown
                 if (_most != null)
-                    _most.SetCrown(false);
-
-
-                foreach (var player in _playerGo)
                 {
-                    if (_most == null || player.Player.Inventory.GoldAmount > _most.Inventory.GoldAmount)
+                    _most.SetCrown(false);
+                    if (_most.Inventory.GoldAmount <= 0)
+                        _most = null;
+                }
+
+                foreach (var player in Players)
+                {
+                    if (player.Player.Inventory.GoldAmount > 0 && _most != null &&
+                        player.Player.Inventory.GoldAmount > _most.Inventory.GoldAmount)
+                    {
+                        _most = player.Player;
+                    }
+                    else if (player.Player.Inventory.GoldAmount > 0 && _most == null)
                     {
                         _most = player.Player;
                     }
                 }
 
-                _most.SetCrown(true);
+                if (_most != null)
+                    _most.SetCrown(true);
+                
             } while (!_gameOver);
         }
 

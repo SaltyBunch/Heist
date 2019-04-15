@@ -195,7 +195,7 @@ namespace Game
 
                 if (_most != null)
                     _most.SetCrown(true);
-                
+
             } while (!_gameOver);
         }
 

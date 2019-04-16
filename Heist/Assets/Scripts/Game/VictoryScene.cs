@@ -15,6 +15,7 @@ namespace Game
         [SerializeField] private Transform[] _places;
 
         [SerializeField] private PlaceText[] _placeTexts;
+        [SerializeField] private GameObject[] _cages;
         private static MenuManager.Control _victoryControl;
         private static bool _exiting;
 
@@ -73,8 +74,12 @@ namespace Game
                 playerModel.SetMaterial(GameManager.GameManagerRef.Skins[order[i].PlayerNumber]);
                 var victory = i == 0 && order[i].PlayerScore > 0;
                 playerModel.SetAnimation(victory ? MenuAnim.Victory : MenuAnim.Defeat);
-                _placeTexts[i].ScoreText.text =
-                    order[i].PlayerScore == -1337 ? "Busted" : order[i].PlayerScore.ToString();
+
+                var captured = order[i].PlayerScore == -1337;
+
+                _placeTexts[i].ScoreText.text = captured ? "Busted" : order[i].PlayerScore.ToString();
+
+                _cages[i].SetActive(captured);
 
                 _musicAudio.clip = victory ? _victoryClip : _defeatClip;
                 _musicAudio.Play();
